@@ -1,7 +1,0 @@
-syn keyword orgdone DONE containedin=orgHeading1
-syn keyword orgdone DONE containedin=orgHeading2
-syn keyword orgdone DONE containedin=orgHeading3
-syn keyword orgdone DONE containedin=orgHeading4
-syn keyword orgdone DONE containedin=orgHeading5
-syn keyword orgdone DONE containedin=orgHeading6
-hi link orgdone Character

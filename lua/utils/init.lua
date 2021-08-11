@@ -7,7 +7,9 @@ local function _get_kitty_theme ()
     theme[#theme+1]='foreground '..vim.fn.synIDattr(vim.fn.hlID('Normal'), 'fg')
     theme[#theme+1]='selection_foreground '..vim.fn.synIDattr(vim.fn.hlID('Visual'), 'fg')
     theme[#theme+1]='selection_background '..vim.fn.synIDattr(vim.fn.hlID('Visual'), 'bg')
-    theme[#theme+1]='cursor '..vim.fn.synIDattr(vim.fn.hlID('Cursor'), 'bg')
+    if vim.fn.synIDattr(vim.fn.hlID('Cursor'), 'bg') ~= 'fg' then
+        theme[#theme+1]='cursor '..vim.fn.synIDattr(vim.fn.hlID('Cursor'), 'bg')
+    end
     for i=0,15 do
         theme[#theme+1]='color'..tostring(i)..' '..vim.fn.eval('g:terminal_color_'..tostring(i))
     end

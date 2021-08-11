@@ -38,7 +38,9 @@ require('telescope').setup {
             attach_mappings= function(prompt_bufnr)
                 require'telescope.actions.set'.select:enhance({
                     post = function()
-                        vim.cmd("call timer_start(0, { tid -> execute(':e')})")
+                        if vim.api.nvim_buf_get_name(0)~='' then
+                            vim.cmd("call timer_start(0, { tid -> execute(':e')})")
+                        end
                     end
                 })
                 return true
@@ -49,7 +51,9 @@ require('telescope').setup {
             attach_mappings= function(prompt_bufnr)
                 require'telescope.actions.set'.select:enhance({
                     post = function()
-                        vim.cmd("call timer_start(0, { tid -> execute(':e')})")
+                        if vim.api.nvim_buf_get_name(0)~='' then
+                            vim.cmd("call timer_start(0, { tid -> execute(':e')})")
+                        end
                     end
                 })
                 return true

@@ -1,6 +1,16 @@
 -- Change the background of lualine_c section for normal mode
 local custom_term = require'lualine.themes.auto'
 
+local conditions = {
+  buffer_not_empty = function() return vim.fn.empty(vim.fn.expand('%:t')) ~= 1 end,
+  hide_in_width = function() return vim.fn.winwidth(0) > 80 end,
+  check_git_workspace = function()
+local filepath = vim.fn.expand('%:p:h')
+local gitdir = vim.fn.finddir('.git', filepath .. ';')
+return gitdir and #gitdir > 0 and #gitdir < #filepath
+end
+}
+
 custom_term.normal.a.bg = vim.g["terminal_color_6"]
 custom_term.normal.a.fg = vim.g["terminal_color_0"]
 custom_term.inactive.a.bg = vim.g["terminal_color_6"]
@@ -39,6 +49,7 @@ custom_term.replace.c.bg = vim.g["terminal_color_0"]
 custom_term.replace.c.fg = vim.g["terminal_color_7"]
 custom_term.command.c.bg = vim.g["terminal_color_0"]
 custom_term.command.c.fg = vim.g["terminal_color_7"]
+
 require'lualine'.setup{
   options = {
     theme = custom_term,
@@ -47,17 +58,34 @@ require'lualine'.setup{
   },
       sections = {
         lualine_a = {'mode'},
-        lualine_b = {"filename"},
+        lualine_b = {function() return '%=' end,{"filename", condition = conditions.buffer_not_empty}},
         lualine_c = {},
-        lualine_x = {'filetype',"progress","location"},
+        lualine_x = {'filetype',
+                     {function()
+                         local msg = 'No Active Lsp'
+                         local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
+                         local clients = vim.lsp.get_active_clients()
+                         if next(clients) == nil then return msg end
+                         for _, client in ipairs(clients) do
+                             local filetypes = client.config.filetypes
+                             if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+                                 return client.name
+                             end
+                         end
+                         return msg
+                     end,icon='  LSP:',condition = conditions.buffer_not_empty},
+                     -- "location"
+                 },
         lualine_y = {},
         lualine_z = {}
       },
       inactive_sections = {
         lualine_a = {'mode'},
-        lualine_b = {"filename"},
+        lualine_b = {function() return '%=' end,{"filename",condition = conditions.buffer_not_empty}},
         lualine_c = {},
-        lualine_x = {'filetype',"progress","location"},
+        lualine_x = {'filetype',
+        -- "location"
+    },
         lualine_y = {},
         lualine_z = {}
   },

@@ -350,22 +350,36 @@ end
        end
    }
 
-   use {'shaunsingh/nord.nvim',
+    -- use {'shaunsingh/nord.nvim',
+    -- setup=function()
+    --     vim.g.nord_contrast = false
+    --     vim.g.nord_borders = true
+    -- end,
+    --  config=function()
+    --      -- vim.cmd[[colorscheme nord]]
+    --      require('nord').set()
+    --      require('nord.theme').loadTerminal()
+    --      require'plugin_config/theme'
+    --  end,
+    --  run=function()
+    --    require'utils'.export_theme_to_kitty()
+    --  end;
+    --  as='maintheme'
+    -- }
+
+   use{'rose-pine/neovim',
    setup=function()
-       vim.g.nord_contrast = false
-       vim.g.nord_borders = true
+       vim.g.rose_pine_variant = 'moon'
    end,
     config=function()
-        -- vim.cmd[[colorscheme nord]]
-        require('nord').set()
-        require('nord.theme').loadTerminal()
+        require('rose-pine').set()
+        require('rose-pine.theme').loadTerminal()
         require'plugin_config/theme'
     end,
     run=function()
       require'utils'.export_theme_to_kitty()
     end;
-    as='maintheme'
-   }
+   as = 'maintheme' }
 
    use {
        "folke/zen-mode.nvim",

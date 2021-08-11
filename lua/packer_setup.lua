@@ -63,6 +63,7 @@ end
   event="BufReadPre",
   setup= function ()
       vim.g.rooter_silent_chdir = 1
+      vim.g.rooter_patterns = {'.git'}
   end
   }
   use {"https://github.com/machakann/vim-highlightedyank",
@@ -77,7 +78,7 @@ end
       setup=function()
           require('which-key').register(
           {
-              d = {':Bdelete<cr>','Delete buffer'},
+              d = {'<cmd>Bdelete<cr>','Delete buffer'},
           },
           {prefix="<leader>"}
       )
@@ -113,6 +114,7 @@ end
               g={
                   name='plugins',
                   d={'"dyiw:lua require\'utils\'.macdict(vim.fn.getreg(\'d\'))<CR>','macos dictionary'},
+                  l={'<cmd>wincmd v <bar> term<cr>','New Vertical term'}
               }
           },
           {prefix='<leader>',mode='n'}
@@ -156,7 +158,8 @@ end
                   b={"<cmd>lua require('telescope.builtin').filetypes()<cr>",'filetypes'},
                   g={"<cmd>lua require('telescope.builtin').live_grep()<cr>",'live grep'},
                   f={"<cmd>lua require('telescope.builtin').buffers()<cr>",'buffers'},
-                  d={"<cmd>lua require('telescope.builtin').file_browser()<cr>",'file browser'},
+                  s={"<cmd>lua require('telescope.builtin').file_browser()<cr>",'file browser'},
+                  d={"<cmd>lua require('telescope.builtin').find_files()<cr>",'find files'},
                   z={"<cmd>lua require('telescope.builtin').spell_suggest()<cr>",'spell suggest'}
               },
           },
@@ -177,19 +180,19 @@ end
       {
           b = {
               name= 'builder',
-              b={':AsyncRun -mode=term -pos=floaterm -position=bottomright -width=0.4 -focus=0 -title=builder builder "%" <CR>','build'},
-              c={':AsyncRun -mode=term -pos=floaterm -position=bottomright -width=0.4 -focus=0 -title=cleaner cleaner "%" <CR>','clean'},
-              o={':AsyncRun -mode=term -pos=floaterm -position=bottomright -width=0.4 -focus=0 -title=opener opener "%" <CR>','open'}
+              b={'<cmd>AsyncRun -mode=term -pos=floaterm -position=bottomright -width=0.4 -focus=0 -title=builder builder "%" <CR>','build'},
+              c={'<cmd>AsyncRun -mode=term -pos=floaterm -position=bottomright -width=0.4 -focus=0 -title=cleaner cleaner "%" <CR>','clean'},
+              o={'<cmd>AsyncRun -mode=term -pos=floaterm -position=bottomright -width=0.4 -focus=0 -title=opener opener "%" <CR>','open'}
           },
               m = {
                   name= 'maker',
-                  m={':AsyncRun -mode=term -pos=floaterm -position=bottomright -width=0.4 -focus=0 -title=maker maker <CR>','maker make'},
-                  c={':AsyncRun -mode=term -pos=floaterm -position=bottomright -width=0.4 -focus=0 -title=maker maker clean <CR>','maker clean'},
-                  o={':AsyncRun -mode=term -pos=floaterm -position=bottomright -width=0.4 -focus=0 -title=maker maker open <CR>','maker open'}},
+                  m={'<cmd>AsyncRun -mode=term -pos=floaterm -position=bottomright -width=0.4 -focus=0 -title=maker maker <CR>','maker make'},
+                  c={'<cmd>AsyncRun -mode=term -pos=floaterm -position=bottomright -width=0.4 -focus=0 -title=maker maker clean <CR>','maker clean'},
+                  o={'<cmd>AsyncRun -mode=term -pos=floaterm -position=bottomright -width=0.4 -focus=0 -title=maker maker open <CR>','maker open'}},
             g = {
                 name='plugins',
-                g = {':FloatermToggle --autoclose=1 <CR>', 'FloaTerm'},
-                t = {':lua LazyGitOpener()<CR>','LazyGit'}
+                g = {'<cmd>FloatermToggle --autoclose=1 <CR>', 'FloaTerm'},
+                t = {'<cmd>lua LazyGitOpener()<CR>','LazyGit'}
             }
       },
           {prefix='<leader>'}

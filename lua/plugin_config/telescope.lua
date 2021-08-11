@@ -38,7 +38,18 @@ require('telescope').setup {
             attach_mappings= function(prompt_bufnr)
                 require'telescope.actions.set'.select:enhance({
                     post = function()
-                        vim.cmd(":normal! zx")
+                        vim.cmd("call timer_start(0, { tid -> execute(':e')})")
+                    end
+                })
+                return true
+            end
+
+        },
+        live_grep = {
+            attach_mappings= function(prompt_bufnr)
+                require'telescope.actions.set'.select:enhance({
+                    post = function()
+                        vim.cmd("call timer_start(0, { tid -> execute(':e')})")
                     end
                 })
                 return true

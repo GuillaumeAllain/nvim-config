@@ -23,6 +23,10 @@ return require('packer').startup{function(use, packer_plugins)
     })
 end
   }
+  use {
+      'jbyuki/venn.nvim',
+      cmd="VBox"
+  }
   use {'~/srv/panotes',
   cmd='Panotes',
   config=function()

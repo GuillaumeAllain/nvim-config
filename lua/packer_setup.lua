@@ -60,6 +60,7 @@ end
   keys={":","/","?"}
   }
   use {"airblade/vim-rooter",
+  event="BufReadPre",
   setup= function ()
       vim.g.rooter_silent_chdir = 1
   end

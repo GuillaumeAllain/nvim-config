@@ -382,7 +382,7 @@ end
     config=function()
         require('rose-pine').set()
         require('rose-pine.theme').loadTerminal()
-        require'plugin_config/theme'
+       require'plugin_config/theme'
     end,
     run=function()
       require'utils'.export_theme_to_kitty()

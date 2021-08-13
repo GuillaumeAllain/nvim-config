@@ -51,7 +51,7 @@ vim.opt.shiftwidth = 4
 vim.opt.spelllang = "fr"
 
 vim.g.mapleader=" "
-vim.g.python3_host_prog='/usr/local/anaconda3/bin/python'
+vim.g.python3_host_prog='/usr/local/anaconda3/envs/neovim/bin/python'
 vim.g.netrw_banner=0
 vim.g.netrw_liststyle=3
 vim.g.pyindent_searchpair_timeout = 10

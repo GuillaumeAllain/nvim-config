@@ -4,6 +4,9 @@ vim.cmd [[packadd packer.nvim]]
 return require('packer').startup{function(use, packer_plugins)
     -- Packer can manage itself
     use {'wbthomason/packer.nvim',opt=true}
+    use {'edluffy/hologram.nvim',
+        module="hologram"
+    }
 
     use {'tpope/vim-vinegar', ft='netrw'}
 
@@ -60,9 +63,7 @@ end
   use {
       "Konfekt/FastFold"
   }
-  use {"romainl/vim-cool",
-  keys={":","/","?"}
-  }
+  use {"romainl/vim-cool"}
   use {"airblade/vim-rooter",
   event="BufReadPre",
   setup= function ()
@@ -118,7 +119,8 @@ end
               g={
                   name='plugins',
                   d={'"dyiw:lua require\'utils\'.macdict(vim.fn.getreg(\'d\'))<CR>','macos dictionary'},
-                  l={'<cmd>wincmd v <bar> term<cr>','New Vertical term'}
+                  l={":lua require'utils'.open_build_buffer_window()<cr>",'Open BuildTerminal in vsplit'},
+                  b={":lua require'utils'.send_command_to_build_terminal('builder '..vim.fn.getreg('%'))<cr>", 'Run in BuildTerminal'}
               }
           },
           {prefix='<leader>',mode='n'}
@@ -159,7 +161,6 @@ end
           {
               f = {
                   name = 'telescope',
-                  b={"<cmd>lua require('telescope.builtin').filetypes()<cr>",'filetypes'},
                   g={"<cmd>lua require('telescope.builtin').live_grep()<cr>",'live grep'},
                   f={"<cmd>lua require('telescope.builtin').buffers()<cr>",'buffers'},
                   s={"<cmd>lua require('telescope.builtin').file_browser()<cr>",'file browser'},

@@ -120,7 +120,7 @@ end
                   name='plugins',
                   d={'"dyiw:lua require\'utils\'.macdict(vim.fn.getreg(\'d\'))<CR>','macos dictionary'},
                   l={":lua require'utils'.open_build_buffer_window()<cr>",'Open BuildTerminal in vsplit'},
-                  b={":lua require'utils'.send_command_to_build_terminal('builder '..vim.fn.getreg('%'))<cr>", 'Run in BuildTerminal'}
+                  b={":lua require'utils'.send_command_to_build_terminal('builder '..vim.fn.fnameescape(vim.fn.getreg('%')))<cr>", 'Run in BuildTerminal'}
               }
           },
           {prefix='<leader>',mode='n'}

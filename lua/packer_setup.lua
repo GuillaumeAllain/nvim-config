@@ -64,11 +64,13 @@ end
       "Konfekt/FastFold"
   }
   use {"romainl/vim-cool"}
-  use {"airblade/vim-rooter",
+  use {
+  "ahmedkhalf/project.nvim",
   event="BufReadPre",
-  setup= function ()
-      vim.g.rooter_silent_chdir = 1
-      vim.g.rooter_patterns = {'.git'}
+  config = function()
+    require("project_nvim").setup {
+        ignore_lsp = {"efm"}
+    }
   end
   }
   use {"https://github.com/machakann/vim-highlightedyank",

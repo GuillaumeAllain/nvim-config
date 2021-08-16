@@ -64,7 +64,8 @@ end
   event="BufReadPre",
   config = function()
     require("project_nvim").setup {
-        ignore_lsp = {"efm"}
+        ignore_lsp = {"efm","sumneko_lua"},
+        patterns = {".git","!Makefile"},
     }
   end
   }

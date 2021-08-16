@@ -62,6 +62,7 @@ au BufWritePre /tmp/* setlocal noundofile
 autocmd User Startified setlocal buflisted
 autocmd! FileType help :wincmd L | :vert resize 90
 autocmd TermOpen * setlocal nonumber norelativenumber | startinsert
+au TextYankPost * silent! lua vim.highlight.on_yank{timeout=75}
 ]]
 
 vim.lsp.protocol.make_client_capabilities().textDocument.completion.completionItem.snippetSupport = true

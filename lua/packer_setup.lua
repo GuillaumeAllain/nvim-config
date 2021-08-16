@@ -4,12 +4,7 @@ vim.cmd [[packadd packer.nvim]]
 return require('packer').startup{function(use, packer_plugins)
     -- Packer can manage itself
     use {'wbthomason/packer.nvim',opt=true}
-    use {'edluffy/hologram.nvim',
-        module="hologram"
-    }
-
     use {'tpope/vim-vinegar', ft='netrw'}
-
     use {'~/srv/org-call.nvim',
     cmd="OrgAgenda",
     ft="org",
@@ -73,12 +68,6 @@ end
     }
   end
   }
-  use {"https://github.com/machakann/vim-highlightedyank",
-  keys="y",
-  setup=function()
-      vim.g.highlightedyank_highlight_duration = 75
-  end
-  }
   use {
       "moll/vim-bbye",
       cmd={"Bdelete","Bwipeout"},
@@ -139,12 +128,7 @@ end
     end
   }
 
-  use {"gioele/vim-autoswap",
-    -- event='BufCreate',
-    -- config=function()
-    --     -- vim.g.autoswap_detect_tmux = 1
-    -- end
-  }
+  use {"gioele/vim-autoswap"}
 
   use {
       'nvim-telescope/telescope.nvim',

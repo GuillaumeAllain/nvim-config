@@ -475,6 +475,11 @@ end
        config=function()
            require'plugin_config/lspconfig'
        end,
+       run=function()
+           vim.fn.system("julia --project=~/.julia/environments/nvim-lspconfig -e 'using Pkg; Pkg.add(\"LanguageServer\")'")
+           vim.fn.system("pip install fortran-language-server")
+           vim.fn.system("pip install jedi-language-server")
+       end,
    }
    end,
    config={

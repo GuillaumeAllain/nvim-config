@@ -166,3 +166,18 @@ require'lspconfig'.sumneko_lua.setup {
     },
 }
 
+local function find_toml(startpath)
+    return require'lspconfig'.util.search_ancestors(startpath, function(path)
+        if require'lspconfig'.util.path.is_file(require'lspconfig'.util.path.join(path, 'Project.toml')) then
+            return path
+        end
+    end)
+end
+
+require 'lspconfig'.julials.setup{
+    on_attach=on_attach,
+    root_dir = function(fname)
+        return find_toml(fname) or vim.fn.getcwd()
+    end
+}
+

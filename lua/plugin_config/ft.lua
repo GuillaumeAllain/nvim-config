@@ -19,7 +19,8 @@ m.lsp_ft = {
     "pandoc",
     "yaml",
     "fortran",
-    "lua"
+    "lua",
+    "julia"
 }
 
 local function get_ctags_ft()

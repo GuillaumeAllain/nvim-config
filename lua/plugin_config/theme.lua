@@ -14,7 +14,8 @@ vim.cmd[[hi! SignColumn guibg=none ctermbg=none]]
 vim.cmd[[hi! EndOfBuffer guibg=none ctermbg=none]]
 
 vim.cmd[[
-hi! link Conceal Number
-hi! link LineNr Normal
-hi! link FoldColumn Normal
+hi! link Conceal Comment
+hi! link FoldColumn Comment
 ]]
+
+-- hi! link LineNr Comment

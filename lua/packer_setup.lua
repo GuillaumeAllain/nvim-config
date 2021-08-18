@@ -101,22 +101,29 @@ end
     config=function()
         require('which-key').register(
         {
-            h = 'previous buffer',
-            l = 'next buffer',
-        },
-        {prefix="<leader>"}
-        )
-        require('which-key').register(
-          {
+            -- h = {'<C-\\><C-N><cmd>bp','previous buffer'},
+            -- l = {'<C-\\><C-N><cmd>bn <CR>','next buffer'},
               g={
                   name='plugins',
                   d={'"dyiw:lua require\'utils\'.macdict(vim.fn.getreg(\'d\'))<CR>','macos dictionary'},
-                  l={":lua require'utils'.open_build_buffer_window()<cr>",'Open BuildTerminal in vsplit'},
-                  b={":lua require'utils'.send_command_to_build_terminal('builder '..vim.fn.fnameescape(vim.fn.getreg('%')))<cr>", 'Run in BuildTerminal'}
+                  l={":lua require'utils'.toggle_build_buffer_window()<cr>",'Toggle BuildTerminal in vsplit'},
+              },
+              b={
+                  name='builder',
+                  b={":lua require'utils'.send_command_to_build_terminal('builder '..vim.fn.fnameescape(vim.fn.getreg('%')))<cr>", 'Build in BuildTerminal'},
+                  o={":lua require'utils'.send_command_to_build_terminal('opener '..vim.fn.fnameescape(vim.fn.getreg('%')))<cr>", 'Open in BuildTerminal'},
+                  c={":lua require'utils'.send_command_to_build_terminal('cleaner '..vim.fn.fnameescape(vim.fn.getreg('%')))<cr>", 'Clean in BuildTerminal'}
+              },
+              m={
+                  name='maker',
+                  m={":lua require'utils'.send_command_to_build_terminal('maker make')<cr>", 'Make in BuildTerminal'},
+                  o={":lua require'utils'.send_command_to_build_terminal('maker open')<cr>", 'Make Open in BuildTerminal'},
+                  c={":lua require'utils'.send_command_to_build_terminal('maker clean')<cr>", 'Make Clean in BuildTerminal'}
+
               }
-          },
-          {prefix='<leader>',mode='n'}
-          )
+        },
+        {prefix="<leader>"}
+        )
           require('which-key').register(
           {
               g={
@@ -170,17 +177,17 @@ end
       end
       require('which-key').register(
       {
-          b = {
-              name= 'builder',
-              b={'<cmd>AsyncRun -mode=term -pos=floaterm -position=bottomright -width=0.4 -focus=0 -title=builder builder "%" <CR>','build'},
-              c={'<cmd>AsyncRun -mode=term -pos=floaterm -position=bottomright -width=0.4 -focus=0 -title=cleaner cleaner "%" <CR>','clean'},
-              o={'<cmd>AsyncRun -mode=term -pos=floaterm -position=bottomright -width=0.4 -focus=0 -title=opener opener "%" <CR>','open'}
-          },
-              m = {
-                  name= 'maker',
-                  m={'<cmd>AsyncRun -mode=term -pos=floaterm -position=bottomright -width=0.4 -focus=0 -title=maker maker <CR>','maker make'},
-                  c={'<cmd>AsyncRun -mode=term -pos=floaterm -position=bottomright -width=0.4 -focus=0 -title=maker maker clean <CR>','maker clean'},
-                  o={'<cmd>AsyncRun -mode=term -pos=floaterm -position=bottomright -width=0.4 -focus=0 -title=maker maker open <CR>','maker open'}},
+          -- b = {
+          --     name= 'builder',
+          --     b={'<cmd>AsyncRun -mode=term -pos=floaterm -position=bottomright -width=0.4 -focus=0 -title=builder builder "%" <CR>','build'},
+          --     c={'<cmd>AsyncRun -mode=term -pos=floaterm -position=bottomright -width=0.4 -focus=0 -title=cleaner cleaner "%" <CR>','clean'},
+          --     o={'<cmd>AsyncRun -mode=term -pos=floaterm -position=bottomright -width=0.4 -focus=0 -title=opener opener "%" <CR>','open'}
+          -- },
+          --     m = {
+          --         name= 'maker',
+          --         m={'<cmd>AsyncRun -mode=term -pos=floaterm -position=bottomright -width=0.4 -focus=0 -title=maker maker <CR>','maker make'},
+          --         c={'<cmd>AsyncRun -mode=term -pos=floaterm -position=bottomright -width=0.4 -focus=0 -title=maker maker clean <CR>','maker clean'},
+          --         o={'<cmd>AsyncRun -mode=term -pos=floaterm -position=bottomright -width=0.4 -focus=0 -title=maker maker open <CR>','maker open'}},
             g = {
                 name='plugins',
                 g = {'<cmd>FloatermToggle --autoclose=1 <CR>', 'FloaTerm'},
@@ -194,12 +201,12 @@ end
   config = function()
       vim.cmd[[hi FloatermBorder guibg=None]]
   end,
-      requires= {{"skywind3000/asyncrun.vim",
-      cmd={"AsyncRun"},
-      wants={"asyncrun.extra"},
-      requires={{"skywind3000/asyncrun.extra",opt=true}}
-      },
-  }
+      -- requires= {{"skywind3000/asyncrun.vim",
+      -- cmd={"AsyncRun"},
+      -- wants={"asyncrun.extra"},
+      -- requires={{"skywind3000/asyncrun.extra",opt=true}}
+      -- },
+  -- }
   }
 
   -- Redaction

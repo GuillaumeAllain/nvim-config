@@ -89,4 +89,20 @@ function m.open_build_buffer_window ()
     vim.fn.execute("stopinsert | wincmd w")
 end
 
+function m.toggle_build_buffer_window()
+    local win_info = vim.fn.getwininfo()
+    local build_buffer = require'utils'.get_build_terminal()
+    local window_closed = false
+
+    for k in pairs(win_info) do
+        if win_info[k].bufnr == build_buffer then
+            vim.api.nvim_win_close(win_info[k].winid,nil)
+            window_closed = true
+        end
+    end
+    if not window_closed then
+        m.open_build_buffer_window()
+    end
+end
+
 return m

@@ -80,13 +80,14 @@ end
 
 function m.open_build_buffer_window ()
     local build_buffer = require'utils'.get_build_terminal()
+    local cur_window = vim.fn.winnr()
 
-    vim.fn.execute("wincmd v")
-    vim.fn.execute("buffer "..tostring(build_buffer))
+    vim.fn.execute("botright vsplit | buffer "..tostring(build_buffer))
     vim.wo.number = false
     vim.wo.relativenumber = false
     vim.fn.execute("norm G")
-    vim.fn.execute("stopinsert | wincmd w")
+    -- vim.fn.execute("stopinsert")
+    vim.fn.execute(tostring(cur_window).." wincmd w")
 end
 
 function m.toggle_build_buffer_window()

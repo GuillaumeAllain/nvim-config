@@ -61,6 +61,7 @@ vim.g.loaded_node_provider = 0
 vim.g.netrw_banner=0
 vim.g.netrw_liststyle=3
 vim.g.pyindent_searchpair_timeout = 10
+vim.g.netrw_winsize = 20
 
 vim.cmd[[
 command! -nargs=* W w

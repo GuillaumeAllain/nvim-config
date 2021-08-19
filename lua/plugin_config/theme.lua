@@ -1,9 +1,9 @@
 -----------------------------THEME------------------------------
-vim.cmd[[let &fcs='eob: ']]
-vim.cmd[[set termguicolors]]
-vim.cmd[[set noshowmode]]
+vim.cmd([[let &fcs='eob: ']])
+vim.cmd([[set termguicolors]])
+vim.cmd([[set noshowmode]])
 
-vim.cmd[[hi! LineNr guibg=none ctermbg=none
+vim.cmd([[hi! LineNr guibg=none ctermbg=none
 hi! Folded guibg=none ctermbg=none
 hi! NonText guibg=none ctermbg=none
 hi! SpecialKey guibg=none ctermbg=none
@@ -13,4 +13,4 @@ hi! EndOfBuffer guibg=none ctermbg=none
 hi! link Conceal Comment
 hi! link FoldColumn Comment
 hi! link Folded Comment
-]]
+]])

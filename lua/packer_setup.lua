@@ -118,15 +118,15 @@ return require("packer").startup({
 					b = {
 						name = "builder",
 						b = {
-							":lua require'utils'.send_command_to_build_terminal('builder '..vim.fn.fnameescape(vim.fn.getreg('%')))<cr>",
+							":lua require'utils'.send_command_to_build_terminal('builder '..vim.fn.fnameescape(vim.fn.expand('%:p')))<cr>",
 							"Build in BuildTerminal",
 						},
 						o = {
-							":lua require'utils'.send_command_to_build_terminal('opener '..vim.fn.fnameescape(vim.fn.getreg('%')))<cr>",
+							":lua require'utils'.send_command_to_build_terminal('opener '..vim.fn.fnameescape(vim.fn.expand('%:p')))<cr>",
 							"Open in BuildTerminal",
 						},
 						c = {
-							":lua require'utils'.send_command_to_build_terminal('cleaner '..vim.fn.fnameescape(vim.fn.getreg('%')))<cr>",
+							":lua require'utils'.send_command_to_build_terminal('cleaner '..vim.fn.fnameescape(vim.fn.expand('%:p')))<cr>",
 							"Clean in BuildTerminal",
 						},
 					},
@@ -365,7 +365,7 @@ return require("packer").startup({
 			end,
 			config = function()
 				require("rose-pine").set()
-				require("rose-pine.theme").loadTerminal()
+				require("rose-pine.theme").load_terminal()
 				require("plugin_config/theme")
 			end,
 			run = function()

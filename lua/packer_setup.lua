@@ -476,6 +476,18 @@ return require("packer").startup({
 			end,
 			requires = {
 				{ "jose-elias-alvarez/null-ls.nvim", module = "null-ls" },
+				{
+					"ray-x/lsp_signature.nvim",
+					ft = require("plugin_config.ft").lsp_ft,
+					config = function()
+						require("lsp_signature").setup({
+							bind = true, -- This is mandatory, otherwise border config won't get registered.
+							handler_opts = {
+								border = "single",
+							},
+						})
+					end,
+				},
 			},
 		})
 	end,

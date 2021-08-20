@@ -13,4 +13,6 @@ hi! EndOfBuffer guibg=none ctermbg=none
 hi! link Conceal Comment
 hi! link FoldColumn Comment
 hi! link Folded Comment
+hi! link NormalFloat Normal
+hi! link FloatBorder Normal
 ]])

@@ -70,7 +70,6 @@ au User Startified setlocal buflisted
 au! FileType help :wincmd L | :vert resize 90
 au TermOpen * setlocal nonumber norelativenumber | startinsert
 au TextYankPost * silent! lua vim.highlight.on_yank{timeout=75}
-au CursorHold * :echo
 ]])
 
 vim.lsp.protocol.make_client_capabilities().textDocument.completion.completionItem.snippetSupport = true

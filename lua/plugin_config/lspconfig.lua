@@ -1,7 +1,22 @@
-local on_attach = function(client)
+local on_attach = function(client, bufnr)
 	if client.resolved_capabilities.document_formatting then
-		vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
+		vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil,5000)")
 	end
+	vim.schedule(function()
+		require("lsp_signature").on_attach({
+			bind = true, -- This is mandatory, otherwise border config won't get registered.
+			hint_prefix = "",
+			handler_opts = {
+				border = "single",
+			},
+		})
+	end)
+	-- require("lsp_signature").on_attach({
+	-- 	bind = true, -- This is mandatory, otherwise border config won't get registered.
+	-- 	handler_opts = {
+	-- 		border = "single",
+	-- 	},
+	-- }, bufnr)
 end
 
 require("lspconfig").jedi_language_server.setup({
@@ -51,7 +66,16 @@ require("lspconfig")["null-ls"].setup({
 	on_attach = on_attach,
 })
 
-require("lspconfig").fortls.setup({})
+require("lspconfig").fortls.setup({
+	on_attach = on_attach,
+	cmd = {
+		"fortls",
+		"--nthreads",
+		"2",
+		"--use_signature_help",
+		"--hover_signature",
+	},
+})
 
 local system_name
 if vim.fn.has("mac") == 1 then

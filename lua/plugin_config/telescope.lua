@@ -1,13 +1,7 @@
-local actions = require("telescope.actions") -- Built-in actions
-
-local reedit_open = function(prompt_bufnr)
-	require("telescope.actions.set").select:enhance({
-		post = function()
-			vim.cmd(":e")
-		end,
-	})
-	print("salut")
-	return true
+local function insert_filename(prompt_bufnr)
+	local filename = require("telescope.actions").get_selected_entry().value
+	require("telescope.actions").close(prompt_bufnr)
+	vim.api.nvim_put({ filename }, "", true, true)
 end
 
 require("telescope").setup({
@@ -27,12 +21,20 @@ require("telescope").setup({
 		path_display = { "shorten" },
 		color_devicons = true,
 		use_less = true,
-		set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
+		-- set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
 		theme = require("telescope.themes").get_dropdown({}),
 	},
 	pickers = {
 		buffers = {
 			layout_strategy = "vertical",
+			mappings = {
+				i = {
+					["<c-d>"] = require("telescope.actions").delete_buffer,
+				},
+				n = {
+					["<c-d>"] = require("telescope.actions").delete_buffer,
+				},
+			},
 		},
 		find_files = {
 			attach_mappings = function(prompt_bufnr)
@@ -45,6 +47,14 @@ require("telescope").setup({
 				})
 				return true
 			end,
+			mappings = {
+				i = {
+					["<c-r>"] = insert_filename,
+				},
+				n = {
+					["<c-r>"] = insert_filename,
+				},
+			},
 		},
 		file_browser = {
 			attach_mappings = function(prompt_bufnr)
@@ -57,6 +67,14 @@ require("telescope").setup({
 				})
 				return true
 			end,
+			mappings = {
+				i = {
+					["<c-r>"] = insert_filename,
+				},
+				n = {
+					["<c-r>"] = insert_filename,
+				},
+			},
 		},
 		live_grep = {
 			attach_mappings = function(prompt_bufnr)
@@ -69,6 +87,14 @@ require("telescope").setup({
 				})
 				return true
 			end,
+			mappings = {
+				i = {
+					["<c-r>"] = insert_filename,
+				},
+				n = {
+					["<c-r>"] = insert_filename,
+				},
+			},
 		},
 	},
 })

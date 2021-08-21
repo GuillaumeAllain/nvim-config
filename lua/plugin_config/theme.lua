@@ -15,4 +15,9 @@ hi! link FoldColumn Comment
 hi! link Folded Comment
 hi! link NormalFloat Normal
 hi! link FloatBorder Normal
+hi! link TelescopeBorder Normal
+hi! link TelescopePromptBorder Normal
+hi! link TelescopePromptBorder   Normal
+hi! link TelescopeResultsBorder  Normal
+hi! link TelescopePreviewBorder  Normal
 ]])

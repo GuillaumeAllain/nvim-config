@@ -20,8 +20,19 @@ vim.cmd([[
     tnoremap <M-[> <Esc>
     tnoremap <C-v><Esc> <Esc
     nnoremap <C-p> <C-]>
-]])
--- nnoremap c "_c
+    inoremap <c-k> <Esc>%%a
+    nnoremap <c-k> <Esc>%%a
 
+    inoremap , ,<c-g>u
+    inoremap . .<c-g>u
+    inoremap [ [<c-g>u
+    inoremap ! !<c-g>u
+    inoremap ? ?<c-g>u
+
+    vnoremap <silent> J :m '>+1<CR>gv=gv
+    vnoremap <silent> K :m '<-2<CR>gv=gv
+]])
+
+-- nnoremap c "_c
 -- nnoremap <leader>h <C-\><C-N><cmd>bp <CR>
 -- nnoremap <leader>l <C-\><C-N><cmd>bn <CR>

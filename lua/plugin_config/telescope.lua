@@ -47,14 +47,6 @@ require("telescope").setup({
 				})
 				return true
 			end,
-			mappings = {
-				i = {
-					["<c-r>"] = insert_filename,
-				},
-				n = {
-					["<c-r>"] = insert_filename,
-				},
-			},
 		},
 		file_browser = {
 			attach_mappings = function(prompt_bufnr)
@@ -67,34 +59,18 @@ require("telescope").setup({
 				})
 				return true
 			end,
-			mappings = {
-				i = {
-					["<c-r>"] = insert_filename,
-				},
-				n = {
-					["<c-r>"] = insert_filename,
-				},
-			},
 		},
 		live_grep = {
 			attach_mappings = function(prompt_bufnr)
 				require("telescope.actions.set").select:enhance({
 					post = function()
 						if vim.api.nvim_buf_get_name(0) ~= "" then
-							vim.cmd("call timer_start(0, { tid -> execute(':e')})")
+							vim.cmd("call timer_start(0, { tid -> execute(':e|normal zO')})")
 						end
 					end,
 				})
 				return true
 			end,
-			mappings = {
-				i = {
-					["<c-r>"] = insert_filename,
-				},
-				n = {
-					["<c-r>"] = insert_filename,
-				},
-			},
 		},
 	},
 })

@@ -182,6 +182,14 @@ return require("packer").startup({
 						f = { "<cmd>lua require('telescope.builtin').buffers()<cr>", "buffers" },
 						s = { "<cmd>lua require('telescope.builtin').file_browser()<cr>", "file browser" },
 						d = { "<cmd>lua require('telescope.builtin').find_files()<cr>", "find files" },
+						l = {
+							"<cmd>lua require('telescope.builtin').lsp_workspace_symbols()<cr>",
+							"Lsp Workspace Symbols",
+						},
+						t = {
+							"<cmd>lua require('telescope.builtin').builtin()<cr>",
+							"Telescope Builtin",
+						},
 						z = {
 							"<cmd>lua require('telescope.builtin').spell_suggest({layout_strategy='cursor', layout_config={height=0.3,width=0.5}})<cr>",
 							"spell suggest",
@@ -322,8 +330,8 @@ return require("packer").startup({
 							false
 						)
 						vim.cmd([[
-                                                    imap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
-                                                    smap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+                                                    imap <expr> <C-l> vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+                                                    smap <expr> <C-l> vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
                                                     imap <expr> <C-h> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<C-h>'
                                                     smap <expr> <C-h> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<C-h>'
                                                 ]])

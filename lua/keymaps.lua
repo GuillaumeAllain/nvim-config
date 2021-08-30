@@ -20,8 +20,8 @@ vim.cmd([[
     tnoremap <M-[> <Esc>
     tnoremap <C-v><Esc> <Esc
     nnoremap <C-p> <C-]>
-    inoremap <c-k> <Esc>%%a
-    nnoremap <c-k> <Esc>%%a
+    inoremap <c-k> <Esc>vib<Esc>%%a
+    nnoremap <c-k> <Esc>vib<Esc>%%a
 
     inoremap , ,<c-g>u
     inoremap . .<c-g>u

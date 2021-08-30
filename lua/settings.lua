@@ -52,11 +52,11 @@ vim.opt.spelllang = "fr"
 
 vim.g.mapleader = " "
 vim.g.loaded_python_provider = 0
-vim.g.loaded_python3_provider = 0
+-- vim.g.loaded_python3_provider = 0
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_node_provider = 0
--- vim.g.python3_host_prog='/usr/local/anaconda3/envs/neovim/bin/python'
+vim.g.python3_host_prog = "/usr/local/anaconda3/bin/python"
 
 vim.g.netrw_banner = 0
 vim.g.netrw_liststyle = 3

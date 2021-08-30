@@ -1,26 +1,15 @@
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+
 local on_attach = function(client, bufnr)
 	if client.resolved_capabilities.document_formatting then
 		vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil,5000)")
 	end
-	vim.schedule(function()
-		require("lsp_signature").on_attach({
-			bind = true, -- This is mandatory, otherwise border config won't get registered.
-			hint_prefix = "",
-			handler_opts = {
-				border = "single",
-			},
-		})
-	end)
-	-- require("lsp_signature").on_attach({
-	-- 	bind = true, -- This is mandatory, otherwise border config won't get registered.
-	-- 	handler_opts = {
-	-- 		border = "single",
-	-- 	},
-	-- }, bufnr)
 end
 
 require("lspconfig").jedi_language_server.setup({
 	on_attach = on_attach,
+	capabilities = capabilities,
 	init_options = {
 		hover = {
 			enable = true,
@@ -49,6 +38,17 @@ require("null-ls").config({
 		},
 		{
 			method = require("null-ls").methods.FORMATTING,
+			filetypes = { "fortran" },
+			name = "fprettify",
+			generator = require("null-ls.helpers").formatter_factory({
+				command = "fprettify",
+				args = { "-s", "--case", "2", "2", "2", "2" },
+				format = "raw",
+				to_stdin = true,
+			}),
+		},
+		{
+			method = require("null-ls").methods.FORMATTING,
 			filetypes = { "yaml" },
 			name = "yamllint",
 			generator = require("null-ls.helpers").formatter_factory({
@@ -64,10 +64,12 @@ require("null-ls").config({
 
 require("lspconfig")["null-ls"].setup({
 	on_attach = on_attach,
+	capabilities = capabilities,
 })
 
 require("lspconfig").fortls.setup({
 	on_attach = on_attach,
+	capabilities = capabilities,
 	cmd = {
 		"fortls",
 		"--nthreads",
@@ -95,6 +97,7 @@ local sumneko_binary = sumneko_root_path .. "/bin/" .. system_name .. "/lua-lang
 
 require("lspconfig").sumneko_lua.setup({
 	on_attach = on_attach,
+	capabilities = capabilities,
 	cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
 	settings = {
 		Lua = {
@@ -129,6 +132,7 @@ end
 
 require("lspconfig").julials.setup({
 	on_attach = on_attach,
+	capabilities = capabilities,
 	root_dir = function(fname)
 		return find_toml(fname) or vim.fn.getcwd()
 	end,

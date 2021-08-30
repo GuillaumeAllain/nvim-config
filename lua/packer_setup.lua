@@ -1,8 +1,9 @@
 -- Only required if you have packer configured as `opt`
+vim.fn.setenv("MACOSX_DEPLOYMENT_TARGET", "10.15")
 vim.cmd([[packadd packer.nvim]])
 
 return require("packer").startup({
-	function(use, packer_plugins)
+	function(use)
 		-- Packer can manage itself
 		use({ "wbthomason/packer.nvim", opt = true })
 		use({ "tpope/vim-vinegar", ft = "netrw" })
@@ -118,30 +119,30 @@ return require("packer").startup({
 					b = {
 						name = "builder",
 						b = {
-							":lua require'utils'.send_command_to_build_terminal('builder '..vim.fn.fnameescape(vim.fn.expand('%:p')))<cr>",
+							":w|lua require'utils'.send_command_to_build_terminal('builder '..vim.fn.fnameescape(vim.fn.expand('%:p')))<cr>",
 							"Build in BuildTerminal",
 						},
 						o = {
-							":lua require'utils'.send_command_to_build_terminal('opener '..vim.fn.fnameescape(vim.fn.expand('%:p')))<cr>",
+							":w|lua require'utils'.send_command_to_build_terminal('opener '..vim.fn.fnameescape(vim.fn.expand('%:p')))<cr>",
 							"Open in BuildTerminal",
 						},
 						c = {
-							":lua require'utils'.send_command_to_build_terminal('cleaner '..vim.fn.fnameescape(vim.fn.expand('%:p')))<cr>",
+							":w|lua require'utils'.send_command_to_build_terminal('cleaner '..vim.fn.fnameescape(vim.fn.expand('%:p')))<cr>",
 							"Clean in BuildTerminal",
 						},
 					},
 					m = {
 						name = "maker",
 						m = {
-							":lua require'utils'.send_command_to_build_terminal('maker make')<cr>",
+							":w|lua require'utils'.send_command_to_build_terminal('maker make')<cr>",
 							"Make in BuildTerminal",
 						},
 						o = {
-							":lua require'utils'.send_command_to_build_terminal('maker open')<cr>",
+							":w|lua require'utils'.send_command_to_build_terminal('maker open')<cr>",
 							"Make Open in BuildTerminal",
 						},
 						c = {
-							":lua require'utils'.send_command_to_build_terminal('maker clean')<cr>",
+							":w|lua require'utils'.send_command_to_build_terminal('maker clean')<cr>",
 							"Make Clean in BuildTerminal",
 						},
 					},
@@ -311,41 +312,104 @@ return require("packer").startup({
 		use({ "metakirby5/codi.vim", cmd = { "Codi" } })
 		use({ "Vimjas/vim-python-pep8-indent", ft = { "python" } })
 
+		-- -- COMPE
+		-- use({
+		-- 	"hrsh7th/nvim-compe",
+		-- 	event = "InsertEnter *",
+		-- 	wants = "compe-latex-symbols",
+		-- 	requires = {
+		-- 		{ "GoldsteinE/compe-latex-symbols", opt = true },
+		-- 		{
+		-- 			"hrsh7th/vim-vsnip",
+		-- 			event = "InsertEnter *",
+		-- 			config = function()
+		-- 				vim.g.vsnip_snippet_dir = vim.fn.expand(os.getenv("XDG_CONFIG_HOME") .. "/vsnip")
+		-- 				vim.api.nvim_exec(
+		-- 					[[
+		-- autocmd FileType * call vsnip#get_complete_items(bufnr())
+		-- ]],
+		-- 					false
+		-- 				)
+		-- 				vim.cmd([[
+		-- imap <expr> <C-l> vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+		-- smap <expr> <C-l> vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+		-- imap <expr> <C-h> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<C-h>'
+		-- smap <expr> <C-h> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<C-h>'
+		-- ]])
+		-- 			end,
+		-- 			wants = { "friendly-snippets" },
+		-- 			requires = { { "rafamadriz/friendly-snippets", opt = true } },
+		-- 		},
+		-- 	},
+		-- 	config = function()
+		-- 		require("plugin_config/compe")
+		-- 		vim.cmd([[
+		-- inoremap <silent><expr> <C-l> compe#complete()
+		-- inoremap <silent><expr> <C-l> compe#confirm('<C-l>')
+		-- ]])
+		-- 	end,
+		-- })
 		-- COMPE
 		use({
-			"hrsh7th/nvim-compe",
+			"hrsh7th/vim-vsnip",
 			event = "InsertEnter *",
-			wants = "compe-latex-symbols",
+			config = function()
+				vim.g.vsnip_snippet_dir = vim.fn.expand(os.getenv("XDG_CONFIG_HOME") .. "/vsnip")
+				vim.api.nvim_exec(
+					[[
+                        autocmd FileType * call vsnip#get_complete_items(bufnr())
+                        ]],
+					false
+				)
+				vim.cmd([[
+                        imap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+                        smap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+                        ]])
+			end,
+			wants = { "friendly-snippets" },
+			requires = { { "rafamadriz/friendly-snippets", opt = true } },
+		})
+		use({
+			"hrsh7th/nvim-cmp",
+			opt = true,
+			after = "vim-vsnip",
 			requires = {
-				{ "GoldsteinE/compe-latex-symbols", opt = true },
+
 				{
-					"hrsh7th/vim-vsnip",
-					event = "InsertEnter *",
-					config = function()
-						vim.g.vsnip_snippet_dir = vim.fn.expand(os.getenv("XDG_CONFIG_HOME") .. "/vsnip")
-						vim.api.nvim_exec(
-							[[
-                                                            autocmd FileType * call vsnip#get_complete_items(bufnr())
-                                                        ]],
-							false
-						)
-						vim.cmd([[
-                                                    imap <expr> <C-l> vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
-                                                    smap <expr> <C-l> vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
-                                                    imap <expr> <C-h> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<C-h>'
-                                                    smap <expr> <C-h> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<C-h>'
-                                                ]])
-					end,
-					wants = { "friendly-snippets" },
-					requires = { { "rafamadriz/friendly-snippets", opt = true } },
+					"hrsh7th/cmp-nvim-lsp",
+					module = "cmp_nvim_lsp",
+				},
+				{
+					"hrsh7th/cmp-path",
+					module = "cmp_path",
+				},
+				{
+					"hrsh7th/cmp-nvim-lua",
+					module = "cmp_nvim_lua",
+				},
+				{
+					"hrsh7th/cmp-vsnip",
+					module = "cmp_vsnip",
+				},
+				{
+					"kdheepak/cmp-latex-symbols",
+					module = "cmp_latex_symbols",
+				},
+				{
+					"quangnguyen30192/cmp-nvim-tags",
+					module = "cmp_nvim_tags",
+				},
+				{
+					"hrsh7th/cmp-buffer",
+					module = "cmp_buffer",
+				},
+				{
+					"hrsh7th/cmp-emoji",
+					module = "cmp_emoji",
 				},
 			},
 			config = function()
-				require("plugin_config/compe")
-				vim.cmd([[
-                                    inoremap <silent><expr> <C-l> compe#complete()
-                                    inoremap <silent><expr> <C-l> compe#confirm('<C-l>')
-                                ]])
+				require("plugin_config/cmp")
 			end,
 		})
 
@@ -479,23 +543,13 @@ return require("packer").startup({
 				vim.fn.system(
 					"julia --project=~/.julia/environments/nvim-lspconfig -e 'using Pkg; Pkg.add(\"LanguageServer\")'"
 				)
-				vim.fn.system("pip install fortran-language-server jedi-language-server flake8 black")
+				vim.fn.system(
+					"pip install --upgrade fortran-language-server jedi-language-server flake8 black fprettify"
+				)
 				vim.fn.system("brew install stylua")
 			end,
 			requires = {
 				{ "jose-elias-alvarez/null-ls.nvim", module = "null-ls" },
-				{
-					"ray-x/lsp_signature.nvim",
-					ft = require("plugin_config.ft").lsp_ft,
-					config = function()
-						require("lsp_signature").setup({
-							bind = true, -- This is mandatory, otherwise border config won't get registered.
-							handler_opts = {
-								border = "single",
-							},
-						})
-					end,
-				},
 			},
 		})
 	end,

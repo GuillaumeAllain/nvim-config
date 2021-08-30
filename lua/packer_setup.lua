@@ -1,12 +1,26 @@
 -- Only required if you have packer configured as `opt`
 vim.fn.setenv("MACOSX_DEPLOYMENT_TARGET", "10.15")
 vim.cmd([[packadd packer.nvim]])
-
 return require("packer").startup({
 	function(use)
 		-- Packer can manage itself
 		use({ "wbthomason/packer.nvim", opt = true })
 		use({ "tpope/vim-vinegar", ft = "netrw" })
+		use({
+			"abecodes/tabout.nvim",
+			ft = require("plugin_config.ft").treesitter_ft,
+			after = "nvim-cmp",
+			wants = "nvim-treesitter",
+			config = function()
+				require("tabout").setup({
+					tabkey = "<c-l>",
+					act_as_tab = false,
+					act_as_shit_tab = false,
+					enable_backwards = false,
+					completion = true,
+				})
+			end,
+		})
 		use({
 			"~/srv/org-call.nvim",
 			cmd = "OrgAgenda",

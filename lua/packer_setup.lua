@@ -1,5 +1,4 @@
 -- Only required if you have packer configured as `opt`
-vim.fn.setenv("MACOSX_DEPLOYMENT_TARGET", "10.15")
 vim.cmd([[packadd packer.nvim]])
 return require("packer").startup({
 	function(use)
@@ -8,7 +7,6 @@ return require("packer").startup({
 		use({ "tpope/vim-vinegar", ft = "netrw" })
 		use({
 			"abecodes/tabout.nvim",
-			ft = require("plugin_config.ft").treesitter_ft,
 			after = "nvim-cmp",
 			wants = "nvim-treesitter",
 			config = function()
@@ -120,11 +118,8 @@ return require("packer").startup({
 
 		use({
 			"folke/which-key.nvim",
-			module = "which-key",
 			config = function()
 				require("which-key").register({
-					-- h = {'<C-\\><C-N><cmd>bp','previous buffer'},
-					-- l = {'<C-\\><C-N><cmd>bn <CR>','next buffer'},
 					g = {
 						name = "plugins",
 						d = { "\"dyiw:lua require'utils'.macdict(vim.fn.getreg('d'))<CR>", "macos dictionary" },
@@ -248,29 +243,6 @@ return require("packer").startup({
 		-- Redaction
 		use({ "lervag/vimtex", ft = { "tex" } })
 		use({
-			"dpelle/vim-Grammalecte",
-			cmd = { "GrammalecteCheck", "GrammalecteClear" },
-			setup = function()
-				vim.cmd([[
-                                    xnoremap <leader>gc :GrammalecteCheck <CR>
-                                    nnoremap <leader>gc :GrammalecteCheck <CR>
-                                    map <leader>gx :GrammalecteClear <CR>
-                                ]])
-				require("which-key").register({
-					g = {
-						name = "plugins",
-						c = "grammalecte check",
-						x = "grammalecte clear",
-					},
-				}, {
-					prefix = "<leader>",
-				})
-			end,
-			config = function()
-				require("plugin_config/grammalecte")
-			end,
-		})
-		use({
 			"dhruvasagar/vim-table-mode",
 			ft = { "markdown", "pandoc", "tex" },
 			config = function()
@@ -285,8 +257,6 @@ return require("packer").startup({
 			end,
 		})
 		use({ "tpope/vim-commentary", keys = { "gc" } })
-		--
-		-- Note taking
 		use({
 			"vim-pandoc/vim-pandoc",
 			ft = { "markdown", "pandoc" },
@@ -302,7 +272,7 @@ return require("packer").startup({
 
 		use({ "dkarter/bullets.vim", ft = { "markdown", "pandoc", "tex" }, config = function() end })
 
-		use({ "axvr/org.vim", event = "BufEnter" })
+		use({ "axvr/org.vim" })
 
 		use({
 			"hoob3rt/lualine.nvim",
@@ -326,44 +296,6 @@ return require("packer").startup({
 		use({ "metakirby5/codi.vim", cmd = { "Codi" } })
 		use({ "Vimjas/vim-python-pep8-indent", ft = { "python" } })
 
-		-- -- COMPE
-		-- use({
-		-- 	"hrsh7th/nvim-compe",
-		-- 	event = "InsertEnter *",
-		-- 	wants = "compe-latex-symbols",
-		-- 	requires = {
-		-- 		{ "GoldsteinE/compe-latex-symbols", opt = true },
-		-- 		{
-		-- 			"hrsh7th/vim-vsnip",
-		-- 			event = "InsertEnter *",
-		-- 			config = function()
-		-- 				vim.g.vsnip_snippet_dir = vim.fn.expand(os.getenv("XDG_CONFIG_HOME") .. "/vsnip")
-		-- 				vim.api.nvim_exec(
-		-- 					[[
-		-- autocmd FileType * call vsnip#get_complete_items(bufnr())
-		-- ]],
-		-- 					false
-		-- 				)
-		-- 				vim.cmd([[
-		-- imap <expr> <C-l> vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
-		-- smap <expr> <C-l> vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
-		-- imap <expr> <C-h> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<C-h>'
-		-- smap <expr> <C-h> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<C-h>'
-		-- ]])
-		-- 			end,
-		-- 			wants = { "friendly-snippets" },
-		-- 			requires = { { "rafamadriz/friendly-snippets", opt = true } },
-		-- 		},
-		-- 	},
-		-- 	config = function()
-		-- 		require("plugin_config/compe")
-		-- 		vim.cmd([[
-		-- inoremap <silent><expr> <C-l> compe#complete()
-		-- inoremap <silent><expr> <C-l> compe#confirm('<C-l>')
-		-- ]])
-		-- 	end,
-		-- })
-		-- COMPE
 		use({
 			"hrsh7th/vim-vsnip",
 			event = "InsertEnter *",
@@ -464,7 +396,6 @@ return require("packer").startup({
 			"folke/zen-mode.nvim",
 			cmd = { "ZenMode" },
 			setup = function()
-				-- vim.cmd[[silent! map <leader>gy :ZenMode <CR>]]
 				require("which-key").register({
 					g = {
 						name = "plugins",
@@ -492,22 +423,29 @@ return require("packer").startup({
 
 		use({
 			"folke/todo-comments.nvim",
-			requires = "nvim-lua/plenary.nvim",
+			requires = { "nvim-lua/plenary.nvim", module = "plenary" },
 			config = function()
+				require("which-key").register({
+					g = {
+						name = "plugins",
+						j = { ":TodoTrouble <CR>", "TodoTrouble" },
+					},
+				}, {
+					prefix = "<leader>",
+				})
 				require("todo-comments").setup({})
 			end,
 		})
-		-- TODO
 
 		use({
 			"onsails/lspkind-nvim",
-			ft = require("plugin_config.ft").lsp_ft,
+			after = "nvim-lspconfig",
 			config = function()
 				require("lspkind").init()
 			end,
 		})
 
-		use({ "folke/lsp-colors.nvim", ft = require("plugin_config.ft").lsp_ft })
+		use({ "folke/lsp-colors.nvim", after = "nvim-lspconfig" })
 
 		use({
 			"folke/trouble.nvim",
@@ -530,7 +468,7 @@ return require("packer").startup({
 
 		use({
 			"nvim-treesitter/nvim-treesitter",
-			ft = require("plugin_config.ft").treesitter_ft,
+			event = "BufRead",
 			run = ":TSUpdate",
 			wants = { "nvim-treesitter-refactor", "nvim-treesitter-context" },
 			requires = {
@@ -545,6 +483,8 @@ return require("packer").startup({
 		use({
 			"neovim/nvim-lspconfig",
 			ft = require("plugin_config.ft").lsp_ft,
+			module = "lspconfig",
+			module_pattern = "lspconfig/*",
 			setup = function()
 				vim.cmd([[
                                     nmap <leader>lr <cmd>lua vim.lsp.buf.rename()<cr>
@@ -564,6 +504,13 @@ return require("packer").startup({
 			end,
 			requires = {
 				{ "jose-elias-alvarez/null-ls.nvim", module = "null-ls" },
+				{
+					"brymer-meneses/grammar-guard.nvim",
+					module = "grammar-guard",
+					run = function()
+						vim.cmd([[GrammarInstall]])
+					end,
+				},
 			},
 		})
 	end,

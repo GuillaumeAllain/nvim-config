@@ -137,3 +137,42 @@ require("lspconfig").julials.setup({
 		return find_toml(fname) or vim.fn.getcwd()
 	end,
 })
+
+require("grammar-guard").init()
+require("lspconfig").grammar_guard.setup({
+	filetypes = { "pandoc", "latex", "tex", "bib", "markdown" },
+	get_language_id = function(_, ftype)
+		if ftype == "pandoc" then
+			return "markdown"
+		else
+			return ftype
+		end
+	end,
+	settings = {
+		ltex = {
+			enabled = { "latex", "tex", "bib", "markdown" },
+			language = "fr",
+			diagnosticSeverity = "information",
+			setenceCacheSize = 2000,
+			additionalRules = {
+				enablePickyRules = true,
+				motherTongue = "fr",
+			},
+			markdown = {
+				nodes = { CodeBlock = "ignore", FencedCodeBlock = "ignore", AutoLink = "dummy", Code = "dummy" },
+			},
+			trace = { server = "verbose" },
+			dictionary = { fr = { "align" } },
+			disabledRules = {
+				fr = {
+					"APOS_TYP",
+					"FR_SPELLING_RULE",
+					"FRENCH_WHITESPACE",
+					"COMMA_PARENTHESIS_WHITESPACE",
+					"FLECHES",
+					"WHITESPACE_RULE",
+				},
+			},
+		},
+	},
+})

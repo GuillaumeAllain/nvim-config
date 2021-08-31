@@ -24,6 +24,13 @@ function m.export_theme_to_kitty(buf)
 	api.nvim_command("bd")
 end
 
+function m.log_to_file(message, file)
+	if not file then
+		return
+	end
+	vim.fn.system("echo " .. vim.fn.strftime("%T", vim.fn.localtime()) .. " - " .. message .. ">> " .. file)
+end
+
 function m.macdict(word)
 	api.nvim_command("silent !open -g dict://" .. word)
 	api.nvim_command("redraw!")
@@ -103,5 +110,7 @@ function m.toggle_build_buffer_window()
 		m.open_build_buffer_window()
 	end
 end
+
+m.log_autocmds_toggle = require("utils.log_autocmds").log_autocmds_toggle
 
 return m

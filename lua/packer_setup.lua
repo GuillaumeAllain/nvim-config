@@ -64,7 +64,7 @@ return require("packer").startup({
                         d = { ":Panotes openDiary<cr>znzcGo", "diary" },
                         t = { ":Panotes openTagInput<cr>", "open tags" },
                         s = { ":Panotes searchTags<cr>", "search tags" },
-                        i = { ":Panotes export_to_org<cr>", "export to org" },
+                        -- i = { ":Panotes export_to_org<cr>", "export to org" },
                     },
                 }, {
                     prefix = "<leader>",

@@ -2,92 +2,92 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
 local on_attach = function(client, bufnr)
-	if client.resolved_capabilities.document_formatting then
-		vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil,5000)")
-	end
+    if client.resolved_capabilities.document_formatting then
+        vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil,5000)")
+    end
 end
 
 require("lspconfig").jedi_language_server.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-	init_options = {
-		hover = {
-			enable = true,
-		},
-	},
-	root_dir = function(fname)
-		return require("lspconfig").util.find_git_ancestor(fname) or vim.loop.os_homedir()
-	end,
+    on_attach = on_attach,
+    capabilities = capabilities,
+    init_options = {
+        hover = {
+            enable = true,
+        },
+    },
+    root_dir = function(fname)
+        return require("lspconfig").util.find_git_ancestor(fname) or vim.loop.os_homedir()
+    end,
 })
 
 require("null-ls").config({
-	sources = {
-		require("null-ls").builtins.formatting.black,
-		require("null-ls").builtins.diagnostics.flake8.with({
-			extra_args = { "--ignore=E203,W503", "--max-complexity=10", "--max-line-length=127" },
-		}),
-		{
-			method = require("null-ls").methods.FORMATTING,
-			filetypes = { "pandoc" },
-			name = "pandotlint",
-			generator = require("null-ls.helpers").formatter_factory({
-				command = "pandotlint",
-				format = "raw",
-				to_stdin = true,
-			}),
-		},
-		{
-			method = require("null-ls").methods.FORMATTING,
-			filetypes = { "fortran" },
-			name = "fprettify",
-			generator = require("null-ls.helpers").formatter_factory({
-				command = "fprettify",
-				args = { "-s", "--case", "2", "2", "2", "2" },
-				format = "raw",
-				to_stdin = true,
-			}),
-		},
-		{
-			method = require("null-ls").methods.FORMATTING,
-			filetypes = { "yaml" },
-			name = "yamllint",
-			generator = require("null-ls.helpers").formatter_factory({
-				command = "yamllint",
-				args = { "-f", "parsasble", "-" },
-				format = "raw",
-				to_stdin = true,
-			}),
-		},
-		require("null-ls").builtins.formatting.stylua,
-	},
+    sources = {
+        require("null-ls").builtins.formatting.black,
+        require("null-ls").builtins.diagnostics.flake8.with({
+            extra_args = { "--ignore=E203,W503", "--max-complexity=10", "--max-line-length=127" },
+        }),
+        {
+            method = require("null-ls").methods.FORMATTING,
+            filetypes = { "pandoc" },
+            name = "pandotlint",
+            generator = require("null-ls.helpers").formatter_factory({
+                command = "pandotlint",
+                format = "raw",
+                to_stdin = true,
+            }),
+        },
+        {
+            method = require("null-ls").methods.FORMATTING,
+            filetypes = { "fortran" },
+            name = "fprettify",
+            generator = require("null-ls.helpers").formatter_factory({
+                command = "fprettify",
+                args = { "-s", "--case", "2", "2", "2", "2" },
+                format = "raw",
+                to_stdin = true,
+            }),
+        },
+        {
+            method = require("null-ls").methods.FORMATTING,
+            filetypes = { "yaml" },
+            name = "yamllint",
+            generator = require("null-ls.helpers").formatter_factory({
+                command = "yamllint",
+                args = { "-f", "parsasble", "-" },
+                format = "raw",
+                to_stdin = true,
+            }),
+        },
+        require("null-ls").builtins.formatting.stylua,
+    },
 })
 
 require("lspconfig")["null-ls"].setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
+    on_attach = on_attach,
+    capabilities = capabilities,
 })
 
 require("lspconfig").fortls.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-	cmd = {
-		"fortls",
-		"--nthreads",
-		"2",
-		"--use_signature_help",
-		"--hover_signature",
-	},
+    on_attach = on_attach,
+    capabilities = capabilities,
+    cmd = {
+        "fortls",
+        "--nthreads",
+        "2",
+        "--use_signature_help",
+        "--hover_signature",
+    },
 })
 
 local system_name
 if vim.fn.has("mac") == 1 then
-	system_name = "macOS"
+    system_name = "macOS"
 elseif vim.fn.has("unix") == 1 then
-	system_name = "Linux"
+    system_name = "Linux"
 elseif vim.fn.has("win32") == 1 then
-	system_name = "Windows"
+    system_name = "Windows"
 else
-	print("Unsupported system for sumneko")
+    print("Unsupported system for sumneko")
 end
 
 -- set the path to the sumneko installation; if you previously installed via the now deprecated :LspInstall, use
@@ -96,83 +96,83 @@ local sumneko_root_path = os.getenv("HOME") .. "/srv/lua-language-server"
 local sumneko_binary = sumneko_root_path .. "/bin/" .. system_name .. "/lua-language-server"
 
 require("lspconfig").sumneko_lua.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-	cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
-	settings = {
-		Lua = {
-			runtime = {
-				-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-				version = "LuaJIT",
-				-- Setup your lua path
-				path = vim.split(package.path, ";"),
-			},
-			diagnostics = {
-				-- Get the language server to recognize the `vim` global
-				globals = { "vim", "pandoc" },
-			},
-			workspace = {
-				-- Make the server aware of Neovim runtime files
-				library = {
-					[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-					[vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
-				},
-			},
-		},
-	},
+    on_attach = on_attach,
+    capabilities = capabilities,
+    cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
+    settings = {
+        Lua = {
+            runtime = {
+                -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+                version = "LuaJIT",
+                -- Setup your lua path
+                path = vim.split(package.path, ";"),
+            },
+            diagnostics = {
+                -- Get the language server to recognize the `vim` global
+                globals = { "vim", "pandoc" },
+            },
+            workspace = {
+                -- Make the server aware of Neovim runtime files
+                library = {
+                    [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+                    [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+                },
+            },
+        },
+    },
 })
 
 local function find_toml(startpath)
-	return require("lspconfig").util.search_ancestors(startpath, function(path)
-		if require("lspconfig").util.path.is_file(require("lspconfig").util.path.join(path, "Project.toml")) then
-			return path
-		end
-	end)
+    return require("lspconfig").util.search_ancestors(startpath, function(path)
+        if require("lspconfig").util.path.is_file(require("lspconfig").util.path.join(path, "Project.toml")) then
+            return path
+        end
+    end)
 end
 
 require("lspconfig").julials.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-	root_dir = function(fname)
-		return find_toml(fname) or vim.fn.getcwd()
-	end,
+    on_attach = on_attach,
+    capabilities = capabilities,
+    root_dir = function(fname)
+        return find_toml(fname) or vim.fn.getcwd()
+    end,
 })
 
 require("grammar-guard").init()
 require("lspconfig").grammar_guard.setup({
-	filetypes = { "pandoc", "latex", "tex", "bib", "markdown" },
-	get_language_id = function(_, ftype)
-		if ftype == "pandoc" then
-			return "markdown"
-		else
-			return ftype
-		end
-	end,
-	settings = {
-		ltex = {
-			enabled = { "latex", "tex", "bib", "markdown" },
-			language = "fr",
-			diagnosticSeverity = "information",
-			setenceCacheSize = 2000,
-			additionalRules = {
-				enablePickyRules = true,
-				motherTongue = "fr",
-			},
-			markdown = {
-				nodes = { CodeBlock = "ignore", FencedCodeBlock = "ignore", AutoLink = "dummy", Code = "dummy" },
-			},
-			trace = { server = "verbose" },
-			dictionary = { fr = { "align" } },
-			disabledRules = {
-				fr = {
-					"APOS_TYP",
-					"FR_SPELLING_RULE",
-					"FRENCH_WHITESPACE",
-					"COMMA_PARENTHESIS_WHITESPACE",
-					"FLECHES",
-					"WHITESPACE_RULE",
-				},
-			},
-		},
-	},
+    filetypes = { "pandoc", "latex", "tex", "bib", "markdown" },
+    get_language_id = function(_, ftype)
+        if ftype == "pandoc" then
+            return "markdown"
+        else
+            return ftype
+        end
+    end,
+    settings = {
+        ltex = {
+            enabled = { "latex", "tex", "bib", "markdown" },
+            language = "fr",
+            diagnosticSeverity = "information",
+            setenceCacheSize = 2000,
+            additionalRules = {
+                enablePickyRules = true,
+                motherTongue = "fr",
+            },
+            markdown = {
+                nodes = { CodeBlock = "ignore", FencedCodeBlock = "ignore", AutoLink = "dummy", Code = "dummy" },
+            },
+            trace = { server = "verbose" },
+            dictionary = { fr = { "align" } },
+            disabledRules = {
+                fr = {
+                    "APOS_TYP",
+                    "FR_SPELLING_RULE",
+                    "FRENCH_WHITESPACE",
+                    "COMMA_PARENTHESIS_WHITESPACE",
+                    "FLECHES",
+                    "WHITESPACE_RULE",
+                },
+            },
+        },
+    },
 })

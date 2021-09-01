@@ -2,15 +2,15 @@
 local npairs = require("nvim-autopairs")
 
 npairs.setup({
-	pairs_map = {
-		["'"] = "'",
-		['"'] = '"',
-		["("] = ")",
-		["["] = "]",
-		["{"] = "}",
-		["`"] = "`",
-		["$"] = "$",
-	},
+    pairs_map = {
+        ["'"] = "'",
+        ['"'] = '"',
+        ["("] = ")",
+        ["["] = "]",
+        ["{"] = "}",
+        ["`"] = "`",
+        ["$"] = "$",
+    },
 })
 -- skip it, if you use another global object
 -- _G.MUtils = {}

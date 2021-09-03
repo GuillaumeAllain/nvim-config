@@ -330,6 +330,8 @@ return require("packer").startup({
             "hrsh7th/nvim-cmp",
             opt = true,
             after = "vim-vsnip",
+            wants = "vim-vsnip",
+            module = "cmp",
             requires = {
 
                 {
@@ -342,7 +344,6 @@ return require("packer").startup({
                 },
                 {
                     "hrsh7th/cmp-nvim-lua",
-                    module = "cmp_nvim_lua",
                 },
                 {
                     "hrsh7th/cmp-vsnip",
@@ -355,6 +356,7 @@ return require("packer").startup({
                 {
                     "quangnguyen30192/cmp-nvim-tags",
                     module = "cmp_nvim_tags",
+                    ft = { "pandoc", "markdown" },
                 },
                 {
                     "hrsh7th/cmp-buffer",
@@ -451,6 +453,7 @@ return require("packer").startup({
         use({
             "onsails/lspkind-nvim",
             after = "nvim-lspconfig",
+            module = "lspkind",
             config = function()
                 require("lspkind").init()
             end,

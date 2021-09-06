@@ -6,18 +6,9 @@ return require("packer").startup({
         -- Packer can manage itself
         use({ "wbthomason/packer.nvim", opt = true })
         use({ "dstein64/vim-startuptime" })
-        use({
-            "lewis6991/impatient.nvim",
-            rocks = "mpack",
-            event = "VimEnter",
-            config = function()
-                require("impatient")
-            end,
-        })
         use({ "tpope/vim-commentary", keys = { "gc" } })
         use({
             "folke/which-key.nvim",
-            wants = "impatient.nvim",
             config = function()
                 require("plugin_config/whichkey")
             end,
@@ -169,6 +160,13 @@ return require("packer").startup({
                 { "nvim-lua/popup.nvim", module = "popup" },
                 { "nvim-lua/plenary.nvim", module = "plenary" },
                 { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
+                {
+                    "nvim-telescope/telescope-frecency.nvim",
+                    -- module = { "telescope._extensions.frecency" },
+                    module_pattern = "telescope._extensions.frecency.*",
+                    requires = { "tami5/sqlite.lua", module = "sqlite", opt = true },
+                    opt = true,
+                },
             },
             wants = { "project.nvim" },
             setup = function()
@@ -177,6 +175,7 @@ return require("packer").startup({
                 end
             end,
             config = function()
+                require("telescope").load_extension("frecency")
                 require("telescope").load_extension("projects")
                 require("plugin_config/telescope")
             end,

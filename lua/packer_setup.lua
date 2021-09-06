@@ -160,12 +160,18 @@ return require("packer").startup({
                 { "nvim-lua/popup.nvim", module = "popup" },
                 { "nvim-lua/plenary.nvim", module = "plenary" },
                 { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
+                -- {
+                --     "nvim-telescope/telescope-frecency.nvim",
+                --     -- module = { "telescope._extensions.frecency" },
+                --     module_pattern = "telescope._extensions.frecency.*",
+                --     requires = { "tami5/sqlite.lua", module = "sqlite", opt = true },
+                --     opt = true,
+                -- },
                 {
-                    "nvim-telescope/telescope-frecency.nvim",
-                    -- module = { "telescope._extensions.frecency" },
-                    module_pattern = "telescope._extensions.frecency.*",
-                    requires = { "tami5/sqlite.lua", module = "sqlite", opt = true },
+                    "nvim-telescope/telescope-fzf-native.nvim",
+                    run = "make",
                     opt = true,
+                    module_pattern = "telescope._extensions.fzf*",
                 },
             },
             wants = { "project.nvim" },
@@ -175,7 +181,7 @@ return require("packer").startup({
                 end
             end,
             config = function()
-                require("telescope").load_extension("frecency")
+                require("telescope").load_extension("fzf")
                 require("telescope").load_extension("projects")
                 require("plugin_config/telescope")
             end,

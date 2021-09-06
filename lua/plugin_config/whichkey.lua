@@ -7,15 +7,15 @@ require("which-key").register({
         s = { "<cmd>lua require('telescope.builtin').file_browser()<cr>", "file browser" },
         d = { "<cmd>lua require('telescope.builtin').find_files()<cr>", "find files" },
         l = {
-            "<cmd>lua require('telescope.builtin').lsp_workspace_symbols()<cr>",
-            "Lsp Workspace Symbols",
+            "<cmd>lua require('telescope.builtin').lsp_code_actions(require('telescope.themes').get_cursor({}))<cr>",
+            "Lsp Code Actions",
         },
         t = {
             "<cmd>lua require('telescope.builtin').builtin()<cr>",
             "Telescope Builtin",
         },
         z = {
-            "<cmd>lua require('telescope.builtin').spell_suggest({layout_strategy='cursor', layout_config={height=0.3,width=0.5}})<cr>",
+            "<cmd>lua require('telescope.builtin').spell_suggest(require('telescope.themes').get_cursor({}))<cr>",
             "spell suggest",
         },
     },

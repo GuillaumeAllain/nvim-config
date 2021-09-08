@@ -5,7 +5,7 @@ return require("packer").startup({
     function(use)
         -- Packer can manage itself
         use({ "wbthomason/packer.nvim", opt = true })
-        use({ "dstein64/vim-startuptime" })
+        -- use({ "dstein64/vim-startuptime" })
         use({ "tpope/vim-commentary", keys = { "gc" } })
         use({
             "folke/which-key.nvim",
@@ -14,12 +14,20 @@ return require("packer").startup({
             end,
         })
         use({
-            "~/srv/org-call.nvim",
-            cmd = "OrgAgenda",
-            ft = "org",
-            setup = function()
-                vim.api.nvim_set_keymap("n", "<leader>oa", ":OrgAgenda<cr>", { noremap = true, silent = true })
+            "kristijanhusak/orgmode.nvim",
+            config = function()
+                require("orgmode").setup({
+                    org_agenda_files = { "~/org/*" },
+                })
             end,
+        })
+        use({
+            "~/srv/org-call.nvim",
+            -- cmd = "OrgAgenda",
+            ft = "org",
+            -- setup = function()
+            -- vim.api.nvim_set_keymap("n", "<leader>oa", ":OrgAgenda<cr>", { noremap = true, silent = true })
+            -- end,
             config = function()
                 require("org-call").setup({
                     pre_commands = {
@@ -31,6 +39,7 @@ return require("packer").startup({
                 })
             end,
         })
+        -- use({ "axvr/org.vim" })
         use({
             "jbyuki/venn.nvim",
             cmd = "VBox",
@@ -48,7 +57,8 @@ return require("packer").startup({
             config = function()
                 require("project_nvim").setup({
                     ignore_lsp = { "efm", "sumneko_lua" },
-                    patterns = { ".git", "!Makefile" },
+                    patterns = { ".git", "!Makefile", ".notes" },
+                    datapath = vim.fn.stdpath("cache"),
                 })
             end,
         })
@@ -87,7 +97,6 @@ return require("packer").startup({
         })
         use({ "dkarter/bullets.vim", ft = { "markdown", "pandoc", "tex" }, config = function() end })
 
-        use({ "axvr/org.vim" })
         use({ "gioele/vim-autoswap" })
 
         -- -- use {'shaunsingh/nord.nvim',
@@ -136,6 +145,7 @@ return require("packer").startup({
         use({
             "~/srv/panotes",
             cmd = "Panotes",
+            module = "panotes",
             config = function()
                 require("panotes").setup()
             end,

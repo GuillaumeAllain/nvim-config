@@ -15,6 +15,7 @@ cmp.setup({
         { name = "buffer" },
         { name = "nvim_lsp" },
         { name = "emoji" },
+        { name = "orgmode" },
     },
     snippet = {
         expand = function(args)

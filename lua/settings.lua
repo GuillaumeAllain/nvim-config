@@ -39,6 +39,7 @@ vim.opt.expandtab = true
 -- vim.opt.title = true
 -- vim.opt.titlestring = ""
 vim.opt.wildmode = "longest,full"
+vim.opt.showtabline = 0
 
 vim.opt.ssop = "blank,buffers,curdir,help,terminal"
 
@@ -71,6 +72,7 @@ au User Startified setlocal buflisted
 au! FileType help :wincmd L | :vert resize 90
 au TermOpen * setlocal nonumber norelativenumber | startinsert
 au TextYankPost * silent! lua vim.highlight.on_yank{timeout=75}
+let $MANPAGER='nvr +Man! -'
 ]])
 
 vim.lsp.protocol.make_client_capabilities().textDocument.completion.completionItem.snippetSupport = true

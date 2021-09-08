@@ -19,6 +19,17 @@ require("which-key").register({
             "spell suggest",
         },
     },
+    p = {
+        name = "panotes",
+        j = { ":Panotes openJournal<cr>", "journal" },
+        d = { ":Panotes openDiary<cr>znzcGo", "diary" },
+        t = { ":Panotes openTagInput<cr>", "open tags" },
+        s = { ":Panotes searchTags<cr>", "search tags" },
+        g = {
+            ":lua require'panotes'.change_cwd_to_notes_dir()<cr>:lua require'telescope.builtin'.live_grep()<cr>",
+            "live grep notes",
+        },
+    },
     g = {
         name = "plugins",
         d = { "\"dyiw:lua require'utils'.macdict(vim.fn.getreg('d'))<CR>", "macos dictionary" },
@@ -58,14 +69,6 @@ require("which-key").register({
             ":w|lua require'utils'.send_command_to_build_terminal('maker clean')<cr>",
             "Make Clean in BuildTerminal",
         },
-    },
-    p = {
-        name = "panotes",
-        j = { ":Panotes openJournal<cr>", "journal" },
-        d = { ":Panotes openDiary<cr>znzcGo", "diary" },
-        t = { ":Panotes openTagInput<cr>", "open tags" },
-        s = { ":Panotes searchTags<cr>", "search tags" },
-        -- i = { ":Panotes export_to_org<cr>", "export to org" },
     },
 }, {
     prefix = "<leader>",

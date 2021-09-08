@@ -47,6 +47,7 @@ require("null-ls").config({
                 to_stdin = true,
             }),
         },
+        require'null-ls'.builtins.formatting.fprettify.with({args={"--silent","--case","2","2","2","2"}}),
         {
             method = require("null-ls").methods.FORMATTING,
             filetypes = { "yaml" },

@@ -5,7 +5,6 @@ return require("packer").startup({
     function(use)
         -- Packer can manage itself
         use({ "wbthomason/packer.nvim", opt = true })
-        -- use({ "dstein64/vim-startuptime" })
         use({ "tpope/vim-commentary", keys = { "gc" } })
         use({
             "folke/which-key.nvim",
@@ -13,33 +12,6 @@ return require("packer").startup({
                 require("plugin_config/whichkey")
             end,
         })
-        use({
-            "kristijanhusak/orgmode.nvim",
-            config = function()
-                require("orgmode").setup({
-                    org_agenda_files = { "~/org/*" },
-                })
-            end,
-        })
-        use({
-            "~/srv/org-call.nvim",
-            -- cmd = "OrgAgenda",
-            ft = "org",
-            -- setup = function()
-            -- vim.api.nvim_set_keymap("n", "<leader>oa", ":OrgAgenda<cr>", { noremap = true, silent = true })
-            -- end,
-            config = function()
-                require("org-call").setup({
-                    pre_commands = {
-                        "(setq org-log-done `time)",
-                        '(setq org-directory "~/org/")',
-                        '(setq org-agenda-files `("~/org"))',
-                        "(setq org-M-RET-may-split-line nil)",
-                    },
-                })
-            end,
-        })
-        -- use({ "axvr/org.vim" })
         use({
             "jbyuki/venn.nvim",
             cmd = "VBox",
@@ -88,11 +60,11 @@ return require("packer").startup({
             ft = { "markdown", "pandoc" },
             wants = { "vim-pandoc-syntax", "vim-pandoc-after" },
             requires = { { "vim-pandoc/vim-pandoc-syntax", opt = true }, { "vim-pandoc/vim-pandoc-after", opt = true } },
-            setup = function()
+            config = function()
                 vim.g["pandoc#syntax#conceal#cchar_overrides"] = { atx = "#" }
                 vim.g["pandoc#folding#fold_yaml"] = 1
                 vim.g["pandoc#filetypes#handled"] = { "pandoc", "markdown" }
-                vim.g["pandoc#after#modules#enabled"] = { "fastfold", "tablemode" }
+                vim.g["pandoc#after#modules#enabled"] = { "tablemode" }
             end,
         })
         use({ "dkarter/bullets.vim", ft = { "markdown", "pandoc", "tex" }, config = function() end })
@@ -170,13 +142,6 @@ return require("packer").startup({
                 { "nvim-lua/popup.nvim", module = "popup" },
                 { "nvim-lua/plenary.nvim", module = "plenary" },
                 { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
-                -- {
-                --     "nvim-telescope/telescope-frecency.nvim",
-                --     -- module = { "telescope._extensions.frecency" },
-                --     module_pattern = "telescope._extensions.frecency.*",
-                --     requires = { "tami5/sqlite.lua", module = "sqlite", opt = true },
-                --     opt = true,
-                -- },
                 {
                     "nvim-telescope/telescope-fzf-native.nvim",
                     run = "make",

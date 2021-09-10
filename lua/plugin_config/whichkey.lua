@@ -22,9 +22,11 @@ require("which-key").register({
     p = {
         name = "panotes",
         j = { ":Panotes openJournal<cr>", "journal" },
-        d = { ":Panotes openDiary<cr>znzcGo", "diary" },
+        d = { ":Panotes openDiary<cr>", "diary" },
         t = { ":Panotes openTagInput<cr>", "open tags" },
         s = { ":Panotes searchTags<cr>", "search tags" },
+        c = { ":Panotes capture<cr>", "capture" },
+        t = { ":Panotes change_cwd_to_notes_dir<cr>:TodoTelescope<cr> ", "capture" },
         g = {
             ":lua require'panotes'.change_cwd_to_notes_dir()<cr>:lua require'telescope.builtin'.live_grep()<cr>",
             "live grep notes",

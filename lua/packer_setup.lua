@@ -10,6 +10,11 @@ return require("packer").startup({
             "folke/which-key.nvim",
             config = function()
                 require("plugin_config/whichkey")
+                require'which-key'.setup({
+                    triggers_blacklist={
+                        n={"s"}
+                    }
+                })
             end,
         })
         use({
@@ -90,10 +95,8 @@ return require("packer").startup({
 
         use({
             "rose-pine/neovim",
-            setup = function()
-                vim.g.rose_pine_variant = "moon"
-            end,
             config = function()
+                vim.g.rose_pine_variant = "moon"
                 require("rose-pine").set()
                 require("rose-pine.theme").load_terminal()
                 require("plugin_config/theme")
@@ -240,10 +243,6 @@ return require("packer").startup({
                     module = "cmp_vsnip",
                 },
                 {
-                    "kdheepak/cmp-latex-symbols",
-                    module = "cmp_latex_symbols",
-                },
-                {
                     "quangnguyen30192/cmp-nvim-tags",
                     module = "cmp_nvim_tags",
                     ft = { "pandoc", "markdown" },
@@ -267,7 +266,7 @@ return require("packer").startup({
             wants = "nvim-treesitter",
             config = function()
                 require("tabout").setup({
-                    tabkey = "<c-l>",
+                    tabkey = "<C-L>",
                     act_as_tab = false,
                     act_as_shit_tab = false,
                     enable_backwards = false,
@@ -342,13 +341,16 @@ return require("packer").startup({
             ft = require("plugin_config.ft").lsp_ft,
             module = "lspconfig",
             module_pattern = "lspconfig/*",
-            setup = function()
-                vim.cmd([[
-                            nmap <leader>lr <cmd>lua vim.lsp.buf.rename()<cr>
-                            ]])
-            end,
             config = function()
                 require("plugin_config/lspconfig")
+                require("which-key").register({
+                    l = {
+                        r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Lsp Rename" },
+                        f = { "<cmd>lua vim.lsp.buf.formatting_sync(nil,5000)<cr>", "Lsp Formatting" },
+                    },
+                }, {
+                    prefix = "<leader>",
+                })
             end,
             run = function()
                 vim.fn.system(

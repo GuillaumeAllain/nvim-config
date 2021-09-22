@@ -40,6 +40,13 @@ vim.opt.expandtab = true
 -- vim.opt.titlestring = ""
 vim.opt.wildmode = "longest,full"
 vim.opt.showtabline = 0
+vim.wo.foldtext =
+    [[substitute(getline(v:foldstart),'\\t',repeat('\t',&tabstop),'g').'...'.trim(getline(v:foldend))]]
+vim.cmd[[set fillchars=fold:\ ,eob:\ ]]
+vim.wo.foldnestmax = 3
+vim.wo.foldminlines = 1
+
+
 
 vim.opt.ssop = "blank,buffers,curdir,help,terminal"
 

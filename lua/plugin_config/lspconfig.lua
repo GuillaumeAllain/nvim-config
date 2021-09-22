@@ -2,9 +2,9 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
 local on_attach = function(client, bufnr)
-    if client.resolved_capabilities.document_formatting then
-        vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil,5000)")
-    end
+    -- if client.resolved_capabilities.document_formatting then
+    --     vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil,5000)")
+    -- end
 end
 
 require("lspconfig").jedi_language_server.setup({
@@ -47,7 +47,7 @@ require("null-ls").config({
                 to_stdin = true,
             }),
         },
-        require'null-ls'.builtins.formatting.fprettify.with({args={"--silent","--case","2","2","2","2"}}),
+        require("null-ls").builtins.formatting.fprettify.with({ args = { "--silent", "--case", "2", "2", "2", "2" } }),
         {
             method = require("null-ls").methods.FORMATTING,
             filetypes = { "yaml" },

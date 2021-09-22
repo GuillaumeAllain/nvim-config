@@ -7,7 +7,7 @@ require("which-key").register({
         s = { "<cmd>lua require('telescope.builtin').file_browser()<cr>", "file browser" },
         d = { "<cmd>lua require('telescope.builtin').find_files()<cr>", "find files" },
         l = {
-            "<cmd>lua require('telescope.builtin').lsp_code_actions(require('telescope.themes').get_cursor({}))<cr>",
+            "<cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>",
             "Lsp Code Actions",
         },
         t = {

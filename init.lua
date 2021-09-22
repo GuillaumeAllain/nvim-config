@@ -14,4 +14,4 @@ vim.cmd([[command! PackerProfile packadd packer.nvim | lua require('packer_setup
 
 require("settings")
 
-require("keymaps")
+require('keymaps')

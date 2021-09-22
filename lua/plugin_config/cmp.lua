@@ -4,18 +4,17 @@ cmp.setup({
         completeopt = "menu,menuone,noinsert",
     },
     mapping = {
-        ["<C-l>"] = cmp.mapping.confirm({
+        ["<C-L>"] = cmp.mapping.confirm({
             behavior = cmp.ConfirmBehavior.Insert,
             select = true,
         }),
     },
     sources = {
         { name = "vsnip" },
+        { name = "nvim_lsp" },
         { name = "path" },
         { name = "buffer" },
-        { name = "nvim_lsp" },
         { name = "emoji" },
-        { name = "orgmode" },
     },
     snippet = {
         expand = function(args)
@@ -34,7 +33,6 @@ cmp.setup({
                 vsnip = "[VSnip]",
                 nvim_lua = "[nvim]",
                 path = "[Path]",
-                latex_symbols = "[Latex]",
                 tags = "[Tags]",
                 emoji = "[Emoji]",
             })[entry.source.name]
@@ -45,7 +43,7 @@ cmp.setup({
 vim.cmd([[
     augroup nvim-cmp-sources
         au!
-        au Filetype pandoc,markdown lua require'cmp'.setup.buffer{sources=require("cmp.utils.misc").concat(require("cmp.config").global.sources, { {name='tags'},{name='latex_symbols'}})}
+        au Filetype pandoc,markdown lua require'cmp'.setup.buffer{sources=require("cmp.utils.misc").concat(require("cmp.config").global.sources, { {name='tags'}})}
         au Filetype lua lua require'cmp'.setup.buffer{sources=require("cmp.utils.misc").concat(require("cmp.config").global.sources, { { name = "nvim_lua" } })}
     augroup END
 ]])

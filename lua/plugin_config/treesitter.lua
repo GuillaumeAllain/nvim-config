@@ -43,6 +43,13 @@ function m.setup(treesitter_ft)
     })
     vim.opt.foldmethod = "expr"
     vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+    vim.wo.foldtext =
+        [[substitute(getline(v:foldstart),'\\t',repeat('\t',&tabstop),'g').'...'.trim(getline(v:foldend))]]
+    vim.cmd[[set fillchars=fold:\ ,eob:\ ]]
+    vim.wo.foldnestmax = 3
+    vim.wo.foldminlines = 1
+    -- vim.cmd[[hi! EndOfBuffer guibg=none ctermbg=none]]
+    -- vim.cmd[[hi! SignColumn guibg=none ctermbg=none]]
 end
 
 return m

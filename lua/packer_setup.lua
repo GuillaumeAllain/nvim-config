@@ -118,7 +118,7 @@ return require("packer").startup({
             },
         })
         use({
-            "~/srv/panotes",
+            "GuillaumeAllain/panotes",
             cmd = "Panotes",
             module = "panotes",
             config = function()

@@ -1,4 +1,4 @@
-syn match hashtags /\%(\s*#\S\+\)/ containedin=pandocAtxHeader
+syn match hashtags /\%(\s*#[^[:blank:]#]\+\)/ containedin=pandocAtxHeader
 hi link hashtags Operator
 " syn keyword pandoctodo TODO containedin=pandocAtxHeader
 " hi link pandoctodo todo

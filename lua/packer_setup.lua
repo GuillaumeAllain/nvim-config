@@ -10,10 +10,10 @@ return require("packer").startup({
             "folke/which-key.nvim",
             config = function()
                 require("plugin_config/whichkey")
-                require'which-key'.setup({
-                    triggers_blacklist={
-                        n={"s"}
-                    }
+                require("which-key").setup({
+                    triggers_blacklist = {
+                        n = { "s" },
+                    },
                 })
             end,
         })
@@ -64,7 +64,10 @@ return require("packer").startup({
             "vim-pandoc/vim-pandoc",
             ft = { "markdown", "pandoc" },
             wants = { "vim-pandoc-syntax", "vim-pandoc-after" },
-            requires = { { "vim-pandoc/vim-pandoc-syntax", opt = true }, { "vim-pandoc/vim-pandoc-after", opt = true } },
+            requires = {
+                { "vim-pandoc/vim-pandoc-syntax", opt = true },
+                { "vim-pandoc/vim-pandoc-after", opt = true },
+            },
             config = function()
                 vim.g["pandoc#syntax#conceal#cchar_overrides"] = { atx = "#" }
                 vim.g["pandoc#folding#fold_yaml"] = 1
@@ -298,7 +301,25 @@ return require("packer").startup({
             "folke/todo-comments.nvim",
             requires = { "nvim-lua/plenary.nvim", module = "plenary" },
             config = function()
-                require("todo-comments").setup({})
+                require("todo-comments").setup({
+                    keywords = {
+                        FIX = {
+                            icon = " ", -- icon used for the sign, and in search results
+                            color = vim.g["terminal_color_0"], -- can be a hex color, or a named color (see below)
+                            alt = { "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
+                            -- signs = false, -- configure signs for some keywords individually
+                        },
+                        TODO = { icon = " ", color = vim.g["terminal_color_6"] },
+                        HACK = { icon = " ", color = vim.g["terminal_color_2"] },
+                        WARN = { icon = " ", color = vim.g["terminal_color_3"], alt = { "WARNING", "XXX" } },
+                        PERF = {
+                            icon = " ",
+                            color = vim.g["terminal_color_4"],
+                            alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" },
+                        },
+                        NOTE = { icon = " ", color = vim.g["terminal_color_5"], alt = { "INFO" } },
+                    },
+                })
             end,
         })
 

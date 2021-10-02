@@ -115,6 +115,7 @@ return require("packer").startup({
                 require("plugin_config/lualine")
             end,
             after = "maintheme",
+            as = "statusline",
             wants = { "nvim-web-devicons" },
             requires = {
                 { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },

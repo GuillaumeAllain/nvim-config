@@ -45,13 +45,41 @@ vim.cmd([[
         au!
         au Filetype pandoc,markdown lua require'cmp'.setup.buffer{sources=require("cmp.utils.misc").concat(require("cmp.config").global.sources, { {name='tags'}})}
         au Filetype lua lua require'cmp'.setup.buffer{sources=require("cmp.utils.misc").concat(require("cmp.config").global.sources, { { name = "nvim_lua" } })}
+        au FileType TelescopePrompt,vim lua require('cmp').setup.buffer { enabled = false }
     augroup END
+
 ]])
+
 
 -- print(require("cmp.config").buffers.)
 -- print(unpack(require("cmp.config").))
 -- yo = require("cmp.utils.misc").concat(require("cmp.config").global.sources, { { name = "nvim_lua" } })
--- yo = require("cmp.config").buffers[1].sources[1][1]
+--
+-- vim.cmd[[startinsert|]]
+-- vim.fn.feedkeys("function")
+-- print(require("cmp.config").enabled())
+
+_G.toggle_cmp = function()
+  local enabled = require'cmp.config'.get().enabled
+  if type(enabled) == 'function' then
+    enabled = enabled()
+  end
+  if enabled then
+      require'cmp'.setup.buffer{enabled=false}
+  else
+      require'cmp'.setup.buffer{enabled=true}
+  end
+end
+
+
+-- require("cmp.config").enabled = function()
+--   local enabled = require("cmp.confg").get().enabled
+--   if type(enabled) == 'function' then
+--     enabled = enabled()
+--   end
+--   return enabled 
+-- end
+
 -- for key, value in pairs(yo) do
 --     print(key, value)
 -- end

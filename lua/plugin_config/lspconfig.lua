@@ -172,6 +172,8 @@ require("lspconfig").grammar_guard.setup({
                     "COMMA_PARENTHESIS_WHITESPACE",
                     "FLECHES",
                     "WHITESPACE_RULE",
+                    "ESPACE_POURCENT",
+                    "TIRET_BAS"
                 },
             },
         },

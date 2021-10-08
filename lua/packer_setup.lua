@@ -5,7 +5,11 @@ return require("packer").startup({
     function(use)
         -- Packer can manage itself
         use({ "wbthomason/packer.nvim", opt = true })
-        use({ "tpope/vim-commentary", keys = { "gc" } })
+        -- use({ "tpope/vim-commentary", keys = { "gc" } })
+        use({"numToStr/Comment.nvim",
+             config=function ()
+                 require("Comment").setup()
+             end})
         use({
             "folke/which-key.nvim",
             config = function()

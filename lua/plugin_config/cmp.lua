@@ -5,7 +5,7 @@ cmp.setup({
     },
     mapping = {
         ["<C-L>"] = cmp.mapping.confirm({
-            behavior = cmp.ConfirmBehavior.Insert,
+            behavior = cmp.ConfirmBehavior.Replace,
             select = true,
         }),
     },

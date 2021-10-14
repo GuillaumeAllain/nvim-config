@@ -5,6 +5,11 @@ local on_attach = function(client, bufnr)
     -- if client.resolved_capabilities.document_formatting then
     --     vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil,5000)")
     -- end
+    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+      vim.lsp.diagnostic.on_publish_diagnostics, {
+        update_in_insert = true,
+      }
+    )
 end
 
 require("lspconfig").jedi_language_server.setup({

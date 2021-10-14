@@ -17,6 +17,7 @@ return require("packer").startup({
                 require("which-key").setup({
                     triggers_blacklist = {
                         n = { "s" },
+                        v = { "g" },
                     },
                 })
             end,
@@ -39,6 +40,7 @@ return require("packer").startup({
                 require("project_nvim").setup({
                     ignore_lsp = { "efm", "sumneko_lua" },
                     patterns = { ".git", "!Makefile", ".notes" },
+                    detection_methods = {"!Makefile",".git", ".notes"},
                     datapath = vim.fn.stdpath("cache"),
                 })
             end,

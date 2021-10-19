@@ -12,12 +12,12 @@ return require("packer").startup({
                 require("Comment").setup()
             end,
         })
-        use({
-            "luukvbaal/stabilize.nvim",
-            config = function()
-                require("stabilize").setup()
-            end,
-        })
+        -- use({
+        --     "luukvbaal/stabilize.nvim",
+        --     config = function()
+        --         require("stabilize").setup()
+        --     end,
+        -- })
         use({
             "folke/which-key.nvim",
             config = function()
@@ -41,7 +41,7 @@ return require("packer").startup({
         use({ "romainl/vim-cool" })
         use({
             "machakann/vim-sandwich",
-            keys = { "sr", "sa", "sd" },
+            -- keys = { "sr", "sa", "sd" },
             config = function()
                 require("plugin_config/sandwich")
             end,
@@ -49,12 +49,10 @@ return require("packer").startup({
         use("wellle/targets.vim")
         use({
             "ahmedkhalf/project.nvim",
-            event = "BufReadPre",
             config = function()
                 require("project_nvim").setup({
-                    ignore_lsp = { "efm", "sumneko_lua" },
-                    patterns = { ".git", "!Makefile", ".notes" },
-                    detection_methods = { "!Makefile", ".git", ".notes" },
+                    -- ignore_lsp = { "efm", "sumneko_lua" },
+                    patterns = { "!Makefile" ,".git", ".notes" },
                     datapath = vim.fn.stdpath("cache"),
                 })
             end,
@@ -143,7 +141,8 @@ return require("packer").startup({
             },
         })
         use({
-            "GuillaumeAllain/panotes",
+            -- "GuillaumeAllain/panotes",
+            "~/srv/panotes",
             cmd = "Panotes",
             module = "panotes",
             config = function()

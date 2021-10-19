@@ -23,7 +23,7 @@ require("which-key").register({
         name = "panotes",
         j = { "<cmd>Panotes openJournal<cr>", "journal" },
         d = { "<cmd>Panotes openDiary<cr>", "diary" },
-        t = { "<cmd>Panotes openTagInput<cr>", "open tags" },
+        -- t = { "<cmd>Panotes openTagInput<cr>", "open tags" },
         s = { "<cmd>Panotes searchTags<cr>", "search tags" },
         c = { "<cmd>Panotes capture<cr>", "capture" },
         t = { "<cmd>Panotes change_cwd_to_notes_dir<cr>:TodoTelescope<cr> ", "capture" },
@@ -46,30 +46,30 @@ require("which-key").register({
     b = {
         name = "builder",
         b = {
-            "<cmd>|lua require'utils'.send_command_to_build_terminal('builder '..vim.fn.fnameescape(vim.fn.expand('%:p')))<cr>",
+            "<cmd>lua require'utils'.send_command_to_build_terminal('builder '..vim.fn.fnameescape(vim.fn.expand('%:p')))<cr>",
             "Build in BuildTerminal",
         },
         o = {
-            "<cmd>|lua require'utils'.send_command_to_build_terminal('opener '..vim.fn.fnameescape(vim.fn.expand('%:p')))<cr>",
+            "<cmd>lua require'utils'.send_command_to_build_terminal('opener '..vim.fn.fnameescape(vim.fn.expand('%:p')))<cr>",
             "Open in BuildTerminal",
         },
         c = {
-            "<cmd>|lua require'utils'.send_command_to_build_terminal('cleaner '..vim.fn.fnameescape(vim.fn.expand('%:p')))<cr>",
+            "<cmd>lua require'utils'.send_command_to_build_terminal('cleaner '..vim.fn.fnameescape(vim.fn.expand('%:p')))<cr>",
             "Clean in BuildTerminal",
         },
     },
     m = {
         name = "maker",
         m = {
-            "<cmd>|lua require'utils'.send_command_to_build_terminal('maker make')<cr>",
+            "<cmd>lua require'utils'.send_command_to_build_terminal('maker make')<cr>",
             "Make in BuildTerminal",
         },
         o = {
-            "<cmd>|lua require'utils'.send_command_to_build_terminal('maker open')<cr>",
+            "<cmd>lua require'utils'.send_command_to_build_terminal('maker open')<cr>",
             "Make Open in BuildTerminal",
         },
         c = {
-            "<cmd>|lua require'utils'.send_command_to_build_terminal('maker clean')<cr>",
+            "<cmd>lua require'utils'.send_command_to_build_terminal('maker clean')<cr>",
             "Make Clean in BuildTerminal",
         },
     },

@@ -7,7 +7,7 @@ local on_attach = function(client, bufnr)
     -- end
     vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
       vim.lsp.diagnostic.on_publish_diagnostics, {
-        update_in_insert = true,
+        update_in_insert = false,
       }
     )
 end
@@ -178,7 +178,8 @@ require("lspconfig").grammar_guard.setup({
                     "FLECHES",
                     "WHITESPACE_RULE",
                     "ESPACE_POURCENT",
-                    "TIRET_BAS"
+                    "TIRET_BAS",
+                    "TOO_LONG_SENTENCE"
                 },
             },
         },

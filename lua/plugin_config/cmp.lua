@@ -13,7 +13,7 @@ cmp.setup({
         { name = "vsnip" },
         { name = "nvim_lsp" },
         { name = "path" },
-        { name = "buffer" },
+        -- { name = "buffer" },
         { name = "emoji" },
     },
     snippet = {
@@ -43,8 +43,9 @@ cmp.setup({
 vim.cmd([[
     augroup nvim-cmp-sources
         au!
-        au Filetype pandoc,markdown lua require'cmp'.setup.buffer{sources=require("cmp.utils.misc").concat(require("cmp.config").global.sources, { {name='tags'}})}
+        au Filetype pandoc,markdown lua require'cmp'.setup.buffer{sources=require("cmp.utils.misc").concat(require("cmp.config").global.sources, { {name='tags', name = 'pandoc_references'}})}
         au Filetype lua lua require'cmp'.setup.buffer{sources=require("cmp.utils.misc").concat(require("cmp.config").global.sources, { { name = "nvim_lua" } })}
+        au Filetype codev lua require'cmp'.setup.buffer{sources=require("cmp.utils.misc").concat(require("cmp.config").global.sources, { { name = "buffer" } })}
         au FileType TelescopePrompt,vim lua require('cmp').setup.buffer { enabled = false }
     augroup END
 

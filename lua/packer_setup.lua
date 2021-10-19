@@ -6,10 +6,18 @@ return require("packer").startup({
         -- Packer can manage itself
         use({ "wbthomason/packer.nvim", opt = true })
         -- use({ "tpope/vim-commentary", keys = { "gc" } })
-        use({"numToStr/Comment.nvim",
-             config=function ()
-                 require("Comment").setup()
-             end})
+        use({
+            "numToStr/Comment.nvim",
+            config = function()
+                require("Comment").setup()
+            end,
+        })
+        use({
+            "luukvbaal/stabilize.nvim",
+            config = function()
+                require("stabilize").setup()
+            end,
+        })
         use({
             "folke/which-key.nvim",
             config = function()
@@ -31,7 +39,13 @@ return require("packer").startup({
             "Konfekt/FastFold",
         })
         use({ "romainl/vim-cool" })
-        use({ "machakann/vim-sandwich", keys = { "sr", "sa", "sd" } })
+        use({
+            "machakann/vim-sandwich",
+            keys = { "sr", "sa", "sd" },
+            config = function()
+                require("plugin_config/sandwich")
+            end,
+        })
         use("wellle/targets.vim")
         use({
             "ahmedkhalf/project.nvim",
@@ -40,7 +54,7 @@ return require("packer").startup({
                 require("project_nvim").setup({
                     ignore_lsp = { "efm", "sumneko_lua" },
                     patterns = { ".git", "!Makefile", ".notes" },
-                    detection_methods = {"!Makefile",".git", ".notes"},
+                    detection_methods = { "!Makefile", ".git", ".notes" },
                     datapath = vim.fn.stdpath("cache"),
                 })
             end,
@@ -61,6 +75,7 @@ return require("packer").startup({
         use({ "lervag/vimtex", ft = { "tex" } })
         use({
             "windwp/nvim-autopairs",
+            after = "nvim-cmp",
             event = "InsertEnter *",
             config = function()
                 require("plugin_config/autopairs")
@@ -222,12 +237,11 @@ return require("packer").startup({
                     false
                 )
                 vim.cmd([[
-                imap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
-                smap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+                    imap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+                    smap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
                 ]])
             end,
-            wants = { "friendly-snippets" },
-            requires = { { "rafamadriz/friendly-snippets", opt = true } },
+            requires = { { "rafamadriz/friendly-snippets", after = "vim-vsnip" } },
         })
         use({
             "hrsh7th/nvim-cmp",
@@ -244,6 +258,10 @@ return require("packer").startup({
                 {
                     "hrsh7th/cmp-path",
                     module = "cmp_path",
+                },
+                {
+                    "jc-doyle/cmp-pandoc-references",
+                    module = "cmp-pandoc-references",
                 },
                 {
                     "hrsh7th/cmp-nvim-lua",
@@ -272,16 +290,36 @@ return require("packer").startup({
         })
         use({
             "abecodes/tabout.nvim",
-            after = "nvim-cmp",
+            after = { "nvim-cmp", "vim-vsnip" },
             wants = "nvim-treesitter",
             config = function()
                 require("tabout").setup({
-                    tabkey = "<C-L>",
+                    tabkey = "",
                     act_as_tab = false,
                     act_as_shit_tab = false,
                     enable_backwards = false,
                     completion = true,
+                    exclude = { "pandoc" },
+                    tabouts = {
+                        { open = "'", close = "'" },
+                        { open = '"', close = '"' },
+                        { open = "`", close = "`" },
+                        { open = "(", close = ")" },
+                        { open = "[", close = "]" },
+                        { open = "{", close = "}" },
+                        { open = "$", close = "$" },
+                    },
                 })
+                function _G.tabout_binding()
+                    if vim.fn.pumvisible() ~= 0 then
+                        return vim.api.nvim_replace_termcodes("<C-l>", true, true, true)
+                    elseif vim.fn["vsnip#available"](1) ~= 0 then
+                        return "<Plug>(vsnip-expand-or-jump)"
+                    else
+                        return "<Plug>(Tabout)"
+                    end
+                end
+                vim.api.nvim_set_keymap("i", "<C-l>", "v:lua.tabout_binding()", { expr = true })
             end,
         })
 

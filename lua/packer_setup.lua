@@ -435,6 +435,12 @@ return require("packer").startup({
                         vim.cmd([[GrammarInstall]])
                     end,
                 },
+                {
+                    "https://gitlab.com/yorickpeterse/nvim-dd.git", after = "nvim-lspconfig",
+                    config = function()
+                        require('dd').setup()
+                    end
+                }
             },
         })
     end,

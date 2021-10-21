@@ -28,7 +28,7 @@ require("which-key").register({
         c = { "<cmd>Panotes capture<cr>", "capture" },
         t = { "<cmd>Panotes change_cwd_to_notes_dir<cr>:TodoTelescope<cr> ", "capture" },
         g = {
-            "<cmd>lua require'panotes'.change_cwd_to_notes_dir()<cr>:lua require'telescope.builtin'.live_grep()<cr>",
+            "<cmd>Panotes liveGrep<cr>",
             "live grep notes",
         },
     },
@@ -41,7 +41,7 @@ require("which-key").register({
         y = { "<cmd>ZenMode <CR>", "Zen-mode" },
         j = { "<cmd>TodoTrouble <CR>", "TodoTrouble" },
         h = { "<cmd>TroubleToggle <CR>", "TroubleToggle" },
-        c = { "<cmd>lua _G.toggle_cmp()<cr>","Toggle cmp"}
+        c = { "<cmd>lua _G.toggle_cmp()<cr>", "Toggle cmp" },
     },
     b = {
         name = "builder",

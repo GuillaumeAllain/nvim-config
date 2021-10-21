@@ -23,7 +23,7 @@ require("which-key").register({
         name = "panotes",
         j = { "<cmd>Panotes openJournal<cr>", "journal" },
         d = { "<cmd>Panotes openDiary<cr>", "diary" },
-        -- t = { "<cmd>Panotes openTagInput<cr>", "open tags" },
+        a = { "<cmd>Panotes openTagInput<cr>", "open tags" },
         s = { "<cmd>Panotes searchTags<cr>", "search tags" },
         c = { "<cmd>Panotes capture<cr>", "capture" },
         t = { "<cmd>Panotes change_cwd_to_notes_dir<cr>:TodoTelescope<cr> ", "capture" },

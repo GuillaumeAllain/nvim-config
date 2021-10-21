@@ -49,7 +49,7 @@ vim.wo.foldminlines = 1
 
 
 vim.opt.ssop = "blank,buffers,curdir,help,terminal"
-vim.cmd[[:set signcolumn=yes]]
+-- vim.cmd[[:set signcolumn=yes]]
 
 
 vim.opt.number = true

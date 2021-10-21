@@ -141,10 +141,7 @@ return require("packer").startup({
             },
         })
         use({
-            -- "GuillaumeAllain/panotes",
-            "~/srv/panotes",
-            -- cmd = "Panotes",
-            -- module = "panotes",
+            "GuillaumeAllain/panotes",
             config = function()
                 require("panotes").setup()
             end,
@@ -152,7 +149,6 @@ return require("packer").startup({
             requires = {
                 { "nvim-lua/plenary.nvim", module = "plenary" },
                 { "nvim-telescope/telescope.nvim", module = "telescope" },
-                { "ludovicchabant/vim-gutentags", opt = true },
             },
         })
 

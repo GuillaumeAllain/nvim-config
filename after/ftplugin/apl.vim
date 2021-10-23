@@ -1,1 +1,1 @@
-set timeoutlen=500
+setlocal timeoutlen=500

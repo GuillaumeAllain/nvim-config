@@ -21,6 +21,7 @@ m.lsp_ft = {
     "fortran",
     "lua",
     "julia",
+    "apl"
 }
 
 local function get_ctags_ft()

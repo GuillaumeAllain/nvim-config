@@ -5,11 +5,9 @@ local on_attach = function(client, bufnr)
     -- if client.resolved_capabilities.document_formatting then
     --     vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil,5000)")
     -- end
-    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-      vim.lsp.diagnostic.on_publish_diagnostics, {
+    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
         update_in_insert = true,
-      }
-    )
+    })
 end
 
 require("lspconfig").jedi_language_server.setup({
@@ -128,6 +126,31 @@ require("lspconfig").sumneko_lua.setup({
     },
 })
 
+-- local dyalog_bin = "/Applications/Dyalog-18.0.app/Contents/Resources/Dyalog/mapl"
+--
+-- local apl_ls_root_path = os.getenv("HOME") .. "~/srv/apl-language-server"
+--
+-- local apl_ls_binary = apl_ls_root_path .. "/APLSource/" .. "/Run.aplf"
+--
+-- require("lspconfig/configs")["apl_language_server"] = {
+--     default_config = {
+--         filetypes = { "apl" },
+--         cmd = { dyalog_bin, "+s", "-q", apl_ls_binary },
+--         root_dir = function(fname)
+--             return require("lspconfig/util").find_git_ancestor(fname) or require("lspconfig/util").path.dirname(fname)
+--         end,
+--         log_level = vim.lsp.protocol.MessageType.Warning,
+--         default_config = {
+--             root_dir = [[root_pattern(".git") or bufdir]],
+--         },
+--     },
+-- }
+--
+-- require("lspconfig").apl_language_server.setup({
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+-- })
+
 local function find_toml(startpath)
     return require("lspconfig").util.search_ancestors(startpath, function(path)
         if require("lspconfig").util.path.is_file(require("lspconfig").util.path.join(path, "Project.toml")) then
@@ -179,7 +202,7 @@ require("lspconfig").grammar_guard.setup({
                     "WHITESPACE_RULE",
                     "ESPACE_POURCENT",
                     "TIRET_BAS",
-                    "TOO_LONG_SENTENCE"
+                    "TOO_LONG_SENTENCE",
                 },
             },
         },

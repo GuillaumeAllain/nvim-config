@@ -2,6 +2,7 @@ local cmp = require("cmp")
 cmp.setup({
     completion = {
         completeopt = "menu,menuone,noinsert",
+        keyword_length = 3,
     },
     mapping = {
         ["<C-L>"] = cmp.mapping.confirm({
@@ -13,7 +14,7 @@ cmp.setup({
         { name = "vsnip" },
         { name = "nvim_lsp" },
         { name = "path" },
-        -- { name = "buffer" },
+        { name = "buffer" ,keyword_length=5},
         { name = "emoji" },
     },
     snippet = {
@@ -39,13 +40,17 @@ cmp.setup({
             return vim_item
         end,
     },
+    experimental = {
+        native_menu=false,
+        ghost_text=true
+    }
 })
 vim.cmd([[
     augroup nvim-cmp-sources
         au!
-        au Filetype pandoc,markdown lua require'cmp'.setup.buffer{sources=require("cmp.utils.misc").concat(require("cmp.config").global.sources, { {name='tags', name = 'pandoc_references'}})}
+        au Filetype pandoc,markdown lua require'cmp'.setup.buffer{sources=require("cmp.utils.misc").concat(require("cmp.config").global.sources, { {name="tags"}, {name = "pandoc_references"}})}
         au Filetype lua lua require'cmp'.setup.buffer{sources=require("cmp.utils.misc").concat(require("cmp.config").global.sources, { { name = "nvim_lua" } })}
-        au Filetype codev lua require'cmp'.setup.buffer{sources=require("cmp.utils.misc").concat(require("cmp.config").global.sources, { { name = "buffer" } })}
+        au Filetype codev lua require'cmp'.setup.buffer{sources=require("cmp.utils.misc").concat(require("cmp.config").global.sources, { { name = "buffer" ,keyword_length=5} })}
         au FileType TelescopePrompt,vim lua require('cmp').setup.buffer { enabled = false }
     augroup END
 

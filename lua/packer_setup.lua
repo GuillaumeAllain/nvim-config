@@ -19,6 +19,10 @@ return require("packer").startup({
         --     end,
         -- })
         use({
+            "PyGamer0/vim-apl",
+            ft = "apl"
+        })
+        use({
             "folke/which-key.nvim",
             config = function()
                 require("plugin_config/whichkey")
@@ -52,7 +56,7 @@ return require("packer").startup({
             config = function()
                 require("project_nvim").setup({
                     -- ignore_lsp = { "efm", "sumneko_lua" },
-                    patterns = { "!Makefile" ,".git", ".notes" },
+                    patterns = { "!Makefile", ".git", ".notes" },
                     datapath = vim.fn.stdpath("cache"),
                 })
             end,
@@ -129,7 +133,7 @@ return require("packer").startup({
             as = "maintheme",
         })
         use({
-            "hoob3rt/lualine.nvim",
+            "nvim-lualine/lualine.nvim",
             config = function()
                 require("plugin_config/lualine")
             end,
@@ -432,11 +436,12 @@ return require("packer").startup({
                     end,
                 },
                 {
-                    "https://gitlab.com/yorickpeterse/nvim-dd.git", after = "nvim-lspconfig",
+                    "https://gitlab.com/yorickpeterse/nvim-dd.git",
+                    after = "nvim-lspconfig",
                     config = function()
-                        require('dd').setup()
-                    end
-                }
+                        require("dd").setup({ timeout = 250 })
+                    end,
+                },
             },
         })
     end,

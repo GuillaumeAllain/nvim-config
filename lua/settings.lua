@@ -25,8 +25,6 @@ end
 
 -- vim.g.vimsyn_embed  = 1
 
-vim.opt.laststatus = 0
-
 vim.opt.timeoutlen = 200
 vim.opt.splitright = true
 vim.opt.splitbelow = true
@@ -49,8 +47,6 @@ vim.wo.foldminlines = 1
 
 
 vim.opt.ssop = "blank,buffers,curdir,help,terminal"
--- vim.cmd[[:set signcolumn=yes]]
-
 
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -73,6 +69,8 @@ vim.g.netrw_banner = 0
 vim.g.netrw_liststyle = 3
 vim.g.pyindent_searchpair_timeout = 10
 vim.g.netrw_winsize = 20
+vim.opt.laststatus = 2
+
 
 vim.cmd([[
 command! -nargs=* W w

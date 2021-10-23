@@ -92,7 +92,13 @@ require("lualine").setup({
                 icon = "  LSP:",
                 condition = conditions.buffer_not_empty,
             },
-            -- "location"
+            {
+                function()
+                    local tab = vim.fn.tabpagenr()
+                    local totaltab = vim.fn.tabpagenr("$")
+                    return "Tab: "..tostring(tab).."/"..tostring(totaltab)
+                end
+            }
         },
         lualine_y = {},
         lualine_z = {},
@@ -108,10 +114,8 @@ require("lualine").setup({
         lualine_c = {},
         lualine_x = {
             "filetype",
-            -- "location"
         },
         lualine_y = {},
         lualine_z = {},
     },
 })
-vim.opt.laststatus = 2

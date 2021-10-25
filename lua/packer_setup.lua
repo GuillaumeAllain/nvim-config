@@ -160,6 +160,16 @@ return require("packer").startup({
             "moll/vim-bbye",
             cmd = { "Bdelete", "Bwipeout" },
         })
+        use {
+            'lewis6991/gitsigns.nvim',
+            requires = {
+                'nvim-lua/plenary.nvim', module="plenary"
+            },
+            config = function ()
+                require('gitsigns').setup()
+            end
+            -- tag = 'release' -- To use the latest release
+        }
 
         use({
             "nvim-telescope/telescope.nvim",

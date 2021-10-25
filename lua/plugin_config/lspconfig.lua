@@ -26,6 +26,7 @@ require("lspconfig").jedi_language_server.setup({
 require("null-ls").config({
     sources = {
         require("null-ls").builtins.formatting.black,
+        require("null-ls").builtins.code_actions.gitsigns,
         require("null-ls").builtins.diagnostics.flake8.with({
             extra_args = { "--ignore=E203,W503", "--max-complexity=10", "--max-line-length=127" },
         }),

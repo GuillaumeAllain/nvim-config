@@ -42,6 +42,7 @@ require("which-key").register({
         j = { "<cmd>TodoTrouble <CR>", "TodoTrouble" },
         h = { "<cmd>TroubleToggle <CR>", "TroubleToggle" },
         c = { "<cmd>lua _G.toggle_cmp()<cr>", "Toggle cmp" },
+        n = { "<cmd>set relativenumber!<cr>", "Toggle Number"}
     },
     b = {
         name = "builder",

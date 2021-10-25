@@ -26,6 +26,7 @@ end
 -- vim.g.vimsyn_embed  = 1
 
 vim.opt.timeoutlen = 200
+vim.opt.scl = "yes"
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 vim.opt.updatetime = 1000
@@ -48,8 +49,8 @@ vim.wo.foldminlines = 1
 
 vim.opt.ssop = "blank,buffers,curdir,help,terminal"
 
-vim.opt.number = true
-vim.opt.relativenumber = true
+-- vim.opt.number = true
+-- vim.opt.relativenumber = true
 vim.opt.lazyredraw = true
 
 vim.opt.undofile = true

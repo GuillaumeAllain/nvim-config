@@ -55,7 +55,7 @@ return require("packer").startup({
             "ahmedkhalf/project.nvim",
             config = function()
                 require("project_nvim").setup({
-                    -- ignore_lsp = { "efm", "sumneko_lua" },
+                    detection_methods = { "pattern" },
                     patterns = { "!Makefile", ".git", ".notes" },
                     datapath = vim.fn.stdpath("cache"),
                 })

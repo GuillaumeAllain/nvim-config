@@ -6,8 +6,10 @@ return require("packer").startup({
         -- Packer can manage itself
         use({ "wbthomason/packer.nvim", opt = true })
         -- use({ "tpope/vim-commentary", keys = { "gc" } })
+        use("nathom/filetype.nvim")
         use({
             "numToStr/Comment.nvim",
+            event = 'BufRead',
             config = function()
                 require("Comment").setup()
             end,
@@ -45,7 +47,7 @@ return require("packer").startup({
         use({ "romainl/vim-cool" })
         use({
             "machakann/vim-sandwich",
-            -- keys = { "sr", "sa", "sd" },
+            keys = { "sr", "sa", "sd" },
             config = function()
                 require("plugin_config/sandwich")
             end,
@@ -100,7 +102,7 @@ return require("packer").startup({
         })
         use({ "dkarter/bullets.vim", ft = { "markdown", "pandoc", "tex" }, config = function() end })
 
-        use({ "gioele/vim-autoswap" })
+        -- use({ "gioele/vim-autoswap" })
 
         -- -- use {'shaunsingh/nord.nvim',
         -- -- setup=function()
@@ -146,10 +148,12 @@ return require("packer").startup({
         })
         use({
             "GuillaumeAllain/panotes",
+            cmd = {"Panotes"},
+            module = {"panotes"},
+            keys = {"<leader>p"},
             config = function()
                 require("panotes").setup()
             end,
-            wants = { "vim-gutentags" },
             requires = {
                 { "nvim-lua/plenary.nvim", module = "plenary" },
                 { "nvim-telescope/telescope.nvim", module = "telescope" },
@@ -162,6 +166,7 @@ return require("packer").startup({
         })
         use {
             'lewis6991/gitsigns.nvim',
+            event = 'BufRead',
             requires = {
                 'nvim-lua/plenary.nvim', module="plenary"
             },
@@ -256,7 +261,7 @@ return require("packer").startup({
             "hrsh7th/nvim-cmp",
             opt = true,
             after = "vim-vsnip",
-            wants = "vim-vsnip",
+            wants = "vim-vsnip", 
             module = "cmp",
             requires = {
 

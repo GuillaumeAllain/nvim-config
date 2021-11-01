@@ -6,10 +6,24 @@ return require("packer").startup({
         -- Packer can manage itself
         use({ "wbthomason/packer.nvim", opt = true })
         -- use({ "tpope/vim-commentary", keys = { "gc" } })
-        use("nathom/filetype.nvim")
+        use({
+            "nathom/filetype.nvim",
+            config = function()
+                require("filetype").setup({
+                    overrides = {
+                        extensions = {
+                            -- Set the filetype of *.pn files to potion
+                            seq = "codev",
+                            notes = "pandoc",
+                        },
+                    },
+                })
+            end,
+        })
+
         use({
             "numToStr/Comment.nvim",
-            event = 'BufRead',
+            event = "BufRead",
             config = function()
                 require("Comment").setup()
             end,
@@ -22,7 +36,7 @@ return require("packer").startup({
         -- })
         use({
             "PyGamer0/vim-apl",
-            ft = "apl"
+            ft = "apl",
         })
         use({
             "folke/which-key.nvim",
@@ -148,9 +162,9 @@ return require("packer").startup({
         })
         use({
             "GuillaumeAllain/panotes",
-            cmd = {"Panotes"},
-            module = {"panotes"},
-            keys = {"<leader>p"},
+            cmd = { "Panotes" },
+            module = { "panotes" },
+            keys = { "<leader>p" },
             config = function()
                 require("panotes").setup()
             end,
@@ -164,17 +178,18 @@ return require("packer").startup({
             "moll/vim-bbye",
             cmd = { "Bdelete", "Bwipeout" },
         })
-        use {
-            'lewis6991/gitsigns.nvim',
-            event = 'BufRead',
+        use({
+            "lewis6991/gitsigns.nvim",
+            event = "BufRead",
             requires = {
-                'nvim-lua/plenary.nvim', module="plenary"
+                "nvim-lua/plenary.nvim",
+                module = "plenary",
             },
-            config = function ()
-                require('gitsigns').setup()
-            end
+            config = function()
+                require("gitsigns").setup()
+            end,
             -- tag = 'release' -- To use the latest release
-        }
+        })
 
         use({
             "nvim-telescope/telescope.nvim",
@@ -261,7 +276,7 @@ return require("packer").startup({
             "hrsh7th/nvim-cmp",
             opt = true,
             after = "vim-vsnip",
-            wants = "vim-vsnip", 
+            wants = "vim-vsnip",
             module = "cmp",
             requires = {
 

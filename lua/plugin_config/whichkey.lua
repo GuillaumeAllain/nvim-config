@@ -50,6 +50,10 @@ require("which-key").register({
             "<cmd>lua require'utils'.send_command_to_build_terminal('builder '..vim.fn.fnameescape(vim.fn.expand('%:p')))<cr>",
             "Build in BuildTerminal",
         },
+        l = {
+            "<cmd>lua require'utils'.send_command_to_build_terminal('\\x1b\\x4f\\x41')<cr>",
+            "Build in BuildTerminal",
+        },
         o = {
             "<cmd>lua require'utils'.send_command_to_build_terminal('opener '..vim.fn.fnameescape(vim.fn.expand('%:p')))<cr>",
             "Open in BuildTerminal",

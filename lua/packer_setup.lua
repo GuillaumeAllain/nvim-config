@@ -29,12 +29,12 @@ return require("packer").startup({
             end,
         })
 
-        -- use({
-        --     "luukvbaal/stabilize.nvim",
-        --     config = function()
-        --         require("stabilize").setup()
-        --     end,
-        -- })
+        use({
+            "luukvbaal/stabilize.nvim",
+            config = function()
+                require("stabilize").setup()
+            end,
+        })
         use({
             "PyGamer0/vim-apl",
             ft = "apl",

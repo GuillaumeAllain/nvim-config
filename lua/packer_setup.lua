@@ -5,7 +5,7 @@ return require("packer").startup({
     function(use)
         -- Packer can manage itself
         use({ "wbthomason/packer.nvim", opt = true })
-        -- use({ "tpope/vim-commentary", keys = { "gc" } })
+        use({ "https://github.com/github/copilot.vim" })
         use({
             "nathom/filetype.nvim",
             config = function()
@@ -25,9 +25,10 @@ return require("packer").startup({
             "numToStr/Comment.nvim",
             event = "BufRead",
             config = function()
-                require("Comment").setup()
+                require("Comment").setup({ ignore =  "^$"  })
             end,
         })
+
         -- use({
         --     "luukvbaal/stabilize.nvim",
         --     config = function()

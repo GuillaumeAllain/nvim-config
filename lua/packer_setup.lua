@@ -8,7 +8,7 @@ return require("packer").startup({
             "wbthomason/packer.nvim",
             cmd = { "PackerInstall", "PackerUpdate", "PackerSync", "PackerClean", "PackerCompile", "PackerProfile" },
             config = function()
-                require('packer_setup')
+                require("packer_setup")
             end,
             opt = true,
         })
@@ -24,7 +24,7 @@ return require("packer").startup({
         })
         use({
             "chipsenkbeil/distant.nvim",
-            cmd = { "DistantLaunch", "DistantOpen", "DistantInstall" },
+            cmd = { "DistantLaunch", "DistantOpen", "DistantInstall" ,"DistantGetHost"},
             config = function()
                 require("distant").setup({
                     -- Applies Chip's personal settings to every machine you connect to
@@ -37,6 +37,9 @@ return require("packer").startup({
                     -- mode = 'ssh',
                     -- })
                 })
+                vim.cmd(
+                    [[command! -nargs=1 DistantGetHost execute "!ssh -tt -G <args> | awk \'/^hostname / { print $2 }\'"]]
+                )
             end,
         })
         use({

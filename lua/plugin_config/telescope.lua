@@ -29,7 +29,18 @@ require("telescope").setup({
                 case_mode = "smart_case", -- or "ignore_case" or "respect_case"
                 -- the default case_mode is "smart_case"
             },
-        }, -- theme = require("telescope.themes").get_dropdown({}),
+        },
+        -- theme = require("telescope.themes").get_dropdown({}),
+        mappings = {
+            i = {
+                ["<C-s>"] = require("telescope.actions").select_horizontal,
+                ["<C-y>"] = function(prompt_bfnr)
+                    local selection = require("telescope.actions.state").get_selected_entry().value
+                    require("telescope.actions").close(prompt_bfnr)
+                    vim.fn.setreg('*', selection)
+                end
+            },
+        },
     },
     pickers = {
         buffers = {

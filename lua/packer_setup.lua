@@ -4,8 +4,41 @@ vim.cmd([[packadd packer.nvim]])
 return require("packer").startup({
     function(use)
         -- Packer can manage itself
-        use({ "wbthomason/packer.nvim", opt = true })
-        use({ "https://github.com/github/copilot.vim" })
+        use({
+            "wbthomason/packer.nvim",
+            cmd = { "PackerInstall", "PackerUpdate", "PackerSync", "PackerClean", "PackerCompile", "PackerProfile" },
+            config = function()
+                require('packer_setup')
+            end,
+            opt = true,
+        })
+        -- use({ "https://github.com/github/copilot.vim" })
+        use({
+            "jenterkin/vim-autosource",
+            setup = function()
+                vim.g.autosource_conf_names = { ".exrc", ".exrc.lua" }
+            end,
+            config = function()
+                vim.g.autosource_hashdir = vim.fn.expand("$XDG_CACHE_HOME/nvim/vim-autosource/hashes")
+            end,
+        })
+        use({
+            "chipsenkbeil/distant.nvim",
+            cmd = { "DistantLaunch", "DistantOpen", "DistantInstall" },
+            config = function()
+                require("distant").setup({
+                    -- Applies Chip's personal settings to every machine you connect to
+                    --
+                    -- 1. Ensures that distant servers terminate with no connections
+                    -- 2. Provides navigation bindings for remote directories
+                    -- 3. Provides keybinding to jump into a remote file's parent directory
+                    ["*"] = require("distant.settings").chip_default(),
+                    -- ['*'] = vim.tbl_deep_extend('force', require('distant.settings').chip_default(), {
+                    -- mode = 'ssh',
+                    -- })
+                })
+            end,
+        })
         use({
             "nathom/filetype.nvim",
             config = function()
@@ -25,7 +58,7 @@ return require("packer").startup({
             "numToStr/Comment.nvim",
             event = "BufRead",
             config = function()
-                require("Comment").setup({ ignore =  "^$"  })
+                require("Comment").setup({ ignore = "^$" })
             end,
         })
 
@@ -73,7 +106,7 @@ return require("packer").startup({
             config = function()
                 require("project_nvim").setup({
                     detection_methods = { "pattern" },
-                    patterns = { "!Makefile", ".git", ".notes" },
+                    patterns = { ".git", ".notes" },
                     datapath = vim.fn.stdpath("cache"),
                 })
             end,
@@ -465,6 +498,10 @@ return require("packer").startup({
                     run = function()
                         vim.cmd([[GrammarInstall]])
                     end,
+                },
+                {
+                    "ray-x/lsp_signature.nvim",
+                    module = "lsp_signature",
                 },
                 {
                     "https://gitlab.com/yorickpeterse/nvim-dd.git",

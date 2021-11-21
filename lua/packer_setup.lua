@@ -499,6 +499,13 @@ return require("packer").startup({
                 { "jose-elias-alvarez/null-ls.nvim", module = "null-ls" },
                 { "ii14/lsp-command", opt = true, after = "nvim-lspconfig" },
                 {
+                    "simrat39/symbols-outline.nvim",
+                    ft = require("plugin_config.ft").lsp_ft,
+                    setup=function ()
+                        require("plugin_config/symbols_outline")
+                    end
+                },
+                {
                     "brymer-meneses/grammar-guard.nvim",
                     module = "grammar-guard",
                     run = function()

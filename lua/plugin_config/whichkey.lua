@@ -10,6 +10,10 @@ require("which-key").register({
             "<cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>",
             "Lsp Code Actions",
         },
+        k = {
+            "<cmd>lua require('telescope.builtin').lsp_workspace_symbols()<cr>",
+            "Lsp Code Actions",
+        },
         t = {
             "<cmd>lua require('telescope.builtin').builtin()<cr>",
             "Telescope Builtin",
@@ -42,7 +46,7 @@ require("which-key").register({
         j = { "<cmd>TodoTrouble <CR>", "TodoTrouble" },
         h = { "<cmd>TroubleToggle <CR>", "TroubleToggle" },
         c = { "<cmd>lua _G.toggle_cmp()<cr>", "Toggle cmp" },
-        n = { "<cmd>set relativenumber!| set number!<cr>", "Toggle Number"}
+        n = { "<cmd>set relativenumber!| set number!<cr>", "Toggle Number"},
     },
     b = {
         name = "builder",
@@ -90,3 +94,12 @@ require("which-key").register({
     prefix = "<leader>",
     mode = "v",
 })
+
+vim.cmd([[
+augroup which-key
+au!
+au filetype * lua require("which-key").register({g={name="plugins",s={"<cmd>SymbolsOutline<CR>", "Symbols"}}},{prefix="<leader>"})
+au filetype pandoc,markdown lua require("which-key").register({g={name="plugins",s={"<cmd>TOC<CR>", "Symbols"}}},{prefix="<leader>"})
+augroup END
+]])
+

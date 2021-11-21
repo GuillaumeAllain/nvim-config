@@ -24,7 +24,7 @@ return require("packer").startup({
         })
         use({
             "chipsenkbeil/distant.nvim",
-            cmd = { "DistantLaunch", "DistantOpen", "DistantInstall" ,"DistantGetHost"},
+            cmd = { "DistantLaunch", "DistantOpen", "DistantInstall", "DistantGetHost" },
             config = function()
                 require("distant").setup({
                     -- Applies Chip's personal settings to every machine you connect to
@@ -428,7 +428,8 @@ return require("packer").startup({
                             color = vim.g["terminal_color_4"],
                             alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" },
                         },
-                        NOTE = { icon = " ", color = vim.g["terminal_color_5"], alt = { "INFO" } },
+                        NOTE = { icon = " ", color = vim.g["terminal_color_5"], alt = { "NOTE" } },
+                        DONE = { icon = " ", color = vim.g["terminal_color_5"], alt = { "DONE" } },
                     },
                 })
             end,
@@ -492,15 +493,20 @@ return require("packer").startup({
                     "pip install --upgrade fortran-language-server jedi-language-server flake8 black fprettify"
                 )
                 vim.fn.system("brew install stylua")
+                vim.fn.system("brew install haskell-language-server")
             end,
             requires = {
                 { "jose-elias-alvarez/null-ls.nvim", module = "null-ls" },
+                { "ii14/lsp-command", opt = true, after = "nvim-lspconfig" },
                 {
                     "brymer-meneses/grammar-guard.nvim",
                     module = "grammar-guard",
                     run = function()
                         vim.cmd([[GrammarInstall]])
                     end,
+                    requires = {
+                        { "williamboman/nvim-lsp-installer", opt = true, cmd = { "LspInstall" } },
+                    },
                 },
                 {
                     "ray-x/lsp_signature.nvim",

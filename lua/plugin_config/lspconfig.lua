@@ -138,24 +138,24 @@ require("lspconfig").sumneko_lua.setup({
 --
 -- local apl_ls_binary = apl_ls_root_path .. "/APLSource/" .. "/Run.aplf"
 --
--- require("lspconfig/configs")["apl_language_server"] = {
---     default_config = {
---         filetypes = { "apl" },
---         cmd = { dyalog_bin, "+s", "-q", apl_ls_binary },
---         root_dir = function(fname)
---             return require("lspconfig/util").find_git_ancestor(fname) or require("lspconfig/util").path.dirname(fname)
---         end,
---         log_level = vim.lsp.protocol.MessageType.Warning,
---         default_config = {
---             root_dir = [[root_pattern(".git") or bufdir]],
---         },
---     },
--- }
+require("lspconfig/configs")["haskell_language_server"] = {
+    default_config = {
+        filetypes = { "haskell" },
+        cmd = {"haskell-language-server-wrapper", "--lsp"},
+        root_dir = function(fname)
+            return require("lspconfig/util").find_git_ancestor(fname) or require("lspconfig/util").path.dirname(fname)
+        end,
+        log_level = vim.lsp.protocol.MessageType.Warning,
+        default_config = {
+            root_dir = [[root_pattern(".git") or bufdir]],
+        },
+    },
+}
 --
--- require("lspconfig").apl_language_server.setup({
---     on_attach = on_attach,
---     capabilities = capabilities,
--- })
+require("lspconfig").haskell_language_server.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
 
 local function find_toml(startpath)
     return require("lspconfig").util.search_ancestors(startpath, function(path)

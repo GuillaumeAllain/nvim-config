@@ -5,6 +5,8 @@ m.treesitter_ft = {
     "bash",
     "c",
     "bibtex",
+    "fortran",
+    "haskell",
     "fennel",
     "html",
     "julia",
@@ -19,6 +21,7 @@ m.lsp_ft = {
     "pandoc",
     "yaml",
     "fortran",
+    "haskell",
     "lua",
     "julia",
     "apl"

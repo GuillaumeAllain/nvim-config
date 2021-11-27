@@ -138,20 +138,20 @@ require("lspconfig").sumneko_lua.setup({
 --
 -- local apl_ls_binary = apl_ls_root_path .. "/APLSource/" .. "/Run.aplf"
 --
-require("lspconfig/configs")["haskell_language_server"] = {
+require("lspconfig.configs").haskell_language_server = {
     default_config = {
         filetypes = { "haskell" },
         cmd = {"haskell-language-server-wrapper", "--lsp"},
         root_dir = function(fname)
-            return require("lspconfig/util").find_git_ancestor(fname) or require("lspconfig/util").path.dirname(fname)
+            return require("lspconfig.util").find_git_ancestor(fname) or require("lspconfig.util").path.dirname(fname)
         end,
-        log_level = vim.lsp.protocol.MessageType.Warning,
+        -- log_level = vim.lsp.protocol.MessageType.Warning,
         default_config = {
             root_dir = [[root_pattern(".git") or bufdir]],
         },
-    },
+    }
 }
---
+
 require("lspconfig").haskell_language_server.setup({
     on_attach = on_attach,
     capabilities = capabilities,
@@ -174,6 +174,7 @@ require("lspconfig").julials.setup({
 })
 
 require("grammar-guard").init()
+
 require("lspconfig").grammar_guard.setup({
     filetypes = { "pandoc", "latex", "tex", "bib", "markdown" },
     get_language_id = function(_, ftype)

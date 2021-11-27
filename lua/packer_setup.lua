@@ -508,6 +508,7 @@ return require("packer").startup({
                 {
                     "brymer-meneses/grammar-guard.nvim",
                     module = "grammar-guard",
+                    cmd = {"GrammarInstall"},
                     run = function()
                         vim.cmd([[GrammarInstall]])
                     end,

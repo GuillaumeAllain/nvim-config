@@ -397,12 +397,12 @@ return require("packer").startup({
                     window = {
                         backdrop = 1,
                         width = 90,
-                        height = 0.8,
+                        height = 0.75,
                         options = {
                             number = false,
                             relativenumber = false,
                         },
-                    },
+                    }
                 })
             end,
             wants = "packer.nvim",

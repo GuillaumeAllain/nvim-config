@@ -42,7 +42,8 @@ vim.opt.expandtab = true
 vim.opt.wildmode = "longest,full"
 vim.opt.showtabline = 0
 vim.wo.foldtext = [[substitute(getline(v:foldstart),'\\t',repeat('\t',&tabstop),'g').'...'.trim(getline(v:foldend))]]
-vim.cmd([[set fillchars=fold:\ ,eob:\ ]])
+-- vim.cmd([[set fillchars=fold:\ ,eob:\ ]])
+vim.opt.fillchars:append({ eob = " ", fold = " " })
 vim.wo.foldnestmax = 3
 vim.wo.foldminlines = 1
 
@@ -70,6 +71,7 @@ vim.g.netrw_liststyle = 3
 vim.g.pyindent_searchpair_timeout = 10
 vim.g.netrw_winsize = 20
 vim.opt.laststatus = 2
+-- vim.opt.inccommand="split"
 
 vim.cmd([[
 command! -nargs=* W w

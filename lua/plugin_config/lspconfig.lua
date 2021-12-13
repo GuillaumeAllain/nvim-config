@@ -8,11 +8,14 @@ local on_attach = function(client, bufnr)
     vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
         update_in_insert = true,
     })
-    require "lsp_signature".on_attach(
-    {
-        hint_enable=false,
-    }
-    )
+    -- require "lsp_signature".on_attach(
+    -- {
+    --     hint_enable=false,
+    -- }
+    -- )
+    vim.diagnostic.open_float(nil, {
+        source = "always",
+    })
 end
 
 require("lspconfig").jedi_language_server.setup({
@@ -28,54 +31,6 @@ require("lspconfig").jedi_language_server.setup({
     end,
 })
 
-require("null-ls").config({
-    sources = {
-        require("null-ls").builtins.formatting.black,
-        require("null-ls").builtins.code_actions.gitsigns,
-        require("null-ls").builtins.diagnostics.flake8.with({
-            extra_args = { "--ignore=E203,W503", "--max-complexity=10", "--max-line-length=127" },
-        }),
-        {
-            method = require("null-ls").methods.FORMATTING,
-            filetypes = { "pandoc" },
-            name = "pandotlint",
-            generator = require("null-ls.helpers").formatter_factory({
-                command = "pandotlint",
-                format = "raw",
-                to_stdin = true,
-            }),
-        },
-        {
-            method = require("null-ls").methods.FORMATTING,
-            filetypes = { "fortran" },
-            name = "fprettify",
-            generator = require("null-ls.helpers").formatter_factory({
-                command = "fprettify",
-                args = { "-s", "--case", "2", "2", "2", "2" },
-                format = "raw",
-                to_stdin = true,
-            }),
-        },
-        require("null-ls").builtins.formatting.fprettify.with({ args = { "--silent", "--case", "2", "2", "2", "2" } }),
-        {
-            method = require("null-ls").methods.FORMATTING,
-            filetypes = { "yaml" },
-            name = "yamllint",
-            generator = require("null-ls.helpers").formatter_factory({
-                command = "yamllint",
-                args = { "-f", "parsasble", "-" },
-                format = "raw",
-                to_stdin = true,
-            }),
-        },
-        require("null-ls").builtins.formatting.stylua,
-    },
-})
-
-require("lspconfig")["null-ls"].setup({
-    on_attach = on_attach,
-    capabilities = capabilities,
-})
 
 require("lspconfig").fortls.setup({
     on_attach = on_attach,
@@ -141,7 +96,7 @@ require("lspconfig").sumneko_lua.setup({
 require("lspconfig.configs").haskell_language_server = {
     default_config = {
         filetypes = { "haskell" },
-        cmd = {"haskell-language-server-wrapper", "--lsp"},
+        cmd = { "haskell-language-server-wrapper", "--lsp" },
         root_dir = function(fname)
             return require("lspconfig.util").find_git_ancestor(fname) or require("lspconfig.util").path.dirname(fname)
         end,
@@ -149,7 +104,7 @@ require("lspconfig.configs").haskell_language_server = {
         default_config = {
             root_dir = [[root_pattern(".git") or bufdir]],
         },
-    }
+    },
 }
 
 require("lspconfig").haskell_language_server.setup({

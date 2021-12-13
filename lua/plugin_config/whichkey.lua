@@ -51,11 +51,11 @@ require("which-key").register({
     b = {
         name = "builder",
         b = {
-            "<cmd>lua require'utils'.send_command_to_build_terminal('builder '..vim.fn.fnameescape(vim.fn.expand('%:p')))<cr>",
+            "<cmd>w|lua require'utils'.send_command_to_build_terminal('builder '..vim.fn.fnameescape(vim.fn.expand('%:p')))<cr>",
             "Build in BuildTerminal",
         },
         l = {
-            "<cmd>lua require'utils'.send_command_to_build_terminal('\\x1b\\x4f\\x41')<cr>",
+            "<cmd>w|lua require'utils'.send_command_to_build_terminal('\\x1b\\x4f\\x41')<cr>",
             "Build in BuildTerminal",
         },
         o = {

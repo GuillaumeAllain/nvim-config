@@ -175,9 +175,9 @@ return require("packer").startup({
         use({
             "rose-pine/neovim",
             config = function()
-                vim.g.rose_pine_variant = "moon"
-                require("rose-pine").set()
-                require("rose-pine.theme").load_terminal()
+                -- vim.g.rose_pine_variant = "moon"
+                require("rose-pine").set('moon')
+                -- require("rose-pine.theme").load_terminal()
                 require("plugin_config/theme")
             end,
             run = function()
@@ -329,9 +329,10 @@ return require("packer").startup({
                     "jc-doyle/cmp-pandoc-references",
                     module = "cmp-pandoc-references",
                 },
-                {
-                    "hrsh7th/cmp-nvim-lua",
-                },
+                -- {
+                --     "hrsh7th/cmp-nvim-lua",
+                --     module = "cmp_nvim_lua"
+                -- },
                 {
                     "hrsh7th/cmp-vsnip",
                     module = "cmp_vsnip",
@@ -349,6 +350,10 @@ return require("packer").startup({
                     "hrsh7th/cmp-emoji",
                     module = "cmp_emoji",
                 },
+                {
+                    "hrsh7th/cmp-nvim-lsp-signature-help",
+                    module = "cmp_nvim_lsp_signature_help"
+                }
             },
             config = function()
                 require("plugin_config/cmp")
@@ -470,6 +475,17 @@ return require("packer").startup({
         })
 
         use({
+            "jose-elias-alvarez/null-ls.nvim",
+            ft = require("plugin_config.ft").lsp_ft,
+            config=function()
+                require("plugin_config/nullls")
+            end,
+            requires = {
+                { "nvim-lua/plenary.nvim", module = "plenary" },
+            }
+        })
+
+        use({
             "neovim/nvim-lspconfig",
             ft = require("plugin_config.ft").lsp_ft,
             module = "lspconfig",
@@ -496,7 +512,6 @@ return require("packer").startup({
                 vim.fn.system("brew install haskell-language-server")
             end,
             requires = {
-                { "jose-elias-alvarez/null-ls.nvim", module = "null-ls" },
                 { "ii14/lsp-command", opt = true, after = "nvim-lspconfig" },
                 {
                     "simrat39/symbols-outline.nvim",
@@ -516,10 +531,10 @@ return require("packer").startup({
                         { "williamboman/nvim-lsp-installer", opt = true, cmd = { "LspInstall" } },
                     },
                 },
-                {
-                    "ray-x/lsp_signature.nvim",
-                    module = "lsp_signature",
-                },
+                -- {
+                --     "ray-x/lsp_signature.nvim",
+                --     module = "lsp_signature",
+                -- },
                 {
                     "https://gitlab.com/yorickpeterse/nvim-dd.git",
                     after = "nvim-lspconfig",

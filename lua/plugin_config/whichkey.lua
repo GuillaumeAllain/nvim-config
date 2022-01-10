@@ -4,7 +4,7 @@ require("which-key").register({
         name = "telescope",
         g = { "<cmd>lua require('telescope.builtin').live_grep()<cr>", "live grep" },
         f = { "<cmd>lua require('telescope.builtin').buffers()<cr>", "buffers" },
-        s = { "<cmd>lua require('telescope.builtin').file_browser()<cr>", "file browser" },
+        s = { "<cmd>lua require('telescope').extensions.file_browser.file_browser()<cr>", "file browser" },
         d = { "<cmd>lua require('telescope.builtin').find_files()<cr>", "find files" },
         l = {
             "<cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>",

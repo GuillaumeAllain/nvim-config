@@ -176,7 +176,7 @@ return require("packer").startup({
             "rose-pine/neovim",
             config = function()
                 -- vim.g.rose_pine_variant = "moon"
-                require("rose-pine").set('moon')
+                require("rose-pine").set("moon")
                 -- require("rose-pine.theme").load_terminal()
                 require("plugin_config/theme")
             end,
@@ -235,6 +235,11 @@ return require("packer").startup({
             requires = {
                 { "nvim-lua/popup.nvim", module = "popup" },
                 { "nvim-lua/plenary.nvim", module = "plenary" },
+                {
+                    "nvim-telescope/telescope-file-browser.nvim",
+                    opt = true,
+                    module_pattern = "telescope._extensions.file_browser*",
+                },
                 { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
                 {
                     "nvim-telescope/telescope-fzf-native.nvim",
@@ -252,6 +257,7 @@ return require("packer").startup({
             config = function()
                 require("telescope").load_extension("fzf")
                 require("telescope").load_extension("projects")
+                require("telescope").load_extension("file_browser")
                 require("plugin_config/telescope")
             end,
         })
@@ -352,8 +358,8 @@ return require("packer").startup({
                 },
                 {
                     "hrsh7th/cmp-nvim-lsp-signature-help",
-                    module = "cmp_nvim_lsp_signature_help"
-                }
+                    module = "cmp_nvim_lsp_signature_help",
+                },
             },
             config = function()
                 require("plugin_config/cmp")
@@ -407,7 +413,7 @@ return require("packer").startup({
                             number = false,
                             relativenumber = false,
                         },
-                    }
+                    },
                 })
             end,
             wants = "packer.nvim",
@@ -454,6 +460,7 @@ return require("packer").startup({
         use({
             "folke/trouble.nvim",
             cmd = { "Trouble", "TroubleClose", "TroubleRefresh", "TroubleToggle" },
+            module="trouble",
             requires = { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
             config = function()
                 require("trouble").setup({})
@@ -477,12 +484,12 @@ return require("packer").startup({
         use({
             "jose-elias-alvarez/null-ls.nvim",
             ft = require("plugin_config.ft").lsp_ft,
-            config=function()
+            config = function()
                 require("plugin_config/nullls")
             end,
             requires = {
                 { "nvim-lua/plenary.nvim", module = "plenary" },
-            }
+            },
         })
 
         use({
@@ -515,15 +522,16 @@ return require("packer").startup({
                 { "ii14/lsp-command", opt = true, after = "nvim-lspconfig" },
                 {
                     "simrat39/symbols-outline.nvim",
-                    ft = require("plugin_config.ft").lsp_ft,
-                    setup=function ()
+                    opt=true,
+                    after="nvim-lspconfig",
+                    setup = function()
                         require("plugin_config/symbols_outline")
-                    end
+                    end,
                 },
                 {
                     "brymer-meneses/grammar-guard.nvim",
                     module = "grammar-guard",
-                    cmd = {"GrammarInstall"},
+                    cmd = { "GrammarInstall" },
                     run = function()
                         vim.cmd([[GrammarInstall]])
                     end,

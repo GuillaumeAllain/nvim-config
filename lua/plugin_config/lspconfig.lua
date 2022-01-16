@@ -31,7 +31,6 @@ require("lspconfig").jedi_language_server.setup({
     end,
 })
 
-
 require("lspconfig").fortls.setup({
     on_attach = on_attach,
     capabilities = capabilities,
@@ -128,9 +127,13 @@ require("lspconfig").julials.setup({
     end,
 })
 
-require("grammar-guard").init()
+-- require("grammar-guard").init()
 
-require("lspconfig").grammar_guard.setup({
+-- require("lspconfig").grammar_guard.setup({
+local ltex_path = vim.fn.stdpath("data").."/lsp_servers/ltex/ltex-ls/bin/ltex-ls"
+
+require("lspconfig").ltex.setup({
+    cmd = {ltex_path},
     filetypes = { "pandoc", "latex", "tex", "bib", "markdown" },
     get_language_id = function(_, ftype)
         if ftype == "pandoc" then
@@ -165,6 +168,16 @@ require("lspconfig").grammar_guard.setup({
                     "ESPACE_POURCENT",
                     "TIRET_BAS",
                     "TOO_LONG_SENTENCE",
+                },
+                en = {
+                    "WORD_CONTAINS_UNDERSCORE",
+                    "SENTENCE_FRAGMENT",
+                    "DASH_RULE",
+                    "TOO_LONG_SENTENCE",
+                    "TOO_LONG_PARAGRAPH",
+                    "PASSIVE_VOICE",
+                    "PUNCTUATION_PARAGRAPH_END",
+                    "COMMA_PARENTHESIS_WHITESPACE"
                 },
             },
         },

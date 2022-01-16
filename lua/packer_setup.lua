@@ -13,35 +13,35 @@ return require("packer").startup({
             opt = true,
         })
         -- use({ "https://github.com/github/copilot.vim" })
-        use({
-            "jenterkin/vim-autosource",
-            setup = function()
-                vim.g.autosource_conf_names = { ".exrc", ".exrc.lua" }
-            end,
-            config = function()
-                vim.g.autosource_hashdir = vim.fn.expand("$XDG_CACHE_HOME/nvim/vim-autosource/hashes")
-            end,
-        })
-        use({
-            "chipsenkbeil/distant.nvim",
-            cmd = { "DistantLaunch", "DistantOpen", "DistantInstall", "DistantGetHost" },
-            config = function()
-                require("distant").setup({
-                    -- Applies Chip's personal settings to every machine you connect to
-                    --
-                    -- 1. Ensures that distant servers terminate with no connections
-                    -- 2. Provides navigation bindings for remote directories
-                    -- 3. Provides keybinding to jump into a remote file's parent directory
-                    ["*"] = require("distant.settings").chip_default(),
-                    -- ['*'] = vim.tbl_deep_extend('force', require('distant.settings').chip_default(), {
-                    -- mode = 'ssh',
-                    -- })
-                })
-                vim.cmd(
-                    [[command! -nargs=1 DistantGetHost execute "!ssh -tt -G <args> | awk \'/^hostname / { print $2 }\'"]]
-                )
-            end,
-        })
+        -- use({
+        --     "jenterkin/vim-autosource",
+        --     setup = function()
+        --         vim.g.autosource_conf_names = { ".exrc", ".exrc.lua" }
+        --     end,
+        --     config = function()
+        --         vim.g.autosource_hashdir = vim.fn.expand("$XDG_CACHE_HOME/nvim/vim-autosource/hashes")
+        --     end,
+        -- })
+        -- use({
+        --     "chipsenkbeil/distant.nvim",
+        --     cmd = { "DistantLaunch", "DistantOpen", "DistantInstall", "DistantGetHost" },
+        --     config = function()
+        --         require("distant").setup({
+        --             -- Applies Chip's personal settings to every machine you connect to
+        --             --
+        --             -- 1. Ensures that distant servers terminate with no connections
+        --             -- 2. Provides navigation bindings for remote directories
+        --             -- 3. Provides keybinding to jump into a remote file's parent directory
+        --             ["*"] = require("distant.settings").chip_default(),
+        --             -- ['*'] = vim.tbl_deep_extend('force', require('distant.settings').chip_default(), {
+        --             -- mode = 'ssh',
+        --             -- })
+        --         })
+        --         vim.cmd(
+        --             [[command! -nargs=1 DistantGetHost execute "!ssh -tt -G <args> | awk \'/^hostname / { print $2 }\'"]]
+        --         )
+        --     end,
+        -- })
         use({
             "nathom/filetype.nvim",
             config = function()
@@ -176,7 +176,7 @@ return require("packer").startup({
             "rose-pine/neovim",
             config = function()
                 -- vim.g.rose_pine_variant = "moon"
-                require("rose-pine").set("moon")
+                require("rose-pine").set("dawn")
                 -- require("rose-pine.theme").load_terminal()
                 require("plugin_config/theme")
             end,
@@ -391,12 +391,12 @@ return require("packer").startup({
                     if vim.fn.pumvisible() ~= 0 then
                         return vim.api.nvim_replace_termcodes("<C-l>", true, true, true)
                     elseif vim.fn["vsnip#available"](1) ~= 0 then
-                        return "<Plug>(vsnip-expand-or-jump)"
+                        return vim.api.nvim_replace_termcodes("<Plug>(vsnip-expand-or-jump)", true, true, true)
                     else
-                        return "<Plug>(Tabout)"
+                        return vim.api.nvim_replace_termcodes("<Plug>(Tabout)", true, true ,true)
                     end
                 end
-                vim.api.nvim_set_keymap("i", "<C-l>", "v:lua.tabout_binding()", { expr = true })
+                vim.api.nvim_set_keymap("i", "<C-L>", "v:lua.tabout_binding()", { expr = true })
             end,
         })
 
@@ -492,6 +492,8 @@ return require("packer").startup({
             },
         })
 
+        use ({ "williamboman/nvim-lsp-installer", opt = true, cmd = { "LspInstall"} })
+
         use({
             "neovim/nvim-lspconfig",
             ft = require("plugin_config.ft").lsp_ft,
@@ -528,17 +530,17 @@ return require("packer").startup({
                         require("plugin_config/symbols_outline")
                     end,
                 },
-                {
-                    "brymer-meneses/grammar-guard.nvim",
-                    module = "grammar-guard",
-                    cmd = { "GrammarInstall" },
-                    run = function()
-                        vim.cmd([[GrammarInstall]])
-                    end,
-                    requires = {
-                        { "williamboman/nvim-lsp-installer", opt = true, cmd = { "LspInstall" } },
-                    },
-                },
+                -- {
+                --     "brymer-meneses/grammar-guard.nvim",
+                --     module = "grammar-guard",
+                --     cmd = { "GrammarInstall" },
+                --     run = function()
+                --         vim.cmd([[GrammarInstall]])
+                --     end,
+                --     requires = {
+                --         { "williamboman/nvim-lsp-installer", opt = true, cmd = { "LspInstall" } },
+                --     },
+                -- },
                 -- {
                 --     "ray-x/lsp_signature.nvim",
                 --     module = "lsp_signature",

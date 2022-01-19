@@ -3,6 +3,7 @@ local function insert_filename(prompt_bufnr)
     require("telescope.actions").close(prompt_bufnr)
     vim.api.nvim_put({ filename }, "", true, true)
 end
+local fb_actions = require("telescope").extensions.file_browser.actions
 
 require("telescope").setup({
     defaults = {
@@ -22,12 +23,20 @@ require("telescope").setup({
         -- color_devicons = true,
         -- use_less = true,
         extensions = {
-            fzf = {
-                fuzzy = true, -- false will only do exact matching
-                override_generic_sorter = false, -- override the generic sorter
-                override_file_sorter = true, -- override the file sorter
-                case_mode = "smart_case", -- or "ignore_case" or "respect_case"
-                -- the default case_mode is "smart_case"
+            -- fzf = {
+            --     fuzzy = true, -- false will only do exact matching
+            --     override_generic_sorter = false, -- override the generic sorter
+            --     override_file_sorter = true, -- override the file sorter
+            --     case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+            --     -- the default case_mode is "smart_case"
+            -- },
+            file_browser = {
+                theme="dropdown",
+                mappings = {
+                    ["i"] = {
+                        ["<C-E>"] = false,
+                    },
+                },
             },
         },
         -- theme = require("telescope.themes").get_dropdown({}),
@@ -37,8 +46,8 @@ require("telescope").setup({
                 ["<C-y>"] = function(prompt_bfnr)
                     local selection = require("telescope.actions.state").get_selected_entry().value
                     require("telescope.actions").close(prompt_bfnr)
-                    vim.fn.setreg('*', selection)
-                end
+                    vim.fn.setreg("*", selection)
+                end,
             },
         },
     },
@@ -92,3 +101,6 @@ require("telescope").setup({
         },
     },
 })
+require("telescope").load_extension("fzf")
+require("telescope").load_extension("projects")
+require("telescope").load_extension("file_browser")

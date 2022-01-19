@@ -94,12 +94,3 @@ require("which-key").register({
     prefix = "<leader>",
     mode = "v",
 })
-
-vim.cmd([[
-augroup which-key
-au!
-au filetype * lua require("which-key").register({g={name="plugins",s={"<cmd>SymbolsOutline<CR>", "Symbols"}}},{prefix="<leader>"})
-au filetype pandoc,markdown lua require("which-key").register({g={name="plugins",s={"<cmd>TOC<CR>", "Symbols"}}},{prefix="<leader>"})
-augroup END
-]])
-

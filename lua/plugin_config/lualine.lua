@@ -96,7 +96,11 @@ require("lualine").setup({
                 function()
                     local tab = vim.fn.tabpagenr()
                     local totaltab = vim.fn.tabpagenr("$")
-                    return "Tab: "..tostring(tab).."/"..tostring(totaltab)
+                    if totaltab ~= 1 then
+                        return "Tab: "..tostring(tab).."/"..tostring(totaltab)
+                    else
+                        return ""
+                    end
                 end
             }
         },

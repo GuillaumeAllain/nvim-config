@@ -12,6 +12,7 @@ return require("packer").startup({
             end,
             opt = true,
         })
+        -- use("lewis6991/impatient.nvim")
         -- use({ "https://github.com/github/copilot.vim" })
         -- use({
         --     "jenterkin/vim-autosource",
@@ -153,8 +154,6 @@ return require("packer").startup({
         })
         use({ "dkarter/bullets.vim", ft = { "markdown", "pandoc", "tex" }, config = function() end })
 
-        -- use({ "gioele/vim-autoswap" })
-
         -- -- use {'shaunsingh/nord.nvim',
         -- -- setup=function()
         -- --     vim.g.nord_contrast = false
@@ -237,8 +236,8 @@ return require("packer").startup({
                 { "nvim-lua/plenary.nvim", module = "plenary" },
                 {
                     "nvim-telescope/telescope-file-browser.nvim",
-                    opt = true,
-                    module_pattern = "telescope._extensions.file_browser*",
+                    -- opt = true,
+                    -- module_pattern = "telescope._extensions.file_browser*",
                 },
                 { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
                 {
@@ -255,9 +254,6 @@ return require("packer").startup({
                 end
             end,
             config = function()
-                require("telescope").load_extension("fzf")
-                require("telescope").load_extension("projects")
-                require("telescope").load_extension("file_browser")
                 require("plugin_config/telescope")
             end,
         })
@@ -293,9 +289,6 @@ return require("packer").startup({
 
         -- Programming
         use({ "GuillaumeAllain/vim-codevmacro", branch = "dev", ft = { "codev" } })
-
-        -- use({ "metakirby5/codi.vim", cmd = { "Codi" } })
-        -- use({ "Vimjas/vim-python-pep8-indent", ft = { "python" } })
 
         use({
             "hrsh7th/vim-vsnip",
@@ -393,7 +386,7 @@ return require("packer").startup({
                     elseif vim.fn["vsnip#available"](1) ~= 0 then
                         return vim.api.nvim_replace_termcodes("<Plug>(vsnip-expand-or-jump)", true, true, true)
                     else
-                        return vim.api.nvim_replace_termcodes("<Plug>(Tabout)", true, true ,true)
+                        return vim.api.nvim_replace_termcodes("<Plug>(Tabout)", true, true, true)
                     end
                 end
                 vim.api.nvim_set_keymap("i", "<C-L>", "v:lua.tabout_binding()", { expr = true })
@@ -460,7 +453,7 @@ return require("packer").startup({
         use({
             "folke/trouble.nvim",
             cmd = { "Trouble", "TroubleClose", "TroubleRefresh", "TroubleToggle" },
-            module="trouble",
+            module = "trouble",
             requires = { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
             config = function()
                 require("trouble").setup({})
@@ -492,7 +485,7 @@ return require("packer").startup({
             },
         })
 
-        use ({ "williamboman/nvim-lsp-installer", opt = true, cmd = { "LspInstall"} })
+        use({ "williamboman/nvim-lsp-installer", opt = true, cmd = { "LspInstall" } })
 
         use({
             "neovim/nvim-lspconfig",
@@ -522,29 +515,6 @@ return require("packer").startup({
             end,
             requires = {
                 { "ii14/lsp-command", opt = true, after = "nvim-lspconfig" },
-                {
-                    "simrat39/symbols-outline.nvim",
-                    opt=true,
-                    after="nvim-lspconfig",
-                    setup = function()
-                        require("plugin_config/symbols_outline")
-                    end,
-                },
-                -- {
-                --     "brymer-meneses/grammar-guard.nvim",
-                --     module = "grammar-guard",
-                --     cmd = { "GrammarInstall" },
-                --     run = function()
-                --         vim.cmd([[GrammarInstall]])
-                --     end,
-                --     requires = {
-                --         { "williamboman/nvim-lsp-installer", opt = true, cmd = { "LspInstall" } },
-                --     },
-                -- },
-                -- {
-                --     "ray-x/lsp_signature.nvim",
-                --     module = "lsp_signature",
-                -- },
                 {
                     "https://gitlab.com/yorickpeterse/nvim-dd.git",
                     after = "nvim-lspconfig",

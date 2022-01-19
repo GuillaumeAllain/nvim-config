@@ -433,7 +433,7 @@ return require("packer").startup({
                             alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" },
                         },
                         NOTE = { icon = " ", color = vim.g["terminal_color_5"], alt = { "NOTE" } },
-                        DONE = { icon = " ", color = vim.g["terminal_color_5"], alt = { "DONE" } },
+                        -- DONE = { icon = " ", color = vim.g["terminal_color_5"], alt = { "DONE" } },
                     },
                 })
             end,

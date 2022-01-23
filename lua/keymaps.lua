@@ -29,10 +29,10 @@ vim.cmd([[
     inoremap ! !<c-g>u
     inoremap ? ?<c-g>u
 
-    vnoremap <silent> J :m '>+1<CR>gv=gv
-    vnoremap <silent> K :m '<-2<CR>gv=gv
 ]])
 
+    -- vnoremap <silent> <c-j> :m '>+1<CR>gv=gv
+    -- vnoremap <silent> <c-k> :m '<-2<CR>gv=gv
 -- nnoremap c "_c
 -- nnoremap <leader>h <C-\><C-N><cmd>bp <CR>
 -- nnoremap <leader>l <C-\><C-N><cmd>bn <CR>

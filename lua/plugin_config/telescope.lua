@@ -17,11 +17,25 @@ require("telescope").setup({
         --     "--smart-case",
         -- },
         -- file_sorter = require("telescope.sorters").get_fuzzy_file,
-        file_ignore_patterns = {},
+        file_ignore_patterns = {".*.hdf5"},
         -- generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
         path_display = { "shorten" },
         -- color_devicons = true,
         -- use_less = true,
+        layout_config = {
+         horizontal = {
+            prompt_position = "bottom",
+            preview_width = 0.55,
+            results_width = 0.8,
+         },
+         vertical = {
+            mirror = false,
+         },
+         width = 0.87,
+         height = 0.80,
+         preview_cutoff = 120,
+          },
+          border = {},
         extensions = {
             -- fzf = {
             --     fuzzy = true, -- false will only do exact matching
@@ -40,6 +54,7 @@ require("telescope").setup({
             },
         },
         -- theme = require("telescope.themes").get_dropdown({}),
+        set_env = { ["COLORTERM"] = "truecolor" },
         mappings = {
             i = {
                 ["<C-s>"] = require("telescope.actions").select_horizontal,

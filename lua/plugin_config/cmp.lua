@@ -24,22 +24,38 @@ cmp.setup({
         end,
     },
     formatting = {
-        format = function(entry, vim_item)
-            -- fancy icons and a name of kind
-            vim_item.kind = require("lspkind").presets.default[vim_item.kind] .. " " .. vim_item.kind
+        -- format = function(entry, vim_item)
+        --     -- fancy icons and a name of kind
+        --     vim_item.kind = require("lspkind").presets.default[vim_item.kind] .. " " .. vim_item.kind
 
-            -- set a name for each source
-            vim_item.menu = ({
-                buffer = "[Buffer]",
-                nvim_lsp = "[LSP]",
-                vsnip = "[VSnip]",
-                nvim_lua = "[nvim]",
-                path = "[Path]",
-                tags = "[Tags]",
-                emoji = "[Emoji]",
-            })[entry.source.name]
-            return vim_item
-        end,
+        --     -- set a name for each source
+        --     vim_item.menu = ({
+        --         buffer = "[Buffer]",
+        --         nvim_lsp = "[LSP]",
+        --         vsnip = "[VSnip]",
+        --         nvim_lua = "[nvim]",
+        --         path = "[Path]",
+        --         tags = "[Tags]",
+        --         emoji = "[Emoji]",
+        --     })[entry.source.name]
+        --     return vim_item
+        -- end,
+        format = require("lspkind").cmp_format({
+            mode='symbol',
+            maxwidth=50,
+                before = function (entry, vim_item)
+                    vim_item.menu = ({
+                        buffer = "[Buffer]",
+                        nvim_lsp = "[LSP]",
+                        vsnip = "[VSnip]",
+                        nvim_lua = "[nvim]",
+                        path = "[Path]",
+                        tags = "[Tags]",
+                        emoji = "[Emoji]",
+                    })[entry.source.name]
+                return vim_item
+          end
+        })
     },
     experimental = {
         native_menu=false,

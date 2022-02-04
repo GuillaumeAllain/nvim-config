@@ -1,8 +1,8 @@
-local function insert_filename(prompt_bufnr)
-    local filename = require("telescope.actions").get_selected_entry().value
-    require("telescope.actions").close(prompt_bufnr)
-    vim.api.nvim_put({ filename }, "", true, true)
-end
+-- local function insert_filename(prompt_bufnr)
+--     local filename = require("telescope.actions").get_selected_entry().value
+--     require("telescope.actions").close(prompt_bufnr)
+--     vim.api.nvim_put({ filename }, "", true, true)
+-- end
 local fb_actions = require("telescope").extensions.file_browser.actions
 
 require("telescope").setup({
@@ -36,23 +36,6 @@ require("telescope").setup({
          preview_cutoff = 120,
           },
           border = {},
-        extensions = {
-            -- fzf = {
-            --     fuzzy = true, -- false will only do exact matching
-            --     override_generic_sorter = false, -- override the generic sorter
-            --     override_file_sorter = true, -- override the file sorter
-            --     case_mode = "smart_case", -- or "ignore_case" or "respect_case"
-            --     -- the default case_mode is "smart_case"
-            -- },
-            file_browser = {
-                theme="dropdown",
-                mappings = {
-                    ["i"] = {
-                        ["<C-E>"] = false,
-                    },
-                },
-            },
-        },
         -- theme = require("telescope.themes").get_dropdown({}),
         set_env = { ["COLORTERM"] = "truecolor" },
         mappings = {
@@ -66,6 +49,26 @@ require("telescope").setup({
             },
         },
     },
+    extensions = {
+        -- fzf = {
+            --     fuzzy = true, -- false will only do exact matching
+            --     override_generic_sorter = false, -- override the generic sorter
+            --     override_file_sorter = true, -- override the file sorter
+            --     case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+            --     -- the default case_mode is "smart_case"
+            -- },
+            file_browser = {
+                mappings = {
+                    i = {
+                        ["<C-e>"] = fb_actions.create
+                    },
+                    n = {
+                        e = fb_actions.create
+                    },
+                },
+            },
+        },
+
     pickers = {
         buffers = {
             layout_strategy = "vertical",

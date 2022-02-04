@@ -57,6 +57,11 @@ return require("packer").startup({
                 })
             end,
         })
+        use{ 'anuvyklack/pretty-fold.nvim', config = function()
+              require('pretty-fold').setup{}
+              require('pretty-fold.preview').setup()
+           end
+        }
 
         use({
             "numToStr/Comment.nvim",
@@ -440,7 +445,7 @@ return require("packer").startup({
         })
 
         use({
-            "onsails/lspkind-nvim",
+            "GuillaumeAllain/lspkind-nvim",
             after = "nvim-lspconfig",
             module = "lspkind",
             config = function()

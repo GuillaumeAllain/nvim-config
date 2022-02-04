@@ -130,10 +130,23 @@ require("lspconfig").julials.setup({
 -- require("grammar-guard").init()
 
 -- require("lspconfig").grammar_guard.setup({
-local ltex_path = vim.fn.stdpath("data").."/lsp_servers/ltex/ltex-ls/bin/ltex-ls"
+local ltex_path = vim.fn.stdpath("data") .. "/lsp_servers/ltex/ltex-ls/bin/ltex-ls"
+
 
 require("lspconfig").ltex.setup({
-    cmd = {ltex_path},
+    on_attach = function()
+        local result = vim.api.nvim_exec("execute 'g/lang:'|noh|norma``", true)
+        local resulttable = {}
+        for s in result:gmatch("[^\r\n]+") do
+            resulttable[#resulttable + 1] = s
+        end
+        if resulttable ~= {} then
+            for s in resulttable[1]:gmatch(".*:%s*(.*)") do
+                vim.cmd("set spelllang="..s)
+            end
+        end
+    end,
+    cmd = { ltex_path },
     filetypes = { "pandoc", "latex", "tex", "bib", "markdown" },
     get_language_id = function(_, ftype)
         if ftype == "pandoc" then
@@ -177,7 +190,7 @@ require("lspconfig").ltex.setup({
                     "TOO_LONG_PARAGRAPH",
                     "PASSIVE_VOICE",
                     "PUNCTUATION_PARAGRAPH_END",
-                    "COMMA_PARENTHESIS_WHITESPACE"
+                    "COMMA_PARENTHESIS_WHITESPACE",
                 },
             },
         },

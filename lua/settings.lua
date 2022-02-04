@@ -16,7 +16,7 @@ local disabled_built_ins = {
     "sql_completion",
     "syntax_completion",
     "matchit",
-    "netrwPlugin",
+    -- "netrwPlugin",
 }
 
 for _, plugin in pairs(disabled_built_ins) do
@@ -64,7 +64,7 @@ vim.g.loaded_python3_provider = 0
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_node_provider = 0
-vim.g.python3_host_prog = "/usr/local/anaconda3/bin/python"
+vim.g.python3_host_prog = vim.fn.expand(os.getenv("HOME").."/miniconda3/bin/python")
 
 vim.g.netrw_banner = 0
 vim.g.netrw_liststyle = 3

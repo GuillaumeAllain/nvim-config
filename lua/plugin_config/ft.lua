@@ -14,7 +14,6 @@ m.treesitter_ft = {
     "lua",
     "regex",
     "toml",
-    "markdown"
 }
 
 m.lsp_ft = {

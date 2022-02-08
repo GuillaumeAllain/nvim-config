@@ -57,11 +57,13 @@ return require("packer").startup({
                 })
             end,
         })
-        use{ 'anuvyklack/pretty-fold.nvim', config = function()
-              require('pretty-fold').setup{}
-              require('pretty-fold.preview').setup()
-           end
-        }
+        use({
+            "anuvyklack/pretty-fold.nvim",
+            config = function()
+                require("pretty-fold").setup({})
+                require("pretty-fold.preview").setup()
+            end,
+        })
 
         use({
             "numToStr/Comment.nvim",
@@ -405,12 +407,15 @@ return require("packer").startup({
                 require("zen-mode").setup({
                     window = {
                         backdrop = 1,
-                        width = 90,
-                        height = 0.75,
+                        width = 88,
+                        height = 0.9,
                         options = {
                             number = false,
                             relativenumber = false,
                         },
+                    },
+                    plugins = {
+                        gitsigns = { enabled = true },
                     },
                 })
             end,

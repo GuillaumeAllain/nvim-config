@@ -67,6 +67,9 @@ require("telescope").setup({
                     },
                 },
             },
+            bibtex = {
+                depth=2
+            }
         },
 
     pickers = {
@@ -122,3 +125,4 @@ require("telescope").setup({
 require("telescope").load_extension("fzf")
 require("telescope").load_extension("projects")
 require("telescope").load_extension("file_browser")
+require("telescope").load_extension("bibtex")

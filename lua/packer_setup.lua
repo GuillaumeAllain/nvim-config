@@ -95,14 +95,33 @@ return require("packer").startup({
                 })
             end,
         })
-        use({
-            "jbyuki/venn.nvim",
-            cmd = "VBox",
-        })
+        -- use({
+        --     "jbyuki/venn.nvim",
+        --     cmd = "VBox",
+        -- })
         use({ "markonm/traces.vim", keys = { ":", "/", "?" } })
-        use({
-            "Konfekt/FastFold",
-        })
+        -- use({
+        --     "Konfekt/FastFold",
+        --     config = function()
+        --         vim.g["fastfold_fold_command_suffixes"] = {
+        --             "x",
+        --             "X",
+        --             "a",
+        --             "A",
+        --             "o",
+        --             "O",
+        --             "c",
+        --             "C",
+        --             "r",
+        --             "R",
+        --             "m",
+        --             "M",
+        --             "i",
+        --             "n",
+        --             "N",
+        --         }
+        --     end,
+        -- })
         use({ "romainl/vim-cool" })
         use({
             "machakann/vim-sandwich",
@@ -154,7 +173,9 @@ return require("packer").startup({
             },
             config = function()
                 vim.g["pandoc#syntax#conceal#cchar_overrides"] = { atx = "#" }
+                vim.g["pandoc#modules#disabled"] = { "folding" }
                 vim.g["pandoc#folding#fold_yaml"] = 1
+                vim.g["pandoc#folding#fastfolds"] = 1
                 vim.g["pandoc#filetypes#handled"] = { "pandoc", "markdown" }
                 vim.g["pandoc#after#modules#enabled"] = { "tablemode" }
             end,
@@ -243,8 +264,13 @@ return require("packer").startup({
                 { "nvim-lua/plenary.nvim", module = "plenary" },
                 {
                     "nvim-telescope/telescope-file-browser.nvim",
-                    -- opt = true,
-                    -- module_pattern = "telescope._extensions.file_browser*",
+                    opt = true,
+                    module_pattern = "telescope._extensions.file_browser*",
+                },
+                {
+                    "nvim-telescope/telescope-bibtex.nvim",
+                    opt = true,
+                    module_pattern = "telescope._extensions.bibtex*",
                 },
                 { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
                 {

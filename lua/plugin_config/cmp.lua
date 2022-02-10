@@ -14,7 +14,7 @@ cmp.setup({
         { name = "vsnip" },
         { name = "nvim_lsp" },
         { name = "path" },
-        { name = "buffer" ,keyword_length=5},
+        -- { name = "buffer" ,keyword_length=5},
         { name = "emoji" },
         { name = "nvim_lsp_signature_help", keyword_length=0}
     },

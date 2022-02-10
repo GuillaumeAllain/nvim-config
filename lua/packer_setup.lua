@@ -95,33 +95,7 @@ return require("packer").startup({
                 })
             end,
         })
-        -- use({
-        --     "jbyuki/venn.nvim",
-        --     cmd = "VBox",
-        -- })
         use({ "markonm/traces.vim", keys = { ":", "/", "?" } })
-        -- use({
-        --     "Konfekt/FastFold",
-        --     config = function()
-        --         vim.g["fastfold_fold_command_suffixes"] = {
-        --             "x",
-        --             "X",
-        --             "a",
-        --             "A",
-        --             "o",
-        --             "O",
-        --             "c",
-        --             "C",
-        --             "r",
-        --             "R",
-        --             "m",
-        --             "M",
-        --             "i",
-        --             "n",
-        --             "N",
-        --         }
-        --     end,
-        -- })
         use({ "romainl/vim-cool" })
         use({
             "machakann/vim-sandwich",
@@ -154,7 +128,7 @@ return require("packer").startup({
             end,
             ft = require("plugin_config.ft").ctags_ft,
         })
-        use({ "lervag/vimtex", ft = { "tex" } })
+        -- use({ "lervag/vimtex", ft = { "tex" } })
         use({
             "windwp/nvim-autopairs",
             after = "nvim-cmp",
@@ -164,22 +138,31 @@ return require("packer").startup({
             end,
         })
         use({
-            "vim-pandoc/vim-pandoc",
-            ft = { "markdown", "pandoc" },
-            wants = { "vim-pandoc-syntax", "vim-pandoc-after" },
-            requires = {
-                { "vim-pandoc/vim-pandoc-syntax", opt = true },
-                { "vim-pandoc/vim-pandoc-after", opt = true },
-            },
+            "vim-pandoc/vim-pandoc-syntax",
+            ft = { "pandoc" },
             config = function()
                 vim.g["pandoc#syntax#conceal#cchar_overrides"] = { atx = "#" }
                 vim.g["pandoc#modules#disabled"] = { "folding" }
-                vim.g["pandoc#folding#fold_yaml"] = 1
-                vim.g["pandoc#folding#fastfolds"] = 1
                 vim.g["pandoc#filetypes#handled"] = { "pandoc", "markdown" }
-                vim.g["pandoc#after#modules#enabled"] = { "tablemode" }
+                vim.g["pandoc#syntax#style#use_definition_lists"] = 0
             end,
         })
+
+        -- use({
+        --     "vim-pandoc/vim-pandoc",
+        --     ft = { "markdown", "pandoc" },
+        --     wants = { "vim-pandoc-syntax"},-- "vim-pandoc-after" },
+        --     requires = {
+        --         { "vim-pandoc/vim-pandoc-syntax", opt = true },
+        --         -- { "vim-pandoc/vim-pandoc-after", opt = true },
+        --     },
+        --     config = function()
+        --         vim.g["pandoc#syntax#conceal#cchar_overrides"] = { atx = "#" }
+        --         vim.g["pandoc#modules#disabled"] = { "folding" }
+        --         vim.g["pandoc#filetypes#handled"] = { "pandoc", "markdown" }
+        --         -- vim.g["pandoc#after#modules#enabled"] = { "tablemode" }
+        --     end,
+        -- })
         use({ "dkarter/bullets.vim", ft = { "markdown", "pandoc", "tex" }, config = function() end })
 
         -- -- use {'shaunsingh/nord.nvim',

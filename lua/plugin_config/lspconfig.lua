@@ -134,18 +134,7 @@ local ltex_path = vim.fn.stdpath("data") .. "/lsp_servers/ltex/ltex-ls/bin/ltex-
 
 
 require("lspconfig").ltex.setup({
-    on_attach = function()
-        local result = vim.api.nvim_exec("execute 'g/lang:'|noh|norma``", true)
-        local resulttable = {}
-        for s in result:gmatch("[^\r\n]+") do
-            resulttable[#resulttable + 1] = s
-        end
-        if resulttable ~= {} then
-            for s in resulttable[1]:gmatch(".*:%s*(.*)") do
-                vim.cmd("set spelllang="..s)
-            end
-        end
-    end,
+    on_attach=on_attach(),
     cmd = { ltex_path },
     filetypes = { "pandoc", "latex", "tex", "bib", "markdown" },
     get_language_id = function(_, ftype)

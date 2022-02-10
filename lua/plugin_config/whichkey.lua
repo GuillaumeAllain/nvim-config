@@ -6,6 +6,7 @@ require("which-key").register({
         f = { "<cmd>lua require('telescope.builtin').buffers()<cr>", "buffers" },
         s = { "<cmd>lua require('telescope').extensions.file_browser.file_browser()<cr>", "file browser" },
         d = { "<cmd>lua require('telescope.builtin').find_files()<cr>", "find files" },
+        b = { "<cmd>lua require('telescope').extensions.bibtex.bibtex({format='markdown'})<cr>", "bibtex" },
         l = {
             "<cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>",
             "Lsp Code Actions",
@@ -46,7 +47,7 @@ require("which-key").register({
         j = { "<cmd>TodoTrouble <CR>", "TodoTrouble" },
         h = { "<cmd>TroubleToggle <CR>", "TroubleToggle" },
         c = { "<cmd>lua _G.toggle_cmp()<cr>", "Toggle cmp" },
-        n = { "<cmd>set relativenumber!| set number!<cr>", "Toggle Number"},
+        n = { "<cmd>set relativenumber!| set number!<cr>", "Toggle Number" },
     },
     b = {
         name = "builder",

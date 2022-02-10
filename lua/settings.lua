@@ -81,8 +81,13 @@ au! FileType help :wincmd L | :vert resize 90
 au TermOpen * setlocal nonumber norelativenumber | startinsert
 au TextYankPost * silent! lua vim.highlight.on_yank{timeout=75}
 let $MANPAGER='nvr +Man! -'
+augroup pandoc_syntax
+    au! BufNewFile,BufFilePre,BufRead *.md set filetype=pandoc
+augroup END
 ]])
 
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.lsp.protocol.make_client_capabilities().textDocument.completion.completionItem.snippetSupport = true
 vim.lsp.protocol.make_client_capabilities().textDocument.completion.completionItem.resolveSupport = {
     properties = {

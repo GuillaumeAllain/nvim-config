@@ -9,11 +9,11 @@ require("which-key").register({
         b = { "<cmd>lua require('telescope').extensions.bibtex.bibtex({format='markdown'})<cr>", "bibtex" },
         l = {
             "<cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>",
-            "Lsp Code Actions",
+            "Lsp document symbols",
         },
         k = {
             "<cmd>lua require('telescope.builtin').lsp_workspace_symbols()<cr>",
-            "Lsp Code Actions",
+            "Lsp workspace symbols",
         },
         t = {
             "<cmd>lua require('telescope.builtin').builtin()<cr>",
@@ -48,6 +48,7 @@ require("which-key").register({
         h = { "<cmd>TroubleToggle <CR>", "TroubleToggle" },
         c = { "<cmd>lua _G.toggle_cmp()<cr>", "Toggle cmp" },
         n = { "<cmd>set relativenumber!| set number!<cr>", "Toggle Number" },
+        s = { "<cmd>SymbolsOutline<cr>", "Symbols Outline" },
     },
     b = {
         name = "builder",

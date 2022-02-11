@@ -59,6 +59,7 @@ return require("packer").startup({
         })
         use({
             "anuvyklack/pretty-fold.nvim",
+            ft=vim.fn.getcompletion("", "filetype"),
             config = function()
                 require("pretty-fold").setup({})
                 require("pretty-fold.preview").setup()
@@ -67,7 +68,7 @@ return require("packer").startup({
 
         use({
             "numToStr/Comment.nvim",
-            event = "BufRead",
+            ft=vim.fn.getcompletion("", "filetype"),
             config = function()
                 require("Comment").setup({ ignore = "^$" })
             end,
@@ -123,7 +124,7 @@ return require("packer").startup({
 
         use({
             "ludovicchabant/vim-gutentags",
-            setup = function()
+            config = function()
                 require("plugin_config/gutentags")
             end,
             ft = require("plugin_config.ft").ctags_ft,
@@ -148,21 +149,6 @@ return require("packer").startup({
             end,
         })
 
-        -- use({
-        --     "vim-pandoc/vim-pandoc",
-        --     ft = { "markdown", "pandoc" },
-        --     wants = { "vim-pandoc-syntax"},-- "vim-pandoc-after" },
-        --     requires = {
-        --         { "vim-pandoc/vim-pandoc-syntax", opt = true },
-        --         -- { "vim-pandoc/vim-pandoc-after", opt = true },
-        --     },
-        --     config = function()
-        --         vim.g["pandoc#syntax#conceal#cchar_overrides"] = { atx = "#" }
-        --         vim.g["pandoc#modules#disabled"] = { "folding" }
-        --         vim.g["pandoc#filetypes#handled"] = { "pandoc", "markdown" }
-        --         -- vim.g["pandoc#after#modules#enabled"] = { "tablemode" }
-        --     end,
-        -- })
         use({ "dkarter/bullets.vim", ft = { "markdown", "pandoc", "tex" }, config = function() end })
 
         -- -- use {'shaunsingh/nord.nvim',
@@ -225,9 +211,17 @@ return require("packer").startup({
             "moll/vim-bbye",
             cmd = { "Bdelete", "Bwipeout" },
         })
+
+        use({ "echasnovski/mini.nvim",
+            ft=vim.fn.getcompletion("", "filetype"),
+            config=function ()
+                require('mini.indentscope').setup()
+            end
+        })
         use({
             "lewis6991/gitsigns.nvim",
-            event = "BufRead",
+            event={"BufReadPost","FileReadPost"},
+            -- ft=vim.fn.getcompletion("", "filetype"),
             requires = {
                 "nvim-lua/plenary.nvim",
                 module = "plenary",
@@ -249,6 +243,11 @@ return require("packer").startup({
                     "nvim-telescope/telescope-file-browser.nvim",
                     opt = true,
                     module_pattern = "telescope._extensions.file_browser*",
+                },
+                {
+                    "crispgm/telescope-heading.nvim",
+                    opt = true,
+                    module_pattern = "telescope._extensions.heading*",
                 },
                 {
                     "nvim-telescope/telescope-bibtex.nvim",
@@ -433,6 +432,8 @@ return require("packer").startup({
 
         use({
             "folke/todo-comments.nvim",
+            ft=vim.fn.getcompletion("", "filetype"),
+            cmd={"TodoTrouble"},
             requires = { "nvim-lua/plenary.nvim", module = "plenary" },
             config = function()
                 require("todo-comments").setup({
@@ -459,7 +460,7 @@ return require("packer").startup({
         })
 
         use({
-            "GuillaumeAllain/lspkind-nvim",
+            "onsails/lspkind-nvim",
             after = "nvim-lspconfig",
             module = "lspkind",
             config = function()
@@ -481,7 +482,7 @@ return require("packer").startup({
 
         use({
             "nvim-treesitter/nvim-treesitter",
-            event = "BufRead",
+            ft=vim.fn.getcompletion("", "filetype"),
             run = ":TSUpdate",
             wants = { "nvim-treesitter-refactor", "nvim-treesitter-context" },
             requires = {

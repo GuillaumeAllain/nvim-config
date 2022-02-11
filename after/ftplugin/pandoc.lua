@@ -14,3 +14,15 @@ if resulttable ~= {} then
         vim.cmd("setlocal spelllang="..s)
     end
 end
+
+require('which-key').register({
+    ['f'] = {
+        l = {
+            "<cmd>Telescope heading<cr>",
+            "Lsp document symbols",
+        },
+    },
+}, {
+    buffer = vim.api.nvim_get_current_buf(), --- pass buffer number in option then it will work
+    prefix = '<leader>',
+})

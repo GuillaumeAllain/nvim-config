@@ -12,7 +12,7 @@ return require("packer").startup({
             end,
             opt = true,
         })
-        -- use("lewis6991/impatient.nvim")
+        use("lewis6991/impatient.nvim")
         -- use({ "https://github.com/github/copilot.vim" })
         -- use({
         --     "jenterkin/vim-autosource",
@@ -59,7 +59,7 @@ return require("packer").startup({
         })
         use({
             "anuvyklack/pretty-fold.nvim",
-            ft=vim.fn.getcompletion("", "filetype"),
+            ft = vim.fn.getcompletion("", "filetype"),
             config = function()
                 require("pretty-fold").setup({})
                 require("pretty-fold.preview").setup()
@@ -68,7 +68,7 @@ return require("packer").startup({
 
         use({
             "numToStr/Comment.nvim",
-            ft=vim.fn.getcompletion("", "filetype"),
+            ft = vim.fn.getcompletion("", "filetype"),
             config = function()
                 require("Comment").setup({ ignore = "^$" })
             end,
@@ -171,13 +171,8 @@ return require("packer").startup({
         use({
             "rose-pine/neovim",
             config = function()
-                -- vim.g.rose_pine_variant = "moon"
-                require("rose-pine").set("dawn")
-                -- require("rose-pine.theme").load_terminal()
+                vim.cmd("colorscheme rose-pine")
                 require("plugin_config/theme")
-            end,
-            run = function()
-                require("utils").export_theme_to_kitty()
             end,
             as = "maintheme",
         })
@@ -212,15 +207,16 @@ return require("packer").startup({
             cmd = { "Bdelete", "Bwipeout" },
         })
 
-        use({ "echasnovski/mini.nvim",
-            ft=vim.fn.getcompletion("", "filetype"),
-            config=function ()
-                require('mini.indentscope').setup()
-            end
+        use({
+            "echasnovski/mini.nvim",
+            ft = vim.fn.getcompletion("", "filetype"),
+            config = function()
+                require("mini.indentscope").setup()
+            end,
         })
         use({
             "lewis6991/gitsigns.nvim",
-            event={"BufReadPost","FileReadPost"},
+            event = { "BufReadPost", "FileReadPost" },
             -- ft=vim.fn.getcompletion("", "filetype"),
             requires = {
                 "nvim-lua/plenary.nvim",
@@ -432,15 +428,18 @@ return require("packer").startup({
 
         use({
             "folke/todo-comments.nvim",
-            ft=vim.fn.getcompletion("", "filetype"),
-            cmd={"TodoTrouble"},
+            ft = vim.fn.getcompletion("", "filetype"),
+            -- cmd = { "TodoTrouble" },
             requires = { "nvim-lua/plenary.nvim", module = "plenary" },
             config = function()
                 require("todo-comments").setup({
+                    highlight = {
+                        comments_only = false,
+                    },
                     keywords = {
                         FIX = {
                             icon = " ", -- icon used for the sign, and in search results
-                            color = vim.g["terminal_color_0"], -- can be a hex color, or a named color (see below)
+                            color = vim.g["terminal_color_2"], -- can be a hex color, or a named color (see below)
                             alt = { "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
                             -- signs = false, -- configure signs for some keywords individually
                         },
@@ -449,7 +448,7 @@ return require("packer").startup({
                         WARN = { icon = " ", color = vim.g["terminal_color_3"], alt = { "WARNING", "XXX" } },
                         PERF = {
                             icon = " ",
-                            color = vim.g["terminal_color_4"],
+                            color = vim.g["terminal_color_3"],
                             alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" },
                         },
                         NOTE = { icon = " ", color = vim.g["terminal_color_5"], alt = { "NOTE" } },
@@ -482,7 +481,7 @@ return require("packer").startup({
 
         use({
             "nvim-treesitter/nvim-treesitter",
-            ft=vim.fn.getcompletion("", "filetype"),
+            ft = vim.fn.getcompletion("", "filetype"),
             run = ":TSUpdate",
             wants = { "nvim-treesitter-refactor", "nvim-treesitter-context" },
             requires = {

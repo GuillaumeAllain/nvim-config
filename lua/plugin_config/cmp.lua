@@ -10,14 +10,14 @@ cmp.setup({
             select = true,
         }),
     },
-    sources = {
+    sources = cmp.config.sources({
         { name = "vsnip" },
         { name = "nvim_lsp" },
         { name = "path" },
         -- { name = "buffer" ,keyword_length=5},
         { name = "emoji" },
-        { name = "nvim_lsp_signature_help", keyword_length=0}
-    },
+        { name = "nvim_lsp_signature_help", keyword_length = 0 },
+    }),
     snippet = {
         expand = function(args)
             vim.fn["vsnip#anonymous"](args.body)
@@ -41,38 +41,49 @@ cmp.setup({
         --     return vim_item
         -- end,
         format = require("lspkind").cmp_format({
-            mode='symbol',
-            maxwidth=50,
-                before = function (entry, vim_item)
-                    vim_item.menu = ({
-                        buffer = "[Buffer]",
-                        nvim_lsp = "[LSP]",
-                        vsnip = "[VSnip]",
-                        nvim_lua = "[nvim]",
-                        path = "[Path]",
-                        tags = "[Tags]",
-                        emoji = "[Emoji]",
-                    })[entry.source.name]
+            mode = "symbol",
+            maxwidth = 50,
+            before = function(entry, vim_item)
+                vim_item.menu = ({
+                    buffer = "[Buffer]",
+                    nvim_lsp = "[LSP]",
+                    vsnip = "[VSnip]",
+                    nvim_lua = "[nvim]",
+                    path = "[Path]",
+                    tags = "[Tags]",
+                    emoji = "[Emoji]",
+                })[entry.source.name]
                 return vim_item
-          end
-        })
+            end,
+        }),
     },
     experimental = {
-        native_menu=false,
-        ghost_text=true
-    }
+        native_menu = false,
+        ghost_text = true,
+    },
 })
-vim.cmd([[
-    augroup nvim-cmp-sources
-        au!
-        au Filetype pandoc,markdown lua require'cmp'.setup.buffer{sources=require("cmp.utils.misc").concat(require("cmp.config").global.sources, { {name="tags"}, {name = "pandoc_references"}})}
-        au Filetype codev lua require'cmp'.setup.buffer{sources=require("cmp.utils.misc").concat(require("cmp.config").global.sources, { { name = "buffer" ,keyword_length=5} })}
-        au FileType TelescopePrompt,vim lua require('cmp').setup.buffer { enabled = false }
-    augroup END
 
-]])
-        -- au Filetype lua lua require'cmp'.setup.buffer{sources=require("cmp.utils.misc").concat(require("cmp.config").global.sources, { { name = "nvim_lua" } })}
+cmp.setup.filetype(
+    { "codev" },
+    {
+        sources = require("cmp.utils.misc").concat(
+            require("cmp.config").global.sources,
+            { { name = "buffer", keyword_length = 5 } } 
+        ),
+    }
+)
 
+cmp.setup.filetype(
+{"pandoc","markdown"},
+    {
+        sources = require("cmp.utils.misc").concat(
+            require("cmp.config").global.sources,
+            { { name = "tags" }, { name = "pandoc_references" } }
+        ),
+    }
+)
+cmp.setup.filetype( "TelescopePrompt", { enabled = false } )
+-- au Filetype lua lua require'cmp'.setup.buffer{sources=require("cmp.utils.misc").concat(require("cmp.config").global.sources, { { name = "nvim_lua" } })}
 
 -- print(require("cmp.config").buffers.)
 -- print(unpack(require("cmp.config").))
@@ -83,24 +94,23 @@ vim.cmd([[
 -- print(require("cmp.config").enabled())
 
 _G.toggle_cmp = function()
-  local enabled = require'cmp.config'.get().enabled
-  if type(enabled) == 'function' then
-    enabled = enabled()
-  end
-  if enabled then
-      require'cmp'.setup.buffer{enabled=false}
-  else
-      require'cmp'.setup.buffer{enabled=true}
-  end
+    local enabled = require("cmp.config").get().enabled
+    if type(enabled) == "function" then
+        enabled = enabled()
+    end
+    if enabled then
+        require("cmp").setup.buffer({ enabled = false })
+    else
+        require("cmp").setup.buffer({ enabled = true })
+    end
 end
-
 
 -- require("cmp.config").enabled = function()
 --   local enabled = require("cmp.confg").get().enabled
 --   if type(enabled) == 'function' then
 --     enabled = enabled()
 --   end
---   return enabled 
+--   return enabled
 -- end
 
 -- for key, value in pairs(yo) do

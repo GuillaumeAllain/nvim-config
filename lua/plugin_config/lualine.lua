@@ -63,6 +63,11 @@ require("lualine").setup({
     sections = {
         lualine_a = { "mode" },
         lualine_b = {
+            {
+            function ()
+                return tostring(vim.fn.winnr())
+            end
+        },
             function()
                 return "%="
             end,
@@ -110,6 +115,11 @@ require("lualine").setup({
     inactive_sections = {
         lualine_a = { "mode" },
         lualine_b = {
+            {
+            function ()
+                return tostring(vim.fn.winnr())
+            end
+        },
             function()
                 return "%="
             end,

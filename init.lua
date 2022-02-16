@@ -5,6 +5,8 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
     vim.cmd([[packadd packer.nvim | lua require('packer_setup').sync()]])
 end
 
+require("impatient")
+
 require("settings")
 
 require('keymaps')

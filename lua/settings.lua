@@ -87,6 +87,7 @@ augroup END
 ]])
 
 vim.opt.foldmethod = "expr"
+vim.opt.background = "light"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.lsp.protocol.make_client_capabilities().textDocument.completion.completionItem.snippetSupport = true
 vim.lsp.protocol.make_client_capabilities().textDocument.completion.completionItem.resolveSupport = {

@@ -6,12 +6,11 @@ cmp.setup({
     },
     mapping = {
         ["<C-L>"] = cmp.mapping.confirm({
-            behavior = cmp.ConfirmBehavior.Replace,
             select = true,
         }),
     },
     sources = cmp.config.sources({
-        { name = "vsnip" },
+        { name = "vsnip" ,priority=1000},
         { name = "nvim_lsp" },
         { name = "path" },
         -- { name = "buffer" ,keyword_length=5},
@@ -78,10 +77,12 @@ cmp.setup.filetype(
     {
         sources = require("cmp.utils.misc").concat(
             require("cmp.config").global.sources,
-            { { name = "tags" }, { name = "pandoc_references" } }
+            {{name="tags", keyword_pattern=[[\#\k\+]]}, {name="pandoc_references"}}
         ),
     }
 )
+
+-- print(require"cmp.config.sources")
 cmp.setup.filetype( "TelescopePrompt", { enabled = false } )
 -- au Filetype lua lua require'cmp'.setup.buffer{sources=require("cmp.utils.misc").concat(require("cmp.config").global.sources, { { name = "nvim_lua" } })}
 

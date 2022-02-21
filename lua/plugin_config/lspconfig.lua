@@ -180,6 +180,8 @@ require("lspconfig").ltex.setup({
                     "PASSIVE_VOICE",
                     "PUNCTUATION_PARAGRAPH_END",
                     "COMMA_PARENTHESIS_WHITESPACE",
+                    "EN_QUOTES",
+                    "NON_STANDARD_WORD"
                 },
             },
         },

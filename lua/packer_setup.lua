@@ -13,6 +13,12 @@ return require("packer").startup({
             opt = true,
         })
         use("lewis6991/impatient.nvim")
+        use({
+            "rafcamlet/nvim-luapad",
+            module = "luapad",
+            module_pattern = "luapad.*",
+            cmd = { "Luapad", "Luarun" },
+        })
         -- use({ "https://github.com/github/copilot.vim" })
         -- use({
         --     "jenterkin/vim-autosource",
@@ -52,6 +58,7 @@ return require("packer").startup({
                             -- Set the filetype of *.pn files to potion
                             seq = "codev",
                             notes = "pandoc",
+                            md = "pandoc",
                         },
                     },
                 })
@@ -59,7 +66,7 @@ return require("packer").startup({
         })
         use({
             "anuvyklack/pretty-fold.nvim",
-            ft = vim.fn.getcompletion("", "filetype"),
+            event = {"BufNewFile","BufRead"},
             config = function()
                 require("pretty-fold").setup({})
                 require("pretty-fold.preview").setup()
@@ -68,7 +75,7 @@ return require("packer").startup({
 
         use({
             "numToStr/Comment.nvim",
-            ft = vim.fn.getcompletion("", "filetype"),
+            event = {"BufNewFile","BufRead"},
             config = function()
                 require("Comment").setup({ ignore = "^$" })
             end,
@@ -209,7 +216,7 @@ return require("packer").startup({
 
         use({
             "echasnovski/mini.nvim",
-            ft = vim.fn.getcompletion("", "filetype"),
+            event = {"BufNewFile","BufRead"},
             config = function()
                 require("mini.indentscope").setup()
             end,
@@ -217,7 +224,6 @@ return require("packer").startup({
         use({
             "lewis6991/gitsigns.nvim",
             event = { "BufReadPost", "FileReadPost" },
-            -- ft=vim.fn.getcompletion("", "filetype"),
             requires = {
                 "nvim-lua/plenary.nvim",
                 module = "plenary",
@@ -428,7 +434,7 @@ return require("packer").startup({
 
         use({
             "folke/todo-comments.nvim",
-            ft = vim.fn.getcompletion("", "filetype"),
+            event = {"BufNewFile","BufRead"},
             -- cmd = { "TodoTrouble" },
             requires = { "nvim-lua/plenary.nvim", module = "plenary" },
             config = function()
@@ -481,7 +487,7 @@ return require("packer").startup({
 
         use({
             "nvim-treesitter/nvim-treesitter",
-            ft = vim.fn.getcompletion("", "filetype"),
+            event = {"BufNewFile","BufRead"},
             run = ":TSUpdate",
             wants = { "nvim-treesitter-refactor", "nvim-treesitter-context" },
             requires = {

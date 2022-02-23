@@ -4,14 +4,15 @@ vim.cmd[[
     setlocal softtabstop=4
 ]]
 
-local result = vim.api.nvim_exec("execute 'g/lang:'|noh|norma``", true)
-local resulttable = {}
-for s in result:gmatch("[^\r\n]+") do
-    resulttable[#resulttable + 1] = s
-end
-if resulttable ~= {} then
-    for s in resulttable[1]:gmatch(".*:%s*(.*)") do
-        vim.cmd("setlocal spelllang="..s)
+local lineno = vim.fn.search([[---\_.*\zs\(^lang:.*$\)\ze\_.*---]],"n")
+if lineno ~= 0 then
+    local lines = vim.api.nvim_buf_get_lines(0, lineno-1, lineno, false)
+    if lines ~= {} then
+        for s in lines[1]:gmatch("lang:%s*(.*)") do
+            if s ~= "" then
+                vim.cmd("setlocal spelllang="..s)
+            end
+        end
     end
 end
 

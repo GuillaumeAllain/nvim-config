@@ -32,7 +32,22 @@ vim.opt.scl = "yes"
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 vim.opt.updatetime = 1000
+if vim.loop.os_uname().sysname=="Darwin" then
+    vim.g.clipboard = {
+      name = "macOS-clipboard",
+      copy = {
+        ["+"] = "pbcopy",
+        ["*"] = "pbcopy",
+      },
+      paste = {
+        ["+"] = "pbpaste",
+        ["*"] = "pbpaste",
+      },
+      cache_enabled = 0
+   }
+end
 vim.opt.clipboard = "unnamed"
+
 vim.opt.completeopt = "menuone,noselect"
 vim.opt.shortmess = vim.o.shortmess .. "c" .. "I"
 vim.opt.hidden = true
@@ -81,9 +96,6 @@ au! FileType help :wincmd L | :vert resize 90
 au TermOpen * setlocal nonumber norelativenumber | startinsert
 au TextYankPost * silent! lua vim.highlight.on_yank{timeout=75}
 let $MANPAGER='nvr +Man! -'
-augroup pandoc_syntax
-    au! BufNewFile,BufFilePre,BufRead *.md set filetype=pandoc
-augroup END
 ]])
 
 vim.opt.foldmethod = "expr"

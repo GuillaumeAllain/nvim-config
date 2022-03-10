@@ -1,7 +1,7 @@
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
-local on_attach = function(client, bufnr)
+local on_attach = function(client)
     -- if client.resolved_capabilities.document_formatting then
     --     vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil,5000)")
     -- end
@@ -132,9 +132,8 @@ require("lspconfig").julials.setup({
 -- require("lspconfig").grammar_guard.setup({
 local ltex_path = vim.fn.stdpath("data") .. "/lsp_servers/ltex/ltex-ls/bin/ltex-ls"
 
-
 require("lspconfig").ltex.setup({
-    on_attach=on_attach(),
+    on_attach = on_attach(),
     cmd = { ltex_path },
     filetypes = { "pandoc", "latex", "tex", "bib", "markdown" },
     get_language_id = function(_, ftype)
@@ -181,7 +180,7 @@ require("lspconfig").ltex.setup({
                     "PUNCTUATION_PARAGRAPH_END",
                     "COMMA_PARENTHESIS_WHITESPACE",
                     "EN_QUOTES",
-                    "NON_STANDARD_WORD"
+                    "NON_STANDARD_WORD",
                 },
             },
         },

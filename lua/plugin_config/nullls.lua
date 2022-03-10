@@ -34,6 +34,7 @@ require("null-ls").register(pandotlint)
 require("null-ls").register(yamllint)
 
 require("null-ls").setup({
+    -- on_attach = require "lsp-format".on_attach,
     sources = {
         require("null-ls").builtins.formatting.black,
         require("null-ls").builtins.code_actions.gitsigns,

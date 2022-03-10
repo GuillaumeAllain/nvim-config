@@ -1,6 +1,7 @@
 vim.fn.setenv("MACOSX_DEPLOYMENT_TARGET", "10.15")
 -- Only required if you have packer configured as `opt`
 vim.cmd([[packadd packer.nvim]])
+
 return require("packer").startup({
     function(use)
         -- Packer can manage itself
@@ -49,24 +50,24 @@ return require("packer").startup({
         --         )
         --     end,
         -- })
-        use({
-            "nathom/filetype.nvim",
-            config = function()
-                require("filetype").setup({
-                    overrides = {
-                        extensions = {
-                            -- Set the filetype of *.pn files to potion
-                            seq = "codev",
-                            notes = "pandoc",
-                            md = "pandoc",
-                        },
-                    },
-                })
-            end,
-        })
+        -- use({
+        --     "nathom/filetype.nvim",
+        --     config = function()
+        --         require("filetype").setup({
+        --             overrides = {
+        --                 extensions = {
+        --                     -- Set the filetype of *.pn files to potion
+        --                     seq = "codev",
+        --                     notes = "pandoc",
+        --                     md = "pandoc",
+        --                 },
+        --             },
+        --         })
+        --     end,
+        -- })
         use({
             "anuvyklack/pretty-fold.nvim",
-            event = {"BufNewFile","BufRead"},
+            event = { "BufNewFile", "BufRead" },
             config = function()
                 require("pretty-fold").setup({})
                 require("pretty-fold.preview").setup()
@@ -75,7 +76,7 @@ return require("packer").startup({
 
         use({
             "numToStr/Comment.nvim",
-            event = {"BufNewFile","BufRead"},
+            event = { "BufNewFile", "BufRead" },
             config = function()
                 require("Comment").setup({ ignore = "^$" })
             end,
@@ -99,6 +100,11 @@ return require("packer").startup({
                     triggers_blacklist = {
                         n = { "s" },
                         v = { "g" },
+                    },
+                    plugins = {
+                        presets = {
+                            operators = false,
+                        },
                     },
                 })
             end,
@@ -183,6 +189,13 @@ return require("packer").startup({
             end,
             as = "maintheme",
         })
+        -- use({
+        --     'mvllow/modes.nvim',
+        --     config = function()
+        --         vim.opt.cursorline = true
+        --         require('modes').setup()
+        --     end
+        -- })
         use({
             "nvim-lualine/lualine.nvim",
             config = function()
@@ -216,7 +229,7 @@ return require("packer").startup({
 
         use({
             "echasnovski/mini.nvim",
-            event = {"BufNewFile","BufRead"},
+            event = { "BufNewFile", "BufRead" },
             config = function()
                 require("mini.indentscope").setup()
             end,
@@ -434,7 +447,7 @@ return require("packer").startup({
 
         use({
             "folke/todo-comments.nvim",
-            event = {"BufNewFile","BufRead"},
+            event = { "BufNewFile", "BufRead" },
             -- cmd = { "TodoTrouble" },
             requires = { "nvim-lua/plenary.nvim", module = "plenary" },
             config = function()
@@ -449,7 +462,7 @@ return require("packer").startup({
                             alt = { "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
                             -- signs = false, -- configure signs for some keywords individually
                         },
-                        TODO = { icon = " ", color = vim.g["terminal_color_6"] },
+                        TODO = { icon = " ", color = vim.g["terminal_color_6"], alt = { "À faire" } },
                         HACK = { icon = " ", color = vim.g["terminal_color_2"] },
                         WARN = { icon = " ", color = vim.g["terminal_color_3"], alt = { "WARNING", "XXX" } },
                         PERF = {
@@ -487,7 +500,7 @@ return require("packer").startup({
 
         use({
             "nvim-treesitter/nvim-treesitter",
-            event = {"BufNewFile","BufRead"},
+            event = { "BufNewFile", "BufRead" },
             run = ":TSUpdate",
             wants = { "nvim-treesitter-refactor", "nvim-treesitter-context" },
             requires = {
@@ -522,7 +535,7 @@ return require("packer").startup({
                 require("which-key").register({
                     l = {
                         r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Lsp Rename" },
-                        f = { "<cmd>lua vim.lsp.buf.formatting_sync(nil,5000)<cr>", "Lsp Formatting" },
+                        f = { "<cmd>lua vim.lsp.buf.formatting({})<cr>", "Lsp Formatting" },
                     },
                 }, {
                     prefix = "<leader>",
@@ -536,8 +549,10 @@ return require("packer").startup({
                     "pip install --upgrade fortran-language-server jedi-language-server flake8 black fprettify"
                 )
                 vim.fn.system("brew install stylua")
+
                 vim.fn.system("brew install haskell-language-server")
             end,
+
             requires = {
                 { "ii14/lsp-command", opt = true, after = "nvim-lspconfig" },
                 {

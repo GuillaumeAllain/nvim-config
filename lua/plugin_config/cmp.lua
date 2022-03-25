@@ -10,7 +10,7 @@ cmp.setup({
         }),
     },
     sources = cmp.config.sources({
-        { name = "vsnip" ,priority=1000},
+        { name = "vsnip", priority = 1000 },
         { name = "nvim_lsp" },
         { name = "path" },
         -- { name = "buffer" ,keyword_length=5},
@@ -62,28 +62,22 @@ cmp.setup({
     },
 })
 
-cmp.setup.filetype(
-    { "codev" },
-    {
-        sources = require("cmp.utils.misc").concat(
-            require("cmp.config").global.sources,
-            { { name = "buffer", keyword_length = 5 } } 
-        ),
-    }
-)
+cmp.setup.filetype({ "codev", "liseq", "sh", "zsh" }, {
+    sources = require("cmp.utils.misc").concat(
+        require("cmp.config").global.sources,
+        { { name = "buffer", keyword_length = 5 } }
+    ),
+})
 
-cmp.setup.filetype(
-{"pandoc","markdown"},
-    {
-        sources = require("cmp.utils.misc").concat(
-            require("cmp.config").global.sources,
-            {{name="tags", keyword_pattern=[[\#\k\+]]}, {name="pandoc_references"}}
-        ),
-    }
-)
+cmp.setup.filetype({ "pandoc", "markdown" }, {
+    sources = require("cmp.utils.misc").concat(
+        require("cmp.config").global.sources,
+        { { name = "tags", keyword_pattern = [[\#\k\+]] }, { name = "cmp_pandoc" } }
+    ),
+})
 
 -- print(require"cmp.config.sources")
-cmp.setup.filetype( "TelescopePrompt", { enabled = false } )
+cmp.setup.filetype("TelescopePrompt", { enabled = false })
 -- au Filetype lua lua require'cmp'.setup.buffer{sources=require("cmp.utils.misc").concat(require("cmp.config").global.sources, { { name = "nvim_lua" } })}
 
 -- print(require("cmp.config").buffers.)

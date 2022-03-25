@@ -25,10 +25,11 @@ end
 vim.g.do_filetype_lua = 1
 vim.g.did_load_filetypes = 0
 vim.filetype.add({
-    filename = {
-        [".seq"] = "codev",
-        [".notes"] = "pandoc",
-        [".md"] = "pandoc"
+    extension = {
+        seq = "codev",
+        notes = "pandoc",
+        md = "pandoc",
+        liseq = "codevlisp"
     },
 })
 
@@ -93,7 +94,7 @@ vim.g.netrw_banner = 0
 vim.g.netrw_liststyle = 3
 vim.g.pyindent_searchpair_timeout = 10
 vim.g.netrw_winsize = 20
-vim.opt.laststatus = 2
+vim.opt.laststatus = 3
 -- vim.opt.inccommand="split"
 
 vim.cmd([[

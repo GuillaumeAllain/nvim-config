@@ -79,6 +79,7 @@ return require("packer").startup({
             event = { "BufNewFile", "BufRead" },
             config = function()
                 require("Comment").setup({ ignore = "^$" })
+                require("Comment.ft").codevlisp = ";;%s"
             end,
         })
 
@@ -189,6 +190,15 @@ return require("packer").startup({
             end,
             as = "maintheme",
         })
+
+        -- use({
+        --     "EdenEast/nightfox.nvim",
+        --     config = function()
+        --         vim.cmd("colorscheme dawnfox")
+        --         require("plugin_config/theme")
+        --     end,
+        --     as = "maintheme",
+        -- })
         -- use({
         --     'mvllow/modes.nvim',
         --     config = function()
@@ -199,7 +209,9 @@ return require("packer").startup({
         use({
             "nvim-lualine/lualine.nvim",
             config = function()
+                local status = vim.opt.laststatus
                 require("plugin_config/lualine")
+                vim.opt.laststatus = status
             end,
             after = "maintheme",
             as = "statusline",
@@ -339,6 +351,10 @@ return require("packer").startup({
             requires = { { "rafamadriz/friendly-snippets", after = "vim-vsnip" } },
         })
         use({
+            "jbyuki/nabla.nvim",
+            module="nabla"
+        })
+        use({
             "hrsh7th/nvim-cmp",
             opt = true,
             after = "vim-vsnip",
@@ -354,9 +370,16 @@ return require("packer").startup({
                     "hrsh7th/cmp-path",
                     module = "cmp_path",
                 },
+                -- {
+                --     "jc-doyle/cmp-pandoc-references",
+                --     module = "cmp-pandoc-references",
+                -- },
                 {
-                    "jc-doyle/cmp-pandoc-references",
-                    module = "cmp-pandoc-references",
+                    "aspeddro/cmp-pandoc.nvim",
+                    module = "cmp-pandoc",
+                    config = function()
+                        require("cmp_pandoc").setup()
+                    end,
                 },
                 -- {
                 --     "hrsh7th/cmp-nvim-lua",

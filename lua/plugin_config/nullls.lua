@@ -1,3 +1,4 @@
+local nullls = require("null-ls")
 -- local fprettify={
 --             method = require("null-ls").methods.FORMATTING,
 --             filetypes = { "fortran" },
@@ -10,7 +11,7 @@
 --             }),
 -- }
 local pandotlint = {
-    method = require("null-ls").methods.FORMATTING,
+    method = nullls.methods.FORMATTING,
     filetypes = { "pandoc" },
     name = "pandotlint",
     generator = require("null-ls.helpers").formatter_factory({
@@ -20,7 +21,7 @@ local pandotlint = {
     }),
 }
 local yamllint = {
-    method = require("null-ls").methods.FORMATTING,
+    method = nullls.methods.FORMATTING,
     filetypes = { "yaml" },
     name = "yamllint",
     generator = require("null-ls.helpers").formatter_factory({
@@ -30,19 +31,19 @@ local yamllint = {
         to_stdin = true,
     }),
 }
-require("null-ls").register(pandotlint)
-require("null-ls").register(yamllint)
-
-require("null-ls").setup({
+nullls.register(pandotlint)
+nullls.register(yamllint)
+nullls.setup({
     -- on_attach = require "lsp-format".on_attach,
     sources = {
-        require("null-ls").builtins.formatting.black,
-        require("null-ls").builtins.code_actions.gitsigns,
-        require("null-ls").builtins.diagnostics.flake8.with({
+        nullls.builtins.formatting.black,
+        nullls.builtins.code_actions.gitsigns,
+        nullls.builtins.diagnostics.flake8.with({
             extra_args = { "--ignore=E203,W503", "--max-complexity=10", "--max-line-length=127" },
         }),
-        require("null-ls").builtins.formatting.fprettify.with({ args = { "--silent", "--case", "2", "2", "2", "2" } }),
-        require("null-ls").builtins.formatting.stylua,
+        nullls.builtins.formatting.fprettify.with({ args = { "--silent", "--case", "2", "2", "2", "2" } }),
+        nullls.builtins.formatting.stylua,
+        nullls.builtins.formatting.fnlfmt.with({ filetypes = { "fnl", "fennel", "codevlisp" } }),
     },
 })
 

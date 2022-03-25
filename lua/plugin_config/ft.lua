@@ -14,7 +14,8 @@ m.treesitter_ft = {
     "lua",
     "regex",
     "toml",
-    "markdown"
+    "markdown",
+    "comment"
 }
 
 m.lsp_ft = {
@@ -25,7 +26,9 @@ m.lsp_ft = {
     "haskell",
     "lua",
     "julia",
-    "apl"
+    "apl",
+    "fennel",
+    "codevlisp"
 }
 
 -- local function get_ctags_ft()

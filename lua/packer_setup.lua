@@ -20,7 +20,25 @@ return require("packer").startup({
             module_pattern = "luapad.*",
             cmd = { "Luapad", "Luarun" },
         })
-        -- use({ "https://github.com/github/copilot.vim" })
+        use({
+            "https://github.com/gelfand/copilot.vim",
+            opt = true,
+            cmd = { "Copilot" },
+            setup = function()
+                vim.g.copilot_assume_mapped = true
+                vim.g.copilot_no_tab_map = true
+            end,
+            config = function()
+                vim.g.copilot_echo_num_completions = false
+            end,
+        })
+        use({
+            "zbirenbaum/copilot.lua",
+            event = "InsertEnter",
+            config = function ()
+                vim.schedule(function() require("copilot").setup() end)
+            end,
+        })
         -- use({
         --     "jenterkin/vim-autosource",
         --     setup = function()
@@ -260,6 +278,11 @@ return require("packer").startup({
         })
 
         use({
+            "Jorengarenar/COBOL.vim",
+            ft = "cobol"
+        })
+
+        use({
             "nvim-telescope/telescope.nvim",
             cmd = { "Telescope" },
             module = { "telescope" },
@@ -352,7 +375,7 @@ return require("packer").startup({
         })
         use({
             "jbyuki/nabla.nvim",
-            module="nabla"
+            module = "nabla",
         })
         use({
             "hrsh7th/nvim-cmp",
@@ -369,6 +392,14 @@ return require("packer").startup({
                 {
                     "hrsh7th/cmp-path",
                     module = "cmp_path",
+                },
+                -- {
+                --     "hrsh7th/cmp-copilot",
+                --     module = "cmp_copilot",
+                -- },
+                {
+                    "zbirenbaum/copilot-cmp",
+                    module = "copilot_cmp",
                 },
                 -- {
                 --     "jc-doyle/cmp-pandoc-references",
@@ -469,7 +500,7 @@ return require("packer").startup({
         })
 
         use({
-            "folke/todo-comments.nvim",
+            "robertgzr/todo-comments.nvim",
             event = { "BufNewFile", "BufRead" },
             -- cmd = { "TodoTrouble" },
             requires = { "nvim-lua/plenary.nvim", module = "plenary" },

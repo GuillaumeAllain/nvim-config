@@ -10,6 +10,7 @@ cmp.setup({
         }),
     },
     sources = cmp.config.sources({
+        { name = "copilot", keyword_length = 0 },
         { name = "vsnip", priority = 1000 },
         { name = "nvim_lsp" },
         { name = "path" },
@@ -48,6 +49,7 @@ cmp.setup({
                     nvim_lsp = "[LSP]",
                     vsnip = "[VSnip]",
                     nvim_lua = "[nvim]",
+                    copilot = "[Copilot]",
                     path = "[Path]",
                     tags = "[Tags]",
                     emoji = "[Emoji]",
@@ -69,11 +71,20 @@ cmp.setup.filetype({ "codev", "liseq", "sh", "zsh" }, {
     ),
 })
 
-cmp.setup.filetype({ "pandoc", "markdown" }, {
-    sources = require("cmp.utils.misc").concat(
-        require("cmp.config").global.sources,
+local redact_sources = function()
+    local default_sources = require("cmp.config").global.sources
+    for index, _ in ipairs(default_sources) do
+        if default_sources[index].name == "copilot" then
+            table.remove(default_sources, index)
+        end
+    end
+    return require("cmp.utils.misc").concat(
+        default_sources,
         { { name = "tags", keyword_pattern = [[\#\k\+]] }, { name = "cmp_pandoc" } }
-    ),
+    )
+end
+cmp.setup.filetype({ "pandoc", "markdown" }, {
+    sources = redact_sources(),
 })
 
 -- print(require"cmp.config.sources")
@@ -87,6 +98,7 @@ cmp.setup.filetype("TelescopePrompt", { enabled = false })
 -- vim.cmd[[startinsert|]]
 -- vim.fn.feedkeys("function")
 -- print(require("cmp.config").enabled())
+--
 
 _G.toggle_cmp = function()
     local enabled = require("cmp.config").get().enabled

@@ -1,21 +1,29 @@
 local cmp = require("cmp")
+local types = require("cmp.types")
+
 cmp.setup({
     completion = {
         completeopt = "menu,menuone,noinsert",
-        keyword_length = 3,
+        keyword_length = 0,
     },
     mapping = {
         ["<C-L>"] = cmp.mapping.confirm({
             select = true,
         }),
+        ["<C-n>"] = {
+            i = cmp.mapping.select_next_item({ behavior = types.cmp.SelectBehavior.Insert }),
+        },
+        ["<C-p>"] = {
+            i = cmp.mapping.select_prev_item({ behavior = types.cmp.SelectBehavior.Insert }),
+        },
     },
     sources = cmp.config.sources({
         { name = "copilot", keyword_length = 0 },
-        { name = "vsnip", priority = 1000 },
-        { name = "nvim_lsp" },
-        { name = "path" },
+        { name = "vsnip", priority = 1000, keyword_length = 3 },
+        { name = "nvim_lsp", keyword_length = 3 },
+        { name = "path", keyword_length = 3 },
         -- { name = "buffer" ,keyword_length=5},
-        { name = "emoji" },
+        { name = "emoji", keyword_length = 2 },
         { name = "nvim_lsp_signature_help", keyword_length = 0 },
     }),
     snippet = {
@@ -58,28 +66,41 @@ cmp.setup({
             end,
         }),
     },
-    experimental = {
-        native_menu = false,
-        ghost_text = true,
+    view = {
+        entries = "native",
     },
+    -- experimental = {
+    --     native_menu = false,
+    --     ghost_text = true,
+    -- },
 })
-
 cmp.setup.filetype({ "codev", "liseq", "sh", "zsh" }, {
     sources = require("cmp.utils.misc").concat(
         require("cmp.config").global.sources,
         { { name = "buffer", keyword_length = 5 } }
     ),
 })
+cmp.setup.cmdline(":", {
+    sources = {
+        { name = "cmdline" },
+    },
+})
+cmp.setup.cmdline("/", {
+    sources = {
+        { name = "buffer" },
+    },
+})
 
 local redact_sources = function()
     local default_sources = require("cmp.config").global.sources
+    local new_sources = {}
     for index, _ in ipairs(default_sources) do
-        if default_sources[index].name == "copilot" then
-            table.remove(default_sources, index)
+        if default_sources[index].name ~= "copilot" then
+            new_sources[#new_sources + 1] = default_sources[index]
         end
     end
     return require("cmp.utils.misc").concat(
-        default_sources,
+        new_sources,
         { { name = "tags", keyword_pattern = [[\#\k\+]] }, { name = "cmp_pandoc" } }
     )
 end

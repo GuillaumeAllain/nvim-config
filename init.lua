@@ -6,7 +6,6 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 end
 
 require("impatient")
-vim.g.did_load_filetypes = 1
 
 require("settings")
 

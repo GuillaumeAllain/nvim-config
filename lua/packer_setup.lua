@@ -21,22 +21,25 @@ return require("packer").startup({
             cmd = { "Luapad", "Luarun" },
         })
         use({
-            "https://github.com/gelfand/copilot.vim",
+            "github/copilot.vim",
             opt = true,
             cmd = { "Copilot" },
-            setup = function()
-                vim.g.copilot_assume_mapped = true
-                vim.g.copilot_no_tab_map = true
-            end,
-            config = function()
-                vim.g.copilot_echo_num_completions = false
-            end,
+            -- setup = function()
+            --     vim.g.copilot_assume_mapped = true
+            --     vim.g.copilot_no_tab_map = true
+            -- end,
+            -- config = function()
+            --     vim.g.copilot_echo_num_completions = false
+            -- end,
         })
         use({
             "zbirenbaum/copilot.lua",
-            event = "InsertEnter",
-            config = function ()
-                vim.schedule(function() require("copilot").setup() end)
+            event = { "VimEnter" },
+            module = "copilot",
+            config = function()
+                vim.defer_fn(function()
+                    require("copilot").setup()
+                end, 100)
             end,
         })
         -- use({
@@ -279,7 +282,7 @@ return require("packer").startup({
 
         use({
             "Jorengarenar/COBOL.vim",
-            ft = "cobol"
+            ft = "cobol",
         })
 
         use({
@@ -378,6 +381,11 @@ return require("packer").startup({
             module = "nabla",
         })
         use({
+            "zbirenbaum/copilot-cmp",
+            module = "copilot_cmp",
+            after = { "copilot.lua", "nvim-cmp" },
+        })
+        use({
             "hrsh7th/nvim-cmp",
             opt = true,
             after = "vim-vsnip",
@@ -393,14 +401,21 @@ return require("packer").startup({
                     "hrsh7th/cmp-path",
                     module = "cmp_path",
                 },
+                {
+                    "hrsh7th/cmp-cmdline",
+                    module = "cmp_cmdline",
+                },
                 -- {
                 --     "hrsh7th/cmp-copilot",
                 --     module = "cmp_copilot",
                 -- },
-                {
-                    "zbirenbaum/copilot-cmp",
-                    module = "copilot_cmp",
-                },
+                -- {
+                --     "zbirenbaum/copilot-cmp",
+                --     module = "copilot_cmp",
+                --     setup = function()
+                --         require("copilot").setup()
+                --     end,
+                -- },
                 -- {
                 --     "jc-doyle/cmp-pandoc-references",
                 --     module = "cmp-pandoc-references",
@@ -555,16 +570,25 @@ return require("packer").startup({
         use({
             "nvim-treesitter/nvim-treesitter",
             event = { "BufNewFile", "BufRead" },
+            module = { "nvim-treesitter" },
             run = ":TSUpdate",
-            wants = { "nvim-treesitter-refactor", "nvim-treesitter-context" },
-            requires = {
-                { "nvim-treesitter/nvim-treesitter-refactor", opt = true },
-                { "romgrk/nvim-treesitter-context", opt = true },
-            },
+            wants = { "nvim-treesitter-context" },
+            requires = { { "romgrk/nvim-treesitter-context", opt = true } },
             config = function()
                 require("plugin_config/treesitter").setup(require("plugin_config.ft").treesitter_ft)
             end,
         })
+
+        -- use({
+        --     "nvim-treesitter/nvim-treesitter-context",
+        --     after = { "nvim-treesitter" },
+        --     opt = true,
+        -- })
+        -- use({
+        --     "nvim-treesitter/nvim-treesitter-refactor",
+        --     after = { "nvim-treesitter" },
+        --     opt = true,
+        -- })
 
         use({
             "jose-elias-alvarez/null-ls.nvim",

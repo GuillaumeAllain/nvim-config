@@ -101,7 +101,7 @@ local redact_sources = function()
     end
     return require("cmp.utils.misc").concat(
         new_sources,
-        { { name = "tags", keyword_pattern = [[\#\k\+]] }, { name = "cmp_pandoc" } }
+        { { name = "tags", keyword_pattern = [[\#\k\+]], keyword_length = 2 }, { name = "cmp_pandoc" } }
     )
 end
 cmp.setup.filetype({ "pandoc", "markdown" }, {

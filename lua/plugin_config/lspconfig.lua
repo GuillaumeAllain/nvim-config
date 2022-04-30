@@ -1,5 +1,8 @@
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+require("nvim-lsp-installer").setup {}
+local lspconfig = require("lspconfig")
+
 
 local on_attach = function(client)
     -- if client.resolved_capabilities.document_formatting then
@@ -18,7 +21,7 @@ local on_attach = function(client)
     })
 end
 
-require("lspconfig").jedi_language_server.setup({
+lspconfig.jedi_language_server.setup({
     on_attach = on_attach,
     capabilities = capabilities,
     init_options = {
@@ -27,11 +30,11 @@ require("lspconfig").jedi_language_server.setup({
         },
     },
     root_dir = function(fname)
-        return require("lspconfig").util.find_git_ancestor(fname) or vim.loop.os_homedir()
+        return lspconfig.util.find_git_ancestor(fname) or vim.loop.os_homedir()
     end,
 })
 
-require("lspconfig").fortls.setup({
+lspconfig.fortls.setup({
     on_attach = on_attach,
     capabilities = capabilities,
     cmd = {
@@ -59,7 +62,7 @@ local sumneko_root_path = os.getenv("HOME") .. "/srv/lua-language-server"
 
 local sumneko_binary = sumneko_root_path .. "/bin/" .. system_name .. "/lua-language-server"
 
-require("lspconfig").sumneko_lua.setup({
+lspconfig.sumneko_lua.setup({
     on_attach = on_attach,
     capabilities = capabilities,
     cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
@@ -106,20 +109,20 @@ require("lspconfig.configs").haskell_language_server = {
     },
 }
 
-require("lspconfig").haskell_language_server.setup({
+lspconfig.haskell_language_server.setup({
     on_attach = on_attach,
     capabilities = capabilities,
 })
 
 local function find_toml(startpath)
-    return require("lspconfig").util.search_ancestors(startpath, function(path)
-        if require("lspconfig").util.path.is_file(require("lspconfig").util.path.join(path, "Project.toml")) then
+    return lspconfig.util.search_ancestors(startpath, function(path)
+        if lspconfig.util.path.is_file(lspconfig.util.path.join(path, "Project.toml")) then
             return path
         end
     end)
 end
 
-require("lspconfig").julials.setup({
+lspconfig.julials.setup({
     on_attach = on_attach,
     capabilities = capabilities,
     root_dir = function(fname)
@@ -129,10 +132,10 @@ require("lspconfig").julials.setup({
 
 -- require("grammar-guard").init()
 
--- require("lspconfig").grammar_guard.setup({
+-- lspconfig.grammar_guard.setup({
 local ltex_path = vim.fn.stdpath("data") .. "/lsp_servers/ltex/ltex-ls/bin/ltex-ls"
 
-require("lspconfig").ltex.setup({
+lspconfig.ltex.setup({
     on_attach = on_attach(),
     cmd = { ltex_path },
     filetypes = { "pandoc", "latex", "tex", "bib", "markdown" },

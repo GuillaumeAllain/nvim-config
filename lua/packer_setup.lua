@@ -242,7 +242,8 @@ return require("packer").startup({
             },
         })
         use({
-            "GuillaumeAllain/panotes",
+            -- "GuillaumeAllain/panotes",
+            "~/srv/panotes",
             cmd = { "Panotes" },
             module = { "panotes" },
             keys = { "<leader>p" },
@@ -601,7 +602,6 @@ return require("packer").startup({
             },
         })
 
-        use({ "williamboman/nvim-lsp-installer", opt = true, cmd = { "LspInstall" } })
 
         use({
             "neovim/nvim-lspconfig",
@@ -633,6 +633,7 @@ return require("packer").startup({
 
             requires = {
                 { "ii14/lsp-command", opt = true, after = "nvim-lspconfig" },
+                { "williamboman/nvim-lsp-installer", opt = true, module="nvim-lsp-installer", cmd = { "LspInstall" } },
                 {
                     "https://gitlab.com/yorickpeterse/nvim-dd.git",
                     after = "nvim-lspconfig",

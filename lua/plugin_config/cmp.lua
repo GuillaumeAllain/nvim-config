@@ -2,6 +2,10 @@ local cmp = require("cmp")
 local types = require("cmp.types")
 
 cmp.setup({
+    window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
+    },
     completion = {
         completeopt = "menu,menuone,noinsert",
         keyword_length = 0,
@@ -12,9 +16,11 @@ cmp.setup({
         }),
         ["<C-n>"] = {
             i = cmp.mapping.select_next_item({ behavior = types.cmp.SelectBehavior.Insert }),
+            c = cmp.mapping.select_next_item({ behavior = types.cmp.SelectBehavior.Insert }),
         },
         ["<C-p>"] = {
             i = cmp.mapping.select_prev_item({ behavior = types.cmp.SelectBehavior.Insert }),
+            c = cmp.mapping.select_prev_item({ behavior = types.cmp.SelectBehavior.Insert }),
         },
     },
     sources = cmp.config.sources({
@@ -66,9 +72,19 @@ cmp.setup({
             end,
         }),
     },
-    view = {
-        entries = "native",
-    },
+    enabled = function()
+        -- disable completion in comments
+        local context = require("cmp.config.context")
+        -- keep command mode completion enabled when cursor is in a comment
+        if vim.api.nvim_get_mode().mode == "c" then
+            return true
+        else
+            return not context.in_treesitter_capture("comment") and not context.in_syntax_group("Comment")
+        end
+    end,
+    -- view = {
+    --     entries = "native",
+    -- },
     -- experimental = {
     --     native_menu = false,
     --     ghost_text = true,

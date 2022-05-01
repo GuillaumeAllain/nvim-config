@@ -90,8 +90,8 @@ return require("packer").startup({
             "anuvyklack/pretty-fold.nvim",
             event = { "BufNewFile", "BufRead" },
             config = function()
-                require("pretty-fold").setup({})
-                require("pretty-fold.preview").setup()
+                require("pretty-fold").setup({ default_keybindings = false })
+                -- require("pretty-fold.preview").setup()
             end,
         })
 
@@ -602,7 +602,6 @@ return require("packer").startup({
             },
         })
 
-
         use({
             "neovim/nvim-lspconfig",
             ft = require("plugin_config.ft").lsp_ft,
@@ -633,7 +632,7 @@ return require("packer").startup({
 
             requires = {
                 { "ii14/lsp-command", opt = true, after = "nvim-lspconfig" },
-                { "williamboman/nvim-lsp-installer", opt = true, module="nvim-lsp-installer", cmd = { "LspInstall" } },
+                { "williamboman/nvim-lsp-installer", opt = true, module = "nvim-lsp-installer", cmd = { "LspInstall" } },
                 {
                     "https://gitlab.com/yorickpeterse/nvim-dd.git",
                     after = "nvim-lspconfig",

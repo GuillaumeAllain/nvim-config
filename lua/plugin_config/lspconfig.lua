@@ -5,17 +5,9 @@ local lspconfig = require("lspconfig")
 
 
 local on_attach = function(client)
-    -- if client.resolved_capabilities.document_formatting then
-    --     vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil,5000)")
-    -- end
     vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
         update_in_insert = true,
     })
-    -- require "lsp_signature".on_attach(
-    -- {
-    --     hint_enable=false,
-    -- }
-    -- )
     vim.diagnostic.open_float(nil, {
         source = "always",
     })

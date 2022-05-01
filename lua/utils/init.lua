@@ -16,12 +16,13 @@ local function _get_kitty_theme()
     return theme
 end
 
-function m.export_theme_to_kitty(buf)
+function m.export_theme_to_kitty()
     api.nvim_command("e " .. vim.fn.expand("$XDG_CACHE_HOME/kitty/nvim_theme.conf")) -- equivalent to :enew
-    api.nvim_buf_set_lines(buf, 0, -1, false, _get_kitty_theme())
+    api.nvim_buf_set_lines(0, 0, -1, false, _get_kitty_theme())
     api.nvim_command("silent !mkdir -p %:h")
     api.nvim_command("w")
-    api.nvim_command("bd")
+    api.nvim_command("bd!")
+    api.nvim_command("silent !kitty @ set-colors --all --configured ~/.config/kitty/kitty.conf")
 end
 
 function m.log_to_file(message, file)

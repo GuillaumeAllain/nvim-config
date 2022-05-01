@@ -31,10 +31,9 @@ vim.filetype.add({
     extension = {
         seq = "codev",
         md = "pandoc",
-        liseq = "codevlisp"
+        liseq = "codevlisp",
     },
 })
-
 
 -- vim.g.vimsyn_embed  = 1
 
@@ -44,19 +43,19 @@ vim.opt.scl = "yes"
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 vim.opt.updatetime = 1000
-if vim.loop.os_uname().sysname=="Darwin" then
+if vim.loop.os_uname().sysname == "Darwin" then
     vim.g.clipboard = {
-      name = "macOS-clipboard",
-      copy = {
-        ["+"] = "pbcopy",
-        ["*"] = "pbcopy",
-      },
-      paste = {
-        ["+"] = "pbpaste",
-        ["*"] = "pbpaste",
-      },
-      cache_enabled = 0
-   }
+        name = "macOS-clipboard",
+        copy = {
+            ["+"] = "pbcopy",
+            ["*"] = "pbcopy",
+        },
+        paste = {
+            ["+"] = "pbpaste",
+            ["*"] = "pbpaste",
+        },
+        cache_enabled = 0,
+    }
 end
 vim.opt.clipboard = "unnamed"
 
@@ -91,7 +90,7 @@ vim.g.loaded_python3_provider = 0
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_node_provider = 0
-vim.g.python3_host_prog = vim.fn.expand(os.getenv("HOME").."/miniconda3/bin/python")
+vim.g.python3_host_prog = vim.fn.expand(os.getenv("HOME") .. "/miniconda3/bin/python")
 
 vim.g.netrw_banner = 0
 vim.g.netrw_liststyle = 3
@@ -108,14 +107,14 @@ au! FileType help :wincmd L | :vert resize 90
 au TermOpen * setlocal nonumber norelativenumber | startinsert
 au TextYankPost * silent! lua vim.highlight.on_yank{timeout=75}
 let $MANPAGER='nvr +Man! -'
-augroup vimrc_help
-  autocmd!
-  autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
-augroup END
 ]])
+-- augroup vimrc_help
+--   autocmd!
+--   autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
+-- augroup END
+
 
 vim.opt.foldmethod = "expr"
-vim.opt.background = "dark"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.lsp.protocol.make_client_capabilities().textDocument.completion.completionItem.snippetSupport = true
 vim.lsp.protocol.make_client_capabilities().textDocument.completion.completionItem.resolveSupport = {

@@ -7,6 +7,9 @@ end
 
 require("impatient")
 
+vim.opt.background = vim.fn.system("head -1 " .. vim.fn.expand("$XDG_CACHE_HOME/kitty/nvim_theme.conf")):gsub("\n", ""):sub(3)
+require("plugin_config/autodarkmode")
+
 require("settings")
 
-require('keymaps')
+require("keymaps")

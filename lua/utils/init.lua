@@ -3,6 +3,7 @@ local m = {}
 
 local function _get_kitty_theme()
     local theme = {}
+    theme[#theme+1] = "# " .. vim.o.background
     theme[#theme + 1] = "background " .. vim.fn.synIDattr(vim.fn.hlID("Normal"), "bg")
     theme[#theme + 1] = "foreground " .. vim.fn.synIDattr(vim.fn.hlID("Normal"), "fg")
     theme[#theme + 1] = "selection_foreground " .. vim.fn.synIDattr(vim.fn.hlID("Visual"), "fg")
@@ -20,7 +21,7 @@ function m.export_theme_to_kitty()
     api.nvim_command("e " .. vim.fn.expand("$XDG_CACHE_HOME/kitty/nvim_theme.conf")) -- equivalent to :enew
     api.nvim_buf_set_lines(0, 0, -1, false, _get_kitty_theme())
     api.nvim_command("silent !mkdir -p %:h")
-    api.nvim_command("w")
+    api.nvim_command("silent w")
     api.nvim_command("bd!")
     api.nvim_command("silent !kitty @ set-colors --all --configured ~/.config/kitty/kitty.conf")
 end

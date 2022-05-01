@@ -120,12 +120,13 @@ return require("packer").startup({
                 require("plugin_config/whichkey")
                 require("which-key").setup({
                     triggers_blacklist = {
-                        n = { "s" },
+                        n = { "s" , },
                         v = { "g" },
                     },
                     plugins = {
                         presets = {
                             operators = false,
+                            windows = false
                         },
                     },
                 })
@@ -206,11 +207,11 @@ return require("packer").startup({
         use({
             "rose-pine/neovim",
             config = function()
-                vim.cmd("colorscheme rose-pine")
-                require("plugin_config/theme")
+                require("plugin_config/theme").config()
             end,
             as = "maintheme",
         })
+        use({ "f-person/auto-dark-mode.nvim" })
 
         -- use({
         --     "EdenEast/nightfox.nvim",
@@ -230,9 +231,7 @@ return require("packer").startup({
         use({
             "nvim-lualine/lualine.nvim",
             config = function()
-                local status = vim.opt.laststatus
-                require("plugin_config/lualine")
-                vim.opt.laststatus = status
+                require("plugin_config/lualine").config()
             end,
             after = "maintheme",
             as = "statusline",

@@ -49,7 +49,7 @@ require("which-key").register({
         c = { "<cmd>lua _G.toggle_cmp()<cr>", "Toggle cmp" },
         n = { "<cmd>set relativenumber!| set number!<cr>", "Toggle Number" },
         s = { "<cmd>SymbolsOutline<cr>", "Symbols Outline" },
-        k = {"<cmd>Luapad<cr>","Luapad"}
+        k = { "<cmd>Luapad<cr>", "Luapad" },
     },
     b = {
         name = "builder",

@@ -612,7 +612,7 @@ return require("packer").startup({
                 require("which-key").register({
                     l = {
                         r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Lsp Rename" },
-                        f = { "<cmd>lua vim.lsp.buf.formatting({})<cr>", "Lsp Formatting" },
+                        f = { "<cmd>lua vim.lsp.buf.format({async=true})<cr>", "Lsp Formatting" },
                     },
                 }, {
                     prefix = "<leader>",
@@ -632,7 +632,12 @@ return require("packer").startup({
 
             requires = {
                 { "ii14/lsp-command", opt = true, after = "nvim-lspconfig" },
-                { "williamboman/nvim-lsp-installer", opt = true, module = "nvim-lsp-installer", cmd = { "LspInstall" } },
+                {
+                    "williamboman/nvim-lsp-installer",
+                    opt = true,
+                    module = "nvim-lsp-installer",
+                    cmd = { "LspInstall" },
+                },
                 {
                     "https://gitlab.com/yorickpeterse/nvim-dd.git",
                     after = "nvim-lspconfig",

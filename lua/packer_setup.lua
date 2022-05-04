@@ -241,8 +241,8 @@ return require("packer").startup({
             },
         })
         use({
-            -- "GuillaumeAllain/panotes",
-            "~/srv/panotes",
+            "GuillaumeAllain/panotes",
+            -- "~/srv/panotes",
             cmd = { "Panotes" },
             module = { "panotes" },
             keys = { "<leader>p" },
@@ -405,21 +405,6 @@ return require("packer").startup({
                     "hrsh7th/cmp-cmdline",
                     module = "cmp_cmdline",
                 },
-                -- {
-                --     "hrsh7th/cmp-copilot",
-                --     module = "cmp_copilot",
-                -- },
-                -- {
-                --     "zbirenbaum/copilot-cmp",
-                --     module = "copilot_cmp",
-                --     setup = function()
-                --         require("copilot").setup()
-                --     end,
-                -- },
-                -- {
-                --     "jc-doyle/cmp-pandoc-references",
-                --     module = "cmp-pandoc-references",
-                -- },
                 {
                     "aspeddro/cmp-pandoc.nvim",
                     module = "cmp-pandoc",
@@ -427,10 +412,6 @@ return require("packer").startup({
                         require("cmp_pandoc").setup()
                     end,
                 },
-                -- {
-                --     "hrsh7th/cmp-nvim-lua",
-                --     module = "cmp_nvim_lua"
-                -- },
                 {
                     "hrsh7th/cmp-vsnip",
                     module = "cmp_vsnip",

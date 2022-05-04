@@ -11,9 +11,10 @@ cmp.setup({
         keyword_length = 0,
     },
     mapping = {
-        ["<C-L>"] = cmp.mapping.confirm({
-            select = true,
-        }),
+        ["<C-L>"] = {
+            i = cmp.mapping.confirm({ select = true }),
+            c = cmp.mapping.confirm({ select = true }),
+        },
         ["<C-n>"] = {
             i = cmp.mapping.select_next_item({ behavior = types.cmp.SelectBehavior.Insert }),
             c = cmp.mapping.select_next_item({ behavior = types.cmp.SelectBehavior.Insert }),

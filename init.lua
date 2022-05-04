@@ -5,9 +5,14 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
     vim.cmd([[packadd packer.nvim | lua require('packer_setup').sync()]])
 end
 
+vim.o.guifont = "SFmono Nerd Font:h15"
+
+vim.opt.background = vim.fn.system("head -1 " .. vim.fn.expand("$XDG_CACHE_HOME/kitty/nvim_theme.conf"))
+    :gsub("\n", "")
+    :sub(3)
+
 require("impatient")
 
-vim.opt.background = vim.fn.system("head -1 " .. vim.fn.expand("$XDG_CACHE_HOME/kitty/nvim_theme.conf")):gsub("\n", ""):sub(3)
 require("plugin_config/autodarkmode")
 
 require("settings")

@@ -116,6 +116,13 @@ let $MANPAGER='nvr +Man! -'
 --   autocmd!
 --   autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
 -- augroup END
+vim.cmd([[
+augroup hide_cmdline
+    autocmd!
+    autocmd CmdlineEnter * set laststatus=0 | redraw
+    autocmd CmdlineLeave * set laststatus=3 | redraw
+augroup END
+]])
 
 
 vim.opt.foldmethod = "expr"

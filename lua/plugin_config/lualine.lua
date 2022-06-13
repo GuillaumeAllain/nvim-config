@@ -55,7 +55,6 @@ return {config = function()
     custom_term.replace.c.fg = vim.g["terminal_color_7"]
     custom_term.command.c.bg = vim.g["terminal_color_0"]
     custom_term.command.c.fg = vim.g["terminal_color_7"]
-
     require("lualine").setup({
         options = {
             theme = custom_term,

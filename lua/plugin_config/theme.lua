@@ -24,5 +24,16 @@ return {
     hi! link TelescopeResultsBorder  Normal
     hi! link TelescopePreviewBorder  Normal
     ]])
+
+    vim.cmd([[
+    augroup color_cmdline
+    autocmd!
+    autocmd CmdwinEnter * hi! Normal ctermbg=0 guibg=]]..vim.g["terminal_color_0"]..[[|redraw
+    autocmd CmdwinLeave * hi! Normal ctermbg=none guibg=none |redraw
+    autocmd CmdlineEnter * hi! MsgArea ctermbg=0 guibg=]]..vim.g["terminal_color_0"]..[[|redraw
+    autocmd CmdlineLeave * hi! MsgArea ctermbg=none guibg=none |redraw
+
+    augroup END
+    ]])
     end,
 }

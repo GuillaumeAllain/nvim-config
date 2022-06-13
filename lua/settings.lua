@@ -33,7 +33,7 @@ vim.filetype.add({
         seq = "codev",
         md = "pandoc",
         liseq = "codevlisp",
-        tikz = "tikz"
+        tikz = "tikz",
     },
 })
 
@@ -120,10 +120,11 @@ vim.cmd([[
 augroup hide_cmdline
     autocmd!
     autocmd CmdlineEnter * set laststatus=0 | redraw
-    autocmd CmdlineLeave * set laststatus=3 | redraw
+    autocmd CmdlineLeave * set laststatus=3 | set cmdheight=0 |redraw
+    autocmd CmdwinEnter * set laststatus=0 | redraw
+    autocmd CmdwinLeave * set laststatus=3 | set cmdheight=0 | redraw
 augroup END
 ]])
-
 
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"

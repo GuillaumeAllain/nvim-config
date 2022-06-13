@@ -17,25 +17,25 @@ require("telescope").setup({
         --     "--smart-case",
         -- },
         -- file_sorter = require("telescope.sorters").get_fuzzy_file,
-        file_ignore_patterns = {".*.hdf5"},
+        file_ignore_patterns = { ".*.hdf5" },
         -- generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
         path_display = { "shorten" },
         -- color_devicons = true,
         -- use_less = true,
         layout_config = {
-         horizontal = {
-            prompt_position = "bottom",
-            preview_width = 0.55,
-            results_width = 0.8,
-         },
-         vertical = {
-            mirror = false,
-         },
-         width = 0.87,
-         height = 0.80,
-         preview_cutoff = 120,
-          },
-          border = {},
+            horizontal = {
+                prompt_position = "bottom",
+                preview_width = 0.55,
+                results_width = 0.8,
+            },
+            vertical = {
+                mirror = false,
+            },
+            width = 0.87,
+            height = 0.80,
+            preview_cutoff = 120,
+        },
+        border = {},
         -- theme = require("telescope.themes").get_dropdown({}),
         set_env = { ["COLORTERM"] = "truecolor" },
         mappings = {
@@ -51,26 +51,26 @@ require("telescope").setup({
     },
     extensions = {
         -- fzf = {
-            --     fuzzy = true, -- false will only do exact matching
-            --     override_generic_sorter = false, -- override the generic sorter
-            --     override_file_sorter = true, -- override the file sorter
-            --     case_mode = "smart_case", -- or "ignore_case" or "respect_case"
-            --     -- the default case_mode is "smart_case"
-            -- },
-            file_browser = {
-                mappings = {
-                    i = {
-                        ["<C-e>"] = fb_actions.create
-                    },
-                    n = {
-                        e = fb_actions.create
-                    },
+        --     fuzzy = true, -- false will only do exact matching
+        --     override_generic_sorter = false, -- override the generic sorter
+        --     override_file_sorter = true, -- override the file sorter
+        --     case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+        --     -- the default case_mode is "smart_case"
+        -- },
+        file_browser = {
+            mappings = {
+                i = {
+                    ["<C-e>"] = fb_actions.create,
+                },
+                n = {
+                    e = fb_actions.create,
                 },
             },
-            bibtex = {
-                depth=2
-            }
         },
+        bibtex = {
+            depth = 2,
+        },
+    },
 
     pickers = {
         buffers = {
@@ -126,4 +126,5 @@ require("telescope").load_extension("fzf")
 require("telescope").load_extension("projects")
 require("telescope").load_extension("file_browser")
 require("telescope").load_extension("bibtex")
-require('telescope').load_extension('heading')
+require("telescope").load_extension("heading")
+require("telescope").load_extension("howdoi")

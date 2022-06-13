@@ -24,13 +24,6 @@ return require("packer").startup({
             "github/copilot.vim",
             opt = true,
             cmd = { "Copilot" },
-            -- setup = function()
-            --     vim.g.copilot_assume_mapped = true
-            --     vim.g.copilot_no_tab_map = true
-            -- end,
-            -- config = function()
-            --     vim.g.copilot_echo_num_completions = false
-            -- end,
         })
         use({
             "zbirenbaum/copilot.lua",
@@ -38,54 +31,10 @@ return require("packer").startup({
             module = "copilot",
             config = function()
                 vim.defer_fn(function()
-                    require("copilot").setup()
+                    require("copilot").setup({ ft_disable = { "pandoc", "markdown" } })
                 end, 100)
             end,
         })
-        -- use({
-        --     "jenterkin/vim-autosource",
-        --     setup = function()
-        --         vim.g.autosource_conf_names = { ".exrc", ".exrc.lua" }
-        --     end,
-        --     config = function()
-        --         vim.g.autosource_hashdir = vim.fn.expand("$XDG_CACHE_HOME/nvim/vim-autosource/hashes")
-        --     end,
-        -- })
-        -- use({
-        --     "chipsenkbeil/distant.nvim",
-        --     cmd = { "DistantLaunch", "DistantOpen", "DistantInstall", "DistantGetHost" },
-        --     config = function()
-        --         require("distant").setup({
-        --             -- Applies Chip's personal settings to every machine you connect to
-        --             --
-        --             -- 1. Ensures that distant servers terminate with no connections
-        --             -- 2. Provides navigation bindings for remote directories
-        --             -- 3. Provides keybinding to jump into a remote file's parent directory
-        --             ["*"] = require("distant.settings").chip_default(),
-        --             -- ['*'] = vim.tbl_deep_extend('force', require('distant.settings').chip_default(), {
-        --             -- mode = 'ssh',
-        --             -- })
-        --         })
-        --         vim.cmd(
-        --             [[command! -nargs=1 DistantGetHost execute "!ssh -tt -G <args> | awk \'/^hostname / { print $2 }\'"]]
-        --         )
-        --     end,
-        -- })
-        -- use({
-        --     "nathom/filetype.nvim",
-        --     config = function()
-        --         require("filetype").setup({
-        --             overrides = {
-        --                 extensions = {
-        --                     -- Set the filetype of *.pn files to potion
-        --                     seq = "codev",
-        --                     notes = "pandoc",
-        --                     md = "pandoc",
-        --                 },
-        --             },
-        --         })
-        --     end,
-        -- })
         use({
             "anuvyklack/pretty-fold.nvim",
             event = { "BufNewFile", "BufRead" },
@@ -99,8 +48,7 @@ return require("packer").startup({
             "numToStr/Comment.nvim",
             event = { "BufNewFile", "BufRead" },
             config = function()
-                require("Comment").setup({ ignore = "^$" })
-                require("Comment.ft").codevlisp = ";;%s"
+                require("plugin_config/comment")
             end,
         })
 
@@ -120,13 +68,13 @@ return require("packer").startup({
                 require("plugin_config/whichkey")
                 require("which-key").setup({
                     triggers_blacklist = {
-                        n = { "s" , },
+                        n = { "s" },
                         v = { "g" },
                     },
                     plugins = {
                         presets = {
                             operators = false,
-                            windows = false
+                            windows = false,
                         },
                     },
                 })
@@ -254,6 +202,23 @@ return require("packer").startup({
                 { "nvim-telescope/telescope.nvim", module = "telescope" },
             },
         })
+        use({
+            "rcarriga/neotest",
+            module = "neotest",
+            cmd = "neotest",
+            config = function()
+                require("plugin_config/neotest")
+            end,
+            requires = {
+                { "nvim-lua/plenary.nvim", module = "plenary" },
+                {
+                    "nvim-treesitter/nvim-treesitter",
+                    module = { "nvim-treesitter" },
+                },
+                "antoinemadec/FixCursorHold.nvim",
+                { "rcarriga/neotest-python", module = "neotest-python" },
+            },
+        })
 
         use({
             "moll/vim-bbye",
@@ -265,6 +230,7 @@ return require("packer").startup({
             event = { "BufNewFile", "BufRead" },
             config = function()
                 require("mini.indentscope").setup()
+                vim.cmd([[autocmd TermOpen * lua vim.b.miniindentscope_disable = true]])
             end,
         })
         use({
@@ -278,11 +244,6 @@ return require("packer").startup({
                 require("gitsigns").setup()
             end,
             -- tag = 'release' -- To use the latest release
-        })
-
-        use({
-            "Jorengarenar/COBOL.vim",
-            ft = "cobol",
         })
 
         use({
@@ -306,6 +267,14 @@ return require("packer").startup({
                     "nvim-telescope/telescope-bibtex.nvim",
                     opt = true,
                     module_pattern = "telescope._extensions.bibtex*",
+                },
+                {
+                    "zane-/howdoi.nvim",
+                    opt = true,
+                    module_pattern = "telescope._extensions.howdoi*",
+                    run = function()
+                        vim.fn.system("pip install howdoi")
+                    end,
                 },
                 { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
                 {
@@ -385,6 +354,7 @@ return require("packer").startup({
             module = "copilot_cmp",
             after = { "copilot.lua", "nvim-cmp" },
         })
+
         use({
             "hrsh7th/nvim-cmp",
             opt = true,
@@ -442,6 +412,13 @@ return require("packer").startup({
             "abecodes/tabout.nvim",
             after = { "nvim-cmp", "vim-vsnip" },
             wants = "nvim-treesitter",
+            requires = {
+                {
+                    "nvim-treesitter/nvim-treesitter",
+                    module = { "nvim-treesitter" },
+                },
+            },
+
             config = function()
                 require("tabout").setup({
                     tabkey = "",
@@ -587,6 +564,7 @@ return require("packer").startup({
             ft = require("plugin_config.ft").lsp_ft,
             module = "lspconfig",
             module_pattern = "lspconfig/*",
+            commit = "21102d5e3b6ffc6929d60418581ac1a29ee9eddd",
             config = function()
                 require("plugin_config/lspconfig")
                 require("which-key").register({
@@ -611,7 +589,6 @@ return require("packer").startup({
             end,
 
             requires = {
-                { "ii14/lsp-command", opt = true, after = "nvim-lspconfig" },
                 {
                     "williamboman/nvim-lsp-installer",
                     opt = true,

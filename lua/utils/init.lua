@@ -3,11 +3,13 @@ local m = {}
 
 local function _get_kitty_theme()
     local theme = {}
-    theme[#theme+1] = "# " .. vim.o.background
+    theme[#theme + 1] = "# " .. vim.o.background
     theme[#theme + 1] = "background " .. vim.fn.synIDattr(vim.fn.hlID("Normal"), "bg")
     theme[#theme + 1] = "foreground " .. vim.fn.synIDattr(vim.fn.hlID("Normal"), "fg")
-    theme[#theme + 1] = "selection_foreground " .. vim.fn.synIDattr(vim.fn.hlID("Visual"), "fg")
+    theme[#theme + 1] = "selection_foreground " .. vim.fn.synIDattr(vim.fn.hlID("Normal"), "fg")
     theme[#theme + 1] = "selection_background " .. vim.fn.synIDattr(vim.fn.hlID("Visual"), "bg")
+    theme[#theme + 1] = "active_border_color " .. vim.fn.synIDattr(vim.fn.hlID("Visual"), "bg")
+    theme[#theme + 1] = "inactive_border_color " .. vim.fn.synIDattr(vim.fn.hlID("Visual"), "bg")
     if vim.fn.synIDattr(vim.fn.hlID("Cursor"), "bg") ~= "fg" then
         theme[#theme + 1] = "cursor " .. vim.fn.synIDattr(vim.fn.hlID("Cursor"), "bg")
     end
@@ -18,7 +20,7 @@ local function _get_kitty_theme()
 end
 
 function m.export_theme_to_kitty()
-    api.nvim_command("e " .. vim.fn.expand("$XDG_CACHE_HOME/kitty/nvim_theme.conf")) -- equivalent to :enew
+    api.nvim_command("nos e " .. vim.fn.expand("$XDG_CACHE_HOME/kitty/nvim_theme.conf")) -- equivalent to :enew
     api.nvim_buf_set_lines(0, 0, -1, false, _get_kitty_theme())
     api.nvim_command("silent !mkdir -p %:h")
     api.nvim_command("silent w")

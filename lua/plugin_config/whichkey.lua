@@ -1,5 +1,10 @@
 require("which-key").register({
     d = { "<cmd>Bdelete<cr>", "Delete buffer" },
+    t = {
+        name = "neotest",
+        r = {"<cmd>lua require('neotest').run.run()<cr>", "run file"},
+        t = {"<cmd>lua require('neotest').summary.toggle()<cr>", "toggle summary"},
+    },
     f = {
         name = "telescope",
         g = { "<cmd>lua require('telescope.builtin').live_grep()<cr>", "live grep" },
@@ -7,6 +12,7 @@ require("which-key").register({
         s = { "<cmd>lua require('telescope').extensions.file_browser.file_browser()<cr>", "file browser" },
         d = { "<cmd>lua require('telescope.builtin').find_files()<cr>", "find files" },
         b = { "<cmd>lua require('telescope').extensions.bibtex.bibtex({format='markdown'})<cr>", "bibtex" },
+        h = {"<cmd> Telescope howdoi<cr>", "howdoi"},
         l = {
             "<cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>",
             "Lsp document symbols",

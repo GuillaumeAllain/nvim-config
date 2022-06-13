@@ -22,6 +22,7 @@ local disabled_built_ins = {
 for _, plugin in pairs(disabled_built_ins) do
     vim.g["loaded_" .. plugin] = 1
 end
+vim.g.node_prog_host = "/usr/local/opt/node@16/bin"
 vim.g.did_load_filetypes = 0
 vim.g.do_filetype_lua = 1
 vim.filetype.add({
@@ -32,6 +33,7 @@ vim.filetype.add({
         seq = "codev",
         md = "pandoc",
         liseq = "codevlisp",
+        tikz = "tikz"
     },
 })
 
@@ -63,6 +65,7 @@ vim.opt.completeopt = "menuone,noselect"
 vim.opt.shortmess = vim.o.shortmess .. "c" .. "I"
 vim.opt.hidden = true
 vim.opt.expandtab = true
+vim.opt.cmdheight = 0
 -- vim.opt.title = true
 -- vim.opt.titlestring = ""
 vim.opt.wildmode = "longest,full"
@@ -89,7 +92,8 @@ vim.g.loaded_python_provider = 0
 vim.g.loaded_python3_provider = 0
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_perl_provider = 0
-vim.g.loaded_node_provider = 0
+-- vim.g.loaded_node_provider = 0
+vim.g.loaded_node_provider = 1
 vim.g.python3_host_prog = vim.fn.expand(os.getenv("HOME") .. "/miniconda3/bin/python")
 
 vim.g.netrw_banner = 0

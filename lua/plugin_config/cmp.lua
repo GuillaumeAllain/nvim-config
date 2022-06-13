@@ -12,8 +12,8 @@ cmp.setup({
     },
     mapping = {
         ["<C-L>"] = {
-            i = cmp.mapping.confirm({ select = true }),
-            c = cmp.mapping.confirm({ select = true }),
+            i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+            c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
         },
         ["<C-n>"] = {
             i = cmp.mapping.select_next_item({ behavior = types.cmp.SelectBehavior.Insert }),
@@ -109,17 +109,17 @@ cmp.setup.cmdline("/", {
 })
 
 local redact_sources = function()
-    local default_sources = require("cmp.config").global.sources
-    local new_sources = {}
-    for index, _ in ipairs(default_sources) do
-        if default_sources[index].name ~= "copilot" then
-            new_sources[#new_sources + 1] = default_sources[index]
-        end
-    end
-    return require("cmp.utils.misc").concat(
-        new_sources,
-        { { name = "tags", keyword_pattern = [[\#\k\+]], keyword_length = 2 }, { name = "cmp_pandoc" } }
-    )
+    -- local default_sources = require("cmp.config").global.sources
+    -- local new_sources = {}
+    -- for index, _ in ipairs(default_sources) do
+    --     if default_sources[index].name ~= "copilot" then
+    --         new_sources[#new_sources + 1] = default_sources[index]
+    --     end
+    -- end
+    return require("cmp.utils.misc").concat(require("cmp.config").global.sources, {
+        { name = "tags", keyword_pattern = [[\#\k\+]], keyword_length = 2 },
+        { name = "cmp_pandoc", keyword_length = 2, keyword_pattern = [[\m@\k\+]] },
+    })
 end
 cmp.setup.filetype({ "pandoc", "markdown" }, {
     sources = redact_sources(),

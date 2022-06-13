@@ -167,6 +167,7 @@ lspconfig.ltex.setup({
                 },
                 en = {
                     "WORD_CONTAINS_UNDERSCORE",
+                    "FILE_EXTENSIONS_CASE",
                     "SENTENCE_FRAGMENT",
                     "DASH_RULE",
                     "TOO_LONG_SENTENCE",

@@ -25,6 +25,7 @@ function m.setup(treesitter_ft)
     })
     require"nvim-treesitter.parsers".filetype_to_parsername.pandoc = "markdown"
     require"nvim-treesitter.parsers".filetype_to_parsername.codevlisp = "fennel"
+    require"nvim-treesitter.parsers".filetype_to_parsername.tikz = "latex"
     -- require"nvim-treesitter.parsers".filetype_to_parsername.pandoc = "markdown"
     -- vim.g.markdown_folding = 1
 

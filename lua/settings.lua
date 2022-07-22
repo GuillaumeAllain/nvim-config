@@ -23,8 +23,8 @@ for _, plugin in pairs(disabled_built_ins) do
     vim.g["loaded_" .. plugin] = 1
 end
 vim.g.node_prog_host = "/usr/local/opt/node@16/bin"
-vim.g.did_load_filetypes = 0
-vim.g.do_filetype_lua = 1
+--vim.g.did_load_filetypes = 0
+--vim.g.do_filetype_lua = 1
 vim.filetype.add({
     filename = {
         [".notes"] = "pandoc",
@@ -45,6 +45,7 @@ vim.opt.scl = "yes"
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 vim.opt.updatetime = 1000
+vim.opt.scl = "auto"
 if vim.loop.os_uname().sysname == "Darwin" then
     vim.g.clipboard = {
         name = "macOS-clipboard",
@@ -62,7 +63,7 @@ end
 vim.opt.clipboard = "unnamed"
 
 vim.opt.completeopt = "menuone,noselect"
-vim.opt.shortmess = vim.o.shortmess .. "c" .. "I"
+vim.opt.shortmess = "a" .. vim.o.shortmess .. "c" .. "I"
 vim.opt.hidden = true
 vim.opt.expandtab = true
 vim.opt.cmdheight = 0
@@ -100,7 +101,7 @@ vim.g.netrw_banner = 0
 vim.g.netrw_liststyle = 3
 vim.g.pyindent_searchpair_timeout = 10
 vim.g.netrw_winsize = 20
-vim.opt.laststatus = 3
+vim.opt.laststatus = 0
 -- vim.opt.inccommand="split"
 
 vim.cmd([[
@@ -116,15 +117,15 @@ let $MANPAGER='nvr +Man! -'
 --   autocmd!
 --   autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
 -- augroup END
-vim.cmd([[
-augroup hide_cmdline
-    autocmd!
-    autocmd CmdlineEnter * set laststatus=0 | redraw
-    autocmd CmdlineLeave * set laststatus=3 | set cmdheight=0 |redraw
-    autocmd CmdwinEnter * set laststatus=0 | redraw
-    autocmd CmdwinLeave * set laststatus=3 | set cmdheight=0 | redraw
-augroup END
-]])
+-- autocmd CmdlineEnter * set laststatus=0 | redraw
+-- autocmd CmdlineLeave * set laststatus=3 | redraw
+-- vim.cmd([[
+-- augroup hide_cmdline
+--     autocmd!
+--     autocmd CmdwinEnter * set laststatus=0 | redraw
+--     autocmd CmdwinLeave * set laststatus=3 | set cmdheight=0 | redraw
+-- augroup END
+-- ]])
 
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
@@ -140,4 +141,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
     virtual_text = true,
     signs = true,
     update_in_insert = false,
+})
+vim.diagnostic.config({
+  virtual_text = false,
 })

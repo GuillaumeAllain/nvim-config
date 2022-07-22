@@ -189,8 +189,8 @@ return require("packer").startup({
             },
         })
         use({
-            "GuillaumeAllain/panotes",
-            -- "~/srv/panotes",
+            -- "GuillaumeAllain/panotes",
+            "~/srv/panotes",
             cmd = { "Panotes" },
             module = { "panotes" },
             keys = { "<leader>p" },
@@ -250,6 +250,7 @@ return require("packer").startup({
             "nvim-telescope/telescope.nvim",
             cmd = { "Telescope" },
             module = { "telescope" },
+            tag = "0.1.0",
             requires = {
                 { "nvim-lua/popup.nvim", module = "popup" },
                 { "nvim-lua/plenary.nvim", module = "plenary" },
@@ -376,7 +377,7 @@ return require("packer").startup({
                     module = "cmp_cmdline",
                 },
                 {
-                    "aspeddro/cmp-pandoc.nvim",
+                    "GuillaumeAllain/cmp-pandoc.nvim",
                     module = "cmp-pandoc",
                     config = function()
                         require("cmp_pandoc").setup()
@@ -510,6 +511,13 @@ return require("packer").startup({
             module = "lspkind",
             config = function()
                 require("lspkind").init()
+            end,
+        })
+        use({
+            "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+            after = "nvim-lspconfig",
+            config = function()
+                require("lsp_lines").setup()
             end,
         })
 

@@ -1,6 +1,8 @@
 local cmp = require("cmp")
 local types = require("cmp.types")
 
+
+
 cmp.setup({
     window = {
         completion = cmp.config.window.bordered(),
@@ -25,7 +27,7 @@ cmp.setup({
         },
     },
     sources = cmp.config.sources({
-        { name = "copilot", keyword_length = 0 },
+        { name = "copilot", keyword_length = 0, priority=900 },
         { name = "vsnip", priority = 1000, keyword_length = 3 },
         { name = "nvim_lsp", keyword_length = 3 },
         { name = "path", keyword_length = 3 },
@@ -99,12 +101,12 @@ cmp.setup.filetype({ "codev", "liseq", "sh", "zsh" }, {
 })
 cmp.setup.cmdline(":", {
     sources = {
-        { name = "cmdline" },
+        { name = "cmdline", keyword_length = 3 },
     },
 })
 cmp.setup.cmdline("/", {
     sources = {
-        { name = "buffer" },
+        { name = "buffer" ,keyword_length = 3 },
     },
 })
 

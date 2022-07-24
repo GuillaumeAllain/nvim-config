@@ -1,8 +1,6 @@
-vim.cmd[[
-    setlocal expandtab
-    setlocal shiftwidth=4
-    setlocal softtabstop=4
-]]
+vim.cmd.setlocal('expandtab')
+vim.cmd.setlocal('shiftwidth=4')
+vim.cmd.setlocal('softtabstop=4')
 
 local lineno = vim.fn.search([[---\_.*\zs\(^lang:.*$\)\ze\_.*---]],"n")
 if lineno ~= 0 then
@@ -10,7 +8,7 @@ if lineno ~= 0 then
     if lines ~= {} then
         for s in lines[1]:gmatch("lang:%s*(.*)") do
             if s ~= "" then
-                vim.cmd("setlocal spelllang="..s)
+                vim.cmd.setlocal('spelllang='..s)
             end
         end
     end

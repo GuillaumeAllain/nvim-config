@@ -104,15 +104,13 @@ vim.g.netrw_winsize = 20
 vim.opt.laststatus = 0
 -- vim.opt.inccommand="split"
 
-vim.cmd([[
-command! -nargs=* W w
-au BufWritePre /tmp/* setlocal noundofile
-au User Startified setlocal buflisted
-au! FileType help :wincmd L | :vert resize 90
-au TermOpen * setlocal nonumber norelativenumber | startinsert
-au TextYankPost * silent! lua vim.highlight.on_yank{timeout=75}
-let $MANPAGER='nvr +Man! -'
-]])
+vim.cmd('command! -nargs=* W w')
+vim.cmd.au('BufWritePre', '/tmp/*', 'setlocal', 'noundofile')
+vim.cmd.au('User', 'Startified', 'setlocal', 'buflisted')
+vim.cmd.au('Filetype', 'help', ':wincmd L | :vert resize 90')
+vim.cmd.au('TermOpen', '*', 'setlocal', 'nonumber norelativenumber | startinsert')
+vim.cmd.au('TextYankPost', '*', 'silent! lua vim.highlight.on_yank{timeout=75}')
+vim.g["$MANPAGER"] = 'nvr +Man! -'
 -- augroup vimrc_help
 --   autocmd!
 --   autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif

@@ -1,6 +1,6 @@
 vim.fn.setenv("MACOSX_DEPLOYMENT_TARGET", "10.15")
 -- Only required if you have packer configured as `opt`
-vim.cmd([[packadd packer.nvim]])
+vim.cmd.packadd('packer.nvim')
 
 return require("packer").startup({
     function(use)
@@ -135,23 +135,6 @@ return require("packer").startup({
 
         use({ "dkarter/bullets.vim", ft = { "markdown", "pandoc", "tex" }, config = function() end })
 
-        -- -- use {'shaunsingh/nord.nvim',
-        -- -- setup=function()
-        -- --     vim.g.nord_contrast = false
-        -- --     vim.g.nord_borders = true
-        -- -- end,
-        -- --  config=function()
-        -- --      -- vim.cmd[[colorscheme nord]]
-        -- --      require('nord').set()
-        -- --      require('nord.theme').loadTerminal()
-        -- --      require'plugin_config/theme'
-        -- --  end,
-        -- --  run=function()
-        -- --    require'utils'.export_theme_to_kitty()
-        -- --  end;
-        -- --  as='maintheme'
-        -- -- }
-
         use({
             "rose-pine/neovim",
             config = function()
@@ -161,21 +144,6 @@ return require("packer").startup({
         })
         use({ "f-person/auto-dark-mode.nvim" })
 
-        -- use({
-        --     "EdenEast/nightfox.nvim",
-        --     config = function()
-        --         vim.cmd("colorscheme dawnfox")
-        --         require("plugin_config/theme")
-        --     end,
-        --     as = "maintheme",
-        -- })
-        -- use({
-        --     'mvllow/modes.nvim',
-        --     config = function()
-        --         vim.opt.cursorline = true
-        --         require('modes').setup()
-        --     end
-        -- })
         use({
             "nvim-lualine/lualine.nvim",
             config = function()
@@ -427,7 +395,7 @@ return require("packer").startup({
                     act_as_shit_tab = false,
                     enable_backwards = false,
                     completion = true,
-                    exclude = { "pandoc" },
+                    -- exclude = { "pandoc" },
                     tabouts = {
                         { open = "'", close = "'" },
                         { open = '"', close = '"' },

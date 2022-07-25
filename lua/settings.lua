@@ -105,11 +105,11 @@ vim.opt.laststatus = 0
 -- vim.opt.inccommand="split"
 
 vim.cmd('command! -nargs=* W w')
-vim.cmd.au('BufWritePre', '/tmp/*', 'setlocal', 'noundofile')
-vim.cmd.au('User', 'Startified', 'setlocal', 'buflisted')
-vim.cmd.au('Filetype', 'help', ':wincmd L | :vert resize 90')
-vim.cmd.au('TermOpen', '*', 'setlocal', 'nonumber norelativenumber | startinsert')
-vim.cmd.au('TextYankPost', '*', 'silent! lua vim.highlight.on_yank{timeout=75}')
+vim.cmd.au({'BufWritePre', '/tmp/*', 'setlocal', 'noundofile',bang=true})
+vim.cmd.au({'User', 'Startified', 'setlocal', 'buflisted',bang=true})
+vim.cmd.au({'Filetype', 'help', ':wincmd L | :vert resize 90',bang=true})
+vim.cmd.au({'TermOpen', '*', 'setlocal', 'nonumber norelativenumber | startinsert',bang=true})
+vim.cmd.au({'TextYankPost', '*', 'silent! lua vim.highlight.on_yank{timeout=75,bang=true}',bang=true})
 vim.g["$MANPAGER"] = 'nvr +Man! -'
 -- augroup vimrc_help
 --   autocmd!

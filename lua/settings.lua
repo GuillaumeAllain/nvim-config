@@ -66,7 +66,7 @@ vim.opt.completeopt = "menuone,noselect"
 vim.opt.shortmess = "a" .. vim.o.shortmess .. "c" .. "I"
 vim.opt.hidden = true
 vim.opt.expandtab = true
-vim.opt.cmdheight = 0
+vim.opt.cmdheight = 1
 -- vim.opt.title = true
 -- vim.opt.titlestring = ""
 vim.opt.wildmode = "longest,full"
@@ -102,7 +102,6 @@ vim.g.netrw_liststyle = 3
 vim.g.pyindent_searchpair_timeout = 10
 vim.g.netrw_winsize = 20
 vim.opt.laststatus = 0
--- vim.opt.inccommand="split"
 
 vim.cmd('command! -nargs=* W w')
 vim.cmd.au({'BufWritePre', '/tmp/*', 'setlocal', 'noundofile',bang=true})
@@ -111,19 +110,6 @@ vim.cmd.au({'Filetype', 'help', ':wincmd L | :vert resize 90',bang=true})
 vim.cmd.au({'TermOpen', '*', 'setlocal', 'nonumber norelativenumber | startinsert',bang=true})
 vim.cmd.au({'TextYankPost', '*', 'silent! lua vim.highlight.on_yank{timeout=75,bang=true}',bang=true})
 vim.g["$MANPAGER"] = 'nvr +Man! -'
--- augroup vimrc_help
---   autocmd!
---   autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
--- augroup END
--- autocmd CmdlineEnter * set laststatus=0 | redraw
--- autocmd CmdlineLeave * set laststatus=3 | redraw
--- vim.cmd([[
--- augroup hide_cmdline
---     autocmd!
---     autocmd CmdwinEnter * set laststatus=0 | redraw
---     autocmd CmdwinLeave * set laststatus=3 | set cmdheight=0 | redraw
--- augroup END
--- ]])
 
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"

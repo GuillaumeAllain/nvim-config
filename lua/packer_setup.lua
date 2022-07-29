@@ -157,8 +157,7 @@ return require("packer").startup({
             },
         })
         use({
-            -- "GuillaumeAllain/panotes",
-            "~/srv/panotes",
+            "GuillaumeAllain/panotes",
             cmd = { "Panotes" },
             module = { "panotes" },
             keys = { "<leader>p" },

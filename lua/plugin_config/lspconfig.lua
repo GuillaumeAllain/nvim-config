@@ -50,14 +50,15 @@ else
 end
 
 -- set the path to the sumneko installation; if you previously installed via the now deprecated :LspInstall, use
-local sumneko_root_path = os.getenv("HOME") .. "/srv/lua-language-server"
+-- local sumneko_root_path = "/opt/homebrew/bin/lua-language-server"
 
-local sumneko_binary = sumneko_root_path .. "/bin/" .. system_name .. "/lua-language-server"
+-- local sumneko_binary = sumneko_root_path .. "/bin/" .. system_name .. "/lua-language-server"
+local sumneko_binary = "/opt/homebrew/bin/lua-language-server"
 
 lspconfig.sumneko_lua.setup({
     on_attach = on_attach,
     capabilities = capabilities,
-    cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
+    cmd = { sumneko_binary, "-E"},
     settings = {
         Lua = {
             runtime = {

@@ -64,7 +64,7 @@ require("which-key").register({
             "Build in BuildTerminal",
         },
         l = {
-            "<cmd>w|lua require'utils'.send_command_to_build_terminal('\\x1b\\x4f\\x41')<cr>",
+            "<cmd>w|lua require'utils'.send_command_to_build_terminal('!!')<cr>",
             "Build in BuildTerminal",
         },
         o = {

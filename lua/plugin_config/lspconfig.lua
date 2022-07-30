@@ -53,7 +53,7 @@ end
 -- local sumneko_root_path = "/opt/homebrew/bin/lua-language-server"
 
 -- local sumneko_binary = sumneko_root_path .. "/bin/" .. system_name .. "/lua-language-server"
-local sumneko_binary = "/opt/homebrew/bin/lua-language-server"
+local sumneko_binary = os.getenv("HOMEBREW_PREFIX").."/bin/lua-language-server"
 
 lspconfig.sumneko_lua.setup({
     on_attach = on_attach,
@@ -126,7 +126,7 @@ lspconfig.julials.setup({
 -- require("grammar-guard").init()
 
 -- lspconfig.grammar_guard.setup({
-local ltex_path = vim.fn.stdpath("data") .. "/lsp_servers/ltex/ltex-ls/bin/ltex-ls"
+local ltex_path = os.getenv("HOMEBREW_PREFIX") .. "/bin/ltex-ls"
 
 lspconfig.ltex.setup({
     on_attach = on_attach(),

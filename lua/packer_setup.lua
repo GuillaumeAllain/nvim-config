@@ -560,6 +560,8 @@ return require("packer").startup({
                 )
                 vim.fn.system("brew install stylua")
 
+                vim.fn.system("brew install ltex-ls")
+
                 vim.fn.system("brew install haskell-language-server")
             end,
 

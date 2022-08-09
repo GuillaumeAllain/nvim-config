@@ -15,6 +15,7 @@ m.treesitter_ft = {
     "regex",
     "toml",
     "markdown",
+    "markdown_inline",
     "comment"
 }
 

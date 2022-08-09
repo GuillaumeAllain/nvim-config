@@ -7,7 +7,7 @@ function m.setup(treesitter_ft)
 
         highlight = {
             enable = true,
-            additional_vim_regex_highlighting = { "org", "markdown"}, -- Required since TS highlighter doesn't support all syntax features (conceal)
+            additional_vim_regex_highlighting = { "org", "markdown" }, -- Required since TS highlighter doesn't support all syntax features (conceal)
             -- disable={"markdown"}
         },
 
@@ -23,9 +23,9 @@ function m.setup(treesitter_ft)
             enable = true,
         },
     })
-    require"nvim-treesitter.parsers".filetype_to_parsername.pandoc = "markdown"
-    require"nvim-treesitter.parsers".filetype_to_parsername.codevlisp = "fennel"
-    require"nvim-treesitter.parsers".filetype_to_parsername.tikz = "latex"
+    require("nvim-treesitter.parsers").filetype_to_parsername.pandoc = "markdown"
+    require("nvim-treesitter.parsers").filetype_to_parsername.codevlisp = "fennel"
+    require("nvim-treesitter.parsers").filetype_to_parsername.tikz = "latex"
     -- require"nvim-treesitter.parsers".filetype_to_parsername.pandoc = "markdown"
     -- vim.g.markdown_folding = 1
 
@@ -37,6 +37,8 @@ function m.setup(treesitter_ft)
 
     -- vim.cmd[[hi! EndOfBuffer guibg=none ctermbg=none]]
     -- vim.cmd[[hi! SignColumn guibg=none ctermbg=none]]
+    vim.cmd.e("main.md")
+    vim.cmd.bd()
 end
 
 return m

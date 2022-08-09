@@ -1,6 +1,6 @@
 vim.fn.setenv("MACOSX_DEPLOYMENT_TARGET", "10.15")
 -- Only required if you have packer configured as `opt`
-vim.cmd.packadd('packer.nvim')
+vim.cmd.packadd("packer.nvim")
 
 return require("packer").startup({
     function(use)
@@ -176,6 +176,7 @@ return require("packer").startup({
             config = function()
                 require("plugin_config/neotest")
             end,
+            wants = {"nvim-treesitter"},
             requires = {
                 { "nvim-lua/plenary.nvim", module = "plenary" },
                 {
@@ -183,7 +184,10 @@ return require("packer").startup({
                     module = { "nvim-treesitter" },
                 },
                 "antoinemadec/FixCursorHold.nvim",
-                { "rcarriga/neotest-python", module = "neotest-python" },
+                {
+                    "rcarriga/neotest-python",
+                    module = "neotest-python",
+                },
             },
         })
 
@@ -252,7 +256,7 @@ return require("packer").startup({
                     module_pattern = "telescope._extensions.fzf*",
                 },
             },
-            wants = { "project.nvim" },
+            wants = { "project.nvim", "nvim-treesitter"},
             setup = function()
                 function TelescopeTags()
                     require("telescope.builtin").tags({ ctags_file = vim.fn.tagfiles()[1] })
@@ -303,7 +307,7 @@ return require("packer").startup({
                 vim.api.nvim_exec(
                     [[
                 autocmd FileType * call vsnip#get_complete_items(bufnr())
-                ]],
+                ]]   ,
                     false
                 )
                 vim.cmd([[
@@ -377,6 +381,13 @@ return require("packer").startup({
             end,
         })
         use({
+            "AckslD/nvim-FeMaco.lua",
+            cmd = { "FeMaco" },
+            config = function()
+                require("femaco").setup()
+            end,
+        })
+        use({
             "abecodes/tabout.nvim",
             after = { "nvim-cmp", "vim-vsnip" },
             wants = "nvim-treesitter",
@@ -414,6 +425,7 @@ return require("packer").startup({
                         return vim.api.nvim_replace_termcodes("<Plug>(Tabout)", true, true, true)
                     end
                 end
+
                 vim.api.nvim_set_keymap("i", "<C-L>", "v:lua.tabout_binding()", { expr = true })
             end,
         })
@@ -559,6 +571,8 @@ return require("packer").startup({
                     "pip install --upgrade fortran-language-server jedi-language-server flake8 black fprettify"
                 )
                 vim.fn.system("brew install stylua")
+
+                vim.fn.system("brew install yamllint")
 
                 vim.fn.system("brew install ltex-ls")
 

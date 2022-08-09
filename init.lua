@@ -7,12 +7,16 @@ end
 
 vim.o.guifont = "SFmono Nerd Font:h15"
 
-vim.opt.background =
-    vim.fn.system("head -1 " .. vim.fn.expand("$XDG_CACHE_HOME/kitty/nvim_theme.conf")):gsub("\n", ""):sub(3)
+-- vim.opt.background =
+--     vim.fn.system("head -1 " .. vim.fn.expand("$XDG_CACHE_HOME/kitty/nvim_theme.conf")):gsub("\n", ""):sub(3)
+
+vim.opt.background = "dark"
 
 require("impatient")
 
-require("plugin_config/autodarkmode")
+require("neovide")
+
+-- require("plugin_config/autodarkmode")
 
 require("settings")
 

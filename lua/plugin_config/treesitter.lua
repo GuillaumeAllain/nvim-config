@@ -37,8 +37,8 @@ function m.setup(treesitter_ft)
 
     -- vim.cmd[[hi! EndOfBuffer guibg=none ctermbg=none]]
     -- vim.cmd[[hi! SignColumn guibg=none ctermbg=none]]
-    vim.cmd.e("main.md")
-    vim.cmd.bd()
+    -- vim.cmd([[e .hidden_file.md|bd]])
+    vim.treesitter.require_language("markdown")
 end
 
 return m

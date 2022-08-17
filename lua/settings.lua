@@ -110,6 +110,8 @@ vim.cmd.au({'Filetype', 'help', ':wincmd L | :vert resize 90',bang=true})
 vim.cmd.au({'TermOpen', '*', 'setlocal', 'nonumber norelativenumber | startinsert',bang=true})
 vim.cmd.au({'TextYankPost', '*', 'silent! lua vim.highlight.on_yank{timeout=75,bang=true}',bang=true})
 vim.g["$MANPAGER"] = 'nvr +Man! -'
+vim.opt.path = vim.opt.path + ".,**"
+
 
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"

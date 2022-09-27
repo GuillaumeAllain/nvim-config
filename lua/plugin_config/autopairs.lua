@@ -18,6 +18,7 @@ local cmp = require('cmp')
 cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))
 
 npairs.setup({
+    enable_check_bracket_line = false,
     pairs_map = {
         ["'"] = "'",
         ['"'] = '"',

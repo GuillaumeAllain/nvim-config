@@ -5,6 +5,13 @@ require("which-key").register({
         r = { "<cmd>lua require('neotest').run.run()<cr>", "run file" },
         t = { "<cmd>lua require('neotest').summary.toggle()<cr>", "toggle summary" },
     },
+    r = {
+        name = "harpoon",
+        r = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "Quick Menu" },
+        w = { "<cmd>lua require('harpoon.mark').add_file()<cr>", "Add file" },
+        e = { "<cmd>lua require('harpoon.ui').nav_next()<cr>", "Next file" },
+        t = { "<cmd>lua require('harpoon.ui').nav_prev()<cr>", "Prev file" },
+    },
     f = {
         name = "telescope",
         g = { "<cmd>lua require('telescope.builtin').live_grep()<cr>", "live grep" },
@@ -46,8 +53,7 @@ require("which-key").register({
     g = {
         name = "plugins",
         d = { "\"dyiw:lua require'utils'.macdict(vim.fn.getreg('d'))<CR>", "macos dictionary" },
-        l = { "<cmd>lua require'utils'.toggle_build_buffer_window()<cr>", "Toggle BuildTerminal in vsplit" },
-        g = { "<cmd>FloatermToggle --autoclose=1 <CR>", "FloaTerm" },
+        l = { "<cmd>lua require'plugin_config.harpoon'.toggle_term_window()<cr>", "Toggle HarpoonTerm(1) in vsplit" },
         t = { "<cmd>lua LazyGitOpener()<CR>", "LazyGit" },
         y = { "<cmd>ZenMode <CR>", "Zen-mode" },
         j = { "<cmd>TodoTrouble <CR>", "TodoTrouble" },
@@ -56,23 +62,24 @@ require("which-key").register({
         n = { "<cmd>set relativenumber!| set number!<cr>", "Toggle Number" },
         s = { "<cmd>SymbolsOutline<cr>", "Symbols Outline" },
         k = { "<cmd>Luapad<cr>", "Luapad" },
+        u = { "<cmd>lua require'utils'.toggle_background()<cr>", "Kitty"}
     },
     b = {
         name = "builder",
         b = {
-            "<cmd>w|lua require'utils'.send_command_to_build_terminal('builder '..vim.fn.fnameescape(vim.fn.expand('%:p')))<cr>",
+            "<cmd>w|lua require('harpoon.term').sendCommand(1,'builder '..vim.fn.fnameescape(vim.fn.expand('%:p'))..'\\r')<cr>",
             "Build in BuildTerminal",
         },
         l = {
-            "<cmd>w|lua require'utils'.send_command_to_build_terminal('!!')<cr>",
+            "<cmd>w|lua require('harpoon.term').sendCommand(1,'!!\\r')<cr>",
             "Build in BuildTerminal",
         },
         o = {
-            "<cmd>lua require'utils'.send_command_to_build_terminal('opener '..vim.fn.fnameescape(vim.fn.expand('%:p')))<cr>",
+            "<cmd>w|lua require('harpoon.term').sendCommand(1,'opener '..vim.fn.fnameescape(vim.fn.expand('%:p'))..'\\r')<cr>",
             "Open in BuildTerminal",
         },
         c = {
-            "<cmd>lua require'utils'.send_command_to_build_terminal('cleaner '..vim.fn.fnameescape(vim.fn.expand('%:p')))<cr>",
+            "<cmd>w|lua require('harpoon.term').sendCommand(1,'cleaner '..vim.fn.fnameescape(vim.fn.expand('%:p'))..'\\r')<cr>",
             "Clean in BuildTerminal",
         },
     },

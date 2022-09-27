@@ -1,8 +1,7 @@
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
-require("nvim-lsp-installer").setup {}
+require("nvim-lsp-installer").setup({})
 local lspconfig = require("lspconfig")
-
 
 local on_attach = function(client)
     vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -53,12 +52,12 @@ end
 -- local sumneko_root_path = "/opt/homebrew/bin/lua-language-server"
 
 -- local sumneko_binary = sumneko_root_path .. "/bin/" .. system_name .. "/lua-language-server"
-local sumneko_binary = os.getenv("HOMEBREW_PREFIX").."/bin/lua-language-server"
+local sumneko_binary = os.getenv("HOMEBREW_PREFIX") .. "/bin/lua-language-server"
 
 lspconfig.sumneko_lua.setup({
     on_attach = on_attach,
     capabilities = capabilities,
-    cmd = { sumneko_binary, "-E"},
+    cmd = { sumneko_binary, "-E" },
     settings = {
         Lua = {
             runtime = {
@@ -144,7 +143,7 @@ lspconfig.ltex.setup({
             enabled = { "latex", "tex", "bib", "markdown" },
             language = "fr",
             diagnosticSeverity = "information",
-            setenceCacheSize = 2000,
+            setenceCacheSize = 5000,
             additionalRules = {
                 enablePickyRules = true,
                 motherTongue = "fr",
@@ -153,11 +152,19 @@ lspconfig.ltex.setup({
                 nodes = { CodeBlock = "ignore", FencedCodeBlock = "ignore", AutoLink = "dummy", Code = "dummy" },
             },
             trace = { server = "verbose" },
-            dictionary = { fr = { "align" } },
+            dictionary = {
+                fr = { "align" },
+                ["en-us"] = { "TODO", "freeform", "mathrm", "mathbf", "gauss", "frac", "nabla", "arctan" },
+            },
+            -- hiddenFalsePositives = { ["en-us"] = { "\\\\\\\\\\\\w+" } },
+            hiddenFalsePositives = {
+                -- ["en-us"] = { { rule = "MORFOLOGIK_RULE_EN_US", sentence = "\\\\\\\\begin{align}([^\\\\$]+)\\\\\\\\end{align}" } },
+                ["en-us"] = { { rule = "MORFOLOGIK_RULE_EN_US", sentence = "^.*(@\\\\w+).*\\$" } },
+            },
             disabledRules = {
                 fr = {
                     "APOS_TYP",
-                    "FR_SPELLING_RULE",
+                    -- "FR_SPELLING_RULE",
                     "FRENCH_WHITESPACE",
                     "COMMA_PARENTHESIS_WHITESPACE",
                     "FLECHES",
@@ -166,7 +173,7 @@ lspconfig.ltex.setup({
                     "TIRET_BAS",
                     "TOO_LONG_SENTENCE",
                 },
-                en = {
+                ["en-us"] = {
                     "WORD_CONTAINS_UNDERSCORE",
                     "FILE_EXTENSIONS_CASE",
                     "SENTENCE_FRAGMENT",

@@ -1,7 +1,6 @@
 -----------------------------THEME------------------------------
 return {
     config = function()
-        vim.cmd.colorscheme("rose-pine")
         vim.g["&fcs"] = "eob: "
         vim.opt.termguicolors = true
         vim.opt.showmode = false

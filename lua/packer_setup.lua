@@ -13,6 +13,12 @@ return require("packer").startup({
             end,
             opt = true,
         })
+        use({
+            "ThePrimeagen/harpoon",
+            config = function()
+                require("plugin_config.harpoon").setup()
+            end,
+        })
         use("lewis6991/impatient.nvim")
         use({
             "rafcamlet/nvim-luapad",
@@ -25,28 +31,31 @@ return require("packer").startup({
             opt = true,
             cmd = { "Copilot" },
         })
+
         use({
             "zbirenbaum/copilot.lua",
             event = { "VimEnter" },
             module = "copilot",
             config = function()
                 vim.defer_fn(function()
-                    require("copilot").setup({ ft_disable = { "pandoc", "markdown" } })
+                    require("copilot").setup({
+                        cmp = { enabled = true, method = "getCompletionsCycling" },
+                        ft_disable = { "pandoc", "markdown" },
+                    })
                 end, 100)
             end,
         })
         use({
             "anuvyklack/pretty-fold.nvim",
-            event = { "BufNewFile", "BufRead" },
+            -- event = { "BufNewFile", "BufRead" },
             config = function()
                 require("pretty-fold").setup({ default_keybindings = false })
-                -- require("pretty-fold.preview").setup()
             end,
         })
 
         use({
             "numToStr/Comment.nvim",
-            event = { "BufNewFile", "BufRead" },
+            -- event = { "BufNewFile", "BufRead" },
             config = function()
                 require("plugin_config/comment")
             end,
@@ -102,8 +111,8 @@ return require("packer").startup({
         })
         use({
             "tpope/vim-eunuch",
-            cmd = { "Delete", "Move", "Rename", "Chmod", "Mkdir", "SudoWrite", "SudoEdit" },
-            event = { "BufNewFile" },
+            -- cmd = { "Delete", "Move", "Rename", "Chmod", "Mkdir", "SudoWrite", "SudoEdit" , "Duplicate", "Remove", "Unlink"},
+            -- event = { "BufNewFile" },
         })
 
         use({
@@ -113,7 +122,6 @@ return require("packer").startup({
             end,
             ft = require("plugin_config.ft").ctags_ft,
         })
-        -- use({ "lervag/vimtex", ft = { "tex" } })
         use({
             "windwp/nvim-autopairs",
             after = "nvim-cmp",
@@ -138,11 +146,20 @@ return require("packer").startup({
         use({
             "rose-pine/neovim",
             config = function()
+                vim.cmd.colorscheme("rose-pine")
                 require("plugin_config/theme").config()
             end,
             as = "maintheme",
         })
-        use({ "f-person/auto-dark-mode.nvim" })
+        -- use({
+        --     "sam4llis/nvim-tundra",
+        --     config = function()
+        --         vim.cmd.colorscheme("tundra")
+        --         require("plugin_config/theme").config()
+        --     end,
+        --     as = "maintheme",
+        -- })
+        use({ "psliwka/termcolors.nvim", cmd = "TermcolorsShow" })
 
         use({
             "nvim-lualine/lualine.nvim",
@@ -176,7 +193,7 @@ return require("packer").startup({
             config = function()
                 require("plugin_config/neotest")
             end,
-            wants = {"nvim-treesitter"},
+            wants = { "nvim-treesitter" },
             requires = {
                 { "nvim-lua/plenary.nvim", module = "plenary" },
                 {
@@ -198,7 +215,7 @@ return require("packer").startup({
 
         use({
             "echasnovski/mini.nvim",
-            event = { "BufNewFile", "BufRead" },
+            -- event = { "BufNewFile", "BufRead" },
             config = function()
                 require("mini.indentscope").setup()
                 vim.cmd([[autocmd TermOpen * lua vim.b.miniindentscope_disable = true]])
@@ -256,7 +273,7 @@ return require("packer").startup({
                     module_pattern = "telescope._extensions.fzf*",
                 },
             },
-            wants = { "project.nvim", "nvim-treesitter"},
+            wants = { "project.nvim", "nvim-treesitter" },
             setup = function()
                 function TelescopeTags()
                     require("telescope.builtin").tags({ ctags_file = vim.fn.tagfiles()[1] })
@@ -266,23 +283,23 @@ return require("packer").startup({
                 require("plugin_config/telescope")
             end,
         })
-        use({
-            "voldikss/vim-floaterm",
-            cmd = { "FloatermNew", "FloatermToggle", "FloatermShow" },
-            setup = function()
-                LazyGitOpener = function()
-                    if vim.api.nvim_command_output("FloatermShow --name='lazygit' --title='LazyGit'") ~= "" then
-                        vim.api.nvim_command(
-                            "FloatermNew --name='lazygit' --title='LazyGit' --width=0.95 --height=0.95 --autoclose=1 lazygit"
-                        )
-                    end
-                end
-                vim.g.floaterm_opener = "edit"
-            end,
-            config = function()
-                vim.cmd([[hi FloatermBorder guibg=None]])
-            end,
-        })
+        -- use({
+        --     "voldikss/vim-floaterm",
+        --     cmd = { "FloatermNew", "FloatermToggle", "FloatermShow" },
+        --     setup = function()
+        --         LazyGitOpener = function()
+        --             if vim.api.nvim_command_output("FloatermShow --name='lazygit' --title='LazyGit'") ~= "" then
+        --                 vim.api.nvim_command(
+        --                     "FloatermNew --name='lazygit' --title='LazyGit' --width=0.95 --height=0.95 --autoclose=1 lazygit"
+        --                 )
+        --             end
+        --         end
+        --         vim.g.floaterm_opener = "edit"
+        --     end,
+        --     config = function()
+        --         vim.cmd([[hi FloatermBorder guibg=None]])
+        --     end,
+        -- })
 
         -- Redaction
         use({
@@ -325,6 +342,9 @@ return require("packer").startup({
             "zbirenbaum/copilot-cmp",
             module = "copilot_cmp",
             after = { "copilot.lua", "nvim-cmp" },
+            config = function()
+                require("copilot_cmp").setup()
+            end,
         })
 
         use({
@@ -454,7 +474,7 @@ return require("packer").startup({
 
         use({
             "robertgzr/todo-comments.nvim",
-            event = { "BufNewFile", "BufRead" },
+            -- event = { "BufNewFile", "BufRead" },
             -- cmd = { "TodoTrouble" },
             requires = { "nvim-lua/plenary.nvim", module = "plenary" },
             config = function()
@@ -514,8 +534,8 @@ return require("packer").startup({
 
         use({
             "nvim-treesitter/nvim-treesitter",
-            event = { "BufNewFile", "BufRead" },
-            module = { "nvim-treesitter" },
+            --event = { "BufNewFile", "BufRead" },
+            --module = { "nvim-treesitter" },
             run = ":TSUpdate",
             wants = { "nvim-treesitter-context" },
             requires = { { "romgrk/nvim-treesitter-context", opt = true } },
@@ -551,7 +571,6 @@ return require("packer").startup({
             ft = require("plugin_config.ft").lsp_ft,
             module = "lspconfig",
             module_pattern = "lspconfig/*",
-            commit = "21102d5e3b6ffc6929d60418581ac1a29ee9eddd",
             config = function()
                 require("plugin_config/lspconfig")
                 require("which-key").register({
@@ -586,6 +605,12 @@ return require("packer").startup({
                     module = "nvim-lsp-installer",
                     cmd = { "LspInstall" },
                 },
+                {
+                    "barreiroleo/ltex_extra.nvim",
+                    opt = true,
+                    module = "ltex_extra",
+                },
+
                 {
                     "https://gitlab.com/yorickpeterse/nvim-dd.git",
                     after = "nvim-lspconfig",

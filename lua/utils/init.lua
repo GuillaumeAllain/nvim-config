@@ -20,12 +20,20 @@ local function _get_kitty_theme()
 end
 
 function m.export_theme_to_kitty()
+    local altfile = vim.fn.getreg("#")
+    local localfile = vim.fn.getreg("%")
     api.nvim_command("nos e " .. vim.fn.expand("$XDG_CACHE_HOME/kitty/nvim_theme.conf")) -- equivalent to :enew
     api.nvim_buf_set_lines(0, 0, -1, false, _get_kitty_theme())
     api.nvim_command("silent !mkdir -p %:h")
     api.nvim_command("silent w")
-    api.nvim_command("bd!")
+    api.nvim_command("silent! bd!")
     api.nvim_command("silent !kitty @ set-colors --all --configured ~/.config/kitty/kitty.conf")
+    api.nvim_command("silent! edit "..localfile)
+    if altfile ~= "" then
+        vim.fn.setreg("#", altfile)
+    else
+        vim.cmd[["let @# = ''"]]
+    end
 end
 
 function m.log_to_file(message, file)
@@ -113,6 +121,30 @@ function m.toggle_build_buffer_window()
     if not window_closed then
         m.open_build_buffer_window()
     end
+end
+
+function m.toggle_background()
+    local altfile = vim.fn.getreg("#")
+    local localfile = vim.fn.getreg("%")
+    api.nvim_command("nos e " .. vim.fn.stdpath("config") .. "/init.lua") -- equivalent to :enew
+    if vim.opt.background:get() == "light" then
+        vim.opt.background = "dark"
+        api.nvim_command("silent! %s/vim.opt.background\\s*=\\s*\"\\(light\\)/vim.opt.background=\"dark")
+    else
+        vim.opt.background = "light"
+        api.nvim_command("silent! %s/vim.opt.background\\s*=\\s*\"\\(dark\\)/vim.opt.background=\"light")
+    end
+    api.nvim_command("silent w")
+    api.nvim_command("silent! bd!")
+    api.nvim_command("silent! edit "..localfile)
+    if altfile ~= "" then
+        vim.fn.setreg("#", altfile)
+    else
+        vim.cmd[["let @# = ''"]]
+    end
+    require("plugin_config/lualine").config()
+    require("plugin_config/theme").config()
+    m.export_theme_to_kitty()
 end
 
 m.log_autocmds_toggle = require("utils.log_autocmds").log_autocmds_toggle

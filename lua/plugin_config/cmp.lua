@@ -1,8 +1,6 @@
 local cmp = require("cmp")
 local types = require("cmp.types")
 
-
-
 cmp.setup({
     window = {
         completion = cmp.config.window.bordered(),
@@ -14,20 +12,20 @@ cmp.setup({
     },
     mapping = {
         ["<C-L>"] = {
-            i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
-            c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+            i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace }),
+            c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace }),
         },
         ["<C-n>"] = {
-            i = cmp.mapping.select_next_item({ behavior = types.cmp.SelectBehavior.Insert }),
-            c = cmp.mapping.select_next_item({ behavior = types.cmp.SelectBehavior.Insert }),
+            i = cmp.mapping.select_next_item({ behavior = types.cmp.SelectBehavior.Replace }),
+            c = cmp.mapping.select_next_item({ behavior = types.cmp.SelectBehavior.Replace }),
         },
         ["<C-p>"] = {
-            i = cmp.mapping.select_prev_item({ behavior = types.cmp.SelectBehavior.Insert }),
-            c = cmp.mapping.select_prev_item({ behavior = types.cmp.SelectBehavior.Insert }),
+            i = cmp.mapping.select_prev_item({ behavior = types.cmp.SelectBehavior.Replace }),
+            c = cmp.mapping.select_prev_item({ behavior = types.cmp.SelectBehavior.Replace }),
         },
     },
     sources = cmp.config.sources({
-        { name = "copilot", keyword_length = 0, priority=900 },
+        { name = "copilot", keyword_length = 0, priority = 900 },
         { name = "vsnip", priority = 1000, keyword_length = 3 },
         { name = "nvim_lsp", keyword_length = 3 },
         { name = "path", keyword_length = 3 },
@@ -106,7 +104,7 @@ cmp.setup.cmdline(":", {
 })
 cmp.setup.cmdline("/", {
     sources = {
-        { name = "buffer" ,keyword_length = 3 },
+        { name = "buffer", keyword_length = 3 },
     },
 })
 
@@ -126,6 +124,21 @@ end
 cmp.setup.filetype({ "pandoc", "markdown" }, {
     sources = redact_sources(),
 })
+local liseq_sources = function()
+    -- local default_sources = require("cmp.config").global.sources
+    -- local new_sources = {}
+    -- for index, _ in ipairs(default_sources) do
+    --     if default_sources[index].name ~= "copilot" then
+    --         new_sources[#new_sources + 1] = default_sources[index]
+    --     end
+    -- end
+    return require("cmp.utils.misc").concat(require("cmp.config").global.sources, {
+        { name = "tags", keyword_length = 2 },
+    })
+end
+cmp.setup.filetype({ "codevlisp" }, {
+    sources = liseq_sources(),
+})
 
 -- print(require"cmp.config.sources")
 cmp.setup.filetype("TelescopePrompt", { enabled = false })
@@ -138,7 +151,6 @@ cmp.setup.filetype("TelescopePrompt", { enabled = false })
 -- vim.cmd[[startinsert|]]
 -- vim.fn.feedkeys("function")
 -- print(require("cmp.config").enabled())
---
 
 _G.toggle_cmp = function()
     local enabled = require("cmp.config").get().enabled

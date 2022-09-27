@@ -61,8 +61,10 @@ if vim.loop.os_uname().sysname == "Darwin" then
     }
 end
 vim.opt.clipboard = "unnamed"
+vim.opt.fixeol = false
 
-vim.opt.completeopt = "menuone,noselect"
+-- vim.opt.completeopt = "menuone,noselect"
+vim.opt.completeopt = "menu,menuone,noinsert,noselect"
 vim.opt.shortmess = "a" .. vim.o.shortmess .. "c" .. "I"
 vim.opt.hidden = true
 vim.opt.expandtab = true

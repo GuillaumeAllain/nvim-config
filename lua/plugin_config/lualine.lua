@@ -1,7 +1,7 @@
 -- Change the background of lualine_c section for normal mode
 return {
     config = function()
-        local status = vim.opt.laststatus
+        -- local status = vim.opt.laststatus:get()
         local custom_term = require("lualine.themes.auto")
 
         local conditions = {
@@ -64,7 +64,7 @@ return {
                 component_separators = { "", "" },
                 section_separators = { "", "" },
             },
-            sections ={},
+            sections = {},
             tabline = {
                 lualine_a = { "mode" },
                 lualine_b = {
@@ -133,6 +133,6 @@ return {
                 lualine_z = {},
             },
         })
-        vim.opt.laststatus = status
+        vim.opt.laststatus = 0
     end,
 }

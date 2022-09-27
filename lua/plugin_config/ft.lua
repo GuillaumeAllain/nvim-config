@@ -42,6 +42,6 @@ m.lsp_ft = {
 -- end
 
 -- m.ctags_ft = get_ctags_ft()
-m.ctags_ft = {"pandoc","markdown"}
+m.ctags_ft = {"pandoc","markdown","codevlisp"}
 
 return m

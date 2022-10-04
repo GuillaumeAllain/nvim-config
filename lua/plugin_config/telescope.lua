@@ -22,6 +22,7 @@ require("telescope").setup({
         path_display = { "shorten" },
         -- color_devicons = true,
         -- use_less = true,
+        layout_strategy = "horizontal",
         layout_config = {
             horizontal = {
                 prompt_position = "bottom",
@@ -69,6 +70,25 @@ require("telescope").setup({
         },
         bibtex = {
             depth = 2,
+        },
+        ["ui-select"] = {
+            require("telescope.themes").get_dropdown({
+                -- even more opts
+            }),
+
+            -- pseudo code / specification for writing custom displays, like the one
+            -- for "codeactions"
+            -- specific_opts = {
+            --   [kind] = {
+            --     make_indexed = function(items) -> indexed_items, width,
+            --     make_displayer = function(widths) -> displayer
+            --     make_display = function(displayer) -> function(e)
+            --     make_ordinal = function(e) -> string
+            --   },
+            --   -- for example to disable the custom builtin "codeactions" display
+            --      do the following
+            --   codeactions = false,
+            -- }
         },
     },
 
@@ -128,3 +148,4 @@ require("telescope").load_extension("file_browser")
 require("telescope").load_extension("bibtex")
 require("telescope").load_extension("heading")
 require("telescope").load_extension("howdoi")
+require("telescope").load_extension("ui-select")

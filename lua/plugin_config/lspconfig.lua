@@ -125,10 +125,22 @@ lspconfig.julials.setup({
 -- require("grammar-guard").init()
 
 -- lspconfig.grammar_guard.setup({
-local ltex_path = os.getenv("HOMEBREW_PREFIX") .. "/bin/ltex-ls"
+-- local ltex_path = os.getenv("HOMEBREW_PREFIX") .. "/bin/ltex-ls"
+local ltex_path = vim.fn.expand("$HOMEBREW_PREFIX/bin/ltex-ls")
+vim.fn.system("mkdir -p $XDG_CACHE_HOME/ltex/")
 
 lspconfig.ltex.setup({
-    on_attach = on_attach(),
+    -- on_attach = on_attach(),
+    on_attach = function(client, bufnr)
+        -- your other on_attach functions.
+        on_attach(client)
+        require("ltex_extra").setup({
+            load_langs = { "fr", "en-us" }, -- table <string> : languages for witch dictionaries will be loaded
+            init_check = true, -- boolean : whether to load dictionaries on startup
+            path = vim.fn.expand("$XDG_CONFIG_HOME/ltex/"), -- string : path to store dictionaries. Relative path uses current working directory
+            log_level = "none", -- string : "none", "trace", "debug", "info", "warn", "error", "fatal"
+        })
+    end,
     cmd = { ltex_path },
     filetypes = { "pandoc", "latex", "tex", "bib", "markdown" },
     get_language_id = function(_, ftype)
@@ -152,41 +164,41 @@ lspconfig.ltex.setup({
                 nodes = { CodeBlock = "ignore", FencedCodeBlock = "ignore", AutoLink = "dummy", Code = "dummy" },
             },
             trace = { server = "verbose" },
-            dictionary = {
-                fr = { "align" },
-                ["en-us"] = { "TODO", "freeform", "mathrm", "mathbf", "gauss", "frac", "nabla", "arctan" },
-            },
-            -- hiddenFalsePositives = { ["en-us"] = { "\\\\\\\\\\\\w+" } },
-            hiddenFalsePositives = {
-                -- ["en-us"] = { { rule = "MORFOLOGIK_RULE_EN_US", sentence = "\\\\\\\\begin{align}([^\\\\$]+)\\\\\\\\end{align}" } },
-                ["en-us"] = { { rule = "MORFOLOGIK_RULE_EN_US", sentence = "^.*(@\\\\w+).*\\$" } },
-            },
-            disabledRules = {
-                fr = {
-                    "APOS_TYP",
-                    -- "FR_SPELLING_RULE",
-                    "FRENCH_WHITESPACE",
-                    "COMMA_PARENTHESIS_WHITESPACE",
-                    "FLECHES",
-                    "WHITESPACE_RULE",
-                    "ESPACE_POURCENT",
-                    "TIRET_BAS",
-                    "TOO_LONG_SENTENCE",
-                },
-                ["en-us"] = {
-                    "WORD_CONTAINS_UNDERSCORE",
-                    "FILE_EXTENSIONS_CASE",
-                    "SENTENCE_FRAGMENT",
-                    "DASH_RULE",
-                    "TOO_LONG_SENTENCE",
-                    "TOO_LONG_PARAGRAPH",
-                    "PASSIVE_VOICE",
-                    "PUNCTUATION_PARAGRAPH_END",
-                    "COMMA_PARENTHESIS_WHITESPACE",
-                    "EN_QUOTES",
-                    "NON_STANDARD_WORD",
-                },
-            },
+            -- dictionary = {
+            --     fr = { "align" },
+            --     ["en-us"] = { "TODO", "freeform", "mathrm", "mathbf", "gauss", "frac", "nabla", "arctan" },
+            -- },
+            -- -- hiddenFalsePositives = { ["en-us"] = { "\\\\\\\\\\\\w+" } },
+            -- hiddenFalsePositives = {
+            --     -- ["en-us"] = { { rule = "MORFOLOGIK_RULE_EN_US", sentence = "\\\\\\\\begin{align}([^\\\\$]+)\\\\\\\\end{align}" } },
+            --     ["en-us"] = { { rule = "MORFOLOGIK_RULE_EN_US", sentence = "^.*(@\\\\w+).*\\$" } },
+            -- },
+            -- disabledRules = {
+            --     fr = {
+            --         "APOS_TYP",
+            --         -- "FR_SPELLING_RULE",
+            --         "FRENCH_WHITESPACE",
+            --         "COMMA_PARENTHESIS_WHITESPACE",
+            --         "FLECHES",
+            --         "WHITESPACE_RULE",
+            --         "ESPACE_POURCENT",
+            --         "TIRET_BAS",
+            --         "TOO_LONG_SENTENCE",
+            --     },
+            --     ["en-us"] = {
+            --         "WORD_CONTAINS_UNDERSCORE",
+            --         "FILE_EXTENSIONS_CASE",
+            --         "SENTENCE_FRAGMENT",
+            --         "DASH_RULE",
+            --         "TOO_LONG_SENTENCE",
+            --         "TOO_LONG_PARAGRAPH",
+            --         "PASSIVE_VOICE",
+            --         "PUNCTUATION_PARAGRAPH_END",
+            --         "COMMA_PARENTHESIS_WHITESPACE",
+            --         "EN_QUOTES",
+            --         "NON_STANDARD_WORD",
+            --     },
+            -- },
         },
     },
 })

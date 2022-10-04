@@ -39,6 +39,7 @@ vim.filetype.add({
 
 -- vim.g.vimsyn_embed  = 1
 
+vim.opt.termguicolors = true
 vim.opt.pumheight = 10
 vim.opt.timeoutlen = 200
 vim.opt.scl = "yes"
@@ -103,7 +104,7 @@ vim.g.netrw_banner = 0
 vim.g.netrw_liststyle = 3
 vim.g.pyindent_searchpair_timeout = 10
 vim.g.netrw_winsize = 20
-vim.opt.laststatus = 0
+vim.opt.laststatus = 3
 
 vim.cmd('command! -nargs=* W w')
 vim.cmd.au({'BufWritePre', '/tmp/*', 'setlocal', 'noundofile',bang=true})

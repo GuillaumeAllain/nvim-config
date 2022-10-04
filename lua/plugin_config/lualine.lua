@@ -64,9 +64,12 @@ return {
                 component_separators = { "", "" },
                 section_separators = { "", "" },
             },
-            sections = {},
-            tabline = {
-                lualine_a = { "mode" },
+            -- sections = {},
+            sections = {
+                lualine_a = {
+
+                    "mode"
+                },
                 lualine_b = {
                     function()
                         return "%="
@@ -133,6 +136,6 @@ return {
                 lualine_z = {},
             },
         })
-        vim.opt.laststatus = 0
+        vim.opt.laststatus = 3
     end,
 }

@@ -248,6 +248,11 @@ return require("packer").startup({
                     module_pattern = "telescope._extensions.file_browser*",
                 },
                 {
+                    "nvim-telescope/telescope-ui-select.nvim",
+                    -- opt = true,
+                    -- module_pattern = "telescope._extensions.ui-select*",
+                },
+                {
                     "crispgm/telescope-heading.nvim",
                     opt = true,
                     module_pattern = "telescope._extensions.heading*",
@@ -324,7 +329,7 @@ return require("packer").startup({
                 vim.api.nvim_exec(
                     [[
                 autocmd FileType * call vsnip#get_complete_items(bufnr())
-                ]]   ,
+                ]],
                     false
                 )
                 vim.cmd([[
@@ -343,7 +348,9 @@ return require("packer").startup({
             module = "copilot_cmp",
             after = { "copilot.lua", "nvim-cmp" },
             config = function()
-                require("copilot_cmp").setup()
+                require("copilot_cmp").setup({
+                    clear_after_cursor = true,
+                })
             end,
         })
 
@@ -529,6 +536,32 @@ return require("packer").startup({
             requires = { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
             config = function()
                 require("trouble").setup({})
+            end,
+        })
+        use({
+            "folke/noice.nvim",
+            event = "VimEnter",
+            module = "noice/*",
+            config = function()
+                require("noice").setup()
+            end,
+            requires = {
+                -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+                "MunifTanjim/nui.nvim",
+                "rcarriga/nvim-notify",
+                "hrsh7th/nvim-cmp",
+            },
+        })
+        use({
+            "MunifTanjim/nui.nvim",
+        })
+        use({
+            "rcarriga/nvim-notify",
+            setup = function()
+                vim.notify = require("notify")
+                require("notify").setup({
+                    background_colour = "#000000",
+                })
             end,
         })
 

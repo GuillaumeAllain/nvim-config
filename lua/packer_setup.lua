@@ -61,12 +61,12 @@ return require("packer").startup({
             end,
         })
 
-        use({
-            "luukvbaal/stabilize.nvim",
-            config = function()
-                require("stabilize").setup()
-            end,
-        })
+        -- use({
+        --     "luukvbaal/stabilize.nvim",
+        --     config = function()
+        --         require("stabilize").setup()
+        --     end,
+        -- })
         use({
             "PyGamer0/vim-apl",
             ft = "apl",
@@ -329,7 +329,7 @@ return require("packer").startup({
                 vim.api.nvim_exec(
                     [[
                 autocmd FileType * call vsnip#get_complete_items(bufnr())
-                ]],
+                ]]   ,
                     false
                 )
                 vim.cmd([[
@@ -480,7 +480,7 @@ return require("packer").startup({
         })
 
         use({
-            "robertgzr/todo-comments.nvim",
+            "folke/todo-comments.nvim",
             -- event = { "BufNewFile", "BufRead" },
             -- cmd = { "TodoTrouble" },
             requires = { "nvim-lua/plenary.nvim", module = "plenary" },
@@ -543,7 +543,15 @@ return require("packer").startup({
             event = "VimEnter",
             module = "noice/*",
             config = function()
-                require("noice").setup()
+                require("noice").setup({
+                    popupmenu = {
+                        enabled = false, -- disable if you use something like cmp-cmdline
+                        ---@type 'nui'|'cmp'
+                        backend = "cmp", -- backend to use to show regular cmdline completions
+                        -- You can specify options for nui under `config.views.popupmenu`
+                    },
+                    throttle = 1000 / 30,
+                })
             end,
             requires = {
                 -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
@@ -561,6 +569,9 @@ return require("packer").startup({
                 vim.notify = require("notify")
                 require("notify").setup({
                     background_colour = "#000000",
+                    on_open = function(win)
+                        vim.api.nvim_win_set_config(win, { focusable = false })
+                    end,
                 })
             end,
         })
@@ -655,6 +666,7 @@ return require("packer").startup({
         })
     end,
     config = {
+        max_jobs = 50,
         display = {
             open_fn = require("packer.util").float,
         },

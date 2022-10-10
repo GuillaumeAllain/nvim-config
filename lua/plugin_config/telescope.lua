@@ -17,7 +17,7 @@ require("telescope").setup({
         --     "--smart-case",
         -- },
         -- file_sorter = require("telescope.sorters").get_fuzzy_file,
-        file_ignore_patterns = { ".*.hdf5" },
+        file_ignore_patterns = { ".*.hdf5", ".*.h5" },
         -- generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
         path_display = { "shorten" },
         -- color_devicons = true,
@@ -25,7 +25,7 @@ require("telescope").setup({
         layout_strategy = "horizontal",
         layout_config = {
             horizontal = {
-                prompt_position = "bottom",
+                prompt_position = "top",
                 preview_width = 0.55,
                 results_width = 0.8,
             },
@@ -149,3 +149,4 @@ require("telescope").load_extension("bibtex")
 require("telescope").load_extension("heading")
 require("telescope").load_extension("howdoi")
 require("telescope").load_extension("ui-select")
+require("telescope").load_extension("notify")

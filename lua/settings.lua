@@ -40,12 +40,13 @@ vim.filetype.add({
 -- vim.g.vimsyn_embed  = 1
 
 vim.opt.termguicolors = true
+vim.opt.splitkeep = "screen"
 vim.opt.pumheight = 10
 vim.opt.timeoutlen = 200
 vim.opt.scl = "yes"
 vim.opt.splitright = true
 vim.opt.splitbelow = true
-vim.opt.updatetime = 1000
+vim.opt.updatetime = 100
 vim.opt.scl = "auto"
 if vim.loop.os_uname().sysname == "Darwin" then
     vim.g.clipboard = {
@@ -106,15 +107,14 @@ vim.g.pyindent_searchpair_timeout = 10
 vim.g.netrw_winsize = 20
 vim.opt.laststatus = 3
 
-vim.cmd('command! -nargs=* W w')
-vim.cmd.au({'BufWritePre', '/tmp/*', 'setlocal', 'noundofile',bang=true})
-vim.cmd.au({'User', 'Startified', 'setlocal', 'buflisted',bang=true})
-vim.cmd.au({'Filetype', 'help', ':wincmd L | :vert resize 90',bang=true})
-vim.cmd.au({'TermOpen', '*', 'setlocal', 'nonumber norelativenumber | startinsert',bang=true})
-vim.cmd.au({'TextYankPost', '*', 'silent! lua vim.highlight.on_yank{timeout=75,bang=true}',bang=true})
-vim.g["$MANPAGER"] = 'nvr +Man! -'
+vim.cmd("command! -nargs=* W w")
+vim.cmd.au({ "BufWritePre", "/tmp/*", "setlocal", "noundofile", bang = true })
+vim.cmd.au({ "User", "Startified", "setlocal", "buflisted", bang = true })
+vim.cmd.au({ "Filetype", "help", ":wincmd L | :vert resize 90", bang = true })
+-- vim.cmd.au({'TermOpen', '*', 'setlocal', 'nonumber norelativenumber | startinsert',bang=true})
+vim.cmd.au({ "TextYankPost", "*", "silent! lua vim.highlight.on_yank{timeout=75,bang=true}", bang = true })
+vim.g["$MANPAGER"] = "nvr +Man! -"
 vim.opt.path = vim.opt.path + ".,**"
-
 
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
@@ -132,5 +132,5 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
     update_in_insert = false,
 })
 vim.diagnostic.config({
-  virtual_text = false,
+    virtual_text = false,
 })

@@ -4,6 +4,15 @@ return {
         -- local status = vim.opt.laststatus:get()
         local custom_term = require("lualine.themes.auto")
 
+        local function show_macro_recording()
+            local recording_register = vim.fn.reg_recording()
+            if recording_register == "" then
+                return ""
+            else
+                return "Recording @" .. recording_register
+            end
+        end
+
         local conditions = {
             buffer_not_empty = function()
                 return vim.fn.empty(vim.fn.expand("%:t")) ~= 1
@@ -71,6 +80,10 @@ return {
                     "mode"
                 },
                 lualine_b = {
+                    {
+                "macro-recording",
+                fmt = show_macro_recording,
+            },
                     function()
                         return "%="
                     end,

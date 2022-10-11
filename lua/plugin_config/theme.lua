@@ -21,5 +21,7 @@ return {
         vim.cmd.hi({"link", "TelescopePromptBorder", "DiagnosticInfo",bang=true})
         vim.cmd.hi({"link", "TelescopeResultsBorder", "DiagnosticInfo",bang=true})
         vim.cmd.hi({"link", "TelescopePreviewBorder", "DiagnosticInfo",bang=true})
+        vim.cmd.hi({"link", "HarpoonWindow", "Normal",bang=true})
+        vim.cmd.hi({"link", "HarpoonBorder", "DiagnosticInfo",bang=true})
     end,
 }

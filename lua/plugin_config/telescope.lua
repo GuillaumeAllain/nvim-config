@@ -90,6 +90,18 @@ require("telescope").setup({
             --   codeactions = false,
             -- }
         },
+        todo = {
+            mappings = {
+                i = {
+                    ["C-n"] = require("telescope.actions").move_selection_next,
+                    ["C-p"] = require("telescope.actions").move_selection_previous,
+                },
+                n = {
+                    ["C-n"] = require("telescope.actions").move_selection_next,
+                    ["C-p"] = require("telescope.actions").move_selection_previous,
+                },
+            },
+        },
     },
 
     pickers = {
@@ -142,11 +154,13 @@ require("telescope").setup({
         },
     },
 })
-require("telescope").load_extension("fzf")
-require("telescope").load_extension("projects")
-require("telescope").load_extension("file_browser")
-require("telescope").load_extension("bibtex")
-require("telescope").load_extension("heading")
-require("telescope").load_extension("howdoi")
-require("telescope").load_extension("ui-select")
-require("telescope").load_extension("notify")
+local telescope = require("telescope")
+telescope.load_extension("fzf")
+telescope.load_extension("projects")
+telescope.load_extension("file_browser")
+telescope.load_extension("bibtex")
+telescope.load_extension("heading")
+telescope.load_extension("howdoi")
+telescope.load_extension("ui-select")
+telescope.load_extension("notify")
+telescope.load_extension("todo-comments")

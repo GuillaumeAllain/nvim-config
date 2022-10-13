@@ -85,7 +85,7 @@ vim.opt.ssop = "blank,buffers,curdir,help,terminal"
 
 -- vim.opt.number = true
 -- vim.opt.relativenumber = true
-vim.opt.lazyredraw = true
+-- vim.opt.lazyredraw = true
 
 vim.opt.undofile = true
 vim.opt.softtabstop = 4

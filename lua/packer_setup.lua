@@ -483,6 +483,7 @@ return require("packer").startup({
             "folke/todo-comments.nvim",
             -- event = { "BufNewFile", "BufRead" },
             -- cmd = { "TodoTrouble" },
+            -- module_pattern = { "todo-comments/*", "telescope._extensions.todo-comments*" },
             requires = { "nvim-lua/plenary.nvim", module = "plenary" },
             config = function()
                 require("todo-comments").setup({

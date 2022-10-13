@@ -45,7 +45,7 @@ require("which-key").register({
         a = { "<cmd>Panotes openTagInput<cr>", "open tags" },
         s = { "<cmd>Panotes searchTags<cr>", "search tags" },
         c = { "<cmd>Panotes capture<cr>", "capture" },
-        t = { "<cmd>Panotes change_cwd_to_notes_dir<cr>:TodoTelescope<cr> ", "capture" },
+        t = { "<cmd>Panotes change_cwd_to_notes_dir<cr><cmd>Telescope todo-comments todo<cr>", "capture" },
         g = {
             "<cmd>Panotes liveGrep<cr>",
             "live grep notes",

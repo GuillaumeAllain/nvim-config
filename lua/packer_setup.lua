@@ -244,36 +244,40 @@ return require("packer").startup({
 
         use({
             "nvim-telescope/telescope.nvim",
-            cmd = { "Telescope" },
-            module = { "telescope" },
+            -- cmd = { "Telescope" },
+            -- module = "telescope",
             tag = "0.1.0",
             requires = {
-                { "nvim-lua/popup.nvim", module = "popup" },
-                { "nvim-lua/plenary.nvim", module = "plenary" },
+                {
+                    "nvim-lua/popup.nvim",
+                    -- module = "popup"
+                },
+                {
+                    "nvim-lua/plenary.nvim",
+                    -- module = "plenary"
+                },
                 {
                     "nvim-telescope/telescope-file-browser.nvim",
-                    opt = true,
-                    module_pattern = "telescope._extensions.file_browser*",
+                    -- opt = true,
+                    -- module_pattern = "telescope._extensions.file_browser*",
                 },
                 {
                     "nvim-telescope/telescope-ui-select.nvim",
-                    -- opt = true,
-                    -- module_pattern = "telescope._extensions.ui-select*",
                 },
                 {
                     "crispgm/telescope-heading.nvim",
-                    opt = true,
-                    module_pattern = "telescope._extensions.heading*",
+                    -- opt = true,
+                    -- module_pattern = "telescope._extensions.heading*",
                 },
                 {
                     "nvim-telescope/telescope-bibtex.nvim",
-                    opt = true,
-                    module_pattern = "telescope._extensions.bibtex*",
+                    -- opt = true,
+                    -- module_pattern = "telescope._extensions.bibtex*",
                 },
                 {
                     "zane-/howdoi.nvim",
-                    opt = true,
-                    module_pattern = "telescope._extensions.howdoi*",
+                    -- opt = true,
+                    -- module_pattern = "telescope._extensions.howdoi*",
                     run = function()
                         vim.fn.system("pip install howdoi")
                     end,
@@ -282,8 +286,8 @@ return require("packer").startup({
                 {
                     "nvim-telescope/telescope-fzf-native.nvim",
                     run = "make",
-                    opt = true,
-                    module_pattern = "telescope._extensions.fzf*",
+                    -- opt = true,
+                    -- module_pattern = "telescope._extensions.fzf*",
                 },
             },
             wants = { "project.nvim", "nvim-treesitter" },
@@ -337,7 +341,7 @@ return require("packer").startup({
                 vim.api.nvim_exec(
                     [[
                 autocmd FileType * call vsnip#get_complete_items(bufnr())
-                ]]   ,
+                ]],
                     false
                 )
                 vim.cmd([[

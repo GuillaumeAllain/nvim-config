@@ -1,5 +1,5 @@
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 require("nvim-lsp-installer").setup({})
 local lspconfig = require("lspconfig")
 
@@ -7,19 +7,19 @@ local on_attach = function(client)
     vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
         update_in_insert = true,
     })
-    vim.diagnostic.open_float(nil, {
-        source = "always",
-    })
+    -- vim.diagnostic.open_float(nil, {
+    --     source = "always",
+    -- })
 end
 
 lspconfig.jedi_language_server.setup({
     on_attach = on_attach,
     capabilities = capabilities,
-    init_options = {
-        hover = {
-            enable = true,
-        },
-    },
+    -- init_options = {
+    --     hover = {
+    --         enable = true,
+    --     },
+    -- },
     root_dir = function(fname)
         return lspconfig.util.find_git_ancestor(fname) or vim.loop.os_homedir()
     end,
@@ -37,16 +37,16 @@ lspconfig.fortls.setup({
     },
 })
 
-local system_name
-if vim.fn.has("mac") == 1 then
-    system_name = "macOS"
-elseif vim.fn.has("unix") == 1 then
-    system_name = "Linux"
-elseif vim.fn.has("win32") == 1 then
-    system_name = "Windows"
-else
-    print("Unsupported system for sumneko")
-end
+-- local system_name
+-- if vim.fn.has("mac") == 1 then
+--     system_name = "macOS"
+-- elseif vim.fn.has("unix") == 1 then
+--     system_name = "Linux"
+-- elseif vim.fn.has("win32") == 1 then
+--     system_name = "Windows"
+-- else
+--     print("Unsupported system for sumneko")
+-- end
 
 -- set the path to the sumneko installation; if you previously installed via the now deprecated :LspInstall, use
 -- local sumneko_root_path = "/opt/homebrew/bin/lua-language-server"

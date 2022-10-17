@@ -21,6 +21,14 @@ return require("packer").startup({
         })
         use("lewis6991/impatient.nvim")
         use({
+            "zegervdv/nrpattern.nvim",
+            -- keys = { "<ctrl>x", "<ctrl>a" },
+            config = function()
+                require("plugin_config.nrpattern").setup()
+                -- require("nrpattern").setup()
+            end,
+        })
+        use({
             "rafcamlet/nvim-luapad",
             module = "luapad",
             module_pattern = "luapad.*",

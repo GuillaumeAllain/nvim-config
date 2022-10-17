@@ -18,7 +18,7 @@ require("which-key").register({
         f = { "<cmd>lua require('telescope.builtin').buffers()<cr>", "buffers" },
         s = { "<cmd>lua require('telescope').extensions.file_browser.file_browser()<cr>", "file browser" },
         d = { "<cmd>lua require('telescope.builtin').find_files()<cr>", "find files" },
-        c = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "find files" },
+        a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "code actions" },
         b = { "<cmd>lua require('telescope').extensions.bibtex.bibtex({format='markdown'})<cr>", "bibtex" },
         h = { "<cmd> Telescope howdoi<cr>", "howdoi" },
         l = {

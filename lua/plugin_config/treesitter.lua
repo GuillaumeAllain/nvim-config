@@ -1,7 +1,7 @@
 local m = {}
 
 function m.setup(treesitter_ft)
-    require("nvim-treesitter.install").compilers = { "gcc-11" }
+    -- require("nvim-treesitter.install").compilers = { "gcc-12" }
     require("nvim-treesitter.configs").setup({
         ensure_installed = treesitter_ft,
 

@@ -12,8 +12,8 @@ cmp.setup({
     },
     mapping = {
         ["<C-L>"] = {
-            i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true }),
-            c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true }),
+            i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
+            c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
         },
         ["<C-n>"] = {
             i = cmp.mapping.select_next_item({ behavior = types.cmp.SelectBehavior.Replace }),

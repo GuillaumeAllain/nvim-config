@@ -213,6 +213,10 @@ return require("packer").startup({
                     "rcarriga/neotest-python",
                     module = "neotest-python",
                 },
+                {
+                    "https://github.com/nvim-treesitter/playground",
+                    cmd = "TSPlaygroundToggle",
+                },
             },
         })
 
@@ -237,7 +241,10 @@ return require("packer").startup({
                 module = "plenary",
             },
             config = function()
-                require("gitsigns").setup()
+                require("gitsigns").setup({
+                    signcolumn = false, -- Toggle with `:Gitsigns toggle_signs`
+                    numhl = false,
+                })
             end,
             -- tag = 'release' -- To use the latest release
         })

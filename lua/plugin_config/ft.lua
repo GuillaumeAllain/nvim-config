@@ -17,7 +17,8 @@ m.treesitter_ft = {
     "markdown",
     "markdown_inline",
     "comment",
-    "vim"
+    "vim",
+    "query"
 }
 
 m.lsp_ft = {

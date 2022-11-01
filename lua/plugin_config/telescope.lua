@@ -121,7 +121,7 @@ require("telescope").setup({
                 require("telescope.actions.set").select:enhance({
                     post = function()
                         if vim.api.nvim_buf_get_name(0) ~= "" then
-                            vim.cmd.call("timer_start(0, { tid -> execute(':e')})")
+                            vim.cmd.call("timer_start(0, { tid -> execute(':e|normal zN')})")
                         end
                     end,
                 })
@@ -133,7 +133,7 @@ require("telescope").setup({
                 require("telescope.actions.set").select:enhance({
                     post = function()
                         if vim.api.nvim_buf_get_name(0) ~= "" then
-                            vim.cmd.call("timer_start(0, { tid -> execute(':e')})")
+                            vim.cmd.call("timer_start(0, { tid -> execute(':e|normal zN')})")
                         end
                     end,
                 })
@@ -145,7 +145,7 @@ require("telescope").setup({
                 require("telescope.actions.set").select:enhance({
                     post = function()
                         if vim.api.nvim_buf_get_name(0) ~= "" then
-                            vim.cmd.call("timer_start(0, { tid -> execute(':e|normal zO')})")
+                            vim.cmd.call("timer_start(0, { tid -> execute(':e|normal zN')})")
                         end
                     end,
                 })

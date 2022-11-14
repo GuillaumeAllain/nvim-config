@@ -69,12 +69,6 @@ return require("packer").startup({
             end,
         })
 
-        -- use({
-        --     "luukvbaal/stabilize.nvim",
-        --     config = function()
-        --         require("stabilize").setup()
-        --     end,
-        -- })
         use({
             "PyGamer0/vim-apl",
             ft = "apl",
@@ -154,6 +148,9 @@ return require("packer").startup({
         use({
             "rose-pine/neovim",
             config = function()
+                require("rose-pine").setup({
+                    dark_variant = "moon",
+                })
                 vim.cmd.colorscheme("rose-pine")
                 require("plugin_config/theme").config()
             end,
@@ -348,7 +345,7 @@ return require("packer").startup({
                 vim.api.nvim_exec(
                     [[
                 autocmd FileType * call vsnip#get_complete_items(bufnr())
-                ]],
+                ]]   ,
                     false
                 )
                 vim.cmd([[
@@ -561,7 +558,6 @@ return require("packer").startup({
         use({
             "folke/noice.nvim",
             event = "VimEnter",
-            module = "noice/*",
             config = function()
                 require("noice").setup({
                     popupmenu = {
@@ -592,6 +588,7 @@ return require("packer").startup({
         })
         use({
             "rcarriga/nvim-notify",
+            module_pattern = "notify/*",
             setup = function()
                 vim.notify = require("notify")
                 require("notify").setup({

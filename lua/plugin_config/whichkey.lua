@@ -61,7 +61,6 @@ require("which-key").register({
         h = { "<cmd>TroubleToggle <CR>", "TroubleToggle" },
         c = { "<cmd>lua _G.toggle_cmp()<cr>", "Toggle cmp" },
         n = { "<cmd>set relativenumber!| set number! <cr>", "Toggle Number" },
-        s = { "<cmd>SymbolsOutline<cr>", "Symbols Outline" },
         k = { "<cmd>Luapad<cr>", "Luapad" },
         u = { "<cmd>lua require'utils'.toggle_background()<cr>", "Kitty"}
     },

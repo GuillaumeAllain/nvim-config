@@ -20,6 +20,7 @@ require("telescope").setup({
         file_ignore_patterns = { ".*.hdf5", ".*.h5" },
         -- generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
         path_display = { "shorten" },
+        winblend = 0,
         -- color_devicons = true,
         -- use_less = true,
         layout_strategy = "horizontal",

@@ -77,13 +77,13 @@ return {
             sections = {
                 lualine_a = {
 
-                    "mode"
+                    "mode",
                 },
                 lualine_b = {
                     {
-                "macro-recording",
-                fmt = show_macro_recording,
-            },
+                        "macro-recording",
+                        fmt = show_macro_recording,
+                    },
                     function()
                         return "%="
                     end,
@@ -129,7 +129,14 @@ return {
                 lualine_z = {},
             },
             inactive_sections = {
-                lualine_a = { "mode" },
+                lualine_a = {
+                    { "mode" },
+                    {
+                        require("noice").api.statusline.mode.get,
+                        cond = require("noice").api.statusline.mode.has,
+                        color = { fg = "#ff9e64" },
+                    },
+                },
                 lualine_b = {
                     {
                         function()

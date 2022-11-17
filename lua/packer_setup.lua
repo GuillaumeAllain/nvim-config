@@ -34,11 +34,11 @@ return require("packer").startup({
             module_pattern = "luapad.*",
             cmd = { "Luapad", "Luarun" },
         })
-        use({
-            "github/copilot.vim",
-            opt = true,
-            cmd = { "Copilot" },
-        })
+        -- use({
+        --     "github/copilot.vim",
+        --     opt = true,
+        --     cmd = { "Copilot" },
+        -- })
 
         use({
             "zbirenbaum/copilot.lua",
@@ -152,7 +152,8 @@ return require("packer").startup({
                     dark_variant = "moon",
                 })
                 vim.cmd.colorscheme("rose-pine")
-                require("plugin_config/theme").config()
+                local float_bg = require("rose-pine.palette").surface
+                require("plugin_config/theme").config({ float_bg = float_bg })
             end,
             as = "maintheme",
         })
@@ -566,6 +567,28 @@ return require("packer").startup({
                         backend = "cmp", -- backend to use to show regular cmdline completions
                         -- You can specify options for nui under `config.views.popupmenu`
                     },
+                    lsp = {
+                        hover = {
+                            enabled = true,
+                        },
+                        signature = {
+                            enabled = false,
+                        },
+                        message = {
+                            enabled = true,
+                        },
+                        override = {
+                            ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+                            ["vim.lsp.util.stylize_markdown"] = true,
+                            ["cmp.entry.get_documentation"] = true,
+                        },
+                    },
+                    presets = {
+                        bottom_search = true,
+                        command_palette = true,
+                        long_message_to_split = true,
+                        inc_rename = true,
+                    },
                     lsp_progress = {
                         enabled = false,
                         -- format = "lsp_progress",
@@ -593,6 +616,8 @@ return require("packer").startup({
                 vim.notify = require("notify")
                 require("notify").setup({
                     background_colour = "#000000",
+                    top_down=false,
+                    timeout=2500,
                     on_open = function(win)
                         vim.api.nvim_win_set_config(win, { focusable = false })
                     end,

@@ -107,7 +107,9 @@ vim.g.pyindent_searchpair_timeout = 10
 vim.g.netrw_winsize = 20
 vim.opt.laststatus = 3
 
-vim.cmd("command! -nargs=* W w")
+-- vim.cmd("command! -nargs=* w silent w")
+-- vim.cmd("command! -nargs=* W silent w")
+vim.cmd.cnoreabbrev("<expr>", "w", 'getcmdtype() == ":" && getcmdline()=="w" ? "silent w" : "w"')
 vim.cmd.au({ "BufWritePre", "/tmp/*", "setlocal", "noundofile", bang = true })
 vim.cmd.au({ "User", "Startified", "setlocal", "buflisted", bang = true })
 vim.cmd.au({ "Filetype", "help", ":wincmd L | :vert resize 90", bang = true })

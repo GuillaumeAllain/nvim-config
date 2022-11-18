@@ -31,7 +31,7 @@ cmp.setup({
         { name = "path", keyword_length = 3 },
         -- { name = "buffer" ,keyword_length=5},
         { name = "emoji", keyword_length = 2 },
-        -- { name = "nvim_lsp_signature_help", keyword_length = 0 },
+        { name = "nvim_lsp_signature_help", keyword_length = 0 },
     }),
     snippet = {
         expand = function(args)

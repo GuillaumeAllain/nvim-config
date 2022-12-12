@@ -1,0 +1,13 @@
+*cheat-liseq.txt*    {personnal cheat-sheet for liseq}
+
+========================================================
+
+
+1. CODEV macros                          *CODEV-macros*
+
+>
+    (codev.rename_fig :name) ;; rename current fig and 
+                             ;; clears fig buffer
+    (codev.findbuf (var numbuf)) ;; finds empty buffer
+<
+

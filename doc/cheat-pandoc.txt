@@ -1,0 +1,30 @@
+*cheat-pandoc.txt*    {personnal cheat-sheet for pandoc}
+
+========================================================
+
+
+1. SI units                             *SI-units*
+
+Il faut spécifier le chiffre et les unités (Latex) dans des {}
+
+>
+    40{`\degree`{=tex}}
+<
+
+2. Glossaries                           *Glossaries*
+
+Il faut spécifier dans le yaml:
+
+>
+    acronyms:
+    - cmd: enp # commande pour l'acronyme
+      long: Position de la pupille d'entrée # description de
+                                            # l'acronyme
+      short: ENP # acronyme
+<
+
+Et pour appeller l'acronyme:
+
+>
+    (+acronyms)
+<

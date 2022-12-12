@@ -37,3 +37,5 @@ vim.diagnostic.config({
     signs = false,
 })
 
+vim.cmd.iabbrev("oeil", "œil")
+vim.cmd.iabbrev("Oeil", "Œil")

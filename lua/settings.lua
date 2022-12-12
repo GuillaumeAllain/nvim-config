@@ -38,6 +38,7 @@ vim.filetype.add({
 })
 
 -- vim.g.vimsyn_embed  = 1
+vim.cmd.helptags(vim.fn.stdpath("config").."/doc/")
 
 vim.opt.termguicolors = true
 vim.opt.splitkeep = "screen"

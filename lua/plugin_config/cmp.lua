@@ -26,7 +26,7 @@ cmp.setup({
     },
     sources = cmp.config.sources({
         { name = "copilot", keyword_length = 0, priority = 900 },
-        { name = "vsnip", priority = 1000, keyword_length = 3 },
+        { name = "vsnip", priority = 999, keyword_length = 3 },
         { name = "nvim_lsp", keyword_length = 3 },
         { name = "path", keyword_length = 3 },
         -- { name = "buffer" ,keyword_length=5},

@@ -401,6 +401,7 @@ return require("packer").startup({
                 {
                     "hrsh7th/cmp-vsnip",
                     module = "cmp_vsnip",
+                    commit="18ff44cd4fa873d8c2aa23cb26cdd68e326f9e9c"
                 },
                 {
                     "quangnguyen30192/cmp-nvim-tags",
@@ -616,7 +617,7 @@ return require("packer").startup({
                 vim.notify = require("notify")
                 require("notify").setup({
                     background_colour = "#000000",
-                    top_down=false,
+                    top_down=true,
                     timeout=2500,
                     on_open = function(win)
                         vim.api.nvim_win_set_config(win, { focusable = false })

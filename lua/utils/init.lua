@@ -142,8 +142,8 @@ function m.toggle_background()
     -- else
     --     vim.cmd[["let @# = ''"]]
     -- end
-    require("plugin_config/lualine").config()
-    require("plugin_config/theme").config()
+    require("config.plugins.lualine").config()
+    require("config.vim-theme").config()
     m.export_theme_to_kitty()
 end
 

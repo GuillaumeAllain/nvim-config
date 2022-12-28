@@ -26,5 +26,16 @@ Il faut spécifier dans le yaml:
 Et pour appeller l'acronyme:
 
 >
-    (+acronyms)
+    (+acronyms)  #minuscule
+    (++acronyms) #majuscule
+<
+
+Même chose pour les glossaires
+
+>
+    glossary:
+    - cmd: enp # commande pour l'acronyme
+      long: Position de la pupille d'entrée # description de
+                                            # l'acronyme
+      short: Pupille d'entrée # acronyme
 <

@@ -1,5 +1,5 @@
--- Change the background of lualine_c section for normal mode
 return {
+    "nvim-lualine/lualine.nvim",
     config = function()
         -- local status = vim.opt.laststatus:get()
         local custom_term = require("lualine.themes.auto")
@@ -158,4 +158,10 @@ return {
         })
         vim.opt.laststatus = 3
     end,
+    lazy = false,
+    dependencies = {
+        "kyazdani42/nvim-web-devicons",
+        "folke/noice.nvim"
+    }
+
 }

@@ -1,9 +1,9 @@
-local m = {}
-
-function m.setup(treesitter_ft)
-    -- require("nvim-treesitter.install").compilers = { "gcc-12" }
+return {
+    "nvim-treesitter/nvim-treesitter",
+    dependencies = { "romgrk/nvim-treesitter-context" },
+    config = function()
     require("nvim-treesitter.configs").setup({
-        ensure_installed = treesitter_ft,
+        ensure_installed = require("config").treesitter_ft,
 
         highlight = {
             enable = true,
@@ -39,6 +39,6 @@ function m.setup(treesitter_ft)
     -- vim.cmd[[hi! SignColumn guibg=none ctermbg=none]]
     -- vim.cmd([[e .hidden_file.md|bd]])
     vim.treesitter.require_language("markdown")
-end
+    end,
 
-return m
+}

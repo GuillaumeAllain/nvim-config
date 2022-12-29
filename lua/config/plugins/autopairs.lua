@@ -1,7 +1,7 @@
 return {
     "windwp/nvim-autopairs",
     event = "InsertEnter *",
-    config=function()
+    config = function()
         local npairs = require("nvim-autopairs")
         local Rule = require("nvim-autopairs.rule")
         local cond = require("nvim-autopairs.conds")
@@ -16,9 +16,9 @@ return {
         --         tex = "{",
         --     },
         -- })
-        local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-        local cmp = require('cmp')
-        cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))
+        local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+        local cmp = require("cmp")
+        cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
 
         npairs.setup({
             enable_check_bracket_line = false,
@@ -52,16 +52,16 @@ return {
         end)
 
         npairs.add_rules({
-            Rule("$", "$", { "tex", "latex", "pandoc" })    -- don't move right when repeat character
-            :with_move(cond.none())    -- disable add newline when press <cr>
-            :with_cr(cond.none()),
+            Rule("$", "$", { "tex", "latex", "pandoc" }) -- don't move right when repeat character
+                :with_move(cond.none()) -- disable add newline when press <cr>
+                :with_cr(cond.none()),
         })
 
         npairs.add_rules({
-            Rule("*", "*", { "pandoc" })    -- don't move right when repeat character
-            :with_move(cond.none())    -- disable add newline when press <cr>
-            :with_cr(cond.none()),
+            Rule("*", "*", { "pandoc" }) -- don't move right when repeat character
+                :with_move(cond.none()) -- disable add newline when press <cr>
+                :with_cr(cond.none()),
         })
-
-    end
+    end,
+    dependencies = { "hrsh7th/nvim-cmp" },
 }

@@ -1,6 +1,7 @@
 return {
     "rcarriga/neotest",
-    config = function()
+    ft="python",
+    init = function()
         require("neotest").setup({
             icons = {
                 child_indent = "│",
@@ -15,25 +16,24 @@ return {
                 running = "",
                 running_animated = { "/", "|", "\\", "-", "/", "|", "\\", "-" },
                 skipped = "",
-                unknown = ""
+                unknown = "",
             },
 
             adapters = {
                 require("neotest-python")({
                     dap = { justMyCode = false },
                     runner = "pytest",
-                    ignore_file_types = { "txt" }
+                    ignore_file_types = { "txt" },
                 }),
             },
         })
     end,
-    dependencies =   {
+    dependencies = {
         "nvim-treesitter",
         "nvim-lua/plenary.nvim",
         "nvim-treesitter/nvim-treesitter",
         "antoinemadec/FixCursorHold.nvim",
         "rcarriga/neotest-python",
         "nvim-treesitter/playground",
-    }
-
+    },
 }

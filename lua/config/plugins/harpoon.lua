@@ -1,6 +1,6 @@
 return {
     "ThePrimeagen/harpoon",
-    config = function()
+    init = function()
         local harpoon = require("harpoon")
         harpoon.setup({ enter_on_sendcmd = true })
         function harpoon.toggle_term_window()

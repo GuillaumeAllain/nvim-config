@@ -1,10 +1,9 @@
 return {
     "abecodes/tabout.nvim",
-    requires = {
+    dependencies = {
         "hrsh7th/nvim-cmp", "hrsh7th/vim-vsnip",
         "nvim-treesitter/nvim-treesitter",
     },
-
     config = function()
         require("tabout").setup({
             tabkey = "",

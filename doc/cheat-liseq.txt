@@ -9,5 +9,6 @@
     (codev.rename_fig :name) ;; rename current fig and 
                              ;; clears fig buffer
     (codev.findbuf (var numbuf)) ;; finds empty buffer
+    (codev.output code) ;; outputs code results
 <
 

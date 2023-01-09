@@ -36,7 +36,7 @@ return {
         function TelescopeTags()
             require("telescope.builtin").tags({ ctags_file = vim.fn.tagfiles()[1] })
         end
-    end
+    end,
     config = function()
         local fb_actions = require("telescope").extensions.file_browser.actions
         require("telescope").setup({

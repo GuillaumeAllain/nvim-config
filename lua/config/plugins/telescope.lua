@@ -1,38 +1,38 @@
 return {
     "nvim-telescope/telescope.nvim",
-
     version = "0.1.0",
-    dependencies={{
-        "nvim-lua/popup.nvim",
-    },
-    {
+    dependencies = {
+        {
+            "nvim-lua/popup.nvim",
+        },
+        {
             "folke/todo-comments.nvim",
+        },
+        {
+            "rcarriga/nvim-notify",
+        },
 
+        {
+            "nvim-lua/plenary.nvim",
+        },
+        {
+            "nvim-telescope/telescope-file-browser.nvim",
+        },
+        {
+            "nvim-telescope/telescope-ui-select.nvim",
+        },
+        {
+            "crispgm/telescope-heading.nvim",
+        },
+        {
+            "nvim-telescope/telescope-bibtex.nvim",
+        },
+        {
+            "zane-/howdoi.nvim",
+        },
+        { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
     },
-    {
-        "rcarriga/nvim-notify",
-    },
-
-    {
-        "nvim-lua/plenary.nvim",
-    },
-    {
-        "nvim-telescope/telescope-file-browser.nvim",
-    },
-    {
-        "nvim-telescope/telescope-ui-select.nvim",
-    },
-    {
-        "crispgm/telescope-heading.nvim",
-    },
-    {
-        "nvim-telescope/telescope-bibtex.nvim",
-    },
-    {
-        "zane-/howdoi.nvim",
-    },
-    { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" }},
-    init= function()
+    init = function()
         function TelescopeTags()
             require("telescope.builtin").tags({ ctags_file = vim.fn.tagfiles()[1] })
         end
@@ -139,7 +139,6 @@ return {
                     },
                 },
             },
-
             pickers = {
                 buffers = {
                     layout_strategy = "vertical",
@@ -152,42 +151,42 @@ return {
                         },
                     },
                 },
-                find_files = {
-                    attach_mappings = function(prompt_bufnr)
-                        require("telescope.actions.set").select:enhance({
-                            post = function()
-                                if vim.api.nvim_buf_get_name(0) ~= "" then
-                                    vim.cmd.call("timer_start(0, { tid -> execute(':e|normal zN')})")
-                                end
-                            end,
-                        })
-                        return true
-                    end,
-                },
-                file_browser = {
-                    attach_mappings = function(prompt_bufnr)
-                        require("telescope.actions.set").select:enhance({
-                            post = function()
-                                if vim.api.nvim_buf_get_name(0) ~= "" then
-                                    vim.cmd.call("timer_start(0, { tid -> execute(':e|normal zN')})")
-                                end
-                            end,
-                        })
-                        return true
-                    end,
-                },
-                live_grep = {
-                    attach_mappings = function(prompt_bufnr)
-                        require("telescope.actions.set").select:enhance({
-                            post = function()
-                                if vim.api.nvim_buf_get_name(0) ~= "" then
-                                    vim.cmd.call("timer_start(0, { tid -> execute(':e|normal zN')})")
-                                end
-                            end,
-                        })
-                        return true
-                    end,
-                },
+                -- find_files = {
+                --     attach_mappings = function(prompt_bufnr)
+                --         require("telescope.actions.set").select:enhance({
+                --             post = function()
+                --                 if vim.api.nvim_buf_get_name(0) ~= "" then
+                --                     vim.cmd.call("timer_start(0, { tid -> execute(':e|normal zN')})")
+                --                 end
+                --             end,
+                --         })
+                --         return true
+                --     end,
+                -- },
+                -- file_browser = {
+                --     attach_mappings = function(prompt_bufnr)
+                --         require("telescope.actions.set").select:enhance({
+                --             post = function()
+                --                 if vim.api.nvim_buf_get_name(0) ~= "" then
+                --                     vim.cmd.call("timer_start(0, { tid -> execute(':e|normal zN')})")
+                --                 end
+                --             end,
+                --         })
+                --         return true
+                --     end,
+                -- },
+                -- live_grep = {
+                --     attach_mappings = function(prompt_bufnr)
+                --         require("telescope.actions.set").select:enhance({
+                --             post = function()
+                --                 if vim.api.nvim_buf_get_name(0) ~= "" then
+                --                     vim.cmd.call("timer_start(0, { tid -> execute(':e|normal zN')})")
+                --                 end
+                --             end,
+                --         })
+                --         return true
+                --     end,
+                -- },
             },
         })
         require("telescope").load_extension("projects")
@@ -198,6 +197,5 @@ return {
         require("telescope").load_extension("ui-select")
         require("telescope").load_extension("notify")
         require("telescope").load_extension("todo-comments")
-
-    end
+    end,
 }

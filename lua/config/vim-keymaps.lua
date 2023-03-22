@@ -29,10 +29,6 @@ vim.cmd([[
     inoremap ! !<c-g>u
     inoremap ? ?<c-g>u
 
-    vnoremap j gj
-    vnoremap k gk
-    nnoremap j gj
-    nnoremap k gk
 
 ]])
 

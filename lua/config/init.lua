@@ -18,7 +18,7 @@ return {
         "markdown_inline",
         "comment",
         "vim",
-        "query"
+        "query",
     },
     lsp_ft = {
         "python",
@@ -30,7 +30,7 @@ return {
         "julia",
         "apl",
         "fennel",
-        "codevlisp"
+        "codevlisp",
     },
-    ctags_ft = {"pandoc","markdown","codevlisp"}
+    ctags_ft = { "pandoc", "markdown", "codevlisp" },
 }

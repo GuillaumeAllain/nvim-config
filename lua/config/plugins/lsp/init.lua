@@ -40,7 +40,7 @@ return {
 
         local sumneko_binary = os.getenv("HOMEBREW_PREFIX") .. "/bin/lua-language-server"
 
-        lspconfig.sumneko_lua.setup({
+        lspconfig.lua_ls.setup({
             on_attach = on_attach,
             capabilities = capabilities,
             cmd = { sumneko_binary, "-E" },

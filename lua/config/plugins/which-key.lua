@@ -1,7 +1,7 @@
 return {
     "folke/which-key.nvim",
-    lazy=false,
-    config=function()
+    lazy = false,
+    config = function()
         require("which-key").register({
             b = {
                 name = "builder",
@@ -25,7 +25,7 @@ return {
                 f = { "<cmd>lua require('telescope.builtin').buffers()<cr>", "buffers" },
                 s = { "<cmd>lua require('telescope').extensions.file_browser.file_browser()<cr>", "file browser" },
                 d = { "<cmd>lua require('telescope.builtin').find_files()<cr>", "find files" },
-                a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "code actions" },
+                a = { "<cmd>lua require('telescope');vim.lsp.buf.code_action()<cr>", "code actions" },
                 b = { "<cmd>lua require('telescope').extensions.bibtex.bibtex({format='markdown'})<cr>", "bibtex" },
                 h = { "<cmd> Telescope howdoi<cr>", "howdoi" },
                 l = {
@@ -67,7 +67,10 @@ return {
                 j = { "<cmd>TodoTrouble <CR>", "TodoTrouble" },
                 h = { "<cmd>TroubleToggle <CR>", "TroubleToggle" },
                 c = { "<cmd>lua _G.toggle_cmp()<cr>", "Toggle cmp" },
-                n = { "<cmd>set relativenumber!| set number! | Gitsigns toggle_signs <cr>", "Toggle Number" },
+                n = {
+                    "<cmd>lua _G.toggle_statuscolumn()<cr>",
+                    "Toggle Number",
+                },
                 k = { "<cmd>Luapad<cr>", "Luapad" },
                 u = { "<cmd>lua require'utils'.toggle_background()<cr>", "Kitty" },
             },
@@ -113,6 +116,5 @@ return {
                 },
             },
         })
-
-    end
+    end,
 }

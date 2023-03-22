@@ -23,8 +23,8 @@
 -- end
 vim.o.guifont = "SFmono Nerd Font:h15"
 
-vim.opt.background = vim.fn.system("head -1 " .. vim.fn.expand("$XDG_CACHE_HOME/kitty/nvim_theme.conf")):gsub("\n", ""):
-    sub(3)
+vim.opt.background =
+vim.fn.system("head -1 " .. vim.fn.expand("$XDG_CACHE_HOME/kitty/nvim_theme.conf")):gsub("\n", ""):sub(3)
 vim.g.node_prog_host = "/usr/local/opt/node@16/bin"
 vim.filetype.add({
     filename = {
@@ -39,6 +39,28 @@ vim.filetype.add({
 })
 
 vim.cmd.helptags(vim.fn.stdpath("config") .. "/doc/")
+_G.statuscolumnon = "%=%{v:virtnum < 1 ? (v:relnum ? v:relnum : v:lnum < 10 ? v:lnum . '  ' : v:lnum) : ''}%=%s"
+_G.statuscolumnoff = ""
+_G.statuscolumnstatus = false
+function _G.toggle_statuscolumn()
+    if _G.statuscolumnstatus == false then
+        vim.cmd("set relativenumber!")
+        vim.cmd("set number!")
+        vim.cmd("Gitsigns toggle_signs")
+        vim.opt.numberwidth = 3
+        vim.opt.statuscolumn = _G.statuscolumnon
+        _G.statuscolumnstatus = true
+    else
+        vim.cmd("set relativenumber!")
+        vim.cmd("set number!")
+        vim.cmd("Gitsigns toggle_signs")
+        vim.opt.numberwidth = 2
+        vim.opt.statuscolumn = _G.statuscolumnoff
+        _G.statuscolumnstatus = false
+    end
+end
+
+vim.opt.statuscolumn = _G.statuscolumnoff
 
 vim.opt.termguicolors = true
 vim.opt.splitkeep = "screen"
@@ -100,6 +122,7 @@ vim.g.netrw_winsize = 20
 vim.opt.laststatus = 3
 
 vim.cmd.cnoreabbrev("<expr>", "w", 'getcmdtype() == ":" && getcmdline()=="w" ? "silent w" : "w"')
+vim.cmd.cnoreabbrev("<expr>", "wqa", 'getcmdtype() == ":" && getcmdline()=="wqa" ? "silent wa | qa" : "wqa"')
 vim.cmd.au({ "BufWritePre", "/tmp/*", "setlocal", "noundofile", bang = true })
 vim.cmd.au({ "User", "Startified", "setlocal", "buflisted", bang = true })
 vim.cmd.au({ "Filetype", "help", ":wincmd L | :vert resize 90", bang = true })

@@ -1,6 +1,7 @@
 vim.cmd.setlocal("expandtab")
 vim.cmd.setlocal("shiftwidth=4")
 vim.cmd.setlocal("softtabstop=4")
+
 vim.diagnostic.config({ virtual_lines = false })
 
 local lineno = vim.fn.search([[---\_.*\zs\(^lang:.*$\)\ze\_.*---]], "n")
@@ -39,3 +40,10 @@ vim.diagnostic.config({
 
 vim.cmd.iabbrev("oeil", "œil")
 vim.cmd.iabbrev("Oeil", "Œil")
+
+vim.cmd([[
+vnoremap j gj
+vnoremap k gk
+nnoremap j gj
+nnoremap k gk
+]])

@@ -151,42 +151,42 @@ return {
                         },
                     },
                 },
-                -- find_files = {
-                --     attach_mappings = function(prompt_bufnr)
-                --         require("telescope.actions.set").select:enhance({
-                --             post = function()
-                --                 if vim.api.nvim_buf_get_name(0) ~= "" then
-                --                     vim.cmd.call("timer_start(0, { tid -> execute(':e|normal zN')})")
-                --                 end
-                --             end,
-                --         })
-                --         return true
-                --     end,
-                -- },
-                -- file_browser = {
-                --     attach_mappings = function(prompt_bufnr)
-                --         require("telescope.actions.set").select:enhance({
-                --             post = function()
-                --                 if vim.api.nvim_buf_get_name(0) ~= "" then
-                --                     vim.cmd.call("timer_start(0, { tid -> execute(':e|normal zN')})")
-                --                 end
-                --             end,
-                --         })
-                --         return true
-                --     end,
-                -- },
-                -- live_grep = {
-                --     attach_mappings = function(prompt_bufnr)
-                --         require("telescope.actions.set").select:enhance({
-                --             post = function()
-                --                 if vim.api.nvim_buf_get_name(0) ~= "" then
-                --                     vim.cmd.call("timer_start(0, { tid -> execute(':e|normal zN')})")
-                --                 end
-                --             end,
-                --         })
-                --         return true
-                --     end,
-                -- },
+                find_files = {
+                    attach_mappings = function(prompt_bufnr)
+                        require("telescope.actions.set").select:enhance({
+                            post = function()
+                                if vim.api.nvim_buf_get_name(0) ~= "" then
+                                    vim.cmd.call("timer_start(0, { tid -> execute(':e|normal zN')})")
+                                end
+                            end,
+                        })
+                        return true
+                    end,
+                },
+                file_browser = {
+                    attach_mappings = function(prompt_bufnr)
+                        require("telescope.actions.set").select:enhance({
+                            post = function()
+                                if vim.api.nvim_buf_get_name(0) ~= "" then
+                                    vim.cmd.call("timer_start(0, { tid -> execute(':e|normal zN')})")
+                                end
+                            end,
+                        })
+                        return true
+                    end,
+                },
+                live_grep = {
+                    attach_mappings = function(prompt_bufnr)
+                        require("telescope.actions.set").select:enhance({
+                            post = function()
+                                if vim.api.nvim_buf_get_name(0) ~= "" then
+                                    vim.cmd.call("timer_start(0, { tid -> execute(':e|normal zN')})")
+                                end
+                            end,
+                        })
+                        return true
+                    end,
+                },
             },
         })
         require("telescope").load_extension("projects")

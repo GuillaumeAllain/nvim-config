@@ -1,21 +1,38 @@
 return {
-    { "markonm/traces.vim",        keys = { ":", "/", "?" } },
+    { "markonm/traces.vim", keys = { ":", "/", "?" } },
     { "zerowidth/vim-copy-as-rtf", cmd = { "CopyRTF" } },
-    { "romainl/vim-cool",          lazy = false },
-    { "wellle/targets.vim",        lazy = false },
-    { "tpope/vim-eunuch",          lazy = false },
+    { "romainl/vim-cool", lazy = false },
+    { "wellle/targets.vim", lazy = false },
+    { "tpope/vim-eunuch", lazy = false },
+    -- {
+    --     "xiyaowong/transparent.nvim",
+    --     lazy = false,
+    --     config = function()
+    --         require("transparent").setup({
+    --             exclude_groups = { "Visual" },
+    --             extra_groups = {
+    --                 "TelescopeBorder",
+    --                 "Telescope Normal",
+    --                 "TelescopePromptNormal",
+    --                 "TelescopePromptBorder",
+    --                 "Conceal",
+    --                 "Comment",
+    --             },
+    --         })
+    --     end,
+    -- },
     {
         "anuvyklack/pretty-fold.nvim",
         config = function()
             require("pretty-fold").setup({ default_keybindings = false })
         end,
     },
-    { "MunifTanjim/nui.nvim",    lazy = false },
+    { "MunifTanjim/nui.nvim", lazy = false },
     {
         "moll/vim-bbye",
         cmd = { "Bdelete", "Bwipeout" },
     },
-    { "dkarter/bullets.vim",     ft = { "markdown", "pandoc", "tex" } },
+    { "dkarter/bullets.vim", ft = { "markdown", "pandoc", "tex" } },
     { "psliwka/termcolors.nvim", cmd = "TermcolorsShow" },
     {
         "nvim-treesitter/playground",
@@ -65,7 +82,6 @@ return {
     {
         "dhruvasagar/vim-table-mode",
         ft = { "markdown", "pandoc", "tex" },
-
         init = function()
             require("which-key").register({ t = { name = "table mode" } }, { prefix = "<leader>" })
             vim.cmd([[let g:table_mode_map_prefix = '<Leader>tm']])

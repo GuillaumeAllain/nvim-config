@@ -1,1 +1,1 @@
-vim.treesitter.language.register("latex", "tikz")
+vim.opt_local.commentstring = "!%s"

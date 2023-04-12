@@ -1,9 +1,9 @@
 return {
-    { "markonm/traces.vim", keys = { ":", "/", "?" } },
+    { "markonm/traces.vim",        keys = { ":", "/", "?" } },
     { "zerowidth/vim-copy-as-rtf", cmd = { "CopyRTF" } },
-    { "romainl/vim-cool", lazy = false },
-    { "wellle/targets.vim", lazy = false },
-    { "tpope/vim-eunuch", lazy = false },
+    { "romainl/vim-cool",          lazy = false },
+    { "wellle/targets.vim",        lazy = false },
+    { "tpope/vim-eunuch",          lazy = false },
     -- {
     --     "xiyaowong/transparent.nvim",
     --     lazy = false,
@@ -27,12 +27,12 @@ return {
             require("pretty-fold").setup({ default_keybindings = false })
         end,
     },
-    { "MunifTanjim/nui.nvim", lazy = false },
+    { "MunifTanjim/nui.nvim",    lazy = false },
     {
         "moll/vim-bbye",
         cmd = { "Bdelete", "Bwipeout" },
     },
-    { "dkarter/bullets.vim", ft = { "markdown", "pandoc", "tex" } },
+    { "dkarter/bullets.vim",     ft = { "markdown", "pandoc", "tex" } },
     { "psliwka/termcolors.nvim", cmd = "TermcolorsShow" },
     {
         "nvim-treesitter/playground",
@@ -58,9 +58,9 @@ return {
     },
     {
         "lewis6991/gitsigns.nvim",
-        -- cmd = {"Gitsigns"},
-        -- event = { "BufReadPost", "FileReadPost" },
-        lazy = false,
+        cmd = { "Gitsigns" },
+        event = { "BufReadPost", "FileReadPost" },
+        -- lazy = false,
         dependencies = {
             "nvim-lua/plenary.nvim",
         },
@@ -68,15 +68,20 @@ return {
             require("gitsigns").setup({
                 signcolumn = false,
                 numhl = false,
+                _signs_staged_enable = true,
             })
-        end,
-    },
-    {
-        "echasnovski/mini.nvim",
-        lazy = false,
-        config = function()
-            require("mini.indentscope").setup()
-            vim.cmd([[autocmd TermOpen * lua vim.b.miniindentscope_disable = true]])
+            local function get_color(group, attr)
+                local fn = vim.fn
+                return fn.synIDattr(fn.synIDtrans(fn.hlID(group)), attr)
+            end
+            vim.api.nvim_set_hl(0, "GitSignsAdd", { fg = get_color("GitSignsAdd", "fg"), bg = "none" })
+            vim.api.nvim_set_hl(0, "GitSignsChange", { fg = get_color("GitSignsChange", "fg"), bg = "none" })
+            vim.api.nvim_set_hl(0, "GitSignsDelete", { fg = get_color("GitSignsDelete", "fg"), bg = "none" })
+            vim.api.nvim_set_hl(
+                0,
+                "GitSignsChangeDelete",
+                { fg = get_color("GitSignsChangeDelete", "fg"), bg = "none" }
+            )
         end,
     },
     {

@@ -1,7 +1,8 @@
 return {
     "rcarriga/neotest",
-    ft="python",
-    init = function()
+    ft = "python",
+    keys = {"<leader>t"},
+    config = function()
         require("neotest").setup({
             icons = {
                 child_indent = "│",
@@ -18,7 +19,6 @@ return {
                 skipped = "",
                 unknown = "",
             },
-
             adapters = {
                 require("neotest-python")({
                     dap = { justMyCode = false },

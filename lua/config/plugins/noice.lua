@@ -32,6 +32,10 @@ return {
                 long_message_to_split = true,
                 inc_rename = true,
             },
+            notify ={
+                replace = true,
+                merge = true
+            },
             lsp_progress = {
                 enabled = false,
                 -- format = "lsp_progress",

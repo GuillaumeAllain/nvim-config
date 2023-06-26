@@ -8,19 +8,14 @@ return {
 
         local on_attach = function(client)
             vim.lsp.handlers["textDocument/publishDiagnostics"] =
-            vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-                update_in_insert = true,
-            })
+                vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+                    update_in_insert = true,
+                })
         end
 
         lspconfig.jedi_language_server.setup({
             on_attach = on_attach,
             capabilities = capabilities,
-            -- init_options = {
-            --     hover = {
-            --         enable = true,
-            --     },
-            -- },
             root_dir = function(fname)
                 return lspconfig.util.find_git_ancestor(fname) or vim.loop.os_homedir()
             end,
@@ -118,10 +113,10 @@ return {
                 -- your other on_attach functions.
                 on_attach(client)
                 require("ltex_extra").setup({
-                    load_langs = { "fr", "en-us" }, -- table <string> : languages for witch dictionaries will be loaded
-                    init_check = true, -- boolean : whether to load dictionaries on startup
+                    load_langs = { "fr", "en-us" },                 -- table <string> : languages for witch dictionaries will be loaded
+                    init_check = true,                              -- boolean : whether to load dictionaries on startup
                     path = vim.fn.expand("$XDG_CONFIG_HOME/ltex/"), -- string : path to store dictionaries. Relative path uses current working directory
-                    log_level = "none", -- string : "none", "trace", "debug", "info", "warn", "error", "fatal"
+                    log_level = "none",                             -- string : "none", "trace", "debug", "info", "warn", "error", "fatal"
                 })
             end,
             cmd = { ltex_path },

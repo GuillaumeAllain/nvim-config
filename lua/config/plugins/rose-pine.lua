@@ -15,6 +15,7 @@ return {
                 FoldColumn = { link = "Normal" },
             },
         })
+        vim.opt.background = "light"
         vim.cmd.colorscheme("rose-pine")
         -- local float_bg = require("rose-pine.palette").surface
         -- require("config.vim-theme").config({ float_bg = float_bg })

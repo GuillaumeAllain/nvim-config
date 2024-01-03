@@ -1,6 +1,6 @@
 return {
     "nvim-telescope/telescope.nvim",
-    version = "0.1.0",
+    version = "0.1.5",
     dependencies = {
         {
             "nvim-lua/popup.nvim",
@@ -77,6 +77,7 @@ return {
                 mappings = {
                     i = {
                         ["<C-s>"] = require("telescope.actions").select_horizontal,
+                        ["<C-space>"] = require("telescope.actions").to_fuzzy_refine,
                         ["<C-y>"] = function(prompt_bfnr)
                             local selection = require("telescope.actions.state").get_selected_entry().value
                             require("telescope.actions").close(prompt_bfnr)

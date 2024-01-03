@@ -1,31 +1,7 @@
--- disable vim plugins
--- local disabled_built_ins = {
---     "gzip",
---     "zip",
---     "zipPlugin",
---     "tar",
---     "tarPlugin",
---     "getscript",
---     "getscriptPlugin",
---     "vimball",
---     "vimballPlugin",
---     "2html_plugin",
---     "logipat",
---     "rrhelper",
---     "spellfile_plugin",
---     "sql_completion",
---     "syntax_completion",
---     "matchit",
--- }
+vim.opt.background = "light"
 
--- for _, plugin in pairs(disabled_built_ins) do
---     vim.g["loaded_" .. plugin] = 1
--- end
-vim.o.guifont = "SFmono Nerd Font:h15"
+-- vim.o.guifont = "SFmono Nerd Font:h15"
 
-vim.opt.background =
-vim.fn.system("head -1 " .. vim.fn.expand("$XDG_CACHE_HOME/kitty/nvim_theme.conf")):gsub("\n", ""):sub(3)
-vim.g.node_prog_host = "/usr/local/opt/node@16/bin"
 vim.filetype.add({
     filename = {
         [".notes"] = "pandoc",
@@ -61,8 +37,6 @@ function _G.toggle_statuscolumn()
 end
 
 vim.opt.statuscolumn = _G.statuscolumnoff
-
-vim.opt.termguicolors = true
 vim.opt.splitkeep = "screen"
 vim.opt.pumheight = 10
 vim.opt.timeoutlen = 200

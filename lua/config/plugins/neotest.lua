@@ -1,7 +1,7 @@
 return {
     "rcarriga/neotest",
     ft = "python",
-    keys = {"<leader>t"},
+    keys = { "<leader>t" },
     config = function()
         require("neotest").setup({
             icons = {
@@ -23,6 +23,8 @@ return {
                 require("neotest-python")({
                     dap = { justMyCode = false },
                     runner = "pytest",
+                    pytest_discover_instances = true,
+                    args = {"--log-level", "DEBUG"},
                     ignore_file_types = { "txt" },
                 }),
             },

@@ -1,5 +1,5 @@
 return {
-    "rcarriga/neotest",
+    "nvim-neotest/neotest",
     ft = "python",
     keys = { "<leader>t" },
     config = function()
@@ -37,5 +37,6 @@ return {
         "antoinemadec/FixCursorHold.nvim",
         "rcarriga/neotest-python",
         "nvim-treesitter/playground",
+        "nvim-neotest/nvim-nio",
     },
 }

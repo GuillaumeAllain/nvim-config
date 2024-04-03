@@ -1,5 +1,5 @@
 return {
-    "jose-elias-alvarez/null-ls.nvim",
+    "nvimtools/none-ls.nvim",
     ft = require("config").lsp_ft,
     config = function()
         local nullls = require("null-ls")
@@ -28,11 +28,9 @@ return {
         nullls.register(yamllint)
         nullls.setup({
             sources = {
-                nullls.builtins.formatting.black,
                 nullls.builtins.code_actions.gitsigns,
-                nullls.builtins.diagnostics.flake8.with({
-                    extra_args = { "--ignore=E203,W503", "--max-complexity=10", "--max-line-length=127" },
-                }),
+                require("none-ls.diagnostics.ruff"),
+                require("none-ls.formatting.ruff_format"),
                 nullls.builtins.formatting.fprettify.with({ args = { "--silent", "--case", "2", "2", "2", "2" } }),
                 nullls.builtins.formatting.stylua,
                 nullls.builtins.formatting.fnlfmt.with({ filetypes = { "fnl", "fennel", "codevlisp" } }),
@@ -41,6 +39,6 @@ return {
     end,
     dependencies = {
         { "nvim-lua/plenary.nvim", module = "plenary" },
+        "nvimtools/none-ls-extras.nvim",
     },
-
 }

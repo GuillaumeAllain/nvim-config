@@ -7,4 +7,5 @@ return {
             ft_disable = { "pandoc", "markdown" },
         })
     end,
+    enabled = false,
 }

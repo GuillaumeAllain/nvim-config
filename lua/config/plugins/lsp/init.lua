@@ -13,13 +13,18 @@ return {
                 })
         end
 
-        lspconfig.jedi_language_server.setup({
+        lspconfig.pyright.setup({
             on_attach = on_attach,
             capabilities = capabilities,
-            root_dir = function(fname)
-                return lspconfig.util.find_git_ancestor(fname) or vim.loop.os_homedir()
-            end,
         })
+
+        -- lspconfig.jedi_language_server.setup({
+        --     on_attach = on_attach,
+        --     capabilities = capabilities,
+        --     -- root_dir = function(fname)
+        --         -- return lspconfig.util.find_git_ancestor(fname) or lspconfig.util.root_pattern(unpack(root_files)),
+        --     -- end,
+        -- })
 
         lspconfig.fortls.setup({
             on_attach = on_attach,

@@ -64,8 +64,8 @@ return {
                 l = { "<cmd>lua require'harpoon'.toggle_term_window()<cr>", "Toggle HarpoonTerm(1) in vsplit" },
                 t = { "<cmd>lua LazyGitOpener()<CR>", "LazyGit" },
                 y = { "<cmd>ZenMode <CR>", "Zen-mode" },
-                j = { "<cmd>TodoTrouble <CR>", "TodoTrouble" },
-                h = { "<cmd>TroubleToggle <CR>", "TroubleToggle" },
+                j = { "<cmd>Trouble toggle todo <CR>", "TodoTrouble" },
+                h = { "<cmd>Trouble toggle diagnostics <CR>", "TroubleToggle" },
                 c = { "<cmd>lua _G.toggle_cmp()<cr>", "Toggle cmp" },
                 n = {
                     "<cmd>lua _G.toggle_statuscolumn()<cr>",

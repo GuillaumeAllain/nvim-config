@@ -68,7 +68,7 @@ return {
             require("gitsigns").setup({
                 signcolumn = false,
                 numhl = false,
-                _signs_staged_enable = true,
+                -- _signs_staged_enable = true,
             })
             local function get_color(group, attr)
                 local fn = vim.fn

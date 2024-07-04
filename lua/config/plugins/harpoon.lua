@@ -13,7 +13,7 @@ return {
                 end
             end
             local cur_window = vim.fn.winnr()
-            vim.cmd([[botright vsplit]])
+            vim.cmd([[botright split]])
             require("harpoon.term").gotoTerminal(1)
             vim.fn.execute("norm G")
             vim.fn.execute(tostring(cur_window) .. " wincmd w")

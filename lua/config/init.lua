@@ -19,6 +19,7 @@ return {
         "comment",
         "vim",
         "query",
+        "vimdoc"
     },
     lsp_ft = {
         "python",

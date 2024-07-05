@@ -19,7 +19,8 @@ return {
         "comment",
         "vim",
         "query",
-        "vimdoc"
+        "vimdoc",
+        "r"
     },
     lsp_ft = {
         "python",
@@ -32,6 +33,7 @@ return {
         "apl",
         "fennel",
         "codevlisp",
+        "r"
     },
     ctags_ft = { "pandoc", "markdown", "codevlisp" },
 }

@@ -18,6 +18,8 @@ return {
             capabilities = capabilities,
         })
 
+        lspconfig.r_language_server.setup({ on_attach = on_attach, capabilities = capabilities })
+
         -- lspconfig.jedi_language_server.setup({
         --     on_attach = on_attach,
         --     capabilities = capabilities,
@@ -160,10 +162,6 @@ return {
         })
     end,
     dependencies = {
-        -- {
-        --     "williamboman/nvim-lsp-installer",
-        --     cmd = { "LspInstall" },
-        -- },
         {
             "hrsh7th/cmp-nvim-lsp",
         },

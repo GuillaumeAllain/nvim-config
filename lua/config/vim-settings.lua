@@ -123,3 +123,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
 vim.diagnostic.config({
     virtual_text = false,
 })
+
+vim.schedule(function()
+  vim.opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus" -- Sync with system clipboard
+end)

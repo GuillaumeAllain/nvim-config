@@ -13,6 +13,7 @@ vim.opt.rtp:prepend(lazypath)
 
 vim.loader.enable()
 
+
 require("config.vim-settings")
 
 require("config.vim-keymaps")

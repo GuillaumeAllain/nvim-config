@@ -1,9 +1,9 @@
 return {
-    { "markonm/traces.vim",        keys = { ":", "/", "?" } },
+    { "markonm/traces.vim", keys = { ":", "/", "?" } },
     { "zerowidth/vim-copy-as-rtf", cmd = { "CopyRTF" } },
-    { "romainl/vim-cool",          lazy = false },
-    { "wellle/targets.vim",        lazy = false },
-    { "tpope/vim-eunuch",          lazy = false },
+    { "romainl/vim-cool", lazy = false },
+    { "wellle/targets.vim", lazy = false },
+    { "tpope/vim-eunuch", lazy = false },
     -- {
     --     "xiyaowong/transparent.nvim",
     --     lazy = false,
@@ -27,12 +27,12 @@ return {
             require("pretty-fold").setup({ default_keybindings = false })
         end,
     },
-    { "MunifTanjim/nui.nvim",    lazy = false },
+    { "MunifTanjim/nui.nvim", lazy = false },
     {
         "moll/vim-bbye",
         cmd = { "Bdelete", "Bwipeout" },
     },
-    { "dkarter/bullets.vim",     ft = { "markdown", "pandoc", "tex" } },
+    { "dkarter/bullets.vim", ft = { "markdown", "pandoc", "tex" } },
     { "psliwka/termcolors.nvim", cmd = "TermcolorsShow" },
     {
         "nvim-treesitter/playground",
@@ -41,7 +41,6 @@ return {
     {
         "folke/trouble.nvim",
         cmd = { "Trouble", "TroubleClose", "TroubleRefresh", "TroubleToggle" },
-        dependencies = { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
         config = function()
             require("trouble").setup({})
         end,
@@ -90,6 +89,14 @@ return {
         init = function()
             require("which-key").register({ t = { name = "table mode" } }, { prefix = "<leader>" })
             vim.cmd([[let g:table_mode_map_prefix = '<Leader>tm']])
+        end,
+    },
+    {
+        "MeanderingProgrammer/markdown.nvim",
+        name = "render-markdown",
+        dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.icons" }, -- if you use standalone mini plugins
+        config = function()
+            require("render-markdown").setup({})
         end,
     },
     {

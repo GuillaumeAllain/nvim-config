@@ -27,7 +27,6 @@ return {
                 d = { "<cmd>lua require('telescope.builtin').find_files()<cr>", "find files" },
                 a = { "<cmd>lua require('telescope');vim.lsp.buf.code_action()<cr>", "code actions" },
                 b = { "<cmd>lua require('telescope').extensions.bibtex.bibtex({format='markdown'})<cr>", "bibtex" },
-                h = { "<cmd> Telescope howdoi<cr>", "howdoi" },
                 l = {
                     "<cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>",
                     "Lsp document symbols",

@@ -26,9 +26,6 @@ return {
         {
             "nvim-telescope/telescope-bibtex.nvim",
         },
-        {
-            "zane-/howdoi.nvim",
-        },
         { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" },
     },
     init = function()
@@ -193,7 +190,6 @@ return {
         require("telescope").load_extension("file_browser")
         require("telescope").load_extension("bibtex")
         require("telescope").load_extension("heading")
-        require("telescope").load_extension("howdoi")
         require("telescope").load_extension("ui-select")
         require("telescope").load_extension("notify")
         require("telescope").load_extension("todo-comments")

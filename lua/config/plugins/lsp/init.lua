@@ -1,3 +1,5 @@
+local python_location = vim.env.HOME .. "/micromamba/bin/"
+
 return {
     "neovim/nvim-lspconfig",
     ft = require("config").lsp_ft,
@@ -14,6 +16,7 @@ return {
         end
 
         lspconfig.pyright.setup({
+            cmd = { python_location .. "pyright-langserver", "--stdio" },
             on_attach = on_attach,
             capabilities = capabilities,
         })
@@ -32,7 +35,7 @@ return {
             on_attach = on_attach,
             capabilities = capabilities,
             cmd = {
-                "fortls",
+                python_location .. "fortls",
                 "--nthreads",
                 "2",
                 "--use_signature_help",

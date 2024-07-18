@@ -3,6 +3,7 @@ return {
     ft = require("config").lsp_ft,
     config = function()
         local nullls = require("null-ls")
+        local python_location = vim.env.HOME .. "/micromamba/bin/"
         local pandotlint = {
             method = nullls.methods.FORMATTING,
             filetypes = { "pandoc" },
@@ -29,10 +30,9 @@ return {
         nullls.setup({
             sources = {
                 nullls.builtins.code_actions.gitsigns,
-                require("none-ls.diagnostics.ruff"),
-                require("none-ls.formatting.ruff_format"),
+                require("none-ls.diagnostics.ruff").with({ command = python_location .. "ruff" }),
+                require("none-ls.formatting.ruff_format").with({ command = python_location .. "ruff" }),
                 nullls.builtins.formatting.biome,
-                -- nullls.builtins.formatting.styler,
                 nullls.builtins.formatting.bibclean,
                 nullls.builtins.formatting.fprettify.with({ args = { "--silent", "--case", "2", "2", "2", "2" } }),
                 nullls.builtins.formatting.stylua,

@@ -30,8 +30,8 @@ return {
         nullls.setup({
             sources = {
                 nullls.builtins.code_actions.gitsigns,
-                require("none-ls.diagnostics.ruff").with({ command = python_location .. "ruff" }),
-                require("none-ls.formatting.ruff_format").with({ command = python_location .. "ruff" }),
+                require("none-ls.diagnostics.ruff"),
+                require("none-ls.formatting.ruff_format"),
                 nullls.builtins.formatting.biome,
                 nullls.builtins.formatting.bibclean,
                 nullls.builtins.formatting.fprettify.with({ args = { "--silent", "--case", "2", "2", "2", "2" } }),

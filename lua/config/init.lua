@@ -33,7 +33,9 @@ return {
         "apl",
         "fennel",
         "codevlisp",
-        "r"
+        "r",
+        "json",
+        "toml"
     },
     ctags_ft = { "pandoc", "markdown", "codevlisp" },
 }

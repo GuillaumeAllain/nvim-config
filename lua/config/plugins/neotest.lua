@@ -25,6 +25,27 @@ return {
                     runner = "pytest",
                     pytest_discover_instances = false,
                     args = { "--log-level", "DEBUG" },
+                    python = function()
+                        local lib = require("neotest.lib")
+                        if lib.files.exists("pyproject.toml") then
+                            local success, exit_code, data = pcall(
+                                lib.process.run,
+                                { "pixi", "info", "--json" },
+                                { stdout = true }
+                            )
+                            if success and exit_code == 0 then
+                                local pixi_info_json = data.stdout:gsub("\n", "")
+                                local pixi_env_table = vim.json.decode(pixi_info_json)["environments_info"]
+                                for i, v in ipairs(pixi_env_table) do
+                                    local venv = vim.inspect(v["prefix"]):gsub('"', "")
+                                    if string.find(venv, "test") then
+                                        return require("plenary.path"):new(venv, "bin", "python").filename
+                                    end
+                                end
+                            end
+                        end
+                        return ".venv/bin/python"
+                    end,
                     ignore_file_types = { "txt" },
                 }),
             },
@@ -35,7 +56,7 @@ return {
         "nvim-lua/plenary.nvim",
         "nvim-treesitter/nvim-treesitter",
         "antoinemadec/FixCursorHold.nvim",
-        "rcarriga/neotest-python",
+        "nvim-neotest/neotest-python",
         "nvim-treesitter/playground",
         "nvim-neotest/nvim-nio",
     },

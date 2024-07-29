@@ -1,9 +1,9 @@
 return {
-    { "markonm/traces.vim", keys = { ":", "/", "?" } },
+    { "markonm/traces.vim",        keys = { ":", "/", "?" } },
     { "zerowidth/vim-copy-as-rtf", cmd = { "CopyRTF" } },
-    { "romainl/vim-cool", lazy = false },
-    { "wellle/targets.vim", lazy = false },
-    { "tpope/vim-eunuch", lazy = false },
+    { "romainl/vim-cool",          lazy = false },
+    { "wellle/targets.vim",        lazy = false },
+    { "tpope/vim-eunuch",          lazy = false },
     -- {
     --     "xiyaowong/transparent.nvim",
     --     lazy = false,
@@ -27,12 +27,12 @@ return {
             require("pretty-fold").setup({ default_keybindings = false })
         end,
     },
-    { "MunifTanjim/nui.nvim", lazy = false },
+    { "MunifTanjim/nui.nvim",    lazy = false },
     {
         "moll/vim-bbye",
         cmd = { "Bdelete", "Bwipeout" },
     },
-    { "dkarter/bullets.vim", ft = { "markdown", "pandoc", "tex" } },
+    { "dkarter/bullets.vim",     ft = { "markdown", "pandoc", "tex" } },
     { "psliwka/termcolors.nvim", cmd = "TermcolorsShow" },
     {
         "nvim-treesitter/playground",
@@ -49,10 +49,12 @@ return {
         "vim-pandoc/vim-pandoc-syntax",
         ft = { "pandoc" },
         config = function()
-            vim.g["pandoc#syntax#conceal#cchar_overrides"] = { atx = "#" }
+            -- vim.g["pandoc#syntax#conceal#cchar_overrides"] = { atx = "#" }
             vim.g["pandoc#modules#disabled"] = { "folding" }
             vim.g["pandoc#filetypes#handled"] = { "pandoc", "markdown" }
             vim.g["pandoc#syntax#style#use_definition_lists"] = 0
+            vim.g["pandoc#syntax#conceal#blacklist"] =
+            { "atx", "block", "list", "newline", "dashes", "ellipses", "quotes" }
         end,
     },
     {
@@ -87,7 +89,9 @@ return {
         "dhruvasagar/vim-table-mode",
         ft = { "markdown", "pandoc", "tex" },
         init = function()
-            require("which-key").register({ t = { name = "table mode" } }, { prefix = "<leader>" })
+            require("which-key").add({
+                { "<leader>t", group = "table mode" },
+            })
             vim.cmd([[let g:table_mode_map_prefix = '<Leader>tm']])
         end,
     },
@@ -95,8 +99,11 @@ return {
         "MeanderingProgrammer/markdown.nvim",
         name = "render-markdown",
         dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.icons" }, -- if you use standalone mini plugins
+        ft = { "markdown", "pandoc" },
         config = function()
-            require("render-markdown").setup({})
+            require("render-markdown").setup({
+                file_types = { "markdown", "pandoc" },
+            })
         end,
     },
     {

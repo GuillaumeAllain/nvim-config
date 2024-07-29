@@ -1,5 +1,3 @@
-local python_location = vim.env.HOME .. "/micromamba/bin/"
-
 return {
     "neovim/nvim-lspconfig",
     ft = require("config").lsp_ft,
@@ -16,7 +14,6 @@ return {
         end
 
         lspconfig.pyright.setup({
-            cmd = { python_location .. "pyright-langserver", "--stdio" },
             on_attach = on_attach,
             capabilities = capabilities,
         })
@@ -35,7 +32,7 @@ return {
             on_attach = on_attach,
             capabilities = capabilities,
             cmd = {
-                python_location .. "fortls",
+                "fortls",
                 "--nthreads",
                 "2",
                 "--use_signature_help",
@@ -155,13 +152,9 @@ return {
                 },
             },
         })
-        require("which-key").register({
-            l = {
-                r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Lsp Rename" },
-                f = { "<cmd>lua vim.lsp.buf.format({async=true})<cr>", "Lsp Formatting" },
-            },
-        }, {
-            prefix = "<leader>",
+        require("which-key").add({
+            { "<leader>lf", "<cmd>lua vim.lsp.buf.format({async=true})<cr>", desc = "Lsp Formatting" },
+            { "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>",             desc = "Lsp Rename" },
         })
     end,
     dependencies = {

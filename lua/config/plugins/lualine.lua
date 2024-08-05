@@ -1,5 +1,6 @@
 return {
     "nvim-lualine/lualine.nvim",
+    event = "LazyFile",
     config = function()
         -- local status = vim.opt.laststatus:get()
         -- local custom_term = require("lualine.themes.auto")
@@ -132,11 +133,6 @@ return {
             inactive_sections = {
                 lualine_a = {
                     { "mode" },
-                    -- {
-                    --     require("noice").api.statusline.mode.get,
-                    --     cond = require("noice").api.statusline.mode.has,
-                    --     color = { fg = "#ff9e64" },
-                    -- },
                 },
                 lualine_b = {
                     {
@@ -162,7 +158,6 @@ return {
     lazy = false,
     dependencies = {
         "kyazdani42/nvim-web-devicons",
-        "folke/noice.nvim"
-    }
-
+        -- "folke/noice.nvim"
+    },
 }

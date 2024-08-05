@@ -1,5 +1,6 @@
 return {
     "folke/which-key.nvim",
+    event = "VeryLazy",
     config = function()
         require("which-key").add({
             { "<leader>g", group = "plugins" },

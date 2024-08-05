@@ -1,6 +1,7 @@
 return {
     "ThePrimeagen/harpoon",
-    init = function()
+    lazy = true,
+    config = function()
         local harpoon = require("harpoon")
         harpoon.setup({ enter_on_sendcmd = true })
         function harpoon.toggle_term_window()
@@ -24,6 +25,5 @@ return {
     end,
     dependencies = {
         "nvim-lua/plenary.nvim",
-    }
-
+    },
 }

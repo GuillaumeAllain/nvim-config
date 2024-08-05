@@ -1,6 +1,8 @@
 return {
     "nvimtools/none-ls.nvim",
     ft = require("config").lsp_ft,
+    event = { "LazyFile" },
+    lazy = true,
     config = function()
         local nullls = require("null-ls")
         local python_location = vim.env.HOME .. "/micromamba/bin/"

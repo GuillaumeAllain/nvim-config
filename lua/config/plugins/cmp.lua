@@ -1,5 +1,6 @@
 return {
     "hrsh7th/nvim-cmp",
+    lazy = true,
     event = "InsertEnter",
     dependencies = {
         "hrsh7th/vim-vsnip",
@@ -35,8 +36,8 @@ return {
                 require("copilot_cmp").setup()
             end,
             dependencies = {
-                "zbirenbaum/copilot.lua"
-            }
+                "zbirenbaum/copilot.lua",
+            },
         },
     },
     config = function()

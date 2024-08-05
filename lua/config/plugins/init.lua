@@ -1,45 +1,20 @@
 return {
-    { "markonm/traces.vim",        keys = { ":", "/", "?" } },
-    { "zerowidth/vim-copy-as-rtf", cmd = { "CopyRTF" } },
-    { "romainl/vim-cool",          lazy = false },
-    { "wellle/targets.vim",        lazy = false },
-    { "tpope/vim-eunuch",          lazy = false },
-    -- {
-    --     "xiyaowong/transparent.nvim",
-    --     lazy = false,
-    --     config = function()
-    --         require("transparent").setup({
-    --             exclude_groups = { "Visual" },
-    --             extra_groups = {
-    --                 "TelescopeBorder",
-    --                 "Telescope Normal",
-    --                 "TelescopePromptNormal",
-    --                 "TelescopePromptBorder",
-    --                 "Conceal",
-    --                 "Comment",
-    --             },
-    --         })
-    --     end,
-    -- },
-    {
-        "anuvyklack/pretty-fold.nvim",
-        config = function()
-            require("pretty-fold").setup({ default_keybindings = false })
-        end,
-    },
-    { "MunifTanjim/nui.nvim",    lazy = false },
+    { "markonm/traces.vim", lazy = true, keys = { ":", "/", "?" } },
+    { "wellle/targets.vim", lazy = false },
+    { "tpope/vim-eunuch", lazy = false },
     {
         "moll/vim-bbye",
+        lazy = true,
         cmd = { "Bdelete", "Bwipeout" },
     },
-    { "dkarter/bullets.vim",     ft = { "markdown", "pandoc", "tex" } },
-    { "psliwka/termcolors.nvim", cmd = "TermcolorsShow" },
     {
         "nvim-treesitter/playground",
+        lazy = true,
         cmd = "TSPlaygroundToggle",
     },
     {
         "folke/trouble.nvim",
+        lazy = true,
         cmd = { "Trouble", "TroubleClose", "TroubleRefresh", "TroubleToggle" },
         config = function()
             require("trouble").setup({})
@@ -47,6 +22,7 @@ return {
     },
     {
         "vim-pandoc/vim-pandoc-syntax",
+        lazy = true,
         ft = { "pandoc" },
         config = function()
             -- vim.g["pandoc#syntax#conceal#cchar_overrides"] = { atx = "#" }
@@ -54,14 +30,14 @@ return {
             vim.g["pandoc#filetypes#handled"] = { "pandoc", "markdown" }
             vim.g["pandoc#syntax#style#use_definition_lists"] = 0
             vim.g["pandoc#syntax#conceal#blacklist"] =
-            { "atx", "block", "list", "newline", "dashes", "ellipses", "quotes" }
+                { "atx", "block", "list", "newline", "dashes", "ellipses", "quotes" }
         end,
     },
     {
         "lewis6991/gitsigns.nvim",
+        lazy = true,
         cmd = { "Gitsigns" },
-        event = { "BufReadPost", "FileReadPost" },
-        -- lazy = false,
+        -- event = { "BufReadPost", "FileReadPost" },
         dependencies = {
             "nvim-lua/plenary.nvim",
         },
@@ -87,8 +63,9 @@ return {
     },
     {
         "dhruvasagar/vim-table-mode",
+        lazy = true,
         ft = { "markdown", "pandoc", "tex" },
-        init = function()
+        config = function()
             require("which-key").add({
                 { "<leader>t", group = "table mode" },
             })
@@ -97,6 +74,7 @@ return {
     },
     {
         "MeanderingProgrammer/markdown.nvim",
+        lazy = true,
         name = "render-markdown",
         dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.icons" }, -- if you use standalone mini plugins
         ft = { "markdown", "pandoc" },
@@ -108,10 +86,12 @@ return {
     },
     {
         "heterophyllus/vscode-codev",
+        lazy = true,
         ft = { "codev" },
     },
     {
         "GuillaumeAllain/vim-codevmacro",
+        lazy = true,
         branch = "dev",
         ft = { "codev" },
     },

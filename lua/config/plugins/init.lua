@@ -1,39 +1,21 @@
 return {
     { "markonm/traces.vim",        keys = { ":", "/", "?" } },
-    { "zerowidth/vim-copy-as-rtf", cmd = { "CopyRTF" } },
     { "romainl/vim-cool",          lazy = false },
-    { "wellle/targets.vim",        lazy = false },
+    -- { "wellle/targets.vim",        lazy = false },
     { "tpope/vim-eunuch",          lazy = false },
     -- {
-    --     "xiyaowong/transparent.nvim",
-    --     lazy = false,
+    --     "anuvyklack/pretty-fold.nvim",
     --     config = function()
-    --         require("transparent").setup({
-    --             exclude_groups = { "Visual" },
-    --             extra_groups = {
-    --                 "TelescopeBorder",
-    --                 "Telescope Normal",
-    --                 "TelescopePromptNormal",
-    --                 "TelescopePromptBorder",
-    --                 "Conceal",
-    --                 "Comment",
-    --             },
-    --         })
+    --         require("pretty-fold").setup({ default_keybindings = false })
     --     end,
     -- },
-    {
-        "anuvyklack/pretty-fold.nvim",
-        config = function()
-            require("pretty-fold").setup({ default_keybindings = false })
-        end,
-    },
-    { "MunifTanjim/nui.nvim",    lazy = false },
+    -- { "MunifTanjim/nui.nvim",    lazy = false },
     {
         "moll/vim-bbye",
         cmd = { "Bdelete", "Bwipeout" },
     },
-    { "dkarter/bullets.vim",     ft = { "markdown", "pandoc", "tex" } },
-    { "psliwka/termcolors.nvim", cmd = "TermcolorsShow" },
+    -- { "dkarter/bullets.vim",     ft = { "markdown", "pandoc", "tex" } },
+    -- { "psliwka/termcolors.nvim", cmd = "TermcolorsShow" },
     {
         "nvim-treesitter/playground",
         cmd = "TSPlaygroundToggle",

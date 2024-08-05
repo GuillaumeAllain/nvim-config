@@ -17,16 +17,8 @@ if lineno ~= 0 then
     end
 end
 
-require("which-key").register({
-    ["f"] = {
-        l = {
-            "<cmd>Telescope heading<cr>",
-            "Lsp document symbols",
-        },
-    },
-}, {
-    buffer = vim.api.nvim_get_current_buf(), --- pass buffer number in option then it will work
-    prefix = "<leader>",
+require("which-key").add({
+    { "<leader>fl", "<cmd>Telescope heading<cr>", buffer = 1, desc = "Lsp document symbols" },
 })
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {

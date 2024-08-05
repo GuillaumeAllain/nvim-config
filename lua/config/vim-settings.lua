@@ -1,7 +1,5 @@
 vim.opt.background = "light"
 
--- vim.o.guifont = "SFmono Nerd Font:h15"
-
 vim.filetype.add({
     filename = {
         [".notes"] = "pandoc",
@@ -39,26 +37,9 @@ end
 vim.opt.statuscolumn = _G.statuscolumnoff
 vim.opt.splitkeep = "screen"
 vim.opt.pumheight = 10
-vim.opt.timeoutlen = 200
-vim.opt.scl = "yes"
 vim.opt.splitright = true
 vim.opt.splitbelow = true
-vim.opt.updatetime = 100
 vim.opt.scl = "auto"
-if vim.loop.os_uname().sysname == "Darwin" then
-    vim.g.clipboard = {
-        name = "macOS-clipboard",
-        copy = {
-            ["+"] = "pbcopy",
-            ["*"] = "pbcopy",
-        },
-        paste = {
-            ["+"] = "pbpaste",
-            ["*"] = "pbpaste",
-        },
-        cache_enabled = 0,
-    }
-end
 vim.opt.clipboard = "unnamed"
 vim.opt.fixeol = false
 
@@ -69,6 +50,7 @@ vim.opt.expandtab = true
 vim.opt.cmdheight = 1
 vim.opt.wildmode = "longest,full"
 vim.opt.showtabline = 0
+
 vim.wo.foldtext = [[substitute(getline(v:foldstart),'\\t',repeat('\t',&tabstop),'g').'...'.trim(getline(v:foldend))]]
 vim.opt.fillchars:append({ eob = " ", fold = " " })
 vim.wo.foldnestmax = 3
@@ -83,11 +65,11 @@ vim.opt.spelllang = "fr"
 
 vim.g.mapleader = " "
 vim.g.loaded_python_provider = 0
-vim.g.loaded_python3_provider = 1
+vim.g.loaded_python3_provider = 0
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_node_provider = 1
-vim.g.python3_host_prog = vim.fn.expand(os.getenv("HOME") .. "/micromamba/bin/python")
+-- vim.g.python3_host_prog = vim.fn.expand(os.getenv("HOME") .. "/micromamba/bin/python")
 
 vim.g.netrw_banner = 0
 vim.g.netrw_liststyle = 3
@@ -101,7 +83,7 @@ vim.cmd.au({ "BufWritePre", "/tmp/*", "setlocal", "noundofile", bang = true })
 vim.cmd.au({ "User", "Startified", "setlocal", "buflisted", bang = true })
 vim.cmd.au({ "Filetype", "help", ":wincmd L | :vert resize 90", bang = true })
 vim.cmd.au({ "TextYankPost", "*", "silent! lua vim.highlight.on_yank{timeout=75,bang=true}", bang = true })
-vim.cmd.au({"BufRead,BufNewFile", "*.mac", "set filetype=codev"})
+vim.cmd.au({ "BufRead,BufNewFile", "*.mac", "set filetype=codev" })
 vim.g["$MANPAGER"] = "nvr +Man! -"
 vim.opt.path = vim.opt.path + ".,**"
 
@@ -125,5 +107,5 @@ vim.diagnostic.config({
 })
 
 vim.schedule(function()
-  vim.opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus" -- Sync with system clipboard
+    vim.opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus" -- Sync with system clipboard
 end)

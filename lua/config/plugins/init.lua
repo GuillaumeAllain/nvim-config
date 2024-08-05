@@ -1,5 +1,6 @@
 return {
     { "markonm/traces.vim", lazy = true, keys = { ":", "/", "?" } },
+    { "wellle/targets.vim", lazy = false },
     { "tpope/vim-eunuch", lazy = false },
     {
         "moll/vim-bbye",

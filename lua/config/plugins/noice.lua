@@ -1,7 +1,7 @@
 return {
     "folke/noice.nvim",
-    lazy = false,
-    -- enabled=false,
+    lazy = true,
+    event = "VeryLazy",
     config = function()
         require("noice").setup({
             popupmenu = {
@@ -24,7 +24,7 @@ return {
                     ["vim.lsp.util.convert_input_to_markdown_lines"] = false,
                     ["vim.lsp.util.stylize_markdown"] = false,
                     ["cmp.entry.get_documentation"] = false,
-                }
+                },
             },
             presets = {
                 bottom_search = true,
@@ -32,9 +32,9 @@ return {
                 long_message_to_split = true,
                 inc_rename = true,
             },
-            notify ={
+            notify = {
                 replace = true,
-                merge = true
+                merge = true,
             },
             lsp_progress = {
                 enabled = false,
@@ -51,6 +51,6 @@ return {
         -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
         "MunifTanjim/nui.nvim",
         "rcarriga/nvim-notify",
-        "hrsh7th/nvim-cmp",
+        -- "hrsh7th/nvim-cmp",
     },
 }

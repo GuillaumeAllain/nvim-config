@@ -1,7 +1,9 @@
 return {
     "nvim-treesitter/nvim-treesitter",
+    event = { "LazyFile" },
     dependencies = { "romgrk/nvim-treesitter-context" },
-    lazy = false,
+    lazy = true,
+    ft = require("config").treesitter_ft,
     config = function()
         require("nvim-treesitter.configs").setup({
             ensure_installed = require("config").treesitter_ft,

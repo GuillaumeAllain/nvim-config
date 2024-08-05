@@ -1,6 +1,41 @@
 local api = vim.api
 local m = {}
 
+local lazy_file_events = { "BufReadPost", "BufNewFile", "BufWritePre" }
+
+function m.lazy_file()
+    -- This autocmd will only trigger when a file was loaded from the cmdline.
+    -- It will render the file as quickly as possible.
+    vim.api.nvim_create_autocmd("BufReadPost", {
+        once = true,
+        callback = function(event)
+            -- Skip if we already entered vim
+            if vim.v.vim_did_enter == 1 then
+                return
+            end
+
+            -- Try to guess the filetype (may change later on during Neovim startup)
+            local ft = vim.filetype.match({ buf = event.buf })
+            if ft then
+                -- Add treesitter highlights and fallback to syntax
+                local lang = vim.treesitter.language.get_lang(ft)
+                if not (lang and pcall(vim.treesitter.start, event.buf, lang)) then
+                    vim.bo[event.buf].syntax = ft
+                end
+
+                -- Trigger early redraw
+                vim.cmd([[redraw]])
+            end
+        end,
+    })
+
+    -- Add support for the LazyFile event
+    local Event = require("lazy.core.handler.event")
+
+    Event.mappings.LazyFile = { id = "LazyFile", event = lazy_file_events }
+    Event.mappings["User LazyFile"] = Event.mappings.LazyFile
+end
+
 local function _get_kitty_theme()
     local theme = {}
     theme[#theme + 1] = "# " .. vim.o.background
@@ -28,11 +63,11 @@ function m.export_theme_to_kitty()
     api.nvim_command("silent w")
     api.nvim_command("silent! bd!")
     api.nvim_command("silent !kitty @ set-colors --all --configured ~/.config/kitty/kitty.conf")
-    api.nvim_command("silent! edit "..localfile)
+    api.nvim_command("silent! edit " .. localfile)
     if altfile ~= "" then
         vim.fn.setreg("#", altfile)
     else
-        vim.cmd[["let @# = ''"]]
+        vim.cmd([["let @# = ''"]])
     end
 end
 
@@ -129,10 +164,10 @@ function m.toggle_background()
     -- api.nvim_command("nos e " .. vim.fn.stdpath("config") .. "/init.lua") -- equivalent to :enew
     if vim.opt.background:get() == "light" then
         vim.opt.background = "dark"
-    --     api.nvim_command("silent! %s/vim.opt.background\\s*=\\s*\"\\(light\\)/vim.opt.background=\"dark")
+        --     api.nvim_command("silent! %s/vim.opt.background\\s*=\\s*\"\\(light\\)/vim.opt.background=\"dark")
     else
         vim.opt.background = "light"
-    --     api.nvim_command("silent! %s/vim.opt.background\\s*=\\s*\"\\(dark\\)/vim.opt.background=\"light")
+        --     api.nvim_command("silent! %s/vim.opt.background\\s*=\\s*\"\\(dark\\)/vim.opt.background=\"light")
     end
     -- api.nvim_command("silent w")
     -- api.nvim_command("silent! bd!")

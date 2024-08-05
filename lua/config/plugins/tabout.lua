@@ -1,5 +1,6 @@
 return {
     "abecodes/tabout.nvim",
+    lazy = true,
     dependencies = {
         "hrsh7th/nvim-cmp",
         "hrsh7th/vim-vsnip",

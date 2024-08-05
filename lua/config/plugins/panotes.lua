@@ -1,5 +1,6 @@
 return {
     "GuillaumeAllain/panotes",
+    lazy = true,
     cmd = { "Panotes" },
     keys = { "<leader>p" },
     config = function()

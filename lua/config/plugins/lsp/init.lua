@@ -1,5 +1,7 @@
 return {
     "neovim/nvim-lspconfig",
+    event = { "LazyFile" },
+    lazy = true,
     ft = require("config").lsp_ft,
     config = function()
         local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -23,14 +25,6 @@ return {
             on_attach = on_attach,
             capabilities = capabilities,
         })
-
-        -- lspconfig.jedi_language_server.setup({
-        --     on_attach = on_attach,
-        --     capabilities = capabilities,
-        --     -- root_dir = function(fname)
-        --         -- return lspconfig.util.find_git_ancestor(fname) or lspconfig.util.root_pattern(unpack(root_files)),
-        --     -- end,
-        -- })
 
         lspconfig.fortls.setup({
             on_attach = on_attach,

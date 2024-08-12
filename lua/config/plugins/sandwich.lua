@@ -2,7 +2,7 @@ return {
     "machakann/vim-sandwich",
     lazy = true,
     keys = {'sa', 'sd', 'sr', 'sdb', 'srb'},
-    event = "InsertEnter",
+    event = "VeryLazy",
     config = function()
         vim.cmd([[
         let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)

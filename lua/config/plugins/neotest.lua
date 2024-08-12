@@ -37,11 +37,17 @@ return {
                             if success and exit_code == 0 then
                                 local pixi_info_json = data.stdout:gsub("\n", "")
                                 local pixi_env_table = vim.json.decode(pixi_info_json)["environments_info"]
+                                local pixi_return = ""
                                 for i, v in ipairs(pixi_env_table) do
                                     local venv = vim.inspect(v["prefix"]):gsub('"', "")
                                     if string.find(venv, "test") then
                                         return require("plenary.path"):new(venv, "bin", "python").filename
+                                    elseif string.find(venv, "default") then
+                                        pixi_return = require("plenary.path"):new(venv, "bin", "python").filename
                                     end
+                                end
+                                if pixi_return ~= "" then
+                                    return pixi_return
                                 end
                             end
                         end

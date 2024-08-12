@@ -1,5 +1,4 @@
 vim.opt.background = "light"
--- vim.o.guifont = "SFmono Nerd Font:h15"
 
 vim.filetype.add({
     filename = {
@@ -38,26 +37,9 @@ end
 vim.opt.statuscolumn = _G.statuscolumnoff
 vim.opt.splitkeep = "screen"
 vim.opt.pumheight = 10
-vim.opt.timeoutlen = 200
-vim.opt.scl = "yes"
 vim.opt.splitright = true
 vim.opt.splitbelow = true
-vim.opt.updatetime = 100
 vim.opt.scl = "auto"
-if vim.loop.os_uname().sysname == "Darwin" then
-    vim.g.clipboard = {
-        name = "macOS-clipboard",
-        copy = {
-            ["+"] = "pbcopy",
-            ["*"] = "pbcopy",
-        },
-        paste = {
-            ["+"] = "pbpaste",
-            ["*"] = "pbpaste",
-        },
-        cache_enabled = 0,
-    }
-end
 vim.opt.clipboard = "unnamed"
 vim.opt.fixeol = false
 

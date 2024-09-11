@@ -81,6 +81,7 @@ return {
         config = function()
             require("render-markdown").setup({
                 file_types = { "markdown", "pandoc" },
+                render_modes = { "n", "v", "i", "c" },
             })
         end,
     },

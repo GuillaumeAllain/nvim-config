@@ -67,6 +67,8 @@ return {
             },
         })
 
+        lspconfig.sqlls.setup({})
+
         -- local dyalog_bin = "/Applications/Dyalog-18.0.app/Contents/Resources/Dyalog/mapl"
         --
         -- local apl_ls_root_path = os.getenv("HOME") .. "~/srv/apl-language-server"

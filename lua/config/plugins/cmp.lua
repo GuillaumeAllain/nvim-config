@@ -45,6 +45,12 @@ return {
         local types = require("cmp.types")
 
         cmp.setup({
+            opts = {
+                performance = {
+                    debounce = 0, -- default is 60ms
+                    throttle = 0, -- default is 30ms
+                },
+            },
             window = {
                 -- completion = cmp.config.window.bordered(),
                 -- documentation = cmp.config.window.bordered(),
@@ -158,6 +164,5 @@ return {
                 require("cmp").setup.buffer({ enabled = true })
             end
         end
-
     end,
 }

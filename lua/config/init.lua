@@ -26,6 +26,7 @@ return {
         "python",
         "pandoc",
         "yaml",
+        "toml",
         "fortran",
         "haskell",
         "lua",
@@ -35,7 +36,6 @@ return {
         "codevlisp",
         "r",
         "json",
-        "toml"
     },
     ctags_ft = { "pandoc", "markdown", "codevlisp" },
 }

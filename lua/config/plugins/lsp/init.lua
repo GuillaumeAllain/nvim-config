@@ -20,6 +20,11 @@ return {
             capabilities = capabilities,
         })
 
+        lspconfig.taplo.setup({
+            on_attach = on_attach,
+            capabilities = capabilities,
+        })
+
         lspconfig.r_language_server.setup({
             cmd = { os.getenv("HOMEBREW_PREFIX") .. "/bin/R", "--slave", "-e", "languageserver::run()" },
             on_attach = on_attach,

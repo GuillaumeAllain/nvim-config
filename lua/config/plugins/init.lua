@@ -73,6 +73,14 @@ return {
         end,
     },
     {
+        "ray-x/yamlmatter.nvim",
+        lazy = true,
+        ft = { "markdown", "pandoc" },
+        config = function()
+            require("yamlmatter").setup()
+        end,
+    },
+    {
         "MeanderingProgrammer/markdown.nvim",
         lazy = true,
         name = "render-markdown",

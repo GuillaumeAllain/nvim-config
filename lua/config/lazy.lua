@@ -3,6 +3,9 @@ require("utils").lazy_file()
 require("lazy").setup("config.plugins", {
     defaults = { lazy = true },
     install = { colorscheme = { "rose-pine" } },
+    dev = {
+        path = "~/srv"
+    },
     diff = {
         cmd = "terminal_git",
     },
@@ -24,7 +27,6 @@ require("lazy").setup("config.plugins", {
                 "spellfile_plugin",
                 "sql_completion",
                 "syntax_completion",
-                "matchit",
                 "rplugin",
                 "tutor",
                 "netrwPlugin",

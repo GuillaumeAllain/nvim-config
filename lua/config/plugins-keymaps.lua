@@ -28,6 +28,7 @@ vim.keymap.set(
     "<cmd>lua require('telescope').extensions.bibtex.bibtex({format='markdown'})<cr>",
     { noremap = true, silent = true, desc = "bibtex" }
 )
+
 vim.keymap.set("n", "<leader>gg", "<cmd>lua require('trouble').focus()<cr>")
 
 function _G.tabout_binding()

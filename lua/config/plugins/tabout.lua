@@ -13,7 +13,6 @@ return {
             act_as_shit_tab = false,
             enable_backwards = false,
             completion = true,
-            -- exclude = { "pandoc" },
             tabouts = {
                 { open = "'", close = "'" },
                 { open = '"', close = '"' },

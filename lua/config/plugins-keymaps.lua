@@ -28,6 +28,18 @@ vim.keymap.set(
     "<cmd>lua require('telescope').extensions.bibtex.bibtex({format='markdown'})<cr>",
     { noremap = true, silent = true, desc = "bibtex" }
 )
+vim.keymap.set(
+    "n",
+    "<leader>fj",
+    "<cmd>lua require('telescope.builtin').live_grep()<cr>",
+    { noremap = true, silent = true, desc = "Telescope live grep" }
+)
+vim.keymap.set(
+    "n",
+    "<leader>f<leader>",
+    "<cmd>lua require('telescope.builtin').resume()<cr>",
+    { noremap = true, silent = true, desc = "Use HarpoonTerm to call system's file cleaner" }
+)
 
 vim.keymap.set("n", "<leader>gg", "<cmd>lua require('trouble').focus()<cr>")
 

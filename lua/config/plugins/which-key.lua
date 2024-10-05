@@ -37,11 +37,11 @@ return {
                 "<cmd>lua require('telescope.builtin').buffers()<cr>",
                 desc = "buffers",
             },
-            {
-                "<leader>fg",
-                "<cmd>lua require('telescope.builtin').live_grep()<cr>",
-                desc = "live grep",
-            },
+            -- {
+            --     "<leader>fg",
+            --     "<cmd>lua require('telescope.builtin').live_grep()<cr>",
+            --     desc = "live grep",
+            -- },
             {
                 "<leader>fk",
                 "<cmd>lua require('telescope.builtin').lsp_workspace_symbols()<cr>",

@@ -81,16 +81,32 @@ return {
         end,
     },
     {
-        "MeanderingProgrammer/markdown.nvim",
+        "OXY2DEV/markview.nvim",
         lazy = true,
+        ft = { "markdown", "pandoc" },
+        dependencies = {
+
+            "nvim-treesitter/nvim-treesitter",
+            "nvim-tree/nvim-web-devicons",
+        },
+        config = function()
+            require("markview").setup({
+                modes = { "n", "v", "i", "c" },
+                filetypes = { "markdown", "quarto", "rmd", "pandoc" },
+            })
+        end,
+    },
+    {
+        "MeanderingProgrammer/render-markdown.nvim",
+        lazy = true,
+        enabled = false,
         name = "render-markdown",
         dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.icons" }, -- if you use standalone mini plugins
         ft = { "markdown", "pandoc" },
-        enabled=true,
         config = function()
             require("render-markdown").setup({
                 file_types = { "markdown", "pandoc" },
-                render_modes = { "n", "v", "i", "c" },
+                render_modes = { "n", "v"},
             })
         end,
     },

@@ -64,11 +64,8 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.spelllang = "fr"
 
-vim.g.python3_host_prog = vim.fn.expand(os.getenv("HOME") .. "/micromamba/bin/python")
-
 vim.g.netrw_banner = 0
 vim.g.netrw_liststyle = 3
-vim.g.pyindent_searchpair_timeout = 10
 vim.g.netrw_winsize = 20
 vim.opt.laststatus = 3
 
@@ -84,6 +81,7 @@ vim.opt.path = vim.opt.path + ".,**"
 
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+
 vim.lsp.protocol.make_client_capabilities().textDocument.completion.completionItem.snippetSupport = true
 vim.lsp.protocol.make_client_capabilities().textDocument.completion.completionItem.resolveSupport = {
     properties = {
@@ -97,6 +95,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
     signs = true,
     update_in_insert = false,
 })
+
 vim.diagnostic.config({
     virtual_text = false,
 })
@@ -105,11 +104,13 @@ vim.schedule(function()
     vim.opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus" -- Sync with system clipboard
 end)
 
-vim.api.nvim_create_autocmd('CursorMoved', {
-  group = vim.api.nvim_create_augroup('auto-hlsearch', { clear = true }),
-  callback = function ()
-    if vim.v.hlsearch == 1 and vim.fn.searchcount().exact_match == 0 then
-      vim.schedule(function () vim.cmd.nohlsearch() end)
-    end
-  end
+vim.api.nvim_create_autocmd("CursorMoved", {
+    group = vim.api.nvim_create_augroup("auto-hlsearch", { clear = true }),
+    callback = function()
+        if vim.v.hlsearch == 1 and vim.fn.searchcount().exact_match == 0 then
+            vim.schedule(function()
+                vim.cmd.nohlsearch()
+            end)
+        end
+    end,
 })

@@ -3,11 +3,11 @@ return {
     event = "InsertEnter",
     config = function()
         vim.g.vsnip_snippet_dir = vim.fn.expand(os.getenv("XDG_CONFIG_HOME") .. "/vsnip")
-        vim.api.nvim_exec(
+        vim.api.nvim_exec2(
             [[
         autocmd FileType * call vsnip#get_complete_items(bufnr())
-        ]]   ,
-            false
+        ]],
+            {}
         )
         -- vim.cmd([[
         -- imap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'

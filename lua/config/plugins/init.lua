@@ -77,7 +77,7 @@ return {
         lazy = true,
         ft = { "markdown", "pandoc" },
         config = function()
-            require("yamlmatter").setup()
+            require("yamlmatter").setup({})
         end,
     },
     {
@@ -86,6 +86,7 @@ return {
         name = "render-markdown",
         dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.icons" }, -- if you use standalone mini plugins
         ft = { "markdown", "pandoc" },
+        enabled=true,
         config = function()
             require("render-markdown").setup({
                 file_types = { "markdown", "pandoc" },

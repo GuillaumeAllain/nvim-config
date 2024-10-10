@@ -93,7 +93,7 @@ function m.get_build_terminal()
     for k in pairs(buffer_list) do
         if vim.fn.bufname(buffer_list[k].bufnr) == "BuildTerminal" then
             buffer_number = vim.fn.deepcopy(buffer_list[k].bufnr)
-            if vim.api.nvim_buf_get_option(buffer_number, "buftype") == "terminal" then
+            if vim.api.nvim_get_option_value("buftype", { buf = buffer_number }) == "terminal" then
                 create_buffer = false
             else
                 vim.api.nvim_buf_delete(buffer_number, {})
@@ -149,7 +149,7 @@ function m.toggle_build_buffer_window()
 
     for k in pairs(win_info) do
         if win_info[k].bufnr == build_buffer then
-            vim.api.nvim_win_close(win_info[k].winid, nil)
+            vim.api.nvim_win_close(win_info[k].winid, true)
             window_closed = true
         end
     end

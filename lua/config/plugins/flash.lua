@@ -2,8 +2,17 @@ return {
     "folke/flash.nvim",
     lazy = true,
     event = "VeryLazy",
-    ---@type Flash.Config
-    opts = {},
+    -- opts = {
+    --
+    --     modes = {
+    --         char = {
+    --             jump_labels = true,
+    --             search = {
+    --                 multi_window = true,
+    --             },
+    --         },
+    --     },
+    -- },
     keys = {
         {
             "sf",

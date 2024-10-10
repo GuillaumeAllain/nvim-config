@@ -85,14 +85,21 @@ return {
         lazy = true,
         ft = { "markdown", "pandoc" },
         dependencies = {
-
             "nvim-treesitter/nvim-treesitter",
             "nvim-tree/nvim-web-devicons",
         },
         config = function()
             require("markview").setup({
-                modes = { "n", "v", "i", "c" },
+                headings = require("markview.presets").headings.simple,
+                checkboxes = require("markview.presets").checkboxes.nerd,
+                modes = { "i", "n", "v", "c" },
                 filetypes = { "markdown", "quarto", "rmd", "pandoc" },
+            })
+            require("markview.extras.editor").setup({
+                width = { 10, 0.75 },
+                height = { 3, 0.75 },
+                debounce = 50,
+                callback = function(buf, win) end,
             })
         end,
     },
@@ -106,7 +113,7 @@ return {
         config = function()
             require("render-markdown").setup({
                 file_types = { "markdown", "pandoc" },
-                render_modes = { "n", "v"},
+                render_modes = { "n", "v" },
             })
         end,
     },

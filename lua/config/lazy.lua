@@ -29,7 +29,6 @@ require("lazy").setup("config.plugins", {
                 "syntax_completion",
                 "rplugin",
                 "tutor",
-                "netrwPlugin",
                 "tohtml",
             },
         },

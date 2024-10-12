@@ -22,10 +22,11 @@ return {
     },
     {
         "vim-pandoc/vim-pandoc-syntax",
+        enabled = false,
+        event = "VeryLazy",
         lazy = true,
         ft = { "pandoc" },
         config = function()
-            -- vim.g["pandoc#syntax#conceal#cchar_overrides"] = { atx = "#" }
             vim.g["pandoc#modules#disabled"] = { "folding" }
             vim.g["pandoc#filetypes#handled"] = { "pandoc", "markdown" }
             vim.g["pandoc#syntax#style#use_definition_lists"] = 0
@@ -82,15 +83,14 @@ return {
     },
     {
         "OXY2DEV/markview.nvim",
-        lazy = true,
         ft = { "markdown", "pandoc" },
+        event = "LazyFile",
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
             "nvim-tree/nvim-web-devicons",
         },
         config = function()
             require("markview").setup({
-                headings = require("markview.presets").headings.simple,
                 checkboxes = require("markview.presets").checkboxes.nerd,
                 modes = { "i", "n", "v", "c" },
                 filetypes = { "markdown", "quarto", "rmd", "pandoc" },

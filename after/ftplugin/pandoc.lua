@@ -1,6 +1,6 @@
 vim.cmd.setlocal("expandtab")
 vim.cmd.setlocal("shiftwidth=4")
-vim.cmd.setlocal("softtabstop=4")
+-- vim.cmd.setlocal("softtabstop=4")
 vim.opt_local.commentstring = "<!--%s-->"
 
 vim.diagnostic.config({ virtual_lines = false })

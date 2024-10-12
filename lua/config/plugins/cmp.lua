@@ -25,7 +25,8 @@ return {
         },
         {
             "quangnguyen30192/cmp-nvim-tags",
-            ft = { "pandoc", "markdown" },
+            event = "InsertEnter",
+            -- ft = { "pandoc", "markdown" },
         },
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-emoji",

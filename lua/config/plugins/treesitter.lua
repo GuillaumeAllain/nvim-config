@@ -9,8 +9,6 @@ return {
             ensure_installed = require("config").treesitter_ft,
             highlight = {
                 enable = true,
-                additional_vim_regex_highlighting = { "markdown" }, -- Required since TS highlighter doesn't support all syntax features (conceal)
-                -- disable={"markdown"}
                 disable = function(lang, bufnr)
                     return vim.api.nvim_buf_get_name(bufnr):sub(-2) == ".f"
                 end,

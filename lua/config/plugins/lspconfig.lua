@@ -2,7 +2,7 @@ return {
     "neovim/nvim-lspconfig",
     event = { "LazyFile" },
     lazy = true,
-    ft = require("config").lsp_ft,
+    ft = CONFIG_LSP_FT,
     config = function()
         local capabilities = vim.lsp.protocol.make_client_capabilities()
         capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)

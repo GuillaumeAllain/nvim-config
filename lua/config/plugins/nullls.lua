@@ -1,6 +1,6 @@
 return {
     "nvimtools/none-ls.nvim",
-    ft = require("config").lsp_ft,
+    ft = CONFIG_LSP_FT,
     event = { "LazyFile" },
     lazy = true,
     config = function()

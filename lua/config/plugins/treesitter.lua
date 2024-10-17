@@ -1,12 +1,36 @@
+local treesitter_ft = {
+    "python",
+    "yaml",
+    "bash",
+    "c",
+    "bibtex",
+    "fortran",
+    "haskell",
+    "fennel",
+    "html",
+    "julia",
+    "latex",
+    "lua",
+    "regex",
+    "toml",
+    "markdown",
+    "markdown_inline",
+    "comment",
+    "vim",
+    "query",
+    "vimdoc",
+    "r",
+}
+
 return {
     "nvim-treesitter/nvim-treesitter",
     event = { "LazyFile" },
     dependencies = { "romgrk/nvim-treesitter-context" },
     lazy = true,
-    ft = require("config").treesitter_ft,
+    ft = treesitter_ft,
     config = function()
         require("nvim-treesitter.configs").setup({
-            ensure_installed = require("config").treesitter_ft,
+            ensure_installed = treesitter_ft,
             highlight = {
                 enable = true,
                 disable = function(lang, bufnr)

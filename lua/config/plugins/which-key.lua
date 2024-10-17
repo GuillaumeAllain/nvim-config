@@ -89,16 +89,6 @@ return {
                 desc = "TodoTrouble",
             },
             {
-                "<leader>gk",
-                "<cmd>Luapad<cr>",
-                desc = "Luapad",
-            },
-            {
-                "<leader>gl",
-                "<cmd>lua require'harpoon'.toggle_term_window()<cr>",
-                desc = "Toggle HarpoonTerm(1) in vsplit",
-            },
-            {
                 "<leader>gn",
                 "<cmd>lua _G.toggle_statuscolumn()<cr>",
                 desc = "Toggle Number",
@@ -171,26 +161,6 @@ return {
                 desc = "capture",
             },
             { "<leader>r", group = "harpoon" },
-            {
-                "<leader>re",
-                "<cmd>lua require('harpoon.ui').nav_next()<cr>",
-                desc = "Next file",
-            },
-            {
-                "<leader>rr",
-                "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>",
-                desc = "Quick Menu",
-            },
-            {
-                "<leader>rt",
-                "<cmd>lua require('harpoon.ui').nav_prev()<cr>",
-                desc = "Prev file",
-            },
-            {
-                "<leader>rw",
-                "<cmd>lua require('harpoon.mark').add_file()<cr>",
-                desc = "Add file",
-            },
             { "<leader>t", group = "neotest" },
             {
                 "<leader>tr",

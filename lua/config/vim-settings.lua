@@ -34,6 +34,7 @@ function _G.toggle_statuscolumn()
     end
 end
 
+vim.opt.formatoptions = "ro"
 vim.opt.statuscolumn = _G.statuscolumnoff
 vim.opt.splitkeep = "screen"
 vim.opt.pumheight = 10

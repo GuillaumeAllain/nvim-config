@@ -1,3 +1,4 @@
+local ctags_ft = { "pandoc", "markdown", "codevlisp" }
 return {
     "ludovicchabant/vim-gutentags",
     -- ft = require("config").ctags_ft,

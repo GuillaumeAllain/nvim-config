@@ -1,28 +1,14 @@
-return {
-    treesitter_ft = {
-        "python",
-        "yaml",
-        "bash",
-        "c",
-        "bibtex",
-        "fortran",
-        "haskell",
-        "fennel",
-        "html",
-        "julia",
-        "latex",
-        "lua",
-        "regex",
-        "toml",
-        "markdown",
-        "markdown_inline",
-        "comment",
-        "vim",
-        "query",
-        "vimdoc",
-        "r"
-    },
-    lsp_ft = {
+vim.g.mapleader = " "
+
+require("config.lazy")
+
+require("config.vim-settings")
+
+require("config.vim-keymaps")
+
+require("config.plugins-keymaps")
+
+CONFIG_LSP_FT = {
         "python",
         "pandoc",
         "yaml",
@@ -36,6 +22,4 @@ return {
         "codevlisp",
         "r",
         "json",
-    },
-    ctags_ft = { "pandoc", "markdown", "codevlisp" },
-}
+    }

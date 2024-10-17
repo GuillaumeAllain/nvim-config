@@ -1,16 +1,11 @@
 return {
     { "markonm/traces.vim", lazy = true, keys = { ":", "/", "?" } },
     { "wellle/targets.vim", lazy = false },
-    { "tpope/vim-eunuch", lazy = false },
+    { "tpope/vim-eunuch",   lazy = false },
     {
         "moll/vim-bbye",
         lazy = true,
         cmd = { "Bdelete", "Bwipeout" },
-    },
-    {
-        "nvim-treesitter/playground",
-        lazy = true,
-        cmd = "TSPlaygroundToggle",
     },
     {
         "folke/trouble.nvim",
@@ -31,14 +26,13 @@ return {
             vim.g["pandoc#filetypes#handled"] = { "pandoc", "markdown" }
             vim.g["pandoc#syntax#style#use_definition_lists"] = 0
             vim.g["pandoc#syntax#conceal#blacklist"] =
-                { "atx", "block", "list", "newline", "dashes", "ellipses", "quotes" }
+            { "atx", "block", "list", "newline", "dashes", "ellipses", "quotes" }
         end,
     },
     {
         "lewis6991/gitsigns.nvim",
         lazy = true,
         cmd = { "Gitsigns" },
-        -- event = { "BufReadPost", "FileReadPost" },
         dependencies = {
             "nvim-lua/plenary.nvim",
         },
@@ -46,7 +40,6 @@ return {
             require("gitsigns").setup({
                 signcolumn = false,
                 numhl = false,
-                -- _signs_staged_enable = true,
             })
             local function get_color(group, attr)
                 local fn = vim.fn

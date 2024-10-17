@@ -14,12 +14,4 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-vim.g.mapleader = " "
-
-require("config.lazy")
-
-require("config.vim-settings")
-
-require("config.vim-keymaps")
-
-require("config.plugins-keymaps")
+require("config")

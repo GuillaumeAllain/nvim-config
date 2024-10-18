@@ -150,6 +150,19 @@ function m.open_build_buffer_window(config)
     return term_window
 end
 
+function m.open_scratch_buffer(config)
+    local buffer_number = vim.api.nvim_create_buf(true, false)
+    if config.vertical == true then
+        vim.fn.execute("botright split | buffer " .. tostring(buffer_number))
+    else
+        vim.fn.execute("split | buffer " .. tostring(buffer_number))
+    end
+    vim.bo.buftype = "nofile"
+    vim.fn.execute("nos", "silent")
+    local term_window = vim.fn.win_getid()
+    return term_window
+end
+
 function m.focus_build_buffer_window(config)
     local win_info = vim.fn.getwininfo()
     local build_buffer = m.get_build_terminal()

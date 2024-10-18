@@ -27,7 +27,10 @@ vim.keymap.set("n", "<leader>bc", function()
     require("utils").send_command_to_build_terminal("cleaner " .. vim.fn.fnameescape(vim.fn.expand("%:p")))
 end)
 vim.keymap.set("n", "<leader>gk", function()
-    require("utils").focus_build_buffer_window({vertical=false})
+    require("utils").focus_build_buffer_window({ vertical = false })
+end)
+vim.keymap.set("n", "<leader>s", function()
+    require("utils").open_scratch_buffer({ vertical = true })
 end)
 
 vim.keymap.set(

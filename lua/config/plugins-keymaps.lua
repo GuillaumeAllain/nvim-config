@@ -1,51 +1,46 @@
-default = { noremap = true, silent = true }
+local default = { noremap = true, silent = true }
+
 vim.keymap.set("n", "<leader>rw", function()
     require("harpoon"):list():add()
 end, default)
 vim.keymap.set("n", "<leader>rr", function()
     require("harpoon").ui:toggle_quick_menu(require("harpoon"):list())
-end, vim.tbl_extend("error", default, { desc = "default" }))
+end, vim.tbl_extend("force", default, { desc = "default" }))
 vim.keymap.set("n", "<leader>rt", function()
     require("harpoon"):list():next()
-end, vim.tbl_extend("error", default, { desc = "default" }))
+end, vim.tbl_extend("force", default, { desc = "default" }))
 vim.keymap.set("n", "<leader>re", function()
     require("harpoon"):list():prev()
-end, vim.tbl_extend("error", default, { desc = "default" }))
+end, vim.tbl_extend("force", default, { desc = "default" }))
 vim.keymap.set("n", "<leader>gl", function()
     require("utils").toggle_build_buffer_window({ vertical = false })
-end, vim.tbl_extend("error", default, { desc = "default" }))
+end, vim.tbl_extend("force", default, { desc = "default" }))
 vim.keymap.set("n", "<leader>bb", function()
     vim.api.nvim_command("write")
     require("utils").send_command_to_build_terminal("builder " .. vim.fn.fnameescape(vim.fn.expand("%:p")))
-end, vim.tbl_extend("error", default, { desc = "build dans term" }))
+end, vim.tbl_extend("force", default, { desc = "build dans term" }))
 vim.keymap.set("n", "<leader>bl", function()
     vim.api.nvim_command("write")
     require("utils").send_command_to_build_terminal("!!")
-end, vim.tbl_extend("error", default, { desc = "dernière commande" }))
+end, vim.tbl_extend("force", default, { desc = "dernière commande" }))
 vim.keymap.set("n", "<leader>bo", function()
     vim.api.nvim_command("write")
     require("utils").send_command_to_build_terminal("opener " .. vim.fn.fnameescape(vim.fn.expand("%:p")))
-end, vim.tbl_extend("error", default, { desc = "ouvrir dans term" }))
+end, vim.tbl_extend("force", default, { desc = "ouvrir dans term" }))
 vim.keymap.set("n", "<leader>bc", function()
     vim.api.nvim_command("write")
     require("utils").send_command_to_build_terminal("cleaner " .. vim.fn.fnameescape(vim.fn.expand("%:p")))
-end, vim.tbl_extend("error", default, { desc = "clean avec term" }))
+end, vim.tbl_extend("force", default, { desc = "clean avec term" }))
 vim.keymap.set("n", "<leader>gk", function()
     require("utils").focus_build_buffer_window({ vertical = false })
-end, vim.tbl_extend("error", default, { desc = "focus term" }))
+end, vim.tbl_extend("force", default, { desc = "focus term" }))
 vim.keymap.set("n", "<leader>s", function()
     require("utils").open_scratch_buffer({ vertical = true })
-end, vim.tbl_extend("error", default, { desc = "open scratch buffer" }))
+end, vim.tbl_extend("force", default, { desc = "open scratch buffer" }))
 vim.keymap.set({ "v", "n" }, "<leader>fa", function()
     require("telescope")
     vim.lsp.buf.code_action()
-end, vim.tbl_extend("error", default, { desc = "code actions" }))
--- {
---     "<leader>fa",
---     "<cmd>lua require('telescope');vim.lsp.buf.code_action()<cr>",
---     desc = "code actions",
--- },
---
+end, vim.tbl_extend("force", default, { desc = "code actions" }))
 
 vim.keymap.set(
     "i",

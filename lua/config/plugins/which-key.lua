@@ -18,11 +18,6 @@ return {
             },
             { "<leader>f", group = "telescope" },
             {
-                "<leader>fa",
-                "<cmd>lua require('telescope');vim.lsp.buf.code_action()<cr>",
-                desc = "code actions",
-            },
-            {
                 "<leader>fb",
                 "<cmd>lua require('telescope').extensions.bibtex.bibtex({format='markdown'})<cr>",
                 desc = "bibtex",
@@ -37,11 +32,6 @@ return {
                 "<cmd>lua require('telescope.builtin').buffers()<cr>",
                 desc = "buffers",
             },
-            -- {
-            --     "<leader>fg",
-            --     "<cmd>lua require('telescope.builtin').live_grep()<cr>",
-            --     desc = "live grep",
-            -- },
             {
                 "<leader>fk",
                 "<cmd>lua require('telescope.builtin').lsp_workspace_symbols()<cr>",

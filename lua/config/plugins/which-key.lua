@@ -83,11 +83,11 @@ return {
                 "<cmd>lua _G.toggle_statuscolumn()<cr>",
                 desc = "Toggle Number",
             },
-            {
-                "<leader>gt",
-                "<cmd>lua LazyGitOpener()<CR>",
-                desc = "LazyGit",
-            },
+            -- {
+            --     "<leader>gt",
+            --     "<cmd>lua LazyGitOpener()<CR>",
+            --     desc = "LazyGit",
+            -- },
             {
                 "<leader>gu",
                 "<cmd>lua require'utils'.toggle_background()<cr>",
@@ -98,22 +98,22 @@ return {
                 "<cmd>ZenMode <CR>",
                 desc = "Zen-mode",
             },
-            { "<leader>m", group = "maker" },
-            {
-                "<leader>mc",
-                "<cmd>lua require'utils'.send_command_to_build_terminal('maker clean')<cr>",
-                desc = "Make Clean in BuildTerminal",
-            },
-            {
-                "<leader>mm",
-                "<cmd>lua require'utils'.send_command_to_build_terminal('maker make')<cr>",
-                desc = "Make in BuildTerminal",
-            },
-            {
-                "<leader>mo",
-                "<cmd>lua require'utils'.send_command_to_build_terminal('maker open')<cr>",
-                desc = "Make Open in BuildTerminal",
-            },
+            -- { "<leader>m", group = "maker" },
+            -- {
+            --     "<leader>mc",
+            --     "<cmd>lua require'utils'.send_command_to_build_terminal('maker clean')<cr>",
+            --     desc = "Make Clean in BuildTerminal",
+            -- },
+            -- {
+            --     "<leader>mm",
+            --     "<cmd>lua require'utils'.send_command_to_build_terminal('maker make')<cr>",
+            --     desc = "Make in BuildTerminal",
+            -- },
+            -- {
+            --     "<leader>mo",
+            --     "<cmd>lua require'utils'.send_command_to_build_terminal('maker open')<cr>",
+            --     desc = "Make Open in BuildTerminal",
+            -- },
             { "<leader>p", group = "panotes" },
             {
                 "<leader>pa",

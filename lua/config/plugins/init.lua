@@ -1,7 +1,22 @@
 return {
     { "markonm/traces.vim", lazy = true, keys = { ":", "/", "?" } },
     { "wellle/targets.vim", lazy = false },
-    { "tpope/vim-eunuch",   lazy = false },
+    { "tpope/vim-eunuch", lazy = false },
+    {
+        "otavioschwanck/arrow.nvim",
+        lazy = false,
+        dependencies = {
+            { "echasnovski/mini.icons" },
+        },
+        opts = {
+            show_icons = true,
+            leader_key = "<leader>r", -- Recommended to be a single key
+            mappings = {
+                toggle = "w", -- used as save if separate_save_and_remove is true
+            },
+            buffer_leader_key = "<leader>m", -- Per Buffer Mappings
+        },
+    },
     {
         "moll/vim-bbye",
         lazy = true,
@@ -26,7 +41,7 @@ return {
             vim.g["pandoc#filetypes#handled"] = { "pandoc", "markdown" }
             vim.g["pandoc#syntax#style#use_definition_lists"] = 0
             vim.g["pandoc#syntax#conceal#blacklist"] =
-            { "atx", "block", "list", "newline", "dashes", "ellipses", "quotes" }
+                { "atx", "block", "list", "newline", "dashes", "ellipses", "quotes" }
         end,
     },
     {

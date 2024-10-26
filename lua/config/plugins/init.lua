@@ -14,7 +14,7 @@ return {
             mappings = {
                 toggle = "w", -- used as save if separate_save_and_remove is true
             },
-            buffer_leader_key = "<leader>m", -- Per Buffer Mappings
+            buffer_leader_key = "m", -- Per Buffer Mappings
         },
     },
     {

@@ -1,5 +1,6 @@
 require("utils").lazy_file()
 
+
 require("lazy").setup("config.plugins", {
     defaults = { lazy = true},
     install = { colorscheme = { "rose-pine" } },

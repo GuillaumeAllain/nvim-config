@@ -50,8 +50,9 @@ return {
                                     return pixi_return
                                 end
                             end
+                            return ".venv/bin/python"
                         end
-                        return ".venv/bin/python"
+                        return "python"
                     end,
                     ignore_file_types = { "txt" },
                 }),

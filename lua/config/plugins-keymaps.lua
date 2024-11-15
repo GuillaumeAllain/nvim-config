@@ -41,6 +41,10 @@ vim.keymap.set({ "v", "n" }, "<leader>fa", function()
     require("telescope")
     vim.lsp.buf.code_action()
 end, vim.tbl_extend("force", default, { desc = "code actions" }))
+vim.keymap.set("n", "<leader>tb", function()
+    vim.api.nvim_command("write")
+    require("neotest").run.run()
+end, vim.tbl_extend("force", default, { desc = "run closest file" }))
 
 vim.keymap.set(
     "i",

@@ -3,12 +3,10 @@ return {
     lazy = true,
     cmd = { "Panotes" },
     keys = { "<leader>p" },
-    config = function()
-        require("panotes").setup()
-    end,
+    opts = {},
     dependencies = {
         "nvim-lua/plenary.nvim",
         "nvim-telescope/telescope.nvim",
     },
-    dev=true
+    dev = true,
 }

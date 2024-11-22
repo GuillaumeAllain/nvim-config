@@ -10,12 +10,6 @@ return {
                 desc = "macos dictionary",
                 mode = "v",
             },
-            { "<leader>b", group = "builder" },
-            {
-                "<leader>d",
-                "<cmd>Bdelete<cr>",
-                desc = "Delete buffer",
-            },
             { "<leader>f", group = "telescope" },
             {
                 "<leader>fb",
@@ -88,16 +82,6 @@ return {
             --     "<cmd>lua LazyGitOpener()<CR>",
             --     desc = "LazyGit",
             -- },
-            {
-                "<leader>gu",
-                "<cmd>lua require'utils'.toggle_background()<cr>",
-                desc = "Kitty",
-            },
-            {
-                "<leader>gy",
-                "<cmd>ZenMode <CR>",
-                desc = "Zen-mode",
-            },
             -- { "<leader>m", group = "maker" },
             -- {
             --     "<leader>mc",
@@ -150,7 +134,6 @@ return {
                 "<cmd>Panotes change_cwd_to_notes_dir<cr><cmd>Telescope todo-comments todo<cr>",
                 desc = "capture",
             },
-            { "<leader>r", group = "harpoon" },
             { "<leader>t", group = "neotest" },
             {
                 "<leader>tr",

@@ -18,11 +18,6 @@ return {
         },
     },
     {
-        "moll/vim-bbye",
-        lazy = true,
-        cmd = { "Bdelete", "Bwipeout" },
-    },
-    {
         "folke/trouble.nvim",
         lazy = true,
         cmd = { "Trouble", "TroubleClose", "TroubleRefresh", "TroubleToggle" },

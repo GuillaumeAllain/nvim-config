@@ -13,10 +13,6 @@ return {
             "folke/todo-comments.nvim",
         },
         {
-            "rcarriga/nvim-notify",
-        },
-
-        {
             "nvim-lua/plenary.nvim",
         },
         {
@@ -195,7 +191,6 @@ return {
         require("telescope").load_extension("bibtex")
         require("telescope").load_extension("heading")
         require("telescope").load_extension("ui-select")
-        require("telescope").load_extension("notify")
         require("telescope").load_extension("todo-comments")
     end,
 }

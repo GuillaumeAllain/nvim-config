@@ -9,17 +9,17 @@ require("config.vim-keymaps")
 require("config.plugins-keymaps")
 
 CONFIG_LSP_FT = {
-        "python",
-        "pandoc",
-        "yaml",
-        "toml",
-        "fortran",
-        "haskell",
-        "lua",
-        "julia",
-        "apl",
-        "fennel",
-        "codevlisp",
-        "r",
-        "json",
-    }
+    "python",
+    "pandoc",
+    "yaml",
+    "toml",
+    "fortran",
+    "haskell",
+    "lua",
+    "julia",
+    "apl",
+    "fennel",
+    "codevlisp",
+    "r",
+    "json",
+}

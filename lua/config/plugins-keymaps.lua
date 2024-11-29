@@ -69,7 +69,7 @@ vim.keymap.set("n", "<leader>gg", "<cmd>lua require('trouble').focus()<cr>")
 
 vim.keymap.set("n", "<leader>pm", "<cmd>Markview toggleAll<cr>")
 
-vim.keymap.set("n", "<leader>bd", function()
+vim.keymap.set("n", "<leader>d", function()
     require("snacks").bufdelete.delete()
 end, { desc = "Delete current buffer" })
 

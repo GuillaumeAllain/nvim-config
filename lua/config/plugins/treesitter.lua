@@ -25,7 +25,7 @@ local treesitter_ft = {
 return {
     "nvim-treesitter/nvim-treesitter",
     event = { "LazyFile" },
-    dependencies = { "romgrk/nvim-treesitter-context" },
+    -- dependencies = { "romgrk/nvim-treesitter-context" },
     lazy = true,
     ft = treesitter_ft,
     config = function()
@@ -44,7 +44,7 @@ return {
                 highlight_definitions = { enable = true },
             },
             context = {
-                enable = true,
+                enable = false,
             },
         })
         vim.treesitter.language.register("fennel", "codevlisp")

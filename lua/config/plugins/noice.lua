@@ -5,9 +5,7 @@ return {
     opts = {
         popupmenu = {
             enabled = false, -- disable if you use something like cmp-cmdline
-            ---@type 'nui'|'cmp'
             backend = "cmp", -- backend to use to show regular cmdline completions
-            -- You can specify options for nui under `config.views.popupmenu`
         },
         lsp = {
             hover = {
@@ -37,10 +35,6 @@ return {
         },
         lsp_progress = {
             enabled = false,
-            -- format = "lsp_progress",
-            -- format_done = "lsp_progress_done",
-            -- throttle = 1000 / 30, -- frequency to update lsp progress message
-            -- view = "mini",
         },
         throttle = 1000 / 30,
     },

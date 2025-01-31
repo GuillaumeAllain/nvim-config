@@ -1,7 +1,7 @@
 return {
     "nvim-neotest/neotest",
     lazy = true,
-    ft = "python",
+    -- ft = "python",
     keys = { "<leader>t" },
     config = function()
         require("neotest").setup({
@@ -28,7 +28,7 @@ return {
                     args = { "--log-level", "DEBUG" },
                     python = function()
                         local lib = require("neotest.lib")
-                        if lib.files.exists("pyproject.toml") then
+                        if lib.files.exists("pyproject.toml") or lib.files.exists("pixi.toml") then
                             local success, exit_code, data = pcall(
                                 lib.process.run,
                                 { "pixi", "info", "--json" },

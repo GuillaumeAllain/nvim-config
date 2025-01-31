@@ -2,11 +2,14 @@ return {
     { "markonm/traces.vim", lazy = true, keys = { ":", "/", "?" } },
     {
         "sphamba/smear-cursor.nvim",
+        enabled = false,
         lazy = false,
-        opts = {},
+        opts = {
+            hide_target_hack = true,
+        },
     },
     { "wellle/targets.vim", lazy = false },
-    { "tpope/vim-eunuch",   lazy = false },
+    { "tpope/vim-eunuch", lazy = false },
     {
         "otavioschwanck/arrow.nvim",
         lazy = false,
@@ -17,9 +20,9 @@ return {
             show_icons = true,
             leader_key = "<leader>r", -- Recommended to be a single key
             mappings = {
-                toggle = "w",         -- used as save if separate_save_and_remove is true
+                toggle = "w", -- used as save if separate_save_and_remove is true
             },
-            buffer_leader_key = "m",  -- Per Buffer Mappings
+            buffer_leader_key = "m", -- Per Buffer Mappings
         },
     },
     {
@@ -41,7 +44,7 @@ return {
             vim.g["pandoc#filetypes#handled"] = { "pandoc", "markdown" }
             vim.g["pandoc#syntax#style#use_definition_lists"] = 0
             vim.g["pandoc#syntax#conceal#blacklist"] =
-            { "atx", "block", "list", "newline", "dashes", "ellipses", "quotes" }
+                { "atx", "block", "list", "newline", "dashes", "ellipses", "quotes" }
         end,
     },
     {
@@ -100,8 +103,10 @@ return {
         config = function()
             require("markview").setup({
                 checkboxes = require("markview.presets").checkboxes.nerd,
-                modes = { "i", "n", "v", "c" },
-                filetypes = { "markdown", "quarto", "rmd", "pandoc" },
+                preview = {
+                    modes = { "i", "n", "v", "c" },
+                    filetypes = { "markdown", "quarto", "rmd", "pandoc" },
+                },
             })
             require("markview.extras.editor").setup({
                 width = { 10, 0.75 },

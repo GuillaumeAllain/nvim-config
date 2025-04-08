@@ -135,16 +135,6 @@ return {
                 desc = "capture",
             },
             { "<leader>t", group = "neotest" },
-            {
-                "<leader>tr",
-                "<cmd>lua require('neotest').run.run()<cr>",
-                desc = "run file",
-            },
-            {
-                "<leader>tt",
-                "<cmd>lua require('neotest').summary.toggle()<cr>",
-                desc = "toggle summary",
-            },
         })
         require("which-key").setup({
             -- },

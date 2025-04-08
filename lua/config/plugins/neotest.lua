@@ -40,9 +40,9 @@ return {
                                 local pixi_return = ""
                                 for i, v in ipairs(pixi_env_table) do
                                     local venv = vim.inspect(v["prefix"]):gsub('"', "")
-                                    if string.find(venv, "test") then
-                                        return require("plenary.path"):new(venv, "bin", "python").filename
-                                    elseif string.find(venv, "default") then
+                                    if string.find(venv, "/test") then
+                                        pixi_return = require("plenary.path"):new(venv, "bin", "python").filename
+                                    elseif string.find(venv, "/default") and pixi_return ~= "" then
                                         pixi_return = require("plenary.path"):new(venv, "bin", "python").filename
                                     end
                                 end

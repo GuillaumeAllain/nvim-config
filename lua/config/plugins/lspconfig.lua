@@ -20,27 +20,24 @@ return {
             capabilities = capabilities,
         })
 
+        lspconfig.clangd.setup({
+            on_attach = on_attach,
+            capabilities = capabilities,
+        })
+
         lspconfig.taplo.setup({
             on_attach = on_attach,
             capabilities = capabilities,
         })
 
         lspconfig.r_language_server.setup({
-            -- cmd = { os.getenv("HOMEBREW_PREFIX") .. "/bin/R", "--slave", "-e", "languageserver::run()" },
+            cmd = { "R", "--slave", "-e", "languageserver::run()" },
             on_attach = on_attach,
             capabilities = capabilities,
         })
 
         lspconfig.fortls.setup({
             on_attach = on_attach,
-            capabilities = capabilities,
-            cmd = {
-                "fortls",
-                "--nthreads",
-                "2",
-                "--use_signature_help",
-                "--hover_signature",
-            },
         })
 
         local sumneko_binary = os.getenv("HOMEBREW_PREFIX") .. "/bin/lua-language-server"

@@ -75,12 +75,12 @@ return {
                 },
             },
             sources = cmp.config.sources({
-                { name = "copilot", keyword_length = 0, priority = 900 },
-                { name = "vsnip", priority = 999, keyword_length = 3 },
-                { name = "nvim_lsp", keyword_length = 3 },
-                { name = "path", keyword_length = 3 },
+                { name = "copilot",                 keyword_length = 0, priority = 500 },
+                { name = "vsnip",                   priority = 999,     keyword_length = 3 },
+                { name = "nvim_lsp",                keyword_length = 3, priority = 700 },
+                { name = "path",                    keyword_length = 3 },
                 -- { name = "buffer" ,keyword_length=5},
-                { name = "emoji", keyword_length = 2 },
+                { name = "emoji",                   keyword_length = 2 },
                 { name = "nvim_lsp_signature_help", keyword_length = 0 },
             }),
             snippet = {
@@ -137,8 +137,8 @@ return {
 
         local redact_sources = function()
             return require("cmp.utils.misc").concat(require("cmp.config").global.sources, {
-                { name = "tags", keyword_pattern = [[\((\+\|\#\)\k\+]], keyword_length = 2 },
-                { name = "cmp_pandoc", keyword_length = 2, keyword_pattern = [[\m@\k\+]] },
+                { name = "tags",       keyword_pattern = [[\((\+\|\#\)\k\+]], keyword_length = 2 },
+                { name = "cmp_pandoc", keyword_length = 2,                    keyword_pattern = [[\m@\k\+]] },
             })
         end
         cmp.setup.filetype({ "pandoc", "markdown" }, {

@@ -1,17 +1,5 @@
 local default = { noremap = true, silent = true }
 
--- vim.keymap.set("n", "<leader>rw", function()
---     require("harpoon"):list():add()
--- end, default)
--- vim.keymap.set("n", "<leader>rr", function()
---     require("harpoon").ui:toggle_quick_menu(require("harpoon"):list())
--- end, vim.tbl_extend("force", default, { desc = "default" }))
--- vim.keymap.set("n", "<leader>rt", function()
---     require("harpoon"):list():next()
--- end, vim.tbl_extend("force", default, { desc = "default" }))
--- vim.keymap.set("n", "<leader>re", function()
---     require("harpoon"):list():prev()
--- end, vim.tbl_extend("force", default, { desc = "default" }))
 vim.keymap.set("n", "<leader>gl", function()
     require("utils").toggle_build_buffer_window({ vertical = false })
 end, vim.tbl_extend("force", default, { desc = "default" }))
@@ -67,7 +55,7 @@ vim.keymap.set(
 
 vim.keymap.set("n", "<leader>gg", "<cmd>lua require('trouble').focus()<cr>")
 
-vim.keymap.set("n", "<leader>pm", "<cmd>Markview toggleAll<cr>")
+vim.keymap.set("n", "<leader>pm", "<cmd>Markview toggle<cr>")
 
 vim.keymap.set("n", "<leader>d", function()
     require("snacks").bufdelete.delete()
@@ -85,3 +73,14 @@ function _G.tabout_binding()
 end
 
 vim.api.nvim_set_keymap("i", "<C-L>", "v:lua.tabout_binding()", { silent = true, expr = true })
+
+vim.keymap.set("n", "<leader>tr", function()
+    vim.api.nvim_command("write")
+    require("neotest").run.run()
+end, { noremap = true, silent = true, desc = "Run closest test" })
+vim.keymap.set("n", "<leader>tt", function()
+    require("neotest").summary.toggle()
+end, { noremap = true, silent = true, desc = "Toggle summary" })
+vim.keymap.set("n", "<leader>to", function()
+    require("neotest").output_panel.toggle()
+end, { noremap = true, silent = true, desc = "Toggle output panel" })

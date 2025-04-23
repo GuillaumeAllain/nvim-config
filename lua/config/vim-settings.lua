@@ -98,6 +98,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
 })
 
 vim.diagnostic.config({
+    virtual_lines = true,
     virtual_text = false,
 })
 

@@ -5,7 +5,7 @@ return {
     lazy = true,
     config = function()
         local nullls = require("null-ls")
-        local python_location = vim.env.HOME .. "/micromamba/bin/"
+        -- local python_location = vim.env.HOME .. "/micromamba/bin/"
         local pandotlint = {
             method = nullls.methods.FORMATTING,
             filetypes = { "pandoc" },

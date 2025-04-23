@@ -1,7 +1,6 @@
 return {
     "nvim-neotest/neotest",
     lazy = true,
-    -- ft = "python",
     keys = { "<leader>t" },
     config = function()
         require("neotest").setup({

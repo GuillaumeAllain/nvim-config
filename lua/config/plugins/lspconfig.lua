@@ -18,11 +18,6 @@ return {
         vim.lsp.config("*", {
             capabilities = capabilities,
         })
-        vim.lsp.config("ty", {
-            settings = {
-                ["ty"] = {},
-            },
-        })
 
         lspconfig.clangd.setup({
             on_attach = on_attach,
@@ -131,10 +126,10 @@ return {
                 -- your other on_attach functions.
                 on_attach(client)
                 require("ltex_extra").setup({
-                    load_langs = { "fr", "en-us" }, -- table <string> : languages for witch dictionaries will be loaded
-                    init_check = true, -- boolean : whether to load dictionaries on startup
+                    load_langs = { "fr", "en-us" },                 -- table <string> : languages for witch dictionaries will be loaded
+                    init_check = true,                              -- boolean : whether to load dictionaries on startup
                     path = vim.fn.expand("$XDG_CONFIG_HOME/ltex/"), -- string : path to store dictionaries. Relative path uses current working directory
-                    log_level = "none", -- string : "none", "trace", "debug", "info", "warn", "error", "fatal"
+                    log_level = "none",                             -- string : "none", "trace", "debug", "info", "warn", "error", "fatal"
                 })
             end,
             cmd = { ltex_path },
@@ -165,7 +160,7 @@ return {
         })
         require("which-key").add({
             { "<leader>lf", "<cmd>lua vim.lsp.buf.format({async=true})<cr>", desc = "Lsp Formatting" },
-            { "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", desc = "Lsp Rename" },
+            { "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>",             desc = "Lsp Rename" },
         })
     end,
     dependencies = {

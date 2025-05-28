@@ -117,3 +117,5 @@ vim.api.nvim_create_autocmd("CursorMoved", {
         end
     end,
 })
+
+vim.deprecate = function() end

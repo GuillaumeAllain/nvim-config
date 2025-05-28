@@ -63,16 +63,6 @@ return {
                 desc = "macos dictionary",
             },
             {
-                "<leader>gh",
-                "<cmd>Trouble toggle diagnostics <CR>",
-                desc = "TroubleToggle",
-            },
-            {
-                "<leader>gj",
-                "<cmd>Trouble toggle todo <CR>",
-                desc = "TodoTrouble",
-            },
-            {
                 "<leader>gn",
                 "<cmd>lua _G.toggle_statuscolumn()<cr>",
                 desc = "Toggle Number",

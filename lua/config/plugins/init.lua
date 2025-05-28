@@ -41,8 +41,21 @@ return {
     },
     {
         "folke/trouble.nvim",
+        opts = {},
         lazy = true,
-        cmd = { "Trouble", "TroubleClose", "TroubleRefresh", "TroubleToggle" },
+        cmd = "Trouble",
+        keys = {
+            {
+                "<leader>gh",
+                "<cmd>Trouble toggle diagnostics <CR>",
+                desc = "TroubleToggle",
+            },
+            {
+                "<leader>gj",
+                "<cmd>Trouble toggle todo <CR>",
+                desc = "TodoTrouble",
+            },
+        },
     },
     {
         "vim-pandoc/vim-pandoc-syntax",
@@ -126,15 +139,6 @@ return {
                 callback = function(buf, win) end,
             })
         end,
-    },
-    {
-        "MeanderingProgrammer/render-markdown.nvim",
-        lazy = true,
-        enabled = false,
-        name = "render-markdown",
-        dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.icons" }, -- if you use standalone mini plugins
-        ft = { "markdown", "pandoc" },
-        opts = { file_types = { "markdown", "pandoc" }, render_modes = { "n", "v" } },
     },
     {
         "heterophyllus/vscode-codev",

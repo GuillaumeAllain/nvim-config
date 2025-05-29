@@ -32,8 +32,8 @@ return {
         nullls.setup({
             sources = {
                 nullls.builtins.code_actions.gitsigns,
-                require("none-ls.diagnostics.ruff"),
-                require("none-ls.formatting.ruff_format"),
+                -- require("none-ls.diagnostics.ruff"),
+                -- require("none-ls.formatting.ruff_format"),
                 nullls.builtins.formatting.biome,
                 nullls.builtins.formatting.astyle,
                 nullls.builtins.formatting.bibclean,

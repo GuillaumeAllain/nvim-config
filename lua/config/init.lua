@@ -23,14 +23,10 @@ CONFIG_LSP_FT = {
     "r",
     "json",
 }
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 vim.lsp.config("*", {
-    capabilities = {
-        textDocument = {
-            semanticTokens = {
-                multilineTokenSupport = true,
-            },
-        },
-    },
+    capabilities = capabilities,
     root_markers = { ".git" },
 })
-vim.lsp.enable({ "ty" })
+vim.lsp.enable({ "pyright", "ty", "ruff" })

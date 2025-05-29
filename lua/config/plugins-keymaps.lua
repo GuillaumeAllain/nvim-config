@@ -1,5 +1,8 @@
 local default = { noremap = true, silent = true }
 
+vim.keymap.set("n", "grl", function()
+    vim.lsp.buf.format()
+end)
 vim.keymap.set("n", "<leader>gl", function()
     require("utils").toggle_build_buffer_window({ vertical = false })
 end, vim.tbl_extend("force", default, { desc = "default" }))

@@ -11,4 +11,3 @@ augroup sandwich-ft-python
                 \   },
                 \ ]
 augroup END
-"lua vim.lsp.enable('ty')

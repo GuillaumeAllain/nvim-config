@@ -11,7 +11,7 @@ return {
         vim.g.gutentags_generate_on_missing = true
         vim.g.gutentags_generate_on_write = true
         vim.g.gutentags_generate_on_empty_buffer = true
-        vim.g.gutentags_ctags_exclude = { "*/qmk_firmware/*", ".Trash", "*.f90", "*.vim", "Makefile" }
+        vim.g.gutentags_ctags_exclude = { "*/qmk_firmware/*", ".Trash", "*.f90", "*.vim", "Makefile" , "*/.pixi/*", "*.json"}
         vim.g.gutentags_file_list_command = "rg --files"
         vim.g.gutentags_exclude_project_root = { "/usr/local", "*/qmk_firmware/*", "*/.Trash/*" }
     end,

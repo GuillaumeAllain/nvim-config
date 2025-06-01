@@ -29,4 +29,15 @@ vim.lsp.config("*", {
     capabilities = capabilities,
     root_markers = { ".git" },
 })
-vim.lsp.enable({ "pyright", "ty", "ruff" })
+vim.lsp.enable({
+    "pyright",
+    "ty",
+    "ruff",
+    "lua_ls",
+    "clangd",
+    "fortls",
+    "taplo",
+    "ltex_plus",
+    "sqlls",
+    "r_language_server",
+})

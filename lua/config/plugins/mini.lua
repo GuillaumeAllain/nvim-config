@@ -8,6 +8,23 @@ return {
         end,
     },
     {
+        "echasnovski/mini.snippets",
+        lazy = true,
+        event = "InsertEnter",
+        opts = function()
+            local mini_snippets = require("mini.snippets")
+            return {
+                mappings = {expand='<C-l>'},
+                snippets = {
+                    mini_snippets.gen_loader.from_file(vim.env.XDG_CONFIG_HOME .. "/nvim/snippets/global.json"),
+                    mini_snippets.gen_loader.from_lang(),
+                },
+
+                expand = {},
+            }
+        end,
+    },
+    {
         "echasnovski/mini.icons",
         lazy = true,
         specs = {

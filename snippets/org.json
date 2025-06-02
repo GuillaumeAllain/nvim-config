@@ -1,0 +1,9 @@
+{
+    "checklist item": {
+        "prefix": ["checklist"],
+        "body": [
+            "- [ ] ${1:item}"
+        ],
+        "description": "new checklist item"
+    }
+}

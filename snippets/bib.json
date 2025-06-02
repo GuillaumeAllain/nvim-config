@@ -1,0 +1,13 @@
+{
+"for loop": {
+    "prefix": ["acronym"],
+    "body": [
+        "@acronym{${1:label},",
+            "short={${2:short}},",
+            "long={${3:long}},",
+            "}"
+    ],
+    "description": "description"
+}
+}
+

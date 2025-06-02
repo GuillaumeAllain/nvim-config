@@ -1,0 +1,15 @@
+{
+    "New snippet": {
+        "prefix": ["snippet"],
+        "body": [
+            "\"${1:title}\": {",
+            "    \"prefix\": [\"${2:prefix}\"],",
+            "    \"body\": [",
+            "        \"${3:body}\"",
+            "    ],",
+            "    \"description\": \"${4:description}\"",
+            "},"
+        ],
+        "description": "New VScode style snippet"
+    }
+}

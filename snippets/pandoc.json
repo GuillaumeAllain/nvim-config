@@ -1,0 +1,88 @@
+{
+	"Div section": {
+		"prefix": ["div"],
+		"body": [
+			"::: {#fig:${1:label}}",
+			"${2:content}",
+			"",
+			"${3:caption}",
+			":::"
+		],
+		"description": "Pandoc crossref div section"
+	},
+	"Fig": {
+		"prefix": ["fig"],
+		"body": ["![${1:caption}](${2:path}){#fig:${3:label}}"],
+		"description": "Pandoc crossref figure"
+	},
+	"listitem": {
+		"prefix": ["item"],
+		"body": ["-   ${1:item}"],
+		"description": "List item"
+	},
+	"checklist item": {
+		"prefix": ["checkitem"],
+		"body": ["- [ ] ${1:item}"],
+		"description": "Github markdown style checklistitem"
+	},
+	"Pandoc include": {
+		"prefix": ["include"],
+		"body": ["~~~{.include}", "${1:file}", "~~~"],
+		"description": "Pandoc include filter"
+	},
+	"Acronym": {
+		"prefix": ["gls"],
+		"body": ["(+${1:ach})"],
+		"description": "Pandoc gls filter"
+	},
+	"SI": {
+		"prefix": ["si"],
+		"body": ["${1:number}{${2:unit}}"],
+		"description": "Pandoc si filter"
+	},
+	"New acronym": {
+		"prefix": ["newacronym"],
+		"body": ["{cmd: ${1:cmd}, short: ${2:short}, long: ${3:long}}"],
+		"description": "New pandoc acronym following pandotfiles"
+	},
+	"Lien": {
+		"prefix": ["lien"],
+		"body": ["[${1:texte}](${2:url})"],
+		"description": "Lien selon pandoc"
+	},
+	"CodeBlock": {
+		"prefix": ["codeblock"],
+		"body": ["```{.${1:lang}}", "${2:code}", "```"],
+		"description": "Pandoc Code Block"
+	},
+	"InlineCode": {
+		"prefix": ["inlinecode"],
+		"body": ["`${1:code}`{.${2:lang}}"],
+		"description": "Pandoc inline code"
+	},
+	"YAML block": {
+		"prefix": ["yamlblock"],
+		"body": ["---", "title: ${1:}", "---", ""],
+		"description": "YAML metadata block for pandoc"
+	},
+	"Align environment": {
+		"prefix": ["align"],
+		"body": ["\\begin{align}", "\t${1:}", "\\end{align}"],
+		"description": "Latex align environment"
+	},
+	"Frac": {
+		"prefix": ["frac"],
+		"body": ["\\frac{${1:}}{${2:}}"],
+		"description": "Latex math frac environment"
+	},
+	"Frac bar": {
+		"prefix": ["\\frac"],
+		"body": ["\\frac{${1:}}{${2:}}"],
+		"description": "Latex math frac environment"
+	},
+	"Include markdown": {
+		"prefix": ["include"],
+		"body": ["```{.include}", "${1:file}", "```"],
+		"description": "Pandoc include filter"
+	}
+}

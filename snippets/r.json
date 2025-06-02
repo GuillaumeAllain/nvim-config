@@ -1,0 +1,7 @@
+{
+	"Memory allocation": {
+		"prefix": ["memory_allocation"],
+		"body": ["sort(sapply(ls(), function(x) {object.size(get(x))}))"],
+		"description": "Print all object memory allocation"
+	}
+}

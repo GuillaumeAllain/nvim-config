@@ -25,9 +25,9 @@ end, vim.tbl_extend("force", default, { desc = "clean avec term" }))
 vim.keymap.set({ "n", "i" }, "<C-k>", function()
     require("utils").focus_build_buffer_window({ vertical = false })
 end, vim.tbl_extend("force", default, { desc = "focus term" }))
-vim.keymap.set("n", "<leader>s", function()
-    require("utils").open_scratch_buffer({ vertical = true })
-end, vim.tbl_extend("force", default, { desc = "open scratch buffer" }))
+-- vim.keymap.set("n", "<leader>s", function()
+--     require("utils").open_scratch_buffer({ vertical = true })
+-- end, vim.tbl_extend("force", default, { desc = "open scratch buffer" }))
 vim.keymap.set({ "v", "n" }, "<leader>fa", function()
     require("telescope")
     vim.lsp.buf.code_action()
@@ -68,8 +68,8 @@ function _G.tabout_binding()
     require("tabout")
     if vim.fn.pumvisible() ~= 0 then
         return vim.api.nvim_replace_termcodes("<C-l>", true, true, true)
-    elseif vim.fn["vsnip#available"](1) ~= 0 then
-        return vim.api.nvim_replace_termcodes("<Plug>(vsnip-expand-or-jump)", true, true, true)
+    -- elseif vim.fn["vsnip#available"](1) ~= 0 then
+    --     return vim.api.nvim_replace_termcodes("<Plug>(vsnip-expand-or-jump)", true, true, true)
     else
         return vim.api.nvim_replace_termcodes("<Plug>(Tabout)", true, true, true)
     end

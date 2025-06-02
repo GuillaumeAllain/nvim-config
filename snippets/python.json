@@ -1,0 +1,15 @@
+{
+	"Import matplotlib": {
+		"prefix": ["impyplot"],
+		"body": ["import matplotlib.pyplot as plt"],
+		"description": "Import matplotlib.pyplot"
+	},
+	"Parent folder": {
+		"prefix": ["parentfolder"],
+		"body": [
+			"from pathlib import Path",
+			"PARENT_FOLDER = Path(__file__).parent"
+		],
+		"description": "Add PARENT_FOLDER which is relative to the file"
+	}
+}

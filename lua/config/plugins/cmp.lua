@@ -1,19 +1,23 @@
 return {
     "Saghen/blink.cmp",
-    -- lazy = true,
-    -- event = "InsertEnter",
+    lazy = true,
+    event = "InsertEnter",
     version = "1.*",
 
     opts = {
         appearance = {
             nerd_font_variant = "mono",
         },
-        keymap = { preset = "default" },
+        keymap = {
+            preset = "enter",
+            ["<C-l>"] = { "select_and_accept" },
+        },
 
         completion = { documentation = { auto_show = false } },
-
+        use_nvim_cmp_as_default = false,
         sources = {
-            default = { "lsp", "path", "snippets", "buffer" },
+            default = { "lsp", "path", "snippets", "copilot" },
+            compat = { "pandoc_references" },
             providers = {
                 copilot = {
                     name = "copilot",
@@ -37,9 +41,9 @@ return {
     opts_extend = { "sources.default" },
     dependencies = {
         "rafamadriz/friendly-snippets",
-        {
-            "giuxtaposition/blink-cmp-copilot",
-        },
+        "jc-doyle/cmp-pandoc-references",
+        "giuxtaposition/blink-cmp-copilot",
+        "saghen/blink.compat",
     },
 }
 -- return {

@@ -14,7 +14,6 @@ return {
         opts = function()
             local mini_snippets = require("mini.snippets")
             return {
-                mappings = {expand='<C-l>'},
                 snippets = {
                     mini_snippets.gen_loader.from_file(vim.env.XDG_CONFIG_HOME .. "/nvim/snippets/global.json"),
                     mini_snippets.gen_loader.from_lang(),

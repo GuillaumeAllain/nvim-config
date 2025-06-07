@@ -4,9 +4,10 @@ return {
     lazy = false,
     opts = {
         bigfile = { enabled = true },
+        image = { enabled = true },
+        explorer = { enabled = true },
         notifier = { enabled = true },
         quickfile = { enabled = true },
-        statuscolumn = { enabled = true },
         words = { enabled = true },
         scratch = { enabled = true },
         LSP = { enabled = true },
@@ -83,27 +84,6 @@ return {
             end,
             desc = "Find Files",
         },
-        -- {
-        --     "<leader>f<tab>",
-        --     function()
-        --         Snacks.picker.buffers()
-        --     end,
-        --     desc = "Buffers",
-        -- },
-        -- {
-        --     "<leader>f<cr>",
-        --     function()
-        --         Snacks.picker.git_files()
-        --     end,
-        --     desc = "Git Files",
-        -- },
-        -- {
-        --     "<leader>ff",
-        --     function()
-        --         Snacks.picker.find_files({ cwd = vim.fn.expand("%:p:h") })
-        --     end,
-        --     desc = "Find Files in Current Directory",
-        -- },
         {
             "<leader>f<leader>",
             function()
@@ -141,7 +121,7 @@ return {
             desc = "Goto Declaration",
         },
         {
-            "gr",
+            "grr",
             function()
                 Snacks.picker.lsp_references()
             end,

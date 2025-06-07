@@ -3,7 +3,6 @@ return {
     lazy = true,
     event = "InsertEnter",
     version = "1.*",
-
     opts = {
         appearance = {
             nerd_font_variant = "mono",
@@ -14,10 +13,8 @@ return {
         },
 
         completion = { documentation = { auto_show = false } },
-        use_nvim_cmp_as_default = false,
         sources = {
             default = { "lsp", "path", "snippets", "copilot" },
-            compat = { "pandoc_references" },
             providers = {
                 copilot = {
                     name = "copilot",

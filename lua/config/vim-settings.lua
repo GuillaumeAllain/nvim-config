@@ -33,6 +33,7 @@ function _G.toggle_statuscolumn()
         _G.statuscolumnstatus = false
     end
 end
+
 _G.toggle_statuscolumn()
 
 vim.opt.formatoptions = "ro"

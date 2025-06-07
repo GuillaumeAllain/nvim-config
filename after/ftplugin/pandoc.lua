@@ -17,19 +17,19 @@ if lineno ~= 0 then
     end
 end
 
-require("which-key").add({
-    { "<leader>fl", "<cmd>Telescope heading<cr>", buffer = 1, desc = "Lsp document symbols" },
-})
+-- require("which-key").add({
+--     { "<leader>fl", "<cmd>Telescope heading<cr>", buffer = 1, desc = "Lsp document symbols" },
+-- })
 
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-    virtual_text = false,
-    signs = false,
-    update_in_insert = false,
-})
-vim.diagnostic.config({
-    virtual_text = false,
-    signs = false,
-})
+-- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+--     virtual_text = false,
+--     signs = false,
+--     update_in_insert = false,
+-- })
+-- vim.diagnostic.config({
+--     virtual_text = false,
+--     signs = false,
+-- })
 
 vim.cmd.iabbrev("oeil", "œil")
 vim.cmd.iabbrev("Oeil", "Œil")

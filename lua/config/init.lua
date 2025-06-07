@@ -30,8 +30,8 @@ vim.lsp.config("*", {
     root_markers = { ".git" },
 })
 vim.lsp.enable({
-    "pyright",
-    "ty",
+    "basedpyright",
+    -- "ty",
     "ruff",
     "lua_ls",
     "clangd",

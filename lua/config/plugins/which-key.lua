@@ -10,47 +10,6 @@ return {
                 desc = "macos dictionary",
                 mode = "v",
             },
-            { "<leader>f", group = "telescope" },
-            {
-                "<leader>fb",
-                "<cmd>lua require('telescope').extensions.bibtex.bibtex({format='markdown'})<cr>",
-                desc = "bibtex",
-            },
-            {
-                "<leader>fd",
-                "<cmd>lua require('telescope.builtin').find_files()<cr>",
-                desc = "find files",
-            },
-            {
-                "<leader>ff",
-                "<cmd>lua require('telescope.builtin').buffers()<cr>",
-                desc = "buffers",
-            },
-            {
-                "<leader>fk",
-                "<cmd>lua require('telescope.builtin').lsp_workspace_symbols()<cr>",
-                desc = "Lsp workspace symbols",
-            },
-            {
-                "<leader>fl",
-                "<cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>",
-                desc = "Lsp document symbols",
-            },
-            {
-                "<leader>fs",
-                "<cmd>lua require('telescope').extensions.file_browser.file_browser()<cr>",
-                desc = "file browser",
-            },
-            {
-                "<leader>ft",
-                "<cmd>lua require('telescope.builtin').builtin()<cr>",
-                desc = "Telescope Builtin",
-            },
-            {
-                "<leader>fz",
-                "<cmd>lua require('telescope.builtin').spell_suggest(require('telescope.themes').get_cursor({}))<cr>",
-                desc = "spell suggest",
-            },
             { "<leader>g", group = "plugins" },
             {
                 "<leader>gc",
@@ -121,8 +80,11 @@ return {
             },
             {
                 "<leader>pt",
-                "<cmd>Panotes change_cwd_to_notes_dir<cr><cmd>Telescope todo-comments todo<cr>",
-                desc = "capture",
+                function()
+                    vim.cmd("Panotes change_cwd_to_notes_dir")
+                    Snacks.picker.todo_comments()
+                end,
+                desc = "Search todo in notes",
             },
             { "<leader>t", group = "neotest" },
         })

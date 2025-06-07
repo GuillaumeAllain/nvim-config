@@ -3,6 +3,9 @@ local default = { noremap = true, silent = true }
 vim.keymap.set("n", "grl", function()
     vim.lsp.buf.format()
 end)
+vim.keymap.set("n", "<leader>fa", function()
+    vim.lsp.buf.code_action()
+end, { noremap = true, silent = true, desc = "Code Actions" })
 vim.keymap.set("n", "<leader>gl", function()
     require("utils").toggle_build_buffer_window({ vertical = false })
 end, vim.tbl_extend("force", default, { desc = "default" }))
@@ -28,33 +31,10 @@ end, vim.tbl_extend("force", default, { desc = "focus term" }))
 -- vim.keymap.set("n", "<leader>s", function()
 --     require("utils").open_scratch_buffer({ vertical = true })
 -- end, vim.tbl_extend("force", default, { desc = "open scratch buffer" }))
-vim.keymap.set({ "v", "n" }, "<leader>fa", function()
-    require("telescope")
-    vim.lsp.buf.code_action()
-end, vim.tbl_extend("force", default, { desc = "code actions" }))
 vim.keymap.set("n", "<leader>tb", function()
     vim.api.nvim_command("write")
     require("neotest").run.run()
 end, vim.tbl_extend("force", default, { desc = "run closest file" }))
-
-vim.keymap.set(
-    "i",
-    "<C-b>",
-    "<cmd>lua require('telescope').extensions.bibtex.bibtex({format='markdown'})<cr>",
-    { noremap = true, silent = true, desc = "bibtex" }
-)
-vim.keymap.set(
-    "n",
-    "<leader>fj",
-    "<cmd>lua require('telescope.builtin').live_grep()<cr>",
-    { noremap = true, silent = true, desc = "Telescope live grep" }
-)
-vim.keymap.set(
-    "n",
-    "<leader>f<leader>",
-    "<cmd>lua require('telescope.builtin').resume()<cr>",
-    { noremap = true, silent = true, desc = "Use HarpoonTerm to call system's file cleaner" }
-)
 
 vim.keymap.set("n", "<leader>gg", "<cmd>lua require('trouble').focus()<cr>")
 
@@ -68,8 +48,8 @@ function _G.tabout_binding()
     require("tabout")
     if vim.fn.pumvisible() ~= 0 then
         return vim.api.nvim_replace_termcodes("<C-l>", true, true, true)
-    -- elseif vim.fn["vsnip#available"](1) ~= 0 then
-    --     return vim.api.nvim_replace_termcodes("<Plug>(vsnip-expand-or-jump)", true, true, true)
+        -- elseif vim.fn["vsnip#available"](1) ~= 0 then
+        --     return vim.api.nvim_replace_termcodes("<Plug>(vsnip-expand-or-jump)", true, true, true)
     else
         return vim.api.nvim_replace_termcodes("<Plug>(Tabout)", true, true, true)
     end

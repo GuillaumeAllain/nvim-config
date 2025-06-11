@@ -32,6 +32,8 @@ vim.lsp.config("*", {
 vim.lsp.enable({
     "basedpyright",
     -- "ty",
+    "rustfmt",
+    "rust_analyzer",
     "ruff",
     "lua_ls",
     "clangd",

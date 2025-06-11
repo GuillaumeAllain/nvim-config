@@ -1,8 +1,5 @@
 local default = { noremap = true, silent = true }
 
-vim.keymap.set("n", "grl", function()
-    vim.lsp.buf.format()
-end)
 vim.keymap.set("n", "<leader>fa", function()
     vim.lsp.buf.code_action()
 end, { noremap = true, silent = true, desc = "Code Actions" })

@@ -37,7 +37,7 @@ return {
         {
             "<leader>fd",
             function()
-                Snacks.picker.files()
+                Snacks.picker.smart({ filter = { cwd = true } })
             end,
             desc = "Find Files",
         },
@@ -65,7 +65,7 @@ return {
         {
             "<leader>ft",
             function()
-                Snacks.picker.builtin()
+                Snacks.picker()
             end,
             desc = "Picker Builtin",
         },
@@ -76,7 +76,13 @@ return {
             end,
             desc = "Spelling Suggestions",
         },
-
+        {
+            "<leader>fl",
+            function()
+                Snacks.picker.lsp_workspace_symbols()
+            end,
+            desc = "LSP Workspace Symbols",
+        },
         {
             "<leader>f<space>",
             function()

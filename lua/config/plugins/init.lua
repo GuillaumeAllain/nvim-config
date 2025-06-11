@@ -136,7 +136,7 @@ return {
                 width = { 10, 0.75 },
                 height = { 3, 0.75 },
                 debounce = 50,
-                callback = function(buf, win) end,
+                callback = function(_, _) end,
             })
         end,
     },

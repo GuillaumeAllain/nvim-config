@@ -1,7 +1,38 @@
 return {
     "nvim-neotest/neotest",
     lazy = true,
-    keys = { "<leader>t" },
+    keys = {
+        {
+            "<leader>tr",
+            function()
+                vim.api.nvim_command("write")
+                require("neotest").run.run()
+            end,
+            desc = "Run closest test",
+        },
+        {
+            "<leader>tt",
+            function()
+                require("neotest").summary.toggle()
+            end,
+            desc = "Toggle summary",
+        },
+        {
+            "<leader>to",
+            function()
+                require("neotest").output_panel.toggle()
+            end,
+            desc = "Toggle output panel",
+        },
+        {
+            "<leader>tb",
+            function()
+                vim.apin.nvim_command("write")
+                require("neotest").run.run({ strategy = "dap" })
+            end,
+            desc = "Run closest test",
+        },
+    },
     config = function()
         require("neotest").setup({
             icons = {
@@ -59,12 +90,11 @@ return {
         })
     end,
     dependencies = {
-        "nvim-treesitter",
-        "nvim-lua/plenary.nvim",
-        "nvim-treesitter/nvim-treesitter",
-        "antoinemadec/FixCursorHold.nvim",
-        "nvim-neotest/neotest-python",
-        "nvim-treesitter/playground",
         "nvim-neotest/nvim-nio",
+        "nvim-lua/plenary.nvim",
+        "antoinemadec/FixCursorHold.nvim",
+        "nvim-treesitter/nvim-treesitter",
+        "nvim-treesitter/nvim-treesitter",
+        "nvim-neotest/neotest-python",
     },
 }

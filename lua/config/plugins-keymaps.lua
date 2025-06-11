@@ -28,10 +28,6 @@ end, vim.tbl_extend("force", default, { desc = "focus term" }))
 -- vim.keymap.set("n", "<leader>s", function()
 --     require("utils").open_scratch_buffer({ vertical = true })
 -- end, vim.tbl_extend("force", default, { desc = "open scratch buffer" }))
-vim.keymap.set("n", "<leader>tb", function()
-    vim.api.nvim_command("write")
-    require("neotest").run.run()
-end, vim.tbl_extend("force", default, { desc = "run closest file" }))
 
 vim.keymap.set("n", "<leader>gg", "<cmd>lua require('trouble').focus()<cr>")
 
@@ -53,14 +49,3 @@ function _G.tabout_binding()
 end
 
 vim.api.nvim_set_keymap("i", "<C-L>", "v:lua.tabout_binding()", { silent = true, expr = true })
-
-vim.keymap.set("n", "<leader>tr", function()
-    vim.api.nvim_command("write")
-    require("neotest").run.run()
-end, { noremap = true, silent = true, desc = "Run closest test" })
-vim.keymap.set("n", "<leader>tt", function()
-    require("neotest").summary.toggle()
-end, { noremap = true, silent = true, desc = "Toggle summary" })
-vim.keymap.set("n", "<leader>to", function()
-    require("neotest").output_panel.toggle()
-end, { noremap = true, silent = true, desc = "Toggle output panel" })

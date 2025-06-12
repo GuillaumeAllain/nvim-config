@@ -8,38 +8,4 @@ require("config.vim-keymaps")
 
 require("config.plugins-keymaps")
 
-CONFIG_LSP_FT = {
-    "python",
-    "pandoc",
-    "yaml",
-    "toml",
-    "fortran",
-    "haskell",
-    "lua",
-    "julia",
-    "apl",
-    "fennel",
-    "codevlisp",
-    "r",
-    "json",
-}
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
-vim.lsp.config("*", {
-    capabilities = capabilities,
-    root_markers = { ".git" },
-})
-vim.lsp.enable({
-    "basedpyright",
-    -- "ty",
-    "rustfmt",
-    "rust_analyzer",
-    "ruff",
-    "lua_ls",
-    "clangd",
-    "fortls",
-    "taplo",
-    "ltex_plus",
-    "sqlls",
-    "r_language_server",
-})
+require("config.lsp")

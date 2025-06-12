@@ -1,1 +1,0 @@
-return {'ltex_plus'}

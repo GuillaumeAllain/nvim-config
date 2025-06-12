@@ -1,6 +1,10 @@
 return {
     { "markonm/traces.vim", lazy = true, keys = { ":", "/", "?" } },
     {
+        "neovim/nvim-lspconfig",
+        lazy = false,
+    },
+    {
         "m4xshen/hardtime.nvim",
         lazy = false,
         dependencies = { "MunifTanjim/nui.nvim" },

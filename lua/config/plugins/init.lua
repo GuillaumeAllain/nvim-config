@@ -10,6 +10,10 @@ return {
         dependencies = { "MunifTanjim/nui.nvim" },
         opts = {
             disable_mouse = false,
+            disabled_filetypes = {
+                markdown = true, -- Enable Hardtime in lazy filetype
+                pandoc = true, -- Enable Hardtime in lazy filetype
+            },
             hints = {
                 ["[dcyvV][ia][%(%)]"] = {
                     message = function(keys)

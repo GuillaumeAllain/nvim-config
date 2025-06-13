@@ -1,5 +1,4 @@
 return {
-    "basedpyright",
     -- handlers = {
     --     ["textDocument/publishDiagnostics"] = function() end,
     -- },

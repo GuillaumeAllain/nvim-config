@@ -7,7 +7,7 @@ vim.lsp.config("*", {
 vim.lsp.enable({
     "basedpyright",
     "arduino_language_server",
-    -- "rustfmt",
+    "rustfmt",
     "rust_analyzer",
     "ruff",
     "lua_ls",
@@ -16,5 +16,5 @@ vim.lsp.enable({
     "taplo",
     "ltex_plus",
     "sqlls",
-    -- "r_language_server",
+    "r_language_server",
 })

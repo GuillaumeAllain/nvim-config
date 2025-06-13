@@ -1,6 +1,5 @@
 local sumneko_binary = os.getenv("HOMEBREW_PREFIX") .. "/bin/lua-language-server"
 return {
-    "lua-ls",
     cmd = { sumneko_binary, "-E" },
     settings = {
         Lua = {},

@@ -3,6 +3,7 @@ local treesitter_ft = {
     "html",
     "javascript",
     "latex",
+    "rust",
     "norg",
     "scss",
     "svelte",

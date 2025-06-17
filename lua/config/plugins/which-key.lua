@@ -86,7 +86,6 @@ return {
                 end,
                 desc = "Search todo in notes",
             },
-            { "<leader>t", group = "neotest" },
         })
         require("which-key").setup({
             -- },

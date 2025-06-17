@@ -1,11 +1,19 @@
 return {
     { "markonm/traces.vim", lazy = true, keys = { ":", "/", "?" } },
     {
+        "neovim/nvim-lspconfig",
+        lazy = false,
+    },
+    {
         "m4xshen/hardtime.nvim",
         lazy = false,
         dependencies = { "MunifTanjim/nui.nvim" },
         opts = {
             disable_mouse = false,
+            disabled_filetypes = {
+                markdown = true, -- Enable Hardtime in lazy filetype
+                pandoc = true, -- Enable Hardtime in lazy filetype
+            },
             hints = {
                 ["[dcyvV][ia][%(%)]"] = {
                     message = function(keys)
@@ -23,7 +31,7 @@ return {
         },
     },
     { "wellle/targets.vim", lazy = false },
-    { "tpope/vim-eunuch",   lazy = false },
+    { "tpope/vim-eunuch", lazy = false },
     {
         "otavioschwanck/arrow.nvim",
         lazy = false,
@@ -34,9 +42,9 @@ return {
             show_icons = true,
             leader_key = "<leader>r", -- Recommended to be a single key
             mappings = {
-                toggle = "w",         -- used as save if separate_save_and_remove is true
+                toggle = "w", -- used as save if separate_save_and_remove is true
             },
-            buffer_leader_key = "m",  -- Per Buffer Mappings
+            buffer_leader_key = "m", -- Per Buffer Mappings
         },
     },
     {
@@ -56,20 +64,6 @@ return {
                 desc = "TodoTrouble",
             },
         },
-    },
-    {
-        "vim-pandoc/vim-pandoc-syntax",
-        enabled = false,
-        event = "VeryLazy",
-        lazy = true,
-        ft = { "pandoc" },
-        config = function()
-            vim.g["pandoc#modules#disabled"] = { "folding" }
-            vim.g["pandoc#filetypes#handled"] = { "pandoc", "markdown" }
-            vim.g["pandoc#syntax#style#use_definition_lists"] = 0
-            vim.g["pandoc#syntax#conceal#blacklist"] =
-            { "atx", "block", "list", "newline", "dashes", "ellipses", "quotes" }
-        end,
     },
     {
         "lewis6991/gitsigns.nvim",
@@ -136,7 +130,7 @@ return {
                 width = { 10, 0.75 },
                 height = { 3, 0.75 },
                 debounce = 50,
-                callback = function(buf, win) end,
+                callback = function(_, _) end,
             })
         end,
     },

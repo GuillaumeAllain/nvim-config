@@ -5,6 +5,7 @@ vim.cmd([[
     nnoremap L $
     vnoremap H ^
     vnoremap L $
+    nnoremap <C-o> <C-o>zz
 
     noremap <expr> (search-forward) 'Nn'[v:searchforward]
     noremap <expr> (search-backward) 'nN'[v:searchforward]

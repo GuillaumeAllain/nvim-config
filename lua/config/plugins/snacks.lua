@@ -4,7 +4,7 @@ return {
     lazy = false,
     opts = {
         bigfile = { enabled = true },
-        image = { enabled = true },
+        image = { enabled = true, doc = { inline = false } },
         explorer = { enabled = true },
         notifier = { enabled = true },
         quickfile = { enabled = true },

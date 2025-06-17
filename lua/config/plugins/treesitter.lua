@@ -32,6 +32,7 @@ local treesitter_ft = {
     "query",
     "vimdoc",
     "r",
+    "typst",
 }
 
 return {

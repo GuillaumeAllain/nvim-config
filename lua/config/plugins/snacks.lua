@@ -35,6 +35,13 @@ return {
         --     desc = "bibtex",
         -- },
         {
+            "<leader>fm",
+            function()
+            Snacks.picker.marks()
+            end,
+            desc="Find Files"
+        },
+        {
             "<leader>fd",
             function()
                 Snacks.picker.smart({ filter = { cwd = true } })

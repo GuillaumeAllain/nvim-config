@@ -32,21 +32,21 @@ return {
     },
     { "wellle/targets.vim", lazy = false },
     { "tpope/vim-eunuch", lazy = false },
-    {
-        "otavioschwanck/arrow.nvim",
-        lazy = false,
-        dependencies = {
-            { "echasnovski/mini.icons" },
-        },
-        opts = {
-            show_icons = true,
-            leader_key = "<leader>r", -- Recommended to be a single key
-            mappings = {
-                toggle = "w", -- used as save if separate_save_and_remove is true
-            },
-            buffer_leader_key = "m", -- Per Buffer Mappings
-        },
-    },
+    -- {
+    --     "otavioschwanck/arrow.nvim",
+    --     lazy = false,
+    --     dependencies = {
+    --         { "echasnovski/mini.icons" },
+    --     },
+    --     opts = {
+    --         show_icons = true,
+    --         leader_key = "<leader>r", -- Recommended to be a single key
+    --         mappings = {
+    --             toggle = "w", -- used as save if separate_save_and_remove is true
+    --         },
+    --         buffer_leader_key = "m", -- Per Buffer Mappings
+    --     },
+    -- },
     {
         "folke/trouble.nvim",
         opts = {},

@@ -31,7 +31,12 @@ end, vim.tbl_extend("force", default, { desc = "focus term" }))
 
 vim.keymap.set("n", "<leader>gg", "<cmd>lua require('trouble').focus()<cr>")
 
-vim.keymap.set("n", "<leader>pm", "<cmd>Markview toggle<cr>")
+-- vim.keymap.set("n", "<leader>pm", "<cmd>Markview toggle<cr>")
+
+vim.keymap.set("n", "<leader>pm", function()
+    vim.cmd("Markview toggle")
+    Snacks.image.hover()
+end, { desc = "Toggle Markview" })
 
 vim.keymap.set("n", "<leader>d", function()
     require("snacks").bufdelete.delete()

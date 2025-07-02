@@ -112,6 +112,7 @@ return {
     },
     {
         "OXY2DEV/markview.nvim",
+        cmd = "Markview",
         ft = { "markdown", "pandoc" },
         event = "LazyFile",
         dependencies = {

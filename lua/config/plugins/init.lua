@@ -122,6 +122,9 @@ return {
         config = function()
             require("markview").setup({
                 checkboxes = require("markview.presets").checkboxes.nerd,
+                experimental = {
+                    check_rtp_message = false,
+                },
                 preview = {
                     modes = { "i", "n", "v", "c" },
                     filetypes = { "markdown", "quarto", "rmd", "pandoc" },

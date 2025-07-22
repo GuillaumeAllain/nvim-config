@@ -12,9 +12,6 @@ return {
             autoSearchPaths = true,
             diagnosticMode = "openFilesOnly",
             useLibraryCodeForTypes = true,
-            inlayHints = {
-                callArgumentNames = true,
-            },
         },
     },
 }

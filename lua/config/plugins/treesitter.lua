@@ -39,8 +39,8 @@ return {
     "nvim-treesitter/nvim-treesitter",
     branch = "main",
     build = function()
-        vim.cmd(":TSUpdate")
         require("nvim-treesitter").install(treesitter_ft)
+        vim.cmd("TSUpdate")
     end,
     init = function()
         vim.api.nvim_create_autocmd("FileType", {

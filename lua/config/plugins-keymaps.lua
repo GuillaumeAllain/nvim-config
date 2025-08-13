@@ -1,8 +1,5 @@
 local default = { noremap = true, silent = true }
 
-vim.keymap.set("n", "<leader>fa", function()
-    vim.lsp.buf.code_action()
-end, { noremap = true, silent = true, desc = "Code Actions" })
 vim.keymap.set("n", "<leader>gl", function()
     require("utils").toggle_build_buffer_window({ vertical = false })
 end, vim.tbl_extend("force", default, { desc = "default" }))

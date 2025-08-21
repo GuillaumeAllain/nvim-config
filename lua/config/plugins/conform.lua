@@ -6,10 +6,11 @@ return {
         formatters_by_ft = {
             lua = { "stylua" },
             yaml = { "yamlfmt" },
-            bib = { "bibclean" },
+            bib = { "bibtex-tidy" },
             fortran = { "fprettify" },
             codevlisp = { "fnlfmt" },
             rust = { "rustfmt" },
+            typst= {"typstfmt" },
         },
         default_format_opts = {
             lsp_format = "fallback",

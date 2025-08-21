@@ -13,6 +13,7 @@ return {
             disabled_filetypes = {
                 markdown = true, -- Enable Hardtime in lazy filetype
                 pandoc = true, -- Enable Hardtime in lazy filetype
+                typst = true, -- Enable Hardtime in lazy filetype
             },
             hints = {
                 ["[dcyvV][ia][%(%)]"] = {

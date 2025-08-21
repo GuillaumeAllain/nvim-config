@@ -1,6 +1,8 @@
 return {
     "barreiroleo/ltex_extra.nvim",
     branch = "dev",
-    ft = { "markdown", "tex", "pandoc" },
-    load_langs = { "en-US", "fr-CA" },
+    ft = { "markdown", "tex", "pandoc", "typst" },
+    opts = {
+        load_langs = { "fr", "en-US" },
+    },
 }

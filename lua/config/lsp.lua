@@ -17,4 +17,5 @@ vim.lsp.enable({
     "ltex_plus",
     "sqlls",
     "r_language_server",
+    "tinymist"
 })

@@ -1,6 +1,6 @@
 return {
     {
-        "echasnovski/mini.nvim",
+        "nvim-mini/mini.nvim",
         config = function()
             require("mini.indentscope").setup()
             vim.cmd([[autocmd TermOpen * lua vim.b.miniindentscope_disable = true]])
@@ -8,7 +8,7 @@ return {
         end,
     },
     {
-        "echasnovski/mini.snippets",
+        "nvim-mini/mini.snippets",
         lazy = true,
         event = "InsertEnter",
         opts = function()
@@ -24,7 +24,7 @@ return {
         end,
     },
     {
-        "echasnovski/mini.icons",
+        "nvim-mini/mini.icons",
         lazy = true,
         specs = {
             { "nvim-tree/nvim-web-devicons", enabled = false, optional = true },

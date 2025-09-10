@@ -15,6 +15,7 @@ vim.cmd([[
 
     nmap N (search-backward)zzzv
     xmap N (search-backward)zzzv
+    vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 
     imap <escape> <C-\><C-n>
     tnoremap <Esc><Esc> <C-\><C-n>

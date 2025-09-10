@@ -1,5 +1,5 @@
 return {
-    { "markonm/traces.vim", lazy = true, keys = { ":", "/", "?" } },
+    -- { "markonm/traces.vim", lazy = true, keys = { ":", "/", "?" } },
     {
         "neovim/nvim-lspconfig",
         lazy = false,

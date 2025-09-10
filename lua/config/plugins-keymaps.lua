@@ -39,15 +39,15 @@ vim.keymap.set("n", "<leader>d", function()
     require("snacks").bufdelete.delete()
 end, { desc = "Delete current buffer" })
 
-function _G.tabout_binding()
-    require("tabout")
-    if vim.fn.pumvisible() ~= 0 then
-        return vim.api.nvim_replace_termcodes("<C-l>", true, true, true)
-        -- elseif vim.fn["vsnip#available"](1) ~= 0 then
-        --     return vim.api.nvim_replace_termcodes("<Plug>(vsnip-expand-or-jump)", true, true, true)
-    else
-        return vim.api.nvim_replace_termcodes("<Plug>(Tabout)", true, true, true)
-    end
-end
-
-vim.api.nvim_set_keymap("i", "<C-L>", "v:lua.tabout_binding()", { silent = true, expr = true })
+-- function _G.tabout_binding()
+--     require("tabout")
+--     if vim.fn.pumvisible() ~= 0 then
+--         return vim.api.nvim_replace_termcodes("<C-l>", true, true, true)
+--         -- elseif vim.fn["vsnip#available"](1) ~= 0 then
+--         --     return vim.api.nvim_replace_termcodes("<Plug>(vsnip-expand-or-jump)", true, true, true)
+--     else
+--         return vim.api.nvim_replace_termcodes("<Plug>(Tabout)", true, true, true)
+--     end
+-- end
+--
+-- vim.api.nvim_set_keymap("i", "<C-L>", "v:lua.tabout_binding()", { silent = true, expr = true })

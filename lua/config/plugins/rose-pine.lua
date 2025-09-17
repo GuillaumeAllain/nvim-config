@@ -5,18 +5,18 @@ return {
     name = "rose-pine",
     config = function()
         require("rose-pine").setup({
-            dark_variant = "moon",
+            -- dark_variant = "moon",
             disable_background = true,
             disable_float_background=true, 
             highlight_groups = {
                 Folded = { link = "Comment" },
-                -- FloatBorder =  {fg = "iris"},
+                FloatBorder =  {fg = "iris"},
                 TelescopePromptBorder = {link="Normal"},
                 TelescopeBorder = {link="Normal"},
                 FoldColumn = { link = "Normal" },
             },
         })
-        vim.opt.background = "light"
+        vim.opt.background = "dark"
         vim.cmd.colorscheme("rose-pine")
         -- local float_bg = require("rose-pine.palette").surface
         --  

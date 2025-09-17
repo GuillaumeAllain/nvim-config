@@ -1,6 +1,7 @@
 return {
     "abecodes/tabout.nvim",
     lazy = true,
+    enabled=false,
     dependencies = {
         "nvim-treesitter/nvim-treesitter",
     },

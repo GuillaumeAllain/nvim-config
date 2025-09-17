@@ -1,10 +1,7 @@
 return {
     "nvim-lualine/lualine.nvim",
-    -- event = "LazyFile",
     lazy = false,
     config = function()
-        -- local status = vim.opt.laststatus:get()
-        -- local custom_term = require("lualine.themes.auto")
 
         local function show_macro_recording()
             local recording_register = vim.fn.reg_recording()
@@ -31,12 +28,10 @@ return {
 
         require("lualine").setup({
             options = {
-                -- theme = custom_term,
-                theme = "rose-pine-alt",
+                theme = "rose-pine",
                 component_separators = { "", "" },
                 section_separators = { "", "" },
             },
-            -- sections = {},
             sections = {
                 lualine_a = {
 

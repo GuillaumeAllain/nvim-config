@@ -2,7 +2,6 @@ return {
     "nvim-lualine/lualine.nvim",
     lazy = false,
     config = function()
-
         local function show_macro_recording()
             local recording_register = vim.fn.reg_recording()
             if recording_register == "" then
@@ -26,15 +25,21 @@ return {
             end,
         }
 
+        local custom_lualine = require('lualine.themes.rose-pine')
+        custom_lualine.normal.b.bg = 'None'
+        custom_lualine.insert.b.bg = 'None'
+        custom_lualine.command.b.bg = 'None'
+        custom_lualine.visual.b.bg = 'None'
+
+
         require("lualine").setup({
             options = {
-                theme = "rose-pine",
+                theme = custom_lualine,
                 component_separators = { "", "" },
                 section_separators = { "", "" },
             },
             sections = {
                 lualine_a = {
-
                     "mode",
                 },
                 lualine_b = {
@@ -113,5 +118,6 @@ return {
     end,
     dependencies = {
         "nvim-tree/nvim-web-devicons",
+        "rose-pine/neovim"
     },
 }

@@ -1,4 +1,3 @@
--- vim.opt.background = "light"
 
 vim.filetype.add({
     filename = {

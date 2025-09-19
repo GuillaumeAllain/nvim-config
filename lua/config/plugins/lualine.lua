@@ -25,7 +25,7 @@ return {
             end,
         }
 
-        local custom_lualine = require('lualine.themes.rose-pine')
+        local custom_lualine = require('lualine.themes.tokyonight')
         custom_lualine.normal.b.bg = 'None'
         custom_lualine.insert.b.bg = 'None'
         custom_lualine.command.b.bg = 'None'

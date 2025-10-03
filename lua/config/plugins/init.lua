@@ -114,8 +114,10 @@ return {
     {
         "OXY2DEV/markview.nvim",
         cmd = "Markview",
-        ft = { "markdown", "pandoc" },
-        event = "LazyFile",
+        -- ft = { "markdown", "pandoc" },
+        lazy = false,
+        -- event = "LazyFile",
+        priority = 49,
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
             "nvim-tree/nvim-web-devicons",
@@ -123,20 +125,27 @@ return {
         config = function()
             require("markview").setup({
                 checkboxes = require("markview.presets").checkboxes.nerd,
-                experimental = {
-                    check_rtp_message = false,
-                },
+                -- experimental = {
+                --     check_rtp_message = false,
+                -- },
                 preview = {
                     modes = { "i", "n", "v", "c" },
                     filetypes = { "markdown", "quarto", "rmd", "pandoc" },
+                    callbacks = {
+                        on_enable = function(_, win)
+                            vim.wo[win].conceallevel = 2
+                            -- This will prevent Tree-sitter concealment being disabled on the cmdline mode
+                            vim.wo[win].concealcursor = "c"
+                        end,
+                    },
                 },
             })
-            require("markview.extras.editor").setup({
-                width = { 10, 0.75 },
-                height = { 3, 0.75 },
-                debounce = 50,
-                callback = function(_, _) end,
-            })
+            -- require("markview.extras.editor").setup({
+            --     width = { 10, 0.75 },
+            --     height = { 3, 0.75 },
+            --     debounce = 50,
+            --     callback = function(_, _) end,
+            -- })
         end,
     },
     {

@@ -30,6 +30,7 @@ return {
         custom_lualine.insert.b.bg = 'None'
         custom_lualine.command.b.bg = 'None'
         custom_lualine.visual.b.bg = 'None'
+        custom_lualine.terminal.b.bg = 'None'
 
 
         require("lualine").setup({

@@ -15,6 +15,7 @@ return {
         completion = { documentation = { auto_show = false } },
         sources = {
             default = { "lsp", "path", "snippets", "copilot" },
+            -- compat = { "pandoc_references" },
             providers = {
                 copilot = {
                     name = "copilot",
@@ -38,7 +39,7 @@ return {
     opts_extend = { "sources.default" },
     dependencies = {
         "rafamadriz/friendly-snippets",
-        -- "jc-doyle/cmp-pandoc-references",
+        "jc-doyle/cmp-pandoc-references",
         "giuxtaposition/blink-cmp-copilot",
         "saghen/blink.compat",
     },

@@ -11,9 +11,9 @@ return {
         opts = {
             disable_mouse = false,
             disabled_filetypes = {
-                markdown = true, -- Enable Hardtime in lazy filetype
-                pandoc = true, -- Enable Hardtime in lazy filetype
-                typst = true, -- Enable Hardtime in lazy filetype
+                markdown = true,
+                pandoc = true,
+                typst = true,
             },
             hints = {
                 ["[dcyvV][ia][%(%)]"] = {
@@ -33,21 +33,6 @@ return {
     },
     { "wellle/targets.vim", lazy = false },
     { "tpope/vim-eunuch", lazy = false },
-    -- {
-    --     "otavioschwanck/arrow.nvim",
-    --     lazy = false,
-    --     dependencies = {
-    --         { "echasnovski/mini.icons" },
-    --     },
-    --     opts = {
-    --         show_icons = true,
-    --         leader_key = "<leader>r", -- Recommended to be a single key
-    --         mappings = {
-    --             toggle = "w", -- used as save if separate_save_and_remove is true
-    --         },
-    --         buffer_leader_key = "m", -- Per Buffer Mappings
-    --     },
-    -- },
     {
         "folke/trouble.nvim",
         opts = {},
@@ -114,9 +99,7 @@ return {
     {
         "OXY2DEV/markview.nvim",
         cmd = "Markview",
-        -- ft = { "markdown", "pandoc" },
         lazy = false,
-        -- event = "LazyFile",
         priority = 49,
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
@@ -131,13 +114,6 @@ return {
                 preview = {
                     modes = { "i", "n", "v", "c" },
                     filetypes = { "markdown", "quarto", "rmd", "pandoc" },
-                    callbacks = {
-                        on_enable = function(_, win)
-                            vim.wo[win].conceallevel = 2
-                            -- This will prevent Tree-sitter concealment being disabled on the cmdline mode
-                            vim.wo[win].concealcursor = "c"
-                        end,
-                    },
                 },
             })
             -- require("markview.extras.editor").setup({

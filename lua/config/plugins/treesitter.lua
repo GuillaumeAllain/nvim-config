@@ -37,6 +37,7 @@ local treesitter_ft = {
 
 return {
     "nvim-treesitter/nvim-treesitter",
+    lazy = false,
     branch = "main",
     build = function()
         require("nvim-treesitter").install(treesitter_ft):wait(300000)

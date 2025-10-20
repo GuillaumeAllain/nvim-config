@@ -100,7 +100,7 @@ return {
         "OXY2DEV/markview.nvim",
         cmd = "Markview",
         lazy = false,
-        priority = 49,
+        -- priority = 4,
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
             "nvim-tree/nvim-web-devicons",
@@ -114,14 +114,10 @@ return {
                 preview = {
                     modes = { "i", "n", "v", "c" },
                     filetypes = { "markdown", "quarto", "rmd", "pandoc" },
+                    icon_provider = "internal", -- "mini" or "devicons"
                 },
             })
-            -- require("markview.extras.editor").setup({
-            --     width = { 10, 0.75 },
-            --     height = { 3, 0.75 },
-            --     debounce = 50,
-            --     callback = function(_, _) end,
-            -- })
+            require("markview.extras.editor").setup()
         end,
     },
     {

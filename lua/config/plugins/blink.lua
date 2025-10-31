@@ -23,7 +23,7 @@ return {
                 pandoc_references = {
                     name = "pandoc_references",
                     module = "blink.compat.source",
-                    triggers = { "@" },
+                    -- triggers = { "@" },
                 },
                 copilot = {
                     name = "copilot",

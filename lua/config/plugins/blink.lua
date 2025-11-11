@@ -18,7 +18,7 @@ return {
 
         completion = { documentation = { auto_show = false } },
         sources = {
-            default = { "lsp", "path", "snippets", "copilot" , "pandoc_references"},
+            default = { "lsp", "path", "snippets", "copilot" },
             providers = {
                 pandoc_references = {
                     name = "pandoc_references",

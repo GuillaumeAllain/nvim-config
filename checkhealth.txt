@@ -1,0 +1,3 @@
+
+checkhealth: 100% checking nvim-treesitter
+checkhealth: checks done

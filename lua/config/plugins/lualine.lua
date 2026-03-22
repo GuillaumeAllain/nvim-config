@@ -1,6 +1,7 @@
 return {
     "nvim-lualine/lualine.nvim",
     lazy = false,
+    priority = 900,
     config = function()
         local function show_macro_recording()
             local recording_register = vim.fn.reg_recording()

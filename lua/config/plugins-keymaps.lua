@@ -26,19 +26,6 @@ end, vim.tbl_extend("force", default, { desc = "focus term" }))
 --     require("utils").open_scratch_buffer({ vertical = true })
 -- end, vim.tbl_extend("force", default, { desc = "open scratch buffer" }))
 
-vim.keymap.set("n", "<leader>gg", "<cmd>lua require('trouble').focus()<cr>")
-
--- vim.keymap.set("n", "<leader>pm", "<cmd>Markview toggle<cr>")
-
-vim.keymap.set("n", "<leader>pm", function()
-    vim.cmd("Markview toggle")
-    Snacks.image.hover()
-end, { desc = "Toggle Markview" })
-
-vim.keymap.set("n", "<leader>d", function()
-    require("snacks").bufdelete.delete()
-end, { desc = "Delete current buffer" })
-
 -- function _G.tabout_binding()
 --     require("tabout")
 --     if vim.fn.pumvisible() ~= 0 then

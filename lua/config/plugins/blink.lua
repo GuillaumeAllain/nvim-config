@@ -16,9 +16,15 @@ return {
             ["<C-l>"] = { "select_and_accept" },
         },
 
+        snippets = {
+            preset = "mini_snippets",
+        },
         completion = { documentation = { auto_show = false } },
         sources = {
             default = { "lsp", "path", "snippets", "copilot" },
+            per_filetype = {
+                codecompanion = { "codecompanion" },
+            },
             providers = {
                 pandoc_references = {
                     name = "pandoc_references",

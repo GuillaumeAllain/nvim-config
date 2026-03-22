@@ -1,60 +1,65 @@
 local treesitter_ft = {
+    "bash",
+    "bibtex",
+    "c",
+    "comment",
     "css",
+    -- "fennel",
+    "fortran",
+    -- "haskell",
     "html",
     "javascript",
-    "latex",
-    "rust",
-    "norg",
-    "scss",
-    "svelte",
-    "tsx",
-    "typst",
-    "vue",
-    "regex",
-    "python",
-    "yaml",
-    "bash",
-    "c",
-    "bibtex",
-    "fortran",
-    "haskell",
-    "fennel",
-    "html",
     "julia",
     "latex",
     "lua",
-    "regex",
-    "toml",
     "markdown",
     "markdown_inline",
-    "comment",
-    "vim",
+    "norg",
+    "python",
     "query",
-    "vimdoc",
     "r",
+    "regex",
+    "rust",
+    "scss",
+    "svelte",
+    "toml",
+    "tsx",
     "typst",
+    "vim",
+    "vimdoc",
+    "vue",
+    "yaml",
 }
 
 return {
     "nvim-treesitter/nvim-treesitter",
-    lazy = false,
     branch = "main",
-    build = function()
-        require("nvim-treesitter").install(treesitter_ft):wait(300000)
-    end,
-    init = function()
-        vim.api.nvim_create_autocmd("FileType", {
-            desc = "User: enable treesitter highlighting",
-            callback = function(ctx)
-                -- highlights
-                local hasStarted = pcall(vim.treesitter.start) -- errors for filetypes with no parser
-
-                -- indent
-                local noIndent = {}
-                if hasStarted and not vim.list_contains(noIndent, ctx.match) then
-                    vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-                end
-            end,
-        })
+    event = { "BufReadPost", "BufNewFile" },
+    build = ":TSUpdate",
+    config = function()
+        local ok, configs = pcall(require, "nvim-treesitter.configs")
+        if ok then
+            configs.setup({
+                ensure_installed = treesitter_ft,
+                highlight = {
+                    enable = true,
+                    -- disable = { "python", "latex", "fortran", "haskell", "julia" }, -- Restored
+                    additional_vim_regex_highlighting = false,
+                },
+                indent = { enable = true },
+                incremental_selection = {
+                    enable = true,
+                    keymaps = {
+                        init_selection = "gnn",
+                        node_incremental = "grn",
+                        scope_incremental = "grc",
+                        node_decremental = "grm",
+                    },
+                },
+            })
+        end
+        -- Native Neovim folding setup
+        vim.opt.foldmethod = "expr"
+        vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
     end,
 }

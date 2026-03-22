@@ -1,6 +1,6 @@
-local sumneko_binary = os.getenv("HOMEBREW_PREFIX") .. "/bin/lua-language-server"
 return {
-    cmd = { sumneko_binary, "-E" },
+    cmd = { "lua-language-server" },
+    filetypes = { "lua" },
     settings = {
         Lua = {},
     },
@@ -16,18 +16,12 @@ return {
         end
 
         client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
-            runtime = {
-                -- Tell the language server which version of Lua you're using
-                -- (most likely LuaJIT in the case of Neovim)
-                version = "LuaJIT",
-            },
-            -- Make the server aware of Neovim runtime files
+            runtime = { version = "LuaJIT" },
             workspace = {
                 checkThirdParty = false,
                 library = {
                     vim.env.VIMRUNTIME,
-                    "${3rd}/luv/library"
-                    -- "${3rd}/busted/library",
+                    "${3rd}/luv/library",
                 },
             },
         })

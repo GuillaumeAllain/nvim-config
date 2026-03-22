@@ -18,9 +18,22 @@ return {
                 enabled = true,
             },
             override = {
-                ["vim.lsp.util.convert_input_to_markdown_lines"] = false,
-                ["vim.lsp.util.stylize_markdown"] = false,
-                ["cmp.entry.get_documentation"] = false,
+                ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+                ["vim.lsp.util.stylize_markdown"] = true,
+                ["cmp.entry.get_documentation"] = true,
+            },
+        },
+        routes = {
+            {
+                filter = {
+                    event = "msg_show",
+                    any = {
+                        { find = "%d+L, %d+B" },
+                        { find = "; after #%d+" },
+                        { find = "; before #%d+" },
+                    },
+                },
+                view = "mini",
             },
         },
         presets = {
@@ -30,6 +43,7 @@ return {
             inc_rename = true,
         },
         notify = {
+            enabled = false,
             replace = true,
             merge = true,
         },

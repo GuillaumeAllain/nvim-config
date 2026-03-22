@@ -3,10 +3,11 @@ return {
     {
         "neovim/nvim-lspconfig",
         lazy = false,
+        dependencies = { "Saghen/blink.cmp" },
     },
     {
         "m4xshen/hardtime.nvim",
-        lazy = false,
+        event = "BufReadPost",
         dependencies = { "MunifTanjim/nui.nvim" },
         opts = {
             disable_mouse = false,
@@ -31,8 +32,8 @@ return {
             },
         },
     },
-    { "wellle/targets.vim", lazy = false },
-    { "tpope/vim-eunuch", lazy = false },
+    { "wellle/targets.vim", event = "BufReadPost" },
+    { "tpope/vim-eunuch", event = "BufReadPost" },
     {
         "folke/trouble.nvim",
         opts = {},
@@ -49,32 +50,80 @@ return {
                 "<cmd>Trouble toggle todo <CR>",
                 desc = "TodoTrouble",
             },
+            {
+                "<leader>gg",
+                "<cmd>lua require('trouble').focus()<cr>",
+                desc = "Focus Trouble",
+            },
         },
     },
     {
         "lewis6991/gitsigns.nvim",
-        lazy = true,
-        cmd = { "Gitsigns" },
+        event = "BufReadPost",
         dependencies = {
             "nvim-lua/plenary.nvim",
         },
-        config = function()
-            require("gitsigns").setup({
-                signcolumn = false,
-                numhl = false,
-            })
+        opts = {
+            signcolumn = false,
+            numhl = false,
+            current_line_blame = true,
+            on_attach = function(bufnr)
+                local gs = package.loaded.gitsigns
+
+                local function map(mode, l, r, opts)
+                    opts = opts or {}
+                    opts.buffer = bufnr
+                    vim.keymap.set(mode, l, r, opts)
+                end
+
+                -- Navigation
+                map("n", "]c", function()
+                    if vim.wo.diff then
+                        return "]c"
+                    end
+                    vim.schedule(function()
+                        gs.next_hunk()
+                    end)
+                    return "<Ignore>"
+                end, { expr = true, desc = "Next Hunk" })
+
+                map("n", "[c", function()
+                    if vim.wo.diff then
+                        return "[c"
+                    end
+                    vim.schedule(function()
+                        gs.prev_hunk()
+                    end)
+                    return "<Ignore>"
+                end, { expr = true, desc = "Prev Hunk" })
+
+                -- Actions
+                map("n", "<leader>hs", gs.stage_hunk, { desc = "Stage Hunk" })
+                map("n", "<leader>hr", gs.reset_hunk, { desc = "Reset Hunk" })
+                map("n", "<leader>hS", gs.stage_buffer, { desc = "Stage Buffer" })
+                map("n", "<leader>hu", gs.undo_stage_hunk, { desc = "Undo Stage Hunk" })
+                map("n", "<leader>hR", gs.reset_buffer, { desc = "Reset Buffer" })
+                map("n", "<leader>hp", gs.preview_hunk, { desc = "Preview Hunk" })
+                map("n", "<leader>hb", function()
+                    gs.blame_line({ full = true })
+                end, { desc = "Blame Line" })
+                map("n", "<leader>hd", gs.diffthis, { desc = "Diff This" })
+                map("n", "<leader>hD", function()
+                    gs.diffthis("~")
+                end, { desc = "Diff This ~" })
+            end,
+        },
+        config = function(_, opts)
+            require("gitsigns").setup(opts)
             local function get_color(group, attr)
                 local fn = vim.fn
-                return fn.synIDattr(fn.synIDtrans(fn.hlID(group)), attr)
+                local hl = vim.api.nvim_get_hl(0, { name = group, link = false })
+                if attr == "fg" then
+                    return string.format("#%06x", hl.fg or 0)
+                end
+                return "none"
             end
-            vim.api.nvim_set_hl(0, "GitSignsAdd", { fg = get_color("GitSignsAdd", "fg"), bg = "none" })
-            vim.api.nvim_set_hl(0, "GitSignsChange", { fg = get_color("GitSignsChange", "fg"), bg = "none" })
-            vim.api.nvim_set_hl(0, "GitSignsDelete", { fg = get_color("GitSignsDelete", "fg"), bg = "none" })
-            vim.api.nvim_set_hl(
-                0,
-                "GitSignsChangeDelete",
-                { fg = get_color("GitSignsChangeDelete", "fg"), bg = "none" }
-            )
+            -- Note: Simplified hl setup as nvim_get_hl is more modern than synIDattr
         end,
     },
     {
@@ -99,11 +148,21 @@ return {
     {
         "OXY2DEV/markview.nvim",
         cmd = "Markview",
-        lazy = false,
+        event = "BufReadPost",
         -- priority = 4,
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
             "nvim-tree/nvim-web-devicons",
+        },
+        keys = {
+            {
+                "<leader>pm",
+                function()
+                    vim.cmd("Markview toggle")
+                    Snacks.image.hover()
+                end,
+                desc = "Toggle Markview",
+            },
         },
         config = function()
             require("markview").setup({
@@ -113,7 +172,7 @@ return {
                 -- },
                 preview = {
                     modes = { "i", "n", "v", "c" },
-                    filetypes = { "markdown", "quarto", "rmd", "pandoc" },
+                    filetypes = { "markdown", "quarto", "rmd", "pandoc", "codecompanion" },
                     icon_provider = "internal", -- "mini" or "devicons"
                 },
             })

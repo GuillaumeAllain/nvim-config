@@ -35,18 +35,60 @@ return {
         --     desc = "bibtex",
         -- },
         {
+            "<leader>fg",
+            function()
+                Snacks.picker.git_files()
+            end,
+            desc = "Git Files",
+        },
+        {
+            "<leader>fr",
+            function()
+                Snacks.picker.recent()
+            end,
+            desc = "Recent Files",
+        },
+        {
+            "<leader>f/",
+            function()
+                Snacks.picker.lines()
+            end,
+            desc = "Grep Current Buffer",
+        },
+        {
+            "<leader>fw",
+            function()
+                Snacks.picker.grep_word()
+            end,
+            desc = "Grep Word Under Cursor",
+        },
+        {
+            "<leader>fh",
+            function()
+                Snacks.picker.help()
+            end,
+            desc = "Help Tags",
+        },
+        {
+            "<leader>fc",
+            function()
+                Snacks.picker.files({ cwd = vim.fn.stdpath("config") })
+            end,
+            desc = "Config Files",
+        },
+        {
             "<leader>fm",
             function()
-            Snacks.picker.marks()
+                Snacks.picker.marks()
             end,
-            desc="Find Files"
+            desc = "Marks",
         },
         {
             "<leader>fd",
             function()
-                Snacks.picker.smart({ filter = { cwd = true } })
+                Snacks.picker.smart()
             end,
-            desc = "Find Files",
+            desc = "Smart Files",
         },
         {
             "<leader>ff",
@@ -54,13 +96,6 @@ return {
                 Snacks.picker.buffers()
             end,
             desc = "Buffers",
-        },
-        {
-            "<leader>fk",
-            function()
-                Snacks.picker.lsp_workspace_symbols()
-            end,
-            desc = "LSP Workspace Symbols",
         },
         {
             "<leader>fs",
@@ -84,13 +119,6 @@ return {
             desc = "Spelling Suggestions",
         },
         {
-            "<leader>fl",
-            function()
-                Snacks.picker.lsp_workspace_symbols()
-            end,
-            desc = "LSP Workspace Symbols",
-        },
-        {
             "<leader>f<space>",
             function()
                 Snacks.picker.find_files()
@@ -110,6 +138,20 @@ return {
                 Snacks.picker.grep()
             end,
             desc = "Live grep",
+        },
+        {
+            "<leader>fk",
+            function()
+                Snacks.picker.lsp_workspace_symbols()
+            end,
+            desc = "LSP Workspace Symbols",
+        },
+        {
+            "<leader>fC",
+            function()
+                Snacks.picker.colorschemes()
+            end,
+            desc = "Colorschemes",
         },
 
         {
@@ -168,6 +210,13 @@ return {
                 Snacks.picker.lsp_workspace_symbols()
             end,
             desc = "LSP Workspace Symbols",
+        },
+        {
+            "<leader>d",
+            function()
+                require("snacks").bufdelete.delete()
+            end,
+            desc = "Delete current buffer",
         },
     },
 }

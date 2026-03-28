@@ -13,7 +13,7 @@
 
 ## Performance Metrics
 
-- **Startup Time**: ~140ms (Environment-dependent, Target: < 100ms)
+- **Startup Time**: ~239ms (Total time to insert mode: ~247ms)
 - **Plugin Count**: ~50 (Managed by lazy.nvim)
 - **V1 Requirements Mapped**: 17/17 (100%)
 

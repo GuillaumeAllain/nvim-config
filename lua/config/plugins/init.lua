@@ -2,12 +2,15 @@ return {
     -- { "markonm/traces.vim", lazy = true, keys = { ":", "/", "?" } },
     {
         "neovim/nvim-lspconfig",
-        lazy = false,
+        event = "LazyFile",
         dependencies = { "Saghen/blink.cmp" },
+        config = function()
+            require("config.lsp")
+        end,
     },
     {
         "m4xshen/hardtime.nvim",
-        event = "BufReadPost",
+        event = "LazyFile",
         dependencies = { "MunifTanjim/nui.nvim" },
         opts = {
             disable_mouse = false,
@@ -32,8 +35,8 @@ return {
             },
         },
     },
-    { "wellle/targets.vim", event = "BufReadPost" },
-    { "tpope/vim-eunuch", event = "BufReadPost" },
+    { "wellle/targets.vim", event = "LazyFile" },
+    { "tpope/vim-eunuch", event = "LazyFile" },
     {
         "folke/trouble.nvim",
         opts = {},
@@ -59,7 +62,7 @@ return {
     },
     {
         "lewis6991/gitsigns.nvim",
-        event = "BufReadPost",
+        event = "LazyFile",
         dependencies = {
             "nvim-lua/plenary.nvim",
         },
@@ -148,7 +151,7 @@ return {
     {
         "OXY2DEV/markview.nvim",
         cmd = "Markview",
-        event = "BufReadPost",
+        event = "LazyFile",
         -- priority = 4,
         dependencies = {
             "nvim-treesitter/nvim-treesitter",

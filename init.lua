@@ -1,3 +1,14 @@
+if vim.loader then
+    vim.loader.enable()
+end
+
+_G.start_time = vim.uv.hrtime()
+_G.benchmark_results = {}
+_G.log_benchmark = function(name)
+  table.insert(_G.benchmark_results, {name = name, time = (vim.uv.hrtime() - _G.start_time) / 1e6})
+end
+_G.log_benchmark("Init start")
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"

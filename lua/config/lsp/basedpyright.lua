@@ -8,10 +8,10 @@ return {
     settings = {
         basedpyright = {
             analysis = {
-                typeCheckingMode = "standard",
+                typeCheckingMode = "basic", -- Changed from standard
                 autoSearchPaths = true,
                 diagnosticMode = "openFilesOnly",
-                useLibraryCodeForTypes = true,
+                useLibraryCodeForTypes = false, -- Changed from true to speed up startup
             },
         },
     },

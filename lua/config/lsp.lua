@@ -21,7 +21,8 @@ local servers = {
 
 local lspconfig = require("lspconfig")
 
--- Load and enable each server modularly using lspconfig for defaults
+-- Load and enable only the server matching the current filetype
+local current_ft = vim.bo.filetype
 for _, server in ipairs(servers) do
     local ok, config = pcall(require, "config.lsp." .. server)
     local opts = {
@@ -30,7 +31,12 @@ for _, server in ipairs(servers) do
     if ok then
         opts = vim.tbl_deep_extend("force", opts, config)
     end
-    lspconfig[server].setup(opts)
+
+    -- Optimization: Only call setup for servers matching current ft
+    local server_fts = opts.filetypes or {}
+    if #server_fts == 0 or vim.tbl_contains(server_fts, current_ft) then
+        lspconfig[server].setup(opts)
+    end
 end
 
 -- Global diagnostic settings

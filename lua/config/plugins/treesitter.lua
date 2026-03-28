@@ -1,65 +1,42 @@
 local treesitter_ft = {
-    "bash",
-    "bibtex",
-    "c",
-    "comment",
-    "css",
-    -- "fennel",
-    "fortran",
-    -- "haskell",
-    "html",
-    "javascript",
-    "julia",
-    "latex",
-    "lua",
-    "markdown",
-    "markdown_inline",
-    "norg",
     "python",
-    "query",
-    "r",
-    "regex",
-    "rust",
-    "scss",
-    "svelte",
-    "toml",
-    "tsx",
-    "typst",
+    "lua",
     "vim",
     "vimdoc",
-    "vue",
-    "yaml",
+    "query",
+    "markdown",
+    "markdown_inline",
+    "bash",
 }
 
 return {
     "nvim-treesitter/nvim-treesitter",
     branch = "main",
-    event = { "BufReadPost", "BufNewFile" },
+    lazy = false,
+    priority = 1000,
     build = ":TSUpdate",
     config = function()
         local ok, configs = pcall(require, "nvim-treesitter.configs")
         if ok then
             configs.setup({
                 ensure_installed = treesitter_ft,
+                sync_install = false,
+                auto_install = true,
                 highlight = {
                     enable = true,
                     -- disable = { "python", "latex", "fortran", "haskell", "julia" }, -- Restored
                     additional_vim_regex_highlighting = false,
                 },
-                indent = { enable = true },
+                indent = { enable = false },
                 incremental_selection = {
-                    enable = true,
-                    keymaps = {
-                        init_selection = "gnn",
-                        node_incremental = "grn",
-                        scope_incremental = "grc",
-                        node_decremental = "grm",
-                    },
+                    enable = false,
                 },
             })
         end
-        -- Native Neovim folding setup
-        vim.opt.foldmethod = "expr"
-        vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+        -- Native Neovim folding setup (deferred)
+        vim.schedule(function()
+            vim.opt.foldmethod = "expr"
+            vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+        end)
     end,
 }

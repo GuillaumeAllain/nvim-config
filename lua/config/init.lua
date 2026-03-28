@@ -1,7 +1,5 @@
 vim.g.mapleader = " "
 
-vim.cmd.syntax("on")
-
 require("config.lazy")
 
 -- Core Settings
@@ -158,4 +156,3 @@ vim.cmd([[
 ]])
 
 require("config.plugins-keymaps")
-require("config.lsp")

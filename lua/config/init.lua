@@ -117,7 +117,7 @@ vim.deprecate = function() end
 vim.api.nvim_create_autocmd("VimEnter", {
     callback = function()
         if vim.fn.argc() == 0 and vim.api.nvim_buf_get_name(0) == "" then
-            require("snacks").picker.smart()
+            require("snacks").picker.smart({cwd = vim.loop.cwd()})
         end
     end,
 })

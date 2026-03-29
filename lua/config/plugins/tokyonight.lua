@@ -7,7 +7,7 @@ return {
             style = "night",
             transparent = true,
             on_colors = function(colors)
-                -- colors.comment = require("tokyonight.util").lighten(colors.comment, 0.5)
+                colors.comment = require("tokyonight.util").lighten(colors.comment, 0.5)
                 colors.fg_gutter = require("tokyonight.util").lighten(colors.fg_gutter, 0.5)
                 -- colors.fg = require("tokyonight.util").lighten(colors.fg, 0.5)
                 colors.terminal_black = require("tokyonight.util").lighten(colors.terminal_black, 0.5)

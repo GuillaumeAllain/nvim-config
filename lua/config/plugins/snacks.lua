@@ -86,7 +86,7 @@ return {
         {
             "<leader>fd",
             function()
-                Snacks.picker.smart()
+                Snacks.picker.smart({cwd = vim.loop.cwd()})
             end,
             desc = "Smart Files",
         },

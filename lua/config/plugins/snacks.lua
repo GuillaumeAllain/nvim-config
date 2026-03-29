@@ -140,7 +140,7 @@ return {
             desc = "Live grep",
         },
         {
-            "<leader>fk",
+            "<leader>fl",
             function()
                 Snacks.picker.lsp_workspace_symbols()
             end,

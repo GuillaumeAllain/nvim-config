@@ -22,18 +22,6 @@ return {
         },
     },
     keys = {
-        --         vim.keymap.set(
-        --     "i",
-        --     "<C-b>",
-        --     "<cmd>lua require('telescope').extensions.bibtex.bibtex({format='markdown'})<cr>",
-        --     { noremap = true, silent = true, desc = "bibtex" }
-        -- )
-
-        -- {
-        --     "<leader>fb",
-        --     "<cmd>lua require('telescope').extensions.bibtex.bibtex({format='markdown'})<cr>",
-        --     desc = "bibtex",
-        -- },
         {
             "<leader>fg",
             function()

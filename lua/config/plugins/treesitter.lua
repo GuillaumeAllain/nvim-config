@@ -1,6 +1,7 @@
 local treesitter_ft = {
     "python",
     "lua",
+    "codecompanion",
     "vim",
     "vimdoc",
     "query",

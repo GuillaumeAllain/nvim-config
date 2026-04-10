@@ -36,7 +36,7 @@ return {
         },
     },
     { "wellle/targets.vim", event = "LazyFile" },
-    { "tpope/vim-eunuch", event = "LazyFile" },
+    { "tpope/vim-eunuch",   event = "LazyFile" },
     {
         "folke/trouble.nvim",
         opts = {},
@@ -151,7 +151,7 @@ return {
     {
         "OXY2DEV/markview.nvim",
         cmd = "Markview",
-        event = "LazyFile",
+        -- event = "LazyFile",
         -- priority = 4,
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
@@ -167,19 +167,39 @@ return {
                 desc = "Toggle Markview",
             },
         },
+        ft = {
+            'md',
+            'markdown',
+            'norg',
+            'rmd',
+            'org',
+            'vimwiki',
+            'typst',
+            'tex',
+            'quarto',
+            'Avante',
+            'codecompanion',
+        },
         config = function()
             require("markview").setup({
+                modes = { "n", "i", "no", "c" },
+                hybrid_modes = { "i", "n" },
                 checkboxes = require("markview.presets").checkboxes.nerd,
-                -- experimental = {
-                --     check_rtp_message = false,
-                -- },
+                ignore_buftypes = {},
                 preview = {
-                    modes = { "i", "n", "v", "c" },
+                    hybrid_modes = { "i" },
+                    modes = { "i", "n", "no", "v", "c" },
                     filetypes = { "markdown", "quarto", "rmd", "pandoc", "codecompanion" },
-                    icon_provider = "internal", -- "mini" or "devicons"
+                    icon_provider = "internal",
                 },
             })
             require("markview.extras.editor").setup()
+            vim.api.nvim_create_autocmd("FileType", {
+                pattern = "codecompanion",
+                callback = function(ev)
+                    require("markview.actions").attach(ev.buf)
+                end,
+            })
         end,
     },
     {

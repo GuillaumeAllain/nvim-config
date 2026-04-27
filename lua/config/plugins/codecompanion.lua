@@ -7,7 +7,7 @@ return {
     },
     keys = {
         {
-            "<C-i>",
+            "<leader>i",
             function()
                 require("codecompanion").toggle()
                 vim.defer_fn(function()

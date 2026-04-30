@@ -4,9 +4,10 @@ if has_blink then
     capabilities = blink.get_lsp_capabilities(capabilities)
 end
 
--- List of servers to enable
-local servers = {
-    "basedpyright",
+vim.lsp.config("*", { capabilities = capabilities })
+
+vim.lsp.enable({
+    "ty",
     "rust_analyzer",
     "ruff",
     "lua_ls",
@@ -17,32 +18,12 @@ local servers = {
     "sqlls",
     "r_language_server",
     "tinymist",
-    }
-
-local lspconfig = require("lspconfig")
-
--- Load and enable only the server matching the current filetype
-local current_ft = vim.bo.filetype
-for _, server in ipairs(servers) do
-    local ok, config = pcall(require, "config.lsp." .. server)
-    local opts = {
-        capabilities = capabilities,
-    }
-    if ok then
-        opts = vim.tbl_deep_extend("force", opts, config)
-    end
-
-    -- Optimization: Only call setup for servers matching current ft
-    local server_fts = opts.filetypes or {}
-    if #server_fts == 0 or vim.tbl_contains(server_fts, current_ft) then
-        lspconfig[server].setup(opts)
-    end
-end
-
--- Global diagnostic settings
-vim.diagnostic.config({
-    virtual_lines = true,
-    virtual_text = false,
-    signs = true,
-    update_in_insert = false,
 })
+
+-- vim.lsp.enable()'s built-in doautoall is conditional on vim_did_enter or
+-- did_filetype() being set, which may not hold when we load via LazyFile
+-- (BufReadPost). Scheduling ensures it runs after all startup autocmds
+-- complete, at which point all open buffers have their filetypes set.
+vim.schedule(function()
+    vim.cmd.doautoall("nvim.lsp.enable FileType")
+end)

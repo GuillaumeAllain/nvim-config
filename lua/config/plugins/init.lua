@@ -2,7 +2,7 @@ return {
     -- { "markonm/traces.vim", lazy = true, keys = { ":", "/", "?" } },
     {
         "neovim/nvim-lspconfig",
-        event = "LazyFile",
+        event = { "LazyFile", "BufEnter" },
         dependencies = { "Saghen/blink.cmp" },
         config = function()
             require("config.lsp")

@@ -113,6 +113,47 @@ vim.api.nvim_create_autocmd("CursorMoved", {
 
 vim.deprecate = function() end
 
+-- `ty` (and other pull-diagnostic servers) use textDocument/diagnostic: they
+-- wait to be asked rather than pushing on didChange. Neovim auto-pulls on
+-- InsertLeave / BufEnter but not on BufReadPost, so after :e the diagnostics
+-- go stale until you enter/leave insert mode. Fix: explicitly request pull
+-- diagnostics after a reload for any attached client that supports the method.
+-- Push-only servers like ruff don't advertise textDocument/diagnostic so they
+-- are skipped (and already work fine on their own).
+--
+-- Double vim.schedule ensures we run after the LSP's own on_reload handler
+-- (which clears diagnostics and is itself scheduled from BufReadPost).
+vim.api.nvim_create_autocmd("BufReadPost", {
+    group = vim.api.nvim_create_augroup("lsp_pull_diagnostics_on_reload", { clear = true }),
+    callback = function(ev)
+        local buf = ev.buf
+        if vim.bo[buf].buftype ~= "" then return end
+        vim.schedule(function()
+            vim.schedule(function()
+                if not vim.api.nvim_buf_is_valid(buf) then return end
+                for _, client in ipairs(vim.lsp.get_clients({ bufnr = buf })) do
+                    if client.supports_method("textDocument/diagnostic") then
+                        vim.lsp.buf_request(buf, "textDocument/diagnostic",
+                            { textDocument = { uri = vim.uri_from_bufnr(buf) } })
+                    end
+                end
+            end)
+        end)
+    end,
+})
+
+-- Pickers like snacks use vim.fn.bufload() which skips BufReadPost and leaves
+-- the filetype unset. Detect it on BufEnter so FileType fires normally,
+-- which activates treesitter and the lsp_enable autocmd.
+vim.api.nvim_create_autocmd("BufEnter", {
+    callback = function(ev)
+        local buf = ev.buf
+        if vim.bo[buf].buftype ~= "" or vim.bo[buf].filetype ~= "" then return end
+        local ft = vim.filetype.match({ buf = buf })
+        if ft then vim.bo[buf].filetype = ft end
+    end,
+})
+
 -- Auto-open smart picker on startup if no files are opened
 vim.api.nvim_create_autocmd("VimEnter", {
     callback = function()

@@ -15,7 +15,6 @@ return {
         dependencies = { "williamboman/mason.nvim" },
         opts = {
             ensure_installed = {
-                "basedpyright",
                 "rust_analyzer",
                 "ruff",
                 "lua_ls",
@@ -27,6 +26,9 @@ return {
                 "tinymist",
             },
             automatic_installation = true,
+            automatic_enable = {
+                exclude = { "basedpyright" },
+            },
         },
     },
     {

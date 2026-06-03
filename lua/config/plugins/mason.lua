@@ -31,7 +31,8 @@ vim.schedule(function()
             "yamlfmt",
             "bibtex-tidy",
             "fprettify",
-            "fnlfmt",
+            -- fnlfmt is not in the mason registry; install it yourself (conform
+            -- picks it up from PATH for codevlisp formatting).
             -- rustfmt is usually managed by rustup, but can be added here if needed
         },
         auto_update = true,

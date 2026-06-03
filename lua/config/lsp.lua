@@ -21,9 +21,9 @@ vim.lsp.enable({
 })
 
 -- vim.lsp.enable()'s built-in doautoall is conditional on vim_did_enter or
--- did_filetype() being set, which may not hold when we load via LazyFile
--- (BufReadPost). Scheduling ensures it runs after all startup autocmds
--- complete, at which point all open buffers have their filetypes set.
+-- did_filetype() being set, which may not hold when plugins load eagerly at
+-- startup (before VimEnter). Scheduling ensures it runs after all startup
+-- autocmds complete, at which point all open buffers have their filetypes set.
 vim.schedule(function()
     vim.cmd.doautoall("nvim.lsp.enable FileType")
 end)

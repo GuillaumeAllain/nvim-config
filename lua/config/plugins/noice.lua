@@ -1,58 +1,50 @@
-return {
-    "folke/noice.nvim",
-    lazy = true,
-    event = "VeryLazy",
-    opts = {
-        popupmenu = {
-            enabled = false, -- disable if you use something like cmp-cmdline
-            backend = "cmp", -- backend to use to show regular cmdline completions
+require("noice").setup({
+    popupmenu = {
+        enabled = false, -- disable if you use something like cmp-cmdline
+        backend = "cmp", -- backend to use to show regular cmdline completions
+    },
+    lsp = {
+        hover = {
+            enabled = true,
         },
-        lsp = {
-            hover = {
-                enabled = true,
-            },
-            signature = {
-                enabled = false,
-            },
-            message = {
-                enabled = true,
-            },
-            override = {
-                ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-                ["vim.lsp.util.stylize_markdown"] = true,
-                ["cmp.entry.get_documentation"] = true,
-            },
+        signature = {
+            enabled = false,
         },
-        routes = {
-            {
-                filter = {
-                    event = "msg_show",
-                    any = {
-                        { find = "%d+L, %d+B" },
-                        { find = "; after #%d+" },
-                        { find = "; before #%d+" },
-                    },
+        message = {
+            enabled = true,
+        },
+        override = {
+            ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+            ["vim.lsp.util.stylize_markdown"] = true,
+            ["cmp.entry.get_documentation"] = true,
+        },
+    },
+    routes = {
+        {
+            filter = {
+                event = "msg_show",
+                any = {
+                    { find = "%d+L, %d+B" },
+                    { find = "; after #%d+" },
+                    { find = "; before #%d+" },
                 },
-                view = "mini",
             },
+            view = "mini",
         },
-        presets = {
-            bottom_search = true,
-            command_palette = true,
-            long_message_to_split = true,
-            inc_rename = true,
-        },
-        notify = {
-            enabled = false,
-            replace = true,
-            merge = true,
-        },
-        lsp_progress = {
-            enabled = false,
-        },
-        throttle = 1000 / 30,
     },
-    dependencies = {
-        "MunifTanjim/nui.nvim",
+    presets = {
+        bottom_search = true,
+        command_palette = true,
+        long_message_to_split = true,
+        inc_rename = true,
     },
-}
+    notify = {
+        enabled = false,
+        replace = true,
+        merge = true,
+    },
+    lsp_progress = {
+        enabled = false,
+    },
+    throttle = 1000 / 30,
+})

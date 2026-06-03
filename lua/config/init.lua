@@ -1,6 +1,6 @@
 vim.g.mapleader = " "
 
-require("config.lazy")
+require("config.plugins")
 
 -- Core Settings
 vim.filetype.add({

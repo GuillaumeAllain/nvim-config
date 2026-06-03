@@ -1,8 +1,6 @@
 local api = vim.api
 local m = {}
 
-local lazy_file_events = { "BufReadPost", "BufNewFile", "BufWritePre" }
-
 function m.lazy_file()
     -- This autocmd will only trigger when a file was loaded from the cmdline.
     -- It will render the file as quickly as possible.
@@ -28,12 +26,6 @@ function m.lazy_file()
             end
         end,
     })
-
-    -- Add support for the LazyFile event
-    local Event = require("lazy.core.handler.event")
-
-    Event.mappings.LazyFile = { id = "LazyFile", event = lazy_file_events }
-    Event.mappings["User LazyFile"] = Event.mappings.LazyFile
 end
 
 local function _get_kitty_theme()

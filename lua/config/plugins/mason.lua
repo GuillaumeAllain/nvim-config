@@ -33,6 +33,8 @@ vim.schedule(function()
             "fprettify",
             -- fnlfmt is not in the mason registry; install it yourself (conform
             -- picks it up from PATH for codevlisp formatting).
+            -- air (R formatter) is invoked via pixi exec; install with:
+            --   pixi global install r-air (or add r-air to your pixi project)
             -- rustfmt is usually managed by rustup, but can be added here if needed
         },
         auto_update = true,

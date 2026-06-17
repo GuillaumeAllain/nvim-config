@@ -1,4 +1,10 @@
 require("conform").setup({
+    formatters = {
+        air = {
+            command = "pixi",
+            args = { "exec", "air", "format", "$FILENAME" },
+        },
+    },
     formatters_by_ft = {
         lua = { "stylua" },
         yaml = { "yamlfmt" },
@@ -7,6 +13,7 @@ require("conform").setup({
         codevlisp = { "fnlfmt" },
         rust = { "rustfmt" },
         typst = { "typstfmt" },
+        r = { "air" },
     },
     default_format_opts = {
         lsp_format = "fallback",

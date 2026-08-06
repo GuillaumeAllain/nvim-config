@@ -26,7 +26,7 @@ map("n", "<leader>fw", function() Snacks.picker.grep_word() end, { desc = "Grep 
 map("n", "<leader>fh", function() Snacks.picker.help() end, { desc = "Help Tags" })
 map("n", "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, { desc = "Config Files" })
 map("n", "<leader>fm", function() Snacks.picker.marks() end, { desc = "Marks" })
-map("n", "<leader>fd", function() Snacks.picker.smart({ cwd = vim.loop.cwd() }) end, { desc = "Smart Files" })
+map("n", "<leader>fd", function() Snacks.picker.smart({ filter = { cwd = true } }) end, { desc = "Smart Files" })
 map("n", "<leader>ff", function() Snacks.picker.buffers() end, { desc = "Buffers" })
 map("n", "<leader>fs", function() Snacks.explorer() end, { desc = "File Explorer" })
 map("n", "<leader>ft", function() Snacks.picker() end, { desc = "Picker Builtin" })

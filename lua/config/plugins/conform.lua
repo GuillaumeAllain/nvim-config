@@ -4,6 +4,17 @@ require("conform").setup({
             command = "pixi",
             args = { "exec", "air", "format", "$FILENAME" },
         },
+        -- yamlfmt strips a leading `---` by default. Keep it when the buffer
+        -- already has one, but don't add one to files that don't.
+        yamlfmt = {
+            prepend_args = function(_, ctx)
+                local first = vim.api.nvim_buf_get_lines(ctx.buf, 0, 1, false)[1] or ""
+                if vim.startswith(first, "---") then
+                    return { "-formatter", "include_document_start=true" }
+                end
+                return {}
+            end,
+        },
     },
     formatters_by_ft = {
         lua = { "stylua" },

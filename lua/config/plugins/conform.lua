@@ -24,6 +24,7 @@ require("conform").setup({
         codevlisp = { "fnlfmt" },
         rust = { "rustfmt" },
         typst = { "typstfmt" },
+        toml = { "tombi" },
         r = { "air" },
     },
     default_format_opts = {

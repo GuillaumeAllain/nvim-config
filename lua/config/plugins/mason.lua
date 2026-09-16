@@ -12,7 +12,7 @@ require("mason-lspconfig").setup({
         "lua_ls",
         "clangd",
         "fortls",
-        "taplo",
+        "tombi",
         "ltex_plus",
         "sqlls",
         "tinymist",

@@ -13,7 +13,7 @@ vim.lsp.enable({
     "lua_ls",
     "clangd",
     "fortls",
-    "taplo",
+    "tombi",
     "ltex_plus",
     "sqlls",
     "r_language_server",

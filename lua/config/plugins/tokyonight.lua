@@ -2,24 +2,34 @@ require("tokyonight").setup({
     style = "night",
     transparent = true,
     on_colors = function(colors)
-        colors.comment = require("tokyonight.util").lighten(colors.comment, 0.5)
-        colors.fg_gutter = require("tokyonight.util").lighten(colors.fg_gutter, 0.5)
-        -- colors.fg = require("tokyonight.util").lighten(colors.fg, 0.5)
-        colors.terminal_black = require("tokyonight.util").lighten(colors.terminal_black, 0.5)
-        colors.dark3 = require("tokyonight.util").lighten(colors.dark3, 0.5)
-        colors.bg_statusline = colors.none -- ou "NONE"
+        local lighten = require("tokyonight.util").lighten
+        for _, k in ipairs({ "comment", "fg_gutter", "terminal_black", "dark3" }) do
+            colors[k] = lighten(colors[k], 0.5)
+        end
+        colors.bg_statusline = colors.none
+    end,
+    -- mini.statusline styled like the old lualine theme: coloured mode block,
+    -- then mode-coloured text (StatuslineB*) on a transparent background.
+    on_highlights = function(hl, c)
+        for mode, color in pairs({
+            Normal = c.blue,
+            Insert = c.green,
+            Command = c.yellow,
+            Visual = c.magenta,
+            Replace = c.red,
+            Other = c.green1,
+        }) do
+            hl["MiniStatuslineMode" .. mode] = { fg = c.black, bg = color }
+            hl["StatuslineB" .. mode] = { fg = color }
+        end
+        hl.MiniStatuslineFileinfo = { fg = c.fg_sidebar }
+        hl.MiniStatuslineInactive = { fg = c.fg_gutter }
     end,
     styles = {
-        -- Style to be applied to different syntax groups
-        -- Value is any valid attr-list value for `:help nvim_set_hl`
         comments = { italic = true },
         keywords = { italic = true },
-        functions = {},
-        variables = {},
-        -- Background styles. Can be "dark", "transparent" or "normal"
-        sidebars = "transparent", -- style for sidebars, see below
-        floats = "transparent", -- style for floating windows
+        sidebars = "transparent",
+        floats = "transparent",
     },
 })
-
 vim.cmd.colorscheme("tokyonight")

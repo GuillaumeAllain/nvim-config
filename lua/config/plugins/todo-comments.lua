@@ -1,23 +1,12 @@
+local c = function(n) return vim.g["terminal_color_" .. n] end
 require("todo-comments").setup({
-    highlight = {
-        comments_only = false,
-    },
+    highlight = { comments_only = false },
     keywords = {
-        FIX = {
-            icon = " ", -- icon used for the sign, and in search results
-            color = vim.g["terminal_color_2"], -- can be a hex color, or a named color (see below)
-            alt = { "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
-            -- signs = false, -- configure signs for some keywords individually
-        },
-        TODO = { icon = " ", color = vim.g["terminal_color_6"], alt = { "À faire" } },
-        HACK = { icon = " ", color = vim.g["terminal_color_2"] },
-        WARN = { icon = " ", color = vim.g["terminal_color_3"], alt = { "WARNING", "XXX" } },
-        PERF = {
-            icon = " ",
-            color = vim.g["terminal_color_3"],
-            alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" },
-        },
-        NOTE = { icon = " ", color = vim.g["terminal_color_5"], alt = { "NOTE" } },
-        -- DONE = { icon = " ", color = vim.g["terminal_color_5"], alt = { "DONE" } },
+        FIX = { icon = " ", color = c(2), alt = { "FIXME", "BUG", "FIXIT", "ISSUE" } },
+        TODO = { icon = " ", color = c(6), alt = { "À faire" } },
+        HACK = { icon = " ", color = c(2) },
+        WARN = { icon = " ", color = c(3), alt = { "WARNING", "XXX" } },
+        PERF = { icon = " ", color = c(3), alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
+        NOTE = { icon = " ", color = c(5) },
     },
 })

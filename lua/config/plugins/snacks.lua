@@ -6,7 +6,6 @@ require("snacks").setup({
     quickfile = { enabled = true },
     words = { enabled = true },
     scratch = { enabled = true },
-    LSP = { enabled = true },
     picker = {
         enabled = true,
         win = { input = { keys = { ["<C-space>"] = { "toggle_live", mode = { "i", "n" } } } } },
@@ -42,4 +41,7 @@ map("n", "gD", function() Snacks.picker.lsp_declarations() end, { desc = "Goto D
 map("n", "grr", function() Snacks.picker.lsp_references() end, { nowait = true, desc = "References" })
 map("n", "gI", function() Snacks.picker.lsp_implementations() end, { desc = "Goto Implementation" })
 map("n", "gy", function() Snacks.picker.lsp_type_definitions() end, { desc = "Goto T[y]pe Definition" })
-map("n", "<leader>d", function() require("snacks").bufdelete.delete() end, { desc = "Delete current buffer" })
+map("n", "<leader>d", function() Snacks.bufdelete() end, { desc = "Delete current buffer" })
+map("n", "<leader>gh", function() Snacks.picker.diagnostics() end, { desc = "Diagnostics" })
+map("n", "<leader>gj", function() Snacks.picker.todo_comments() end, { desc = "Todo comments" })
+map("n", "<leader>gH", function() Snacks.picker.git_log_file() end, { desc = "File git history" })
